@@ -22,7 +22,7 @@ export function AdminLayout({ children }) {
     return (
         <Area>
             <Menu titleHome={e => setTitle(e)} />
-            <div style={{flex: 6, padding: 50}}>
+            <div style={{flex: 6, marginLeft: '10%' , padding: 50}}>
                 <Header title={title} />
                 {children}
             </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { inicial } from '../../constants/app/'
 import { 
   Area, 
@@ -8,6 +9,8 @@ import {
 } from './styles'
 
 export const HomePage = () => {
+  const navigate= useNavigate()
+  
   return (
     <Area >
       <TextArea>
@@ -15,8 +18,8 @@ export const HomePage = () => {
       </TextArea>
       <ContentArea>
         {inicial.map((e, key) =>(
-          <Card key={key}>
-            {e}
+          <Card onClick={() => navigate(e.slug)} key={key}>
+            {e.text}
           </Card>
         ))}
       </ContentArea>

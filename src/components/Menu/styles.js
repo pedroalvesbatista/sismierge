@@ -8,6 +8,7 @@ export const Area = styled.div`
     flex-direction: column;
     flex: 1;
     box-shadow: 5px 0px 6px -2px rgba(0,0,0,0.10);
+    position: fixed;
 `
 export const Header = styled.div`
     display: flex;

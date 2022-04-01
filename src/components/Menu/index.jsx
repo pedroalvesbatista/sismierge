@@ -22,13 +22,14 @@ function Menu({ titleHome }) {
     const dispatch= useDispatch()
     // const { titlePage } = useSelector(state => state.others)
 
-    const handleActive= (key, title) => {
+    const handleActive= (key, item) => {
         setActive(key)
-        titleHome(title)
+        titleHome(item.text)
         dispatch({
             type: others.SET_HOMETITLE,
-            payload: title
+            payload: item.text
         })
+        navigate(item.slug)
     }
 
     const handleLogout= () => {
@@ -44,16 +45,16 @@ function Menu({ titleHome }) {
         <MenuArea>
             {menu.map((item, key) => (
                 <div key={key} style={{position: 'relative'}}>
-                    <Text onClick={() => handleActive(key, item)}  active={active === key ? true : false}> {item} </Text>
+                    <Text onClick={() => handleActive(key, item)}  active={active === key ? true : false}> {item.text} </Text>
                     {active === key && <BarActive/>}
-                    {item === 'Mensagens' && <Notif>20</Notif>}
-                    {item === 'Notificações' && <Notif>10</Notif>}
+                    {item.text === 'Mensagens' && <Notif>20</Notif>}
+                    {item.text === 'Notificações' && <Notif>10</Notif>}
                 </div>
             ))}
         </MenuArea>
         <BottomArea>
-            <Img src='/profile.jpg'/>
-            <Subtext weight='bold'>Christian Santos</Subtext>
+            <Img src='/profile.png'/>
+            <Subtext weight='bold'>Juliana Ferreira</Subtext>
             <Subtext onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Subtext>
         </BottomArea>
     </Area>
