@@ -1,6 +1,6 @@
 export const menu = [
     {id: 0, text:'Inicio', slug: '/'},
-    {id: 1, text:'Escopo', slug: '/escopo' },
+    {id: 1, text:'Escopo', slug: '/contabilizar' },
     {id: 2, text:'Coleção', slug: '/colecao'},
     {id: 3, text:'Histórico', slug: '/historico'},
     {id: 4, text:'Mensagens', slug: '/mensagem'},

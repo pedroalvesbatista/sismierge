@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { escopo, table } from '../../constants/app'
+import BarButton from '../../components/Others/BarButton'
 import { 
   Area, 
   SelectArea,
@@ -16,7 +17,6 @@ import {
   Th,
   Tr,
   MoreTable,
-  Button
 } from './styles'
 
 export const Contabilizar = () => {
@@ -75,11 +75,7 @@ export const Contabilizar = () => {
       }
       {visor &&
         <VisorArea>
-          <div style={{display: 'flex', justifyContent: 'center', marginBottom: 20}}>
-            <Button color='verde'>Salvar</Button>
-            <Button color='roxo'>Enviar</Button>
-            <Button>Prévia de cálculos</Button>
-          </div>
+          <BarButton />
           <TitleVisor> {visorData} </TitleVisor>
           <div style={{display: 'flex', alignItems: 'flex-end'}}>
             <Table>

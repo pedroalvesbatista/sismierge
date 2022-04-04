@@ -88,13 +88,13 @@ export const Tr = styled.tr`
 
 `
 export const Th = styled.th`
-    font-weight: 300;
+    font-weight: 600;
     background-color: ${primary.verde};
     color: #fff;
     flex: 1;
     padding: 10px 20px;
     /* border: 1px solid ${primary.cinza}; */
-    font-size: 14px;
+    font-size: 12px;
 `
 export const Td = styled.td`
     border: 1px solid ${primary.cinza};

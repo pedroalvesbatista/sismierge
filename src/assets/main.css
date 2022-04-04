@@ -415,3 +415,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex {
   display: flex !important;
 }
+
+.table {
+  display: table !important;
+}
+
+.border {
+  border-width: 1px !important;
+}
+
+.outline {
+  outline-style: solid !important;
+}

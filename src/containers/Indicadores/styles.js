@@ -2,41 +2,83 @@ import styled from 'styled-components'
 import { primary } from '../../constants/tailwind/colors'
 
 export const Area = styled.div`
+`
+export const DashboardArea = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+`
+export const GraphicArea = styled.div`
+    display: flex;
+    justify-content: center;
+    /* margin-bottom: 20px; */
+    /* align-items: center; */
+`
+export const Title = styled.span`
+    color: ${primary.roxo};
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+export const Header =  styled.div`
+    background-color: ${primary.cinza};
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #cecece;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    font-weight: 500;
+`
+export const Left = styled.div`
+    flex: 1;
+    border: 2px solid rgba(134, 134, 135, 0.4);
+    height: 480px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 10px;
+`
+export const AreaDash = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    flex: 1;
+`
+export const Rigth = styled(Left)`
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: space-between; */
+`
+export const AreaChart = styled.div`
+    padding: 10px;
+    display: flex;
     align-items: center;
-    /* background-color: aliceblue; */
-    padding: 50px;
+    justify-content: center;
+    flex-direction: column;
+    /* background-color: red; */
+    margin-top: 20px;
 `
 export const TextArea = styled.div`
-    font-size: 30px;
-`
-export const ContentArea = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5%;
-`
-export const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
-    width: 200px;
-    height: 150px;
-    cursor: pointer;
-    padding: 20px;
-    background-color: ${primary.roxo};
-    margin: 0px 10px 0px 0px;
-    color: ${primary.cinza};
+    padding: 0px 60px;
     text-align: center;
-    font-weight: 600;
-    border-radius: 15px;
-    -webkit-box-shadow: 5px 5px 20px -3px rgba(0,0,0,0.34); 
-    box-shadow: 5px 5px 20px -3px rgba(0,0,0,0.34);
-
-    &:active{
-        opacity: 0.79;
-    }
 `
+export const BorderArea = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: ${primary.verde};
+    font-weight: 600;
+    border: 2px solid ${primary.verde};
+`
+
 
