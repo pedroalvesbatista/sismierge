@@ -24,7 +24,6 @@ export const Contabilizar = () => {
   const warn= warnList.filter(i => i === option).length > 0
   const [indexOPtion, setIndexOPtion] = useState(0)
   const [subOptions, setSubOptions] = useState(null)
-  // const { optionSelect, otherOptionSelect } = useSelector(state => state.others)
 
   const handleOption= e => {
     const event= e.target.value

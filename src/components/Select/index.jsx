@@ -1,31 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { primary, second } from '../../constants/tailwind/colors'
-import { others } from '../../constants/redux'
 
-function SelectArea({  valueOption, item, title }) {
-    const dispatch = useDispatch()
-
-    const handleOption= e => {
-        const event= e.target.value
-        // console.log(event);
-        dispatch({
-            type: others.SET_OPTION,
-            payload: event
-        })
-    }
-
-    
+function SelectArea({ value, onChange, item, title }) {
 
   return (
     <Container
-        // value={optionSelect} 
-        onChange={handleOption}
+        value={value} 
+        onChange={onChange}
     >
         <option style={{color: primary.cinza}} > {title} </option>
         {item?.map((i, index) => (
-            <Option value={valueOption}>
+            <Option value={i}>
                 {i}
             </Option>
         ))}

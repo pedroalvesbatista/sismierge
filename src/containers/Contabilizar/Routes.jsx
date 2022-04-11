@@ -8,6 +8,7 @@ function Routes({id, tables, items}) {
             <ElecLocalisation 
                 tables={tables}
                 items={items}
+                id= {id}
             />
         }
         {id === 2 && 

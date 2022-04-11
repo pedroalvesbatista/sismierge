@@ -3,6 +3,16 @@ import { primary } from '../../constants/tailwind/colors'
 
 export const Container = styled.div`
     display: flex;
+    margin: 10px 20px;
+    flex-direction: column;
+    /* margin-top: 20px; */
+`
+export const TitleArea = styled.div`
+    /* width: 92.3%; */
+    /* background-color: ${primary.roxo}; */
+    color: #000;
+    font-weight: 400;
+    padding: 10px;
 `
 export const AreaBtn = styled.div`
     display: flex;
@@ -10,7 +20,6 @@ export const AreaBtn = styled.div`
     align-self: flex-end;
 `
 export const TableArea = styled.table`
-    margin-top: 20px;
 `
 export const Thead = styled.thead`
     

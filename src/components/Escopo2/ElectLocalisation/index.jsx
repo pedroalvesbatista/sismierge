@@ -1,12 +1,33 @@
 import React, { useState } from 'react'
 import SelectArea from '../../Select'
 import styled from 'styled-components'
-import Table from '../../Table'
+import Routes from './Routes'
+import { useDispatch } from 'react-redux'
+import { others } from '../../../constants/redux'
 
 function ElecLocalisation({ items, tables }) {
     const [close, setClose] = useState(true)
+    const dispatch = useDispatch()
+    const [option, setOption] = useState('')
+    const [option2, setOption2] = useState('')
 
-    console.log(items);
+    const handleOption= e => {
+        const event= e.target.value
+        setOption(event)
+        dispatch({
+            type: others.SET_OPTION,
+            payload: event
+        })
+    }
+    const handleSubOption= e => {
+        const event= e.target.value
+        setOption2(event)
+        dispatch({
+            type: others.SET_OTHER_OPTION,
+            payload: event
+        })
+    }
+    
 
   return (
     <Container>
@@ -26,14 +47,17 @@ function ElecLocalisation({ items, tables }) {
         <SelectArea 
             item={items.options}
             title= 'Informe como você quer relatar'
+            onChange={handleOption}
+            value={option}
         />
         <SelectArea 
             title={`Escolha qual sistema elétrico deseja utilizar como entrada`}
             item={items.otherOptions}
+            second={true}
+            onChange={handleSubOption}
+            value={option2}
         />
-        <Table 
-            titles={tables}
-        />
+        <Routes tables={tables} />
     </Container>
   )
 }

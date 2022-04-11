@@ -8,10 +8,11 @@ import {
     Tr,
     MoreTable,
     Container,
-    AreaBtn
+    AreaBtn,
+    TitleArea
   } from './styles'
 
-function Table({ titles }) {
+function Table({ titles, titleArea, titleAreaContent }) {
 
     const [list, setList] = useState([1, 2, 3])
     // console.log(titles);
@@ -25,28 +26,31 @@ function Table({ titles }) {
 
   return (
     <Container>
-        <TableArea>
-            <Thead>
-                <Tr>
-                    {titles?.map((item, key) => (
-                    <Th key={key}>{item}</Th>
-                    ))}
-                </Tr>
-            </Thead>
-            <Tbody>
-                {list.map((item, key) => (
-                    <Tr key={key}>
-                    {titles?.map(() => (
-                        <Td onInput={``} contentEditable ></Td>
-                    ))}
+        {titleArea && <TitleArea> {titleAreaContent} </TitleArea>}
+        <div style={{display: 'flex'}}>
+            <TableArea>
+                <Thead>
+                    <Tr>
+                        {titles?.map((item, key) => (
+                        <Th key={key}>{item}</Th>
+                        ))}
                     </Tr>
-                ))}
-            </Tbody>
-        </TableArea>
-        <AreaBtn>
-            {list.length > 3 && <MoreTable delete={true} onClick={handlLessTable}> - </MoreTable>}
-            <MoreTable onClick={handleMoreTable}> + </MoreTable>
-        </AreaBtn>
+                </Thead>
+                <Tbody>
+                    {list.map((item, key) => (
+                        <Tr key={key}>
+                        {titles?.map(() => (
+                            <Td onInput={``} contentEditable ></Td>
+                        ))}
+                        </Tr>
+                    ))}
+                </Tbody>
+            </TableArea>
+            <AreaBtn>
+                {list.length > 3 && <MoreTable delete={true} onClick={handlLessTable}> - </MoreTable>}
+                <MoreTable onClick={handleMoreTable}> + </MoreTable>
+            </AreaBtn>
+        </div>
     </Container>
   )
 }
