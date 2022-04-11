@@ -13,7 +13,6 @@ import {
   TitleListItem
 } from './styles'
 import Routes from './Routes'
-import { useSelector } from 'react-redux'
 
 export const Contabilizar = () => {
   const [option, setOption] = useState('Qual escopo você deseja?')

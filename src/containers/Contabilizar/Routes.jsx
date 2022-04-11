@@ -1,5 +1,7 @@
 import React from 'react'
 import ElecLocalisation from '../../components/Escopo2/ElectLocalisation'
+import PerdaLocalisation from '../../components/Escopo2/PerdaLocalisation'
+import EnergiaTermica from '../../components/Escopo2/EnergiaTermica'
 
 function Routes({id, tables, items}) {
   return (
@@ -12,13 +14,13 @@ function Routes({id, tables, items}) {
             />
         }
         {id === 2 && 
-            <ElecLocalisation 
+            <PerdaLocalisation 
                 tables={tables}
                 items={items}
             />
         }
         {id === 3 && 
-            <ElecLocalisation 
+            <EnergiaTermica 
                 tables={tables}
                 items={items}
             />

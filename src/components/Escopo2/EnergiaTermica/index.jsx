@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
-import SelectArea from '../../Select'
+// import SelectArea from '../../Select'
 import styled from 'styled-components'
 import Routes from './Routes'
-import { useDispatch } from 'react-redux'
-import { others } from '../../../constants/redux'
+// import { useDispatch } from 'react-redux'
+// import { others } from '../../../constants/redux'
 
-function PerdaLocalisation({ items, tables }) {
+function EnergiaTermica({ tables }) {
     const [close, setClose] = useState(true)
-    const dispatch = useDispatch()
-    const [option, setOption] = useState('')
+    // const dispatch = useDispatch()
+    // const [option, setOption] = useState('')
 
-    const handleOption= e => {
-        const event= e.target.value
-        setOption(event)
-        dispatch({
-            type: others.SET_OTHER_OPTION,
-            payload: event
-        })
-    }
+    // const handleOption= e => {
+    //     const event= e.target.value
+    //     setOption(event)
+    //     dispatch({
+    //         type: others.SET_OTHER_OPTION,
+    //         payload: event
+    //     })
+    // }
     
 
   return (
@@ -28,19 +28,22 @@ function PerdaLocalisation({ items, tables }) {
                     <BtnClose onClick={() => setClose(!close)}>✕</BtnClose>
                 </BtnArea>
                 <Li>
-                    Consideramos qualquer sistema isolado aquele que interligue gerador e consumidor sem passar pelo Sistema Integrado Nacional (SIN) ou ao Sistema Isolado do Amazonas.    
+                    Indique o combustível, a eficiência do fervedor e o fator de Abas Gerais emissão para cada unidade, local, ou ponto na Tabela 1.   
                 </Li>
                 <Li>
-                    Relate aqui as emissões relacionadas à compra de energia elétrica distribuída por linhas de transmissão que não estão integradas ao Sistema Integrado Nacional (SIN) ou ao Sistema Isolado do Amazonas.
+                    Selecione o "tipo de combustível" na caixa, indique a eficiência do fervedor e a quantidade de vapor comprado.
+                </Li>
+                <Li>
+                    Se não souber a eficiência do fervedor, use Coleção 80% como o valor padrão.
+                </Li>
+                <Li>
+                    Se mais de um tipo de combustível for usado para uma unidade, Histórico local, ou ponto, use mais de uma linha por registro de fonte.
+                </Li>
+                <Li>
+                    Altere na Tabela os fatores de emissão padrão de CO,, CH, e N,O pelos valores do fornecedor, se esta informação for disponível.
                 </Li>
             </Notif>
         }
-        <SelectArea 
-            item={items.options}
-            title= 'Escolha qual sistema elétrico deseja utilizar como entrada'
-            onChange={handleOption}
-            value={option}
-        />
         <Routes tables={tables} />
     </Container>
   )
@@ -92,4 +95,4 @@ export const BtnClose = styled.div`
     }
 `
 
-export default PerdaLocalisation
+export default EnergiaTermica
