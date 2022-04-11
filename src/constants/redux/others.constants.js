@@ -1,3 +1,5 @@
 export const others = {
     SET_HOMETITLE : "SET_HOMETITLE",
+    SET_OPTION : "SET_OPTION",
+    SET_OTHER_OPTION : "SET_OTHER_OPTION",
 }

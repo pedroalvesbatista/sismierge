@@ -15,23 +15,206 @@ export const inicial = [
     {id: 3, text:'Verificação', slug: '/verificacao'},
 ]
 export const escopo= [
-    {id: 0, item: {
-        id: 0, title: 'Escopo 1', options: [
-            'Combustão estacionária',
-            'Combustão móvel',
-            'Emissões fugitivas',
-            'Processos industriais',
-            'Agricolas',
-            'Mudança no uso do solo',
-            'Residuos sólidos e efluentes líquidos'
-        ]}
+    {
+        id: 0, 
+        item: {
+            id: 0, 
+            title: 'Escopo 1', 
+            options: [
+                {
+                    id: 1,
+                    name: {
+                        title: 'Combustão estacionária',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 2,
+                    name: {
+                        title: 'Combustão móvel',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 3,
+                    name: {
+                        title: 'Emissões fugitivas',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 4,
+                    name: {
+                        title: 'Processos industriais',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 5,
+                    name: {
+                        title: 'Agricolas',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 6,
+                    name: {
+                        title: 'Mudança no uso do solo',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+                {
+                    id: 7,
+                    name: {
+                        title: 'Residuos sólidos e efluentes líquidos',
+                        table: [ ]
+                    }, 
+                    options: [],
+                    otherOptions: [],
+
+                },
+            ]
+        }
     },
-    {id: 1, item: 
-        {id: 1, title: 'Escopo 2', options: [
-            'Compra de energia elétrica',
-            'Compra de energia térmica',
-            'Perdas por transmissão e distribuição',
-        ]}
+    
+    {
+        id: 1, 
+        item: {
+            id: 1, 
+            title: 'Escopo 2', 
+            options: [
+                {
+                    id: 1,
+                    name: {
+                        title: 'Eletricidade (localização)',
+                        table: [
+                            'Registro da fonte',
+                            'Descrição da fonte',
+                            'Emissões de CO2(t)',
+                            'Emissões de CH4(t)',
+                            'Emissões de N2(t)',
+                            'Emissões de CO2e(t)',
+                            'Emissões de CO2 biogenico(t)'
+                        ]
+                    },
+                    options: [
+                        'Vou incluir os consumos de energia elétrica mensalmente',
+                        'Vou incluir os consumos de energia elétrica anualmente',
+                        'Quero anexar minha fatura de energia elétrica para que sejam extraídas todas as informações necessárias do documento',
+                        'Vou relatar o consumo de energia elétrica em MWh ou KWh'
+                    ],
+                    otherOptions: [
+                        'Sistema Interligado Nacional (SIN)',
+                        'Sistema Isolado do Amazonas',
+                        'Outros sistemas isolados'
+                    ]
+                },
+                {
+                    id: 2,
+                    name: {
+                        title: 'Perdas por distribuição e transmissão (localização)',
+                        table: [
+                            'Registro da fonte',
+                            'Descrição da fonte',
+                            'Emissões de CO2(t)',
+                            'Emissões de CH4(t)',
+                            'Emissões de N2(t)',
+                            'Emissões de CO2e(t)',
+                            'Emissões de CO2 biogenico(t)'
+                         ]
+                    },
+                    options: [
+                        'Sistema interligado Nacional(SIN)',
+                        'Sistema isolado do Amazonas',
+                        'Outros sistemas isolados'
+                    ],
+                    otherOptions: [
+                        
+                    ]
+                },
+                {
+                    id: 3,
+                    name: {
+                        title: 'Compra de energia térmica',
+                        table: [ 
+                            'Registro da fonte',
+                            'Descrição da fonte',
+                            'Emissões de CO2(t)',
+                            'Emissões de CH4(t)',
+                            'Emissões de N2(t)',
+                            'Emissões de CO2e(t)',
+                            'Emissões de CO2 biogenico(t)'
+                        ]
+                    },
+                    options: [
+                        ''
+                    ],
+                    otherOptions: [
+                        
+                    ]
+                },
+                {
+                    id: 4,
+                    name: {
+                        title: 'Eletricidade(escolha de compra)',
+                        table: [ 
+                            'Registro da fonte',
+                            'Descrição da fonte',
+                            'Emissões de CO2(t)',
+                            'Emissões de CH4(t)',
+                            'Emissões de N2(t)',
+                            'Emissões de CO2e(t)',
+                            'Emissões de CO2 biogenico(t)'
+                        ]
+                    },
+                    options: [
+                        ''
+                    ],
+                    otherOptions: [
+                        
+                    ]
+                },
+                {
+                    id: 5,
+                    name: {
+                        title: 'Perdas por distribuição e transmissão (escolha de compra)',
+                        table: [ 
+                            'Registro da fonte',
+                            'Descrição da fonte',
+                            'Emissões de CO2(t)',
+                            'Emissões de CH4(t)',
+                            'Emissões de N2(t)',
+                            'Emissões de CO2e(t)',
+                            'Emissões de CO2 biogenico(t)'
+                        ]
+                    },
+                    options: [
+                        ''
+                    ],
+                    otherOptions: [
+                        
+                    ]
+                },
+            ]
+        },
     },
     {id: 2, item: 
         {id: 2, title: 'Escopo 3', options: []}
@@ -42,12 +225,15 @@ export const escopo= [
 ]
 
 export const table= [
-    {id: 0, title: [
-        'Registro da Fonte',
-        'Descrição da Fonte',
-        'Combustivel utilizado',
-        'Eficiência do Fervedor',
-        'Vapor comprado',
-        'Consumo de Combustível'
-    ]}
+    {   id: 0, 
+        name: '',
+        title: [
+            'Registro da Fonte',
+            'Descrição da Fonte',
+            'Combustivel utilizado',
+            'Eficiência do Fervedor',
+            'Vapor comprado',
+            'Consumo de Combustível'
+        ]
+    },
 ] 

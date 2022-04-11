@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { escopo, table } from '../../constants/app'
+import { escopo } from '../../constants/app'
 import BarButton from '../../components/Others/BarButton'
 import { 
   Area, 
@@ -10,14 +10,10 @@ import {
   Divisor,
   VisorArea,
   TitleVisor,
-  Table,
-  Tbody,
-  Thead,
-  Td,
-  Th,
-  Tr,
-  MoreTable,
+  TitleListItem
 } from './styles'
+import Routes from './Routes'
+import { useSelector } from 'react-redux'
 
 export const Contabilizar = () => {
   const [option, setOption] = useState('Qual escopo você deseja?')
@@ -26,23 +22,31 @@ export const Contabilizar = () => {
   const [visorData, setVisorData] = useState('')
   const warnList= ['Escopo 1', 'Escopo 4']
   const warn= warnList.filter(i => i === option).length > 0
-  const [list, setList] = useState([1, 2, 3])
+  const [indexOPtion, setIndexOPtion] = useState(0)
+  const [subOptions, setSubOptions] = useState(null)
+  // const { optionSelect, otherOptionSelect } = useSelector(state => state.others)
 
   const handleOption= e => {
-    setOption(e.target.value)
+    const event= e.target.value
+    setOption(event)
+    const ex= escopo.filter(i => i.item.title === event)
+    // setIndexOPtion()
+    setIndexOPtion(ex[0].id);
   }
   const handleClick= e => {
+    const event= e.target.dataset.value
     setOpenDrow(false)
     setVisor(true)
-    setVisorData(e.target.dataset.value)
+    setVisorData(event)
+    // setSubOptions()
+    const ex= escopo[indexOPtion].item.options.filter(i => i.name.title === event)
+    setSubOptions(ex);
   }
 
-  const handleMoreTable= () => {
-    setList([...list, list.length + 1])
-  }
-  const handlLessTable= () => {
-    setList(list.splice(0, list.length - 1))
-  }
+  // useEffect(() => {
+  //   console.log(optionSelect);
+  // },)
+
 
   useEffect(() => {
     option === 'Escopo 2' ? setOpenDrow(true) : setOpenDrow(false)
@@ -53,9 +57,13 @@ export const Contabilizar = () => {
   return (
     <Area >
       <SelectArea value={option} onChange={handleOption}>
-        {escopo.map((item, key) => (
-          <option value={item.item.title} key={key}> {item.item.title} </option>
-        ))}
+        {escopo.map((item, key) => {
+          return(
+            <option value={item.item.title} key={key}> 
+              {item.item.title} 
+            </option>
+          )
+        })}
       </SelectArea>
       {warn &&
         <WarnArea>
@@ -65,9 +73,11 @@ export const Contabilizar = () => {
       }
       {openDrow &&
         <Dropdown>
-          {escopo[1].item.options.map((item, key) => (
+          <TitleListItem > Escolha uma das 5 formas abaixo para relatar suas emissões de Escopo II </TitleListItem>
+          <Divisor />
+          {escopo[indexOPtion].item.options.map((item, key) => (
             <Fragment key={key}>
-              <ListItem onClick={handleClick} data-value={item}> {item} </ListItem>
+              <ListItem onClick={handleClick} data-value={item.name.title}> {item.name.title} </ListItem>
               <Divisor />
             </Fragment>
           ))}
@@ -78,28 +88,11 @@ export const Contabilizar = () => {
           <BarButton />
           <TitleVisor> {visorData} </TitleVisor>
           <div style={{display: 'flex', alignItems: 'flex-end'}}>
-            <Table>
-              <Thead>
-                <Tr>
-                  {table[0].title.map((item, key) => (
-                    <Th key={key}>{item}</Th>
-                  ))}
-                </Tr>
-              </Thead>
-              <Tbody>
-                {list.map((item, key) => (
-                  <Tr key={key}>
-                    {table[0].title.map(() => (
-                      <Td onInput={``} contentEditable ></Td>
-                    ))}
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-            <div>
-              {list.length > 3 && <MoreTable delete={true} onClick={handlLessTable}> - </MoreTable>}
-              <MoreTable onClick={handleMoreTable}> + </MoreTable>
-            </div>
+            <Routes 
+              id={subOptions[0]?.id}
+              tables={subOptions[0]?.name.table}
+              items={subOptions && subOptions[0]}
+            />
           </div>
           </VisorArea>
       }

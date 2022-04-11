@@ -8,7 +8,7 @@ const colors = {
   second: {
     roxo: "#9c348c",
     verde: '#048c7c',
-    cinza: "#d8dde1",
+    cinza: "#74787a",
     dark: "#544c4c"
   },
   popBtn: {

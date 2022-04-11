@@ -60,6 +60,15 @@ export const ListItem = styled.li`
         color: #fff;
     }
 `
+export const TitleListItem = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    padding: 0px 10px;
+    font-weight: bold;
+`
 export const VisorArea = styled.div`
     width: 90%;
     margin-top: 40px;
