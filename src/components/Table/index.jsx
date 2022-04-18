@@ -88,8 +88,8 @@ function Table({ titles, titleArea, titleAreaContent, eT, onChangeData, itemsTab
         
         // console.log(data);
         // data.length > 0 
-        //     ? onChangeData([...data, data[0].name.table = dataTable.slice(0, 6)])
-        //     : onChangeData([...itemsTable, itemsTable[0].name.table = dataTable.slice(0, 6)])
+            ? onChangeData([...data, data[0].name.table = dataTable.slice(0, 6)])
+            : onChangeData([...itemsTable, itemsTable[0].name.table = dataTable.slice(0, 6)])
         // console.log(data.length > 0 ? data[0].name.table : itemsTable[0].name.table);
     }
 
