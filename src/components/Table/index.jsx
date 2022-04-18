@@ -52,16 +52,16 @@ function Table({ titles, titleArea, titleAreaContent, eT, onChangeData, itemsTab
     }
 
     useEffect(() => {
-        // const ver1= dataTable[3]?.valor[indexList]
-        // const ver2= dataTable[4]?.valor[indexList]
-        // const result = ver2 / ver1
+        const ver1= dataTable[3]?.valor[indexList]
+        const ver2= dataTable[4]?.valor[indexList]
+        const result = ver2 / ver1
 
-        // if (ver1.length && ver2.length) {
-        //     setDataTable([...dataTable, ...dataTable[5].valor[indexList] = result.toLocaleString('pt-BR', {minimumFractionDigits: 1})])
-        // } else {
-        //     setDataTable([...dataTable, ...dataTable[5].valor[indexList] = ''])
-        // }
-        console.log(dataTable[indexList]?.valor);
+        if (ver1.length && ver2.length) {
+            setDataTable([...dataTable, ...dataTable[5].valor[indexList] = result.toLocaleString('pt-BR', {minimumFractionDigits: 1})])
+        } else {
+            setDataTable([...dataTable, ...dataTable[5].valor[indexList] = ''])
+        }
+        // console.log(dataTable[indexList]?.valor[0]);
     }, [dataTable])
 
     
@@ -85,9 +85,9 @@ function Table({ titles, titleArea, titleAreaContent, eT, onChangeData, itemsTab
         // console.log(dataTable.slice(0, 6));
         
         // console.log(data);
-        data.length > 0 
-            ? onChangeData([...data, data[0].name.table = dataTable.slice(0, 6)])
-            : onChangeData([...itemsTable, itemsTable[0].name.table = dataTable.slice(0, 6)])
+        // data.length > 0 
+        //     ? onChangeData([...data, data[0].name.table = dataTable.slice(0, 6)])
+        //     : onChangeData([...itemsTable, itemsTable[0].name.table = dataTable.slice(0, 6)])
         // console.log(data.length > 0 ? data[0].name.table : itemsTable[0].name.table);
     }
 
