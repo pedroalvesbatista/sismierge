@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { primary } from '../../constants/tailwind/colors'
 
 function BarButton({ onSave, onSend, onPreview }) {
+
+    
   return (
     <Area>
         <Button onClick={onSave} color='verde'>Salvar</Button>
