@@ -2,7 +2,7 @@ import React from 'react'
 // import { useSelector } from 'react-redux'
 import Table from '../../Table'
 
-function Routes({ tables }) {
+function Routes({ tables, onChangeData, items }) {
     // const { otherOptionSelect } = useSelector(state => state.others)
 
     // const route= [
@@ -13,7 +13,10 @@ function Routes({ tables }) {
   return (
     <>
         <Table 
-            titles={tables}
+          items={tables}
+          eT= {true}
+          onChangeData={onChangeData}
+          itemsTable={items}
         />
     </>
   )

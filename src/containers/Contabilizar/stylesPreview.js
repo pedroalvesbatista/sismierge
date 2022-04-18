@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { primary } from '../../constants/tailwind/colors'
 
 export const Container = styled.div`
-    display: flex;
-    margin: 10px 20px;
-    flex-direction: column;
-    /* margin-top: 20px; */
+    margin: 10px 0px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
 `
 export const Input = styled.input`
     outline: none;

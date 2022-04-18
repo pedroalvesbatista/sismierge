@@ -15,6 +15,7 @@ export const TitleArea = styled.div`
     font-size: 38px;
     font-weight: bold;
     flex: 1;
+    margin: 10% 0% 0px 10%;
 `
 export const SearchArea = styled.form`
     display: flex;

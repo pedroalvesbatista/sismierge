@@ -4,7 +4,7 @@ import Table from '../../Table'
 import Sin from './Sin'
 import Sia from './Sia'
 
-function Routes({ tables }) {
+function Routes({ tables, items }) {
     const { optionSelect, otherOptionSelect } = useSelector(state => state.others)
 
     const route= [

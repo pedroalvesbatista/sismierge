@@ -1,0 +1,67 @@
+let tipoCombustivel = null
+let combustivelFossil = null
+let biocombustiveis = null
+
+export const dadosEmissaoPorCombustivel = [
+    tipoCombustivel = [
+        combustivelFossil = [
+            {combustivel: "Alcatrão", fator_emissao_co2: "80.67", fator_emissao_ch4: "0.0010", fator_emissao_n2o: "0.00150"},
+            {combustivel: "Asfaltos", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Metalúrgico Importado", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Metalúrgico Nacional", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 3100 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 3300 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 3700 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 4200 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 4500 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 4700 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 5200 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 5900 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor 6000 kcal / kg", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "Carvão Vapor sem Especificação", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+            {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+ 
+ 
+        ],        
+        biocombustiveis = [
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},
+         {combustivel: "", fator_emissao_co2: "", fator_emissao_ch4: "", fator_emissao_n2o: ""},        
+        ],
+    ],
+ ];
+ 

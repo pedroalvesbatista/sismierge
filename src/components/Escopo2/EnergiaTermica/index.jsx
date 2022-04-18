@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 // import SelectArea from '../../Select'
 import styled from 'styled-components'
+import { contabilizarActions } from '../../../actions'
 import Routes from './Routes'
 // import { useDispatch } from 'react-redux'
 // import { others } from '../../../constants/redux'
 
-function EnergiaTermica({ tables }) {
+function EnergiaTermica({ tables, onChangeData, items }) {
+    const dispatch= useDispatch()
     const [close, setClose] = useState(true)
     // const dispatch = useDispatch()
     // const [option, setOption] = useState('')
@@ -44,7 +47,7 @@ function EnergiaTermica({ tables }) {
                 </Li>
             </Notif>
         }
-        <Routes tables={tables} />
+        <Routes onChangeData={onChangeData} items={items} tables={tables} />
     </Container>
   )
 }

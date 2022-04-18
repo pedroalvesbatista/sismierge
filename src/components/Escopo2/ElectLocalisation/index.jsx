@@ -57,7 +57,7 @@ function ElecLocalisation({ items, tables }) {
             onChange={handleSubOption}
             value={option2}
         />
-        <Routes tables={tables} />
+        <Routes tables={tables} items={items} />
     </Container>
   )
 }

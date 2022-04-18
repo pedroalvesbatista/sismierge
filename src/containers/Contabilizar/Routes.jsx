@@ -3,7 +3,7 @@ import ElecLocalisation from '../../components/Escopo2/ElectLocalisation'
 import PerdaLocalisation from '../../components/Escopo2/PerdaLocalisation'
 import EnergiaTermica from '../../components/Escopo2/EnergiaTermica'
 
-function Routes({id, tables, items}) {
+function Routes({id, tables, items, onChangeData}) {
   return (
     <>
         {id === 1 && 
@@ -23,6 +23,7 @@ function Routes({id, tables, items}) {
             <EnergiaTermica 
                 tables={tables}
                 items={items}
+                onChangeData = {onChangeData}
             />
         }
         {id === 4 && 

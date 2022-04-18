@@ -105,16 +105,18 @@ export const escopo= [
                     id: 1,
                     name: {
                         title: 'Eletricidade (localização)',
-                        table: [
-                            'Registro da fonte',
-                            'Descrição da fonte',
-                            'Emissões de CO2(t)',
-                            'Emissões de CH4(t)',
-                            'Emissões de N2(t)',
-                            'Emissões de CO2e(t)',
-                            'Emissões de CO2 biogenico(t)'
+                        table: [ 
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
                         ]
                     },
+                    data: [],
                     options: [
                         'Vou incluir os consumos de energia elétrica mensalmente',
                         'Vou incluir os consumos de energia elétrica anualmente',
@@ -131,21 +133,23 @@ export const escopo= [
                     id: 2,
                     name: {
                         title: 'Perdas por distribuição e transmissão (localização)',
-                        table: [
-                            'Registro da fonte',
-                            'Descrição da fonte',
-                            'Emissões de CO2(t)',
-                            'Emissões de CH4(t)',
-                            'Emissões de N2(t)',
-                            'Emissões de CO2e(t)',
-                            'Emissões de CO2 biogenico(t)'
-                         ]
+                        table: [ 
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
+                        ]
                     },
                     options: [
                         'Sistema interligado Nacional(SIN)',
                         'Sistema isolado do Amazonas',
                         'Outros sistemas isolados'
                     ],
+                    data: [],
                     otherOptions: [
                         
                     ]
@@ -155,18 +159,19 @@ export const escopo= [
                     name: {
                         title: 'Compra de energia térmica',
                         table: [ 
-                            'Registro da fonte',
-                            'Descrição da fonte',
-                            'Emissões de CO2(t)',
-                            'Emissões de CH4(t)',
-                            'Emissões de N2(t)',
-                            'Emissões de CO2e(t)',
-                            'Emissões de CO2 biogenico(t)'
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Combustível utilizado', valor: ['', '', ''], index: ''},
+                            {name: 'Eficiência do fervedor', valor: ['', '', ''], index: ''},
+                            {name: 'Vapor comprado', valor: ['', '', ''], index: ''},
+                            {name: 'Consumo de combustível (GJ)', valor: ['', '', ''], index: ''}
+                            // 'Emissões de CO2 biogenico(t)'
                         ]
                     },
                     options: [
                         ''
                     ],
+                    data: [],
                     otherOptions: [
                         
                     ]
@@ -176,18 +181,20 @@ export const escopo= [
                     name: {
                         title: 'Eletricidade(escolha de compra)',
                         table: [ 
-                            'Registro da fonte',
-                            'Descrição da fonte',
-                            'Emissões de CO2(t)',
-                            'Emissões de CH4(t)',
-                            'Emissões de N2(t)',
-                            'Emissões de CO2e(t)',
-                            'Emissões de CO2 biogenico(t)'
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
                         ]
                     },
                     options: [
                         ''
                     ],
+                    data: [],
                     otherOptions: [
                         
                     ]
@@ -197,15 +204,17 @@ export const escopo= [
                     name: {
                         title: 'Perdas por distribuição e transmissão (escolha de compra)',
                         table: [ 
-                            'Registro da fonte',
-                            'Descrição da fonte',
-                            'Emissões de CO2(t)',
-                            'Emissões de CH4(t)',
-                            'Emissões de N2(t)',
-                            'Emissões de CO2e(t)',
-                            'Emissões de CO2 biogenico(t)'
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
                         ]
                     },
+                    data: [],
                     options: [
                         ''
                     ],
@@ -219,9 +228,6 @@ export const escopo= [
     {id: 2, item: 
         {id: 2, title: 'Escopo 3', options: []}
     },
-    {id: 3, item: 
-        {id: 3, title: 'Escopo 4', options: []}
-    }
 ]
 
 export const table= [
@@ -237,3 +243,13 @@ export const table= [
         ]
     },
 ] 
+
+// table: [ 
+//     {name: 'Registro da fonte', valor: ['', '', '']},
+//     {name: 'Descrição da fonte', valor: ['', '', '']},
+//     {name: 'Combustível utilizado', valor: ['', '', '']},
+//     {name: 'Eficiência do fervedor', valor: ['', '', '']},
+//     {name: 'Vapor comprado', valor: ['', '', '']},
+//     {name: 'Consumo de combustível (GJ)', valor: ['', '', '']}
+//     // 'Emissões de CO2 biogenico(t)'
+// ]

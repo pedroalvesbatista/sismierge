@@ -7,7 +7,7 @@ export const Area = styled.div`
     justify-content: center;
     align-items: center;
     /* background-color: aliceblue; */
-    padding: 50px;
+    /* padding: 50px; */
 `
 export const SelectArea = styled.select`
     width: 90%;
@@ -70,7 +70,7 @@ export const TitleListItem = styled.span`
     font-weight: bold;
 `
 export const VisorArea = styled.div`
-    width: 90%;
+    width: 95%;
     margin-top: 40px;
     background-color: #fff;
     border-radius: 5px;
