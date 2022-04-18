@@ -11,12 +11,14 @@ function Routes({id, tables, items, onChangeData}) {
                 tables={tables}
                 items={items}
                 id= {id}
+                onChangeData = {onChangeData}
             />
         }
         {id === 2 && 
             <PerdaLocalisation 
                 tables={tables}
                 items={items}
+                onChangeData = {onChangeData}
             />
         }
         {id === 3 && 
@@ -30,12 +32,14 @@ function Routes({id, tables, items, onChangeData}) {
             <ElecLocalisation 
                 tables={tables}
                 items={items}
+                onChangeData = {onChangeData}
             />
         }
         {id === 5 && 
             <ElecLocalisation 
                 tables={tables}
                 items={items}
+                onChangeData = {onChangeData}
             />
         }
     </>

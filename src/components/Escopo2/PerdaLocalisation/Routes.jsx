@@ -18,10 +18,10 @@ function Routes({ tables }) {
   return (
     <>
         {route[0] === otherOptionSelect &&
-            <Sin />
+            <Sin items={tables} />
         }
         {route[1] === otherOptionSelect &&
-            <Sia />
+            <Sia items={tables} />
         }
         {route[2] === otherOptionSelect &&
             <Table 

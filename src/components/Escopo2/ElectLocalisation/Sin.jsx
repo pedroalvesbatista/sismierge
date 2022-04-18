@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '../../Table'
 
-function Sin({ tables }) {
+function Sin({ items }) {
     const rf= ['Registro da fonte']
     const df= ['Descrição da fonte']
     const cal= ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -17,16 +17,8 @@ function Sin({ tables }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <Table 
-                    titles={rf}
-                />
-                <Table 
-                    titles={df}
-                />
-                <Table 
-                    titles={cae}
-                />
-                <Table 
-                    titles={etc}
+                    titles={items}
+                    eT={true}
                 />
             </div>
         </div>

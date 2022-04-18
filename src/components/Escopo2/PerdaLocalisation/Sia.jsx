@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from '../../Table'
 
-function Sia({ tables }) {
+function Sia({ items }) {
     const rf= ['Registro da fonte']
     const df= ['Descrição da fonte']
     const cal= ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -21,16 +21,8 @@ function Sia({ tables }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <Table 
-                    titles={rf}
-                />
-                <Table 
-                    titles={df}
-                />
-                <Table 
-                    titles={cae}
-                />
-                <Table 
-                    titles={etc}
+                    titles={items}
+                    eT={true}
                 />
             </div>
             <Table 
@@ -40,16 +32,8 @@ function Sia({ tables }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <Table 
-                    titles={eaco2}
-                />
-                <Table 
-                    titles={etco2}
-                />
-                <Table 
-                    titles={ech}
-                />
-                <Table 
-                    titles={en2o}
+                    titles={items}
+                    eT={true}
                 />
             </div>
         </div>
