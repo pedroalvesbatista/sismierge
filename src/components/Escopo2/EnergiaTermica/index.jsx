@@ -10,6 +10,7 @@ import Routes from './Routes'
 function EnergiaTermica({ tables, onChangeData, items }) {
     const dispatch= useDispatch()
     const [close, setClose] = useState(true)
+    
     // const dispatch = useDispatch()
     // const [option, setOption] = useState('')
 

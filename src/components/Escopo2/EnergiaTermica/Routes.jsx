@@ -10,10 +10,11 @@ function Routes({ tables, onChangeData, items }) {
     //     'Sistema isolado do Amazonas',
     //     'Outros sistemas isolados'
     // ]
+    console.log(tables);
   return (
     <>
         <Table 
-          items={tables}
+          titles={tables}
           eT= {true}
           onChangeData={onChangeData}
           itemsTable={items}
