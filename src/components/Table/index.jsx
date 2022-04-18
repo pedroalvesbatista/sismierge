@@ -52,14 +52,16 @@ function Table({ titles, titleArea, titleAreaContent, eT, onChangeData, itemsTab
     }
 
     useEffect(() => {
-        const ver1= dataTable[3]?.valor[indexList]
-        const ver2= dataTable[4]?.valor[indexList]
-        const result = ver2 / ver1
+        if (eT) {
+            const ver1= dataTable[3]?.valor[indexList]
+            const ver2= dataTable[4]?.valor[indexList]
+            const result = ver2 / ver1
 
-        if (ver1.length && ver2.length) {
-            setDataTable([...dataTable, ...dataTable[5].valor[indexList] = result.toLocaleString('pt-BR', {minimumFractionDigits: 1})])
-        } else {
-            setDataTable([...dataTable, ...dataTable[5].valor[indexList] = ''])
+            if (ver1.length && ver2.length) {
+                setDataTable([...dataTable, ...dataTable[5].valor[indexList] = result.toLocaleString('pt-BR', {minimumFractionDigits: 1})])
+            } else {
+                setDataTable([...dataTable, ...dataTable[5].valor[indexList] = ''])
+            }
         }
         // console.log(dataTable[indexList]?.valor[0]);
     }, [dataTable])
