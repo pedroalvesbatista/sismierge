@@ -3,7 +3,7 @@ import ElecLocalisation from '../../components/Escopo2/ElectLocalisation'
 import PerdaLocalisation from '../../components/Escopo2/PerdaLocalisation'
 import EnergiaTermica from '../../components/Escopo2/EnergiaTermica'
 
-function Routes({id, tables, items, onChangeData}) {
+function Routes({id, tables, items, dataOnchage}) {
     // console.log(items);
   return (
     <>
@@ -12,35 +12,36 @@ function Routes({id, tables, items, onChangeData}) {
                 tables={tables}
                 items={items}
                 id= {id}
-                onChangeData = {onChangeData}
+                dataOnchage = {dataOnchage}
+
             />
         }
         {id === 2 && 
             <PerdaLocalisation 
                 tables={tables}
                 items={items}
-                onChangeData = {onChangeData}
+                dataOnchage = {dataOnchage}
             />
         }
         {id === 3 && 
             <EnergiaTermica 
                 tables={tables}
                 items={items}
-                onChangeData = {onChangeData}
+                dataOnchage = {dataOnchage}
             />
         }
         {id === 4 && 
             <ElecLocalisation 
                 tables={tables}
                 items={items}
-                onChangeData = {onChangeData}
+                dataOnchage = {dataOnchage}
             />
         }
         {id === 5 && 
             <ElecLocalisation 
                 tables={tables}
                 items={items}
-                onChangeData = {onChangeData}
+                dataOnchage = {dataOnchage}
             />
         }
     </>

@@ -22,7 +22,9 @@ import Tabs from '../../components/Tabs'
 export const Contabilizar = () => {
   const dispatch = useDispatch()
   const [option, setOption] = useState('Qual escopo você deseja?')
+  const {co2, co2t} = useSelector(state => state.contabilizar)
   const { data, loading, sucess, changeTableData} = useSelector(state => state.contabilizar)
+  const { optionSelect, otherOptionSelect } = useSelector(state => state.others)
   const [openDrow, setOpenDrow] = useState(false)
   const [activeTab, setActiveTab] = useState(false)
   const [preview, setPreview] = useState(false)
@@ -47,6 +49,9 @@ export const Contabilizar = () => {
     // setIndexOPtion()
     setIndexOPtion(ex[0].id);
   }
+
+  console.log(co2);
+
   const handleClick= event => {
     // setOpenDrow(false)
     setVisor(true)
@@ -58,11 +63,15 @@ export const Contabilizar = () => {
 
   const handleSaveTable = () => {
     if (onChangeDataTable) {
-      dispatch(contabilizarActions.saveData(onChangeDataTable))
-      toast.success("Salvando com sucesso")
+      if (otherOptionSelect === 'Sistema Interligado Nacional (SIN)') {
+        const newList= [...subOptions, subOptions[0].name.table = onChangeDataTable]
+        // setSubOptions([...subOptions, subOptions[0].name.table = onChangeDataTable])
+        dispatch(contabilizarActions.saveData(newList, subOptions[0]?.id))
+      }
     } else {
       toast.error("Nenhuma modificacao pra salvar")
     }
+    
   }
 
   const handleSendTable = () => {
@@ -98,8 +107,8 @@ export const Contabilizar = () => {
       <SelectArea value={option} onChange={handleOption}>
         {datas.map((item, key) => {
           return(
-            <option value={item.item.title} key={key}> 
-              {item.item.title} 
+            <option value={item?.item?.title} key={key}> 
+              {item?.item?.title} 
             </option>
           )
         })}
@@ -136,7 +145,8 @@ export const Contabilizar = () => {
                   id={subOptions[0]?.id}
                   tables={subOptions[0]?.name.table}
                   items={subOptions && subOptions[0]}
-                  onChangeData = {e => setonChangeDataTable(e)}
+                  // onChangeData = {e => setonChangeDataTable(e)}
+                  dataOnchage= {e => setonChangeDataTable(e)}
                 />
               </div>
             </VisorArea>

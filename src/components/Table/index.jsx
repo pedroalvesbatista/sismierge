@@ -140,7 +140,7 @@ function Table({ titles, titleArea, titleAreaContent, eT, onChangeData, itemsTab
                                                 onChange={(e) => handleOption(e, index)}
                                                 style={{width: '100%', outline: 'none'}}>
                                                 <option>  </option>
-                                                {combustivel.slice(0, 14).map((c, i) => (
+                                                {combustivel.map((c, i) => (
                                                     <option key={i}> {c.combustivel} </option>
                                                 ))}
                                             </select>

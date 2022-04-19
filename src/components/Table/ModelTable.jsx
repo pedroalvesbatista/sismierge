@@ -38,7 +38,7 @@ function ModelTable({
 
     const handleChange = (value, col, row) => {
         setState([...state, state[col].valor[row]= value])
-        dataOnchage(state)
+        dataOnchage(state.slice(0, 6))
     }
 
     // console.log(items);

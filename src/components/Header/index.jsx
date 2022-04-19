@@ -9,7 +9,7 @@ import {
     Div
 } from './styles'
 
-function Header({ title }) {
+function Header({ co2, co2t }) {
     
   return (
     <Area>
@@ -19,7 +19,10 @@ function Header({ title }) {
             <IconSearch />
             <Input type='search' placeholder='Pesquisar...' />
         </SearchArea>
-        <Board />
+        <Board 
+          co2={co2} 
+          co2t={co2t}
+        />
     </Area>
   )
 }

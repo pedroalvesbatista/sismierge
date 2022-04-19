@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Table from '../../Table'
 import ModelTable from '../../Table/ModelTable'
 
-function Sin({ items }) {
+function Sin({ items, dataOnchage }) {
     const rf= ['Registro da fonte']
     const df= ['Descrição da fonte']
     const cal= ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -10,6 +10,9 @@ function Sin({ items }) {
     const etc= ['Elétricidade total comprada(MWh)']
 
     // console.log(items);
+    const ex = e => {
+        dataOnchage(e);
+    }
 
     return (
         <div>
@@ -23,7 +26,7 @@ function Sin({ items }) {
                     items={items?.slice(0, 6)} 
                     typeInput='number'
                     indexTypeInput={[3, 4, 5]}
-                    dataOnchage={e => console.log(e.slice(0, 6))}
+                    dataOnchage={e => ex(e)}
                 />
             </div>
         </div>

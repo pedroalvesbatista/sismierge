@@ -5,6 +5,8 @@ const initialState = {
   loadingSave: false,
   loadingPreview: false,
   data: [],
+  co2: {percent: 0, value: 0},
+  co2t: {percent: 0, value: 0},
   changeTableData: [],
   sucess: false,
   sucessSave: false,
@@ -46,13 +48,28 @@ export const contabilizarReducer = (state = initialState, action) => {
         data: action.payload
       }
 
+
+    case contabilizar.SET_CO2: 
+      return {
+        ...state,
+        // changeTableData: action.payload,
+        co2: action.payload
+      }
+
+    case contabilizar.SET_CO2T: 
+      return {
+        ...state,
+        // changeTableData: action.payload,
+        co2t: action.payload
+      }
+
       case contabilizar.SET_SAVE_REQUEST: 
       return {
         ...state,
         loadingSave: true
       }
 
-    case contabilizar.GET_DATA_SUCESS: 
+    case contabilizar.SET_SAVE_SUCESS: 
       return {
         ...state,
         loadingSave: false,

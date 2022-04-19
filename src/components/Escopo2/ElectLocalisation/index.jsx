@@ -5,7 +5,7 @@ import Routes from './Routes'
 import { useDispatch } from 'react-redux'
 import { others } from '../../../constants/redux'
 
-function ElecLocalisation({ items, tables }) {
+function ElecLocalisation({ items, tables, dataOnchage}) {
     const [close, setClose] = useState(true)
     const dispatch = useDispatch()
     const [option, setOption] = useState('')
@@ -57,7 +57,7 @@ function ElecLocalisation({ items, tables }) {
             onChange={handleSubOption}
             value={option2}
         />
-        <Routes tables={tables} items={items} />
+        <Routes dataOnchage={e => dataOnchage(e)} tables={tables} items={items} />
     </Container>
   )
 }

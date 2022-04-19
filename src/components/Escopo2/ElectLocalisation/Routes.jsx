@@ -5,7 +5,7 @@ import ModelTable from '../../Table/ModelTable'
 import Sin from './Sin'
 import Sia from './Sia'
 
-function Routes({ tables, items }) {
+function Routes({ tables, items, dataOnchage }) {
     const { optionSelect, otherOptionSelect } = useSelector(state => state.others)
 
     const route= [
@@ -23,7 +23,7 @@ function Routes({ tables, items }) {
   return (
     <>
         {route[0] === optionSelect && route2[0] === otherOptionSelect &&
-            <Sin items={tables} />
+            <Sin items={tables} dataOnchage={e => dataOnchage(e)} />
             // <ModelTable 
             //     items={items.name.table} 
             //     typeInput='number'
@@ -31,13 +31,14 @@ function Routes({ tables, items }) {
             // />
         }
         {route[0] === optionSelect && route2[1] === otherOptionSelect &&
-            <Sia items={tables}/>
+            <Sia items={tables} dataOnchage={e => dataOnchage(e)}/>
         }
         {route[0] === optionSelect && route2[2] === otherOptionSelect &&
             <ModelTable 
                 items={tables?.slice(7)} 
                 typeInput='number'
                 indexTypeInput={[3, 4]}
+                dataOnchage={e => dataOnchage(e)}
             />
         }
     </>
