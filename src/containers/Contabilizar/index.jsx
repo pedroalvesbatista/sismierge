@@ -53,12 +53,12 @@ export const Contabilizar = () => {
   }
 
   const handleSaveTable = () => {
-    if (onChangeDataTable) {
+    // if (onChangeDataTable) {
       dispatch(contabilizarActions.saveData(onChangeDataTable))
       toast.success("Salvando com sucesso")
-    } else {
-      toast.error("Nenhuma modificacao pra salvar")
-    }
+    // } else {
+    //   toast.error("Nenhuma modificacao pra salvar")
+    // }
   }
 
   const handleSendTable = () => {
