@@ -5,10 +5,12 @@ export const Container = styled.div`
     display: flex;
     margin: 10px 20px;
     flex-direction: column;
+    width: 100%;
     /* margin-top: 20px; */
 `
 export const Input = styled.input`
     outline: none;
+    width: 100%;
     /* padding: 10px; */
     /* margin-top: 20px; */
 `
@@ -47,7 +49,7 @@ export const Td = styled.td`
     outline: none;
 
     &:hover{
-        border: 2px solid ${primary.roxo};
+        border: 1px solid ${primary.roxo};
     }
 `
 export const Tbody = styled.tbody`

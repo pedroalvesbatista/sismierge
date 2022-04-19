@@ -108,12 +108,21 @@ export const escopo= [
                         table: [ 
                             {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Relate aqui a compra anual de elétricidade(MWh)', valor: ['', '', ''], index: ''},
+                            {name: 'Eletricidade total comprada', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            // {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
+
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Combustível utilizado', valor: ['', '', ''], index: ''},
                             {name: 'Eficiência do fervedor', valor: ['', '', ''], index: ''},
                             {name: 'Vapor comprado', valor: ['', '', ''], index: ''},
                             {name: 'Consumo de combustível (GJ)', valor: ['', '', ''], index: ''}
-                            // 'Emissões de CO2 biogenico(t)'
-                        ]
+                        ],
                     },
                     data: [],
                     options: [
@@ -133,6 +142,16 @@ export const escopo= [
                     name: {
                         title: 'Perdas por distribuição e transmissão (localização)',
                         table: [ 
+                            {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
+                            {name: 'Relate aqui a compra anual de elétricidade(MWh)', valor: ['', '', ''], index: ''},
+                            {name: 'Eletricidade total comprada', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            // {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            // 'Emissões de CO2 biogenico(t)'
+
                             {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Combustível utilizado', valor: ['', '', ''], index: ''},
@@ -181,10 +200,11 @@ export const escopo= [
                         table: [ 
                             {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
-                            {name: 'Combustível utilizado', valor: ['', '', ''], index: ''},
-                            {name: 'Eficiência do fervedor', valor: ['', '', ''], index: ''},
-                            {name: 'Vapor comprado', valor: ['', '', ''], index: ''},
-                            {name: 'Consumo de combustível (GJ)', valor: ['', '', ''], index: ''}
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
                             // 'Emissões de CO2 biogenico(t)'
                         ]
                     },
@@ -203,10 +223,11 @@ export const escopo= [
                         table: [ 
                             {name: 'Registro da fonte', valor: ['', '', ''], index: ''},
                             {name: 'Descrição da fonte', valor: ['', '', ''], index: ''},
-                            {name: 'Combustível utilizado', valor: ['', '', ''], index: ''},
-                            {name: 'Eficiência do fervedor', valor: ['', '', ''], index: ''},
-                            {name: 'Vapor comprado', valor: ['', '', ''], index: ''},
-                            {name: 'Consumo de combustível (GJ)', valor: ['', '', ''], index: ''}
+                            {name: 'Emissões de CO2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CH4(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de N2(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2e(t)', valor: ['', '', ''], index: ''},
+                            {name: 'Emissões de CO2 biogenico(t)', valor: ['', '', ''], index: ''},
                             // 'Emissões de CO2 biogenico(t)'
                         ]
                     },

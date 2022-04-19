@@ -6,7 +6,8 @@ export const Area = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: aliceblue; */
+    /* min-height: 100%;
+    background-color: aliceblue; */
     /* padding: 50px; */
 `
 export const SelectArea = styled.select`
@@ -37,8 +38,8 @@ export const WarnArea = styled.div`
 export const Dropdown = styled.ul`
     width: 90%;
     margin-top: 20px;
-    background-color: #fff;
-    border-radius: 10px;
+    /* background-color: #000; */
+    /* border-radius: 10px; */
     display: flex;
     flex-direction: column;
 `
@@ -71,7 +72,7 @@ export const TitleListItem = styled.span`
 `
 export const VisorArea = styled.div`
     width: 95%;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     background-color: #fff;
     border-radius: 5px;
     display: flex;

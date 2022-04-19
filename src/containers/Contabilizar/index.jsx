@@ -17,12 +17,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { contabilizarActions } from '../../actions'
 import { toast } from 'react-toastify'
 import PreviewTable from './PreviewTable'
+import Tabs from '../../components/Tabs'
 
 export const Contabilizar = () => {
   const dispatch = useDispatch()
   const [option, setOption] = useState('Qual escopo você deseja?')
   const { data, loading, sucess, changeTableData} = useSelector(state => state.contabilizar)
   const [openDrow, setOpenDrow] = useState(false)
+  const [activeTab, setActiveTab] = useState(false)
   const [preview, setPreview] = useState(false)
   const [visor, setVisor] = useState(false)
   const [visorData, setVisorData] = useState('')
@@ -34,31 +36,33 @@ export const Contabilizar = () => {
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/data:contabilizar"))
 
+  const storageData= JSON.parse(localStorage.getItem("@sismiegee/data")) 
+
+  const datas = storageData ? storageData : data
+
   const handleOption= e => {
     const event= e.target.value
     setOption(event)
-    const ex= escopo.filter(i => i.item.title === event)
+    const ex= datas.filter(i => i.item.title === event)
     // setIndexOPtion()
     setIndexOPtion(ex[0].id);
   }
-  const handleClick= e => {
-    const event= e.target.dataset.value
-    setOpenDrow(false)
+  const handleClick= event => {
+    // setOpenDrow(false)
     setVisor(true)
     setVisorData(event)
-    // setSubOptions()
-    const ex= escopo[indexOPtion].item.options.filter(i => i.name.title === event)
+    const ex= datas[indexOPtion].item.options.filter(i => i.name.title === event)
     !storage && localStorage.setItem("@sismiegee/data:contabilizar", JSON.stringify(ex))
     setSubOptions(ex);
   }
 
   const handleSaveTable = () => {
-    // if (onChangeDataTable) {
+    if (onChangeDataTable) {
       dispatch(contabilizarActions.saveData(onChangeDataTable))
       toast.success("Salvando com sucesso")
-    // } else {
-    //   toast.error("Nenhuma modificacao pra salvar")
-    // }
+    } else {
+      toast.error("Nenhuma modificacao pra salvar")
+    }
   }
 
   const handleSendTable = () => {
@@ -74,17 +78,25 @@ export const Contabilizar = () => {
     setPreview(!preview)
   }
 
+  // console.log(data);
+
 
   useEffect(() => {
     option === 'Escopo 2' ? setOpenDrow(true) : setOpenDrow(false)
     option !== 'Escopo 2' && setVisor(false)
-  }, [option])
+    if (warn) {
+      toast.info('Esta funcionalidade está em desenvolvimento')
+    }
+    // console.log(escopo[indexOPtion]?.item.options);
+    // console.log(openDrow);
+  }, [option, warn])
+  
   
 
   return (
     <Area >
       <SelectArea value={option} onChange={handleOption}>
-        {escopo.map((item, key) => {
+        {datas.map((item, key) => {
           return(
             <option value={item.item.title} key={key}> 
               {item.item.title} 
@@ -92,24 +104,27 @@ export const Contabilizar = () => {
           )
         })}
       </SelectArea>
-      {warn &&
-        <WarnArea>
-          Esta funcionalidade está em desenvolvimento <br/>
-          Aguarde!
-        </WarnArea>
-      }
       {!preview ?
         <>
           {openDrow &&
             <Dropdown>
-              <TitleListItem > Escolha uma das 5 formas abaixo para relatar suas emissões de Escopo II </TitleListItem>
-              <Divisor />
+              <Tabs 
+                items={datas[indexOPtion].item.options}
+                onCLick={handleClick}
+                active= {visorData}
+              />
+              {!visorData && 
+                <TitleListItem > 
+                  Escolha uma das 5 formas para relatar suas emissões de Escopo II 
+                </TitleListItem>
+              }
+              {/* <Divisor />
               {escopo[indexOPtion].item.options.map((item, key) => (
                 <Fragment key={key}>
-                  <ListItem onClick={handleClick} data-value={item.name.title}> {item.name.title} </ListItem>
+                  <ListItem onClick={handleClick} datas-value={item.name.title}> {item.name.title} </ListItem>
                   <Divisor />
                 </Fragment>
-              ))}
+              ))} */}
             </Dropdown>
           }
           {visor &&

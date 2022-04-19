@@ -21,7 +21,7 @@ function PreviewTable({ onClick, preview, items }) {
     const [close, setClose] = useState(preview)
     const [newData, setNewData] = useState(data)
 
-    const combustivel= dadosEmissaoPorCombustivel[0][0]
+    const combustivel= dadosEmissaoPorCombustivel.tipoCombustivel.combustivelFossil
 
     const gwpCO2 = 1; 
     const gwpCH4 = 28;

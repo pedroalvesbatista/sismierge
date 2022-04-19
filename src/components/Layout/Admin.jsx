@@ -5,12 +5,10 @@ import Menu from '../Menu'
 import Header from '../Header'
 import { useDispatch } from 'react-redux'
 import { contabilizarActions } from '../../actions'
+import { escopo } from '../../constants/app'
 
 export function AdminLayout({ children }) {
-    // const { titlePage } = useSelector(state => state.others)
     const [title, setTitle] = useState('')
-    const dispatch= useDispatch()
-    const storage= JSON.parse(localStorage.getItem("@sismiegee/data:contabilizar"))
 
     // const handleActive= (key, title) => {
     //     // setActive(key)
@@ -20,9 +18,6 @@ export function AdminLayout({ children }) {
     //     })
     // }
 
-    useEffect(() => {
-      dispatch(contabilizarActions.loadData())
-    }, [storage])
     
     
     return (

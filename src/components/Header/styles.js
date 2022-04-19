@@ -3,10 +3,16 @@ import { BiSearch } from 'react-icons/bi';
 import { primary } from '../../constants/tailwind/colors'
 
 export const Area = styled.div`
-    width: 70%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: c;
+    /* background-color: black; */
+    height: 200px;
+    padding: 0px 4%;
+`
+export const Div = styled.div`
+    flex: 1;
 `
 export const TitleArea = styled.div`
     display: flex;
@@ -24,6 +30,7 @@ export const SearchArea = styled.form`
     height: 30px;
     border-bottom: 2px solid #c3c7c9;
     flex: 1;
+    margin: 0px 5%;
     /* background-color: aliceblue; */
 `
 export const IconSearch = styled(BiSearch)`
@@ -31,7 +38,7 @@ export const IconSearch = styled(BiSearch)`
     margin-right: 10px;
 `
 export const Input = styled.input`
-    flex: 1;
+    /* flex: 1; */
     background-color: transparent;
     outline: none;
 `

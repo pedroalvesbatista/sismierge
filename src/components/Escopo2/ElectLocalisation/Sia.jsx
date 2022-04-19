@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from '../../Table'
+import ModelTable from '../../Table/ModelTable'
 
 function Sia({ tables, items }) {
     const rf= ['Registro da fonte']
@@ -20,9 +21,8 @@ function Sia({ tables, items }) {
                 titleAreaContent='Relate aqui a compra mensal de elétricidade(MWh)'
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
-                <Table 
-                    titles={items}
-                    eT={true}
+                <ModelTable 
+                    items={items?.slice(0, 6)}
                 />
             </div>
             <Table 
@@ -30,12 +30,6 @@ function Sia({ tables, items }) {
                 titleArea={true}
                 titleAreaContent='Emissões mensais de CO2(t)'
             />
-            <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
-                <Table 
-                    titles={items}
-                    eT={true}
-                />
-            </div>
         </div>
     )
 }

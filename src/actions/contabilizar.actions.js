@@ -5,11 +5,12 @@ export const contabilizarActions = {
   saveData,
   loadData,
   setData,
+  setDataStorage
 }
 
 function loadData() {
   return dispatch => {
-    const storage= JSON.parse(localStorage.getItem("@sismiegee/data:contabilizar"))
+    const storage= JSON.parse(localStorage.getItem("@sismiegee/data"))
     dispatch({
       type: contabilizar.GET_DATA_REQUEST,
     })
@@ -22,6 +23,11 @@ function loadData() {
         // console.log(storage);
         
       }, 3000);
+    } else {
+      dispatch({
+        type: contabilizar.GET_DATA_FAIL,
+        payload: "Uma coisa deu ruim"
+      })
     }
   }
 }
@@ -51,6 +57,21 @@ function setData(data) {
       type: contabilizar.SET_DATA,
       payload: data
     })
+    // console.log(data);
+  }
+}
+
+function setDataStorage(data) {
+  return dispatch => {
+    const storage= JSON.parse(localStorage.getItem("@sismiegee/data"))
+    if (!storage) {
+      localStorage.setItem("@sismiegee/data", JSON.stringify(data))
+      dispatch({
+        type: contabilizar.SET_DATA,
+        payload: data
+      })
+      console.log(data);
+    }
     // console.log(data);
   }
 }

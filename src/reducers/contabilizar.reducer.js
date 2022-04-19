@@ -42,7 +42,8 @@ export const contabilizarReducer = (state = initialState, action) => {
     case contabilizar.SET_DATA: 
       return {
         ...state,
-        changeTableData: action.payload
+        // changeTableData: action.payload,
+        data: action.payload
       }
 
       case contabilizar.SET_SAVE_REQUEST: 

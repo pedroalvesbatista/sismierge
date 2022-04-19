@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Table from '../../Table'
 import Sin from './Sin'
 import Sia from './Sia'
+import ModelTable from '../../Table/ModelTable'
 
 function Routes({ tables }) {
     const { otherOptionSelect } = useSelector(state => state.others)
@@ -12,9 +13,9 @@ function Routes({ tables }) {
         'Sistema isolado do Amazonas',
         'Outros sistemas isolados'
     ]
-    console.log(otherOptionSelect);
-    console.log(route[1] === otherOptionSelect);
-    console.log(route[1]);
+    // console.log(otherOptionSelect);
+    // console.log(route[1] === otherOptionSelect);
+    // console.log(route[1]);
   return (
     <>
         {route[0] === otherOptionSelect &&
@@ -24,8 +25,10 @@ function Routes({ tables }) {
             <Sia items={tables} />
         }
         {route[2] === otherOptionSelect &&
-            <Table 
-                titles={tables}
+            <ModelTable 
+                items={tables?.slice(7)} 
+                typeInput='number'
+                indexTypeInput={[3, 4]}
             />
         }
     </>

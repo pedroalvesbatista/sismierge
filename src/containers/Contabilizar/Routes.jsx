@@ -4,6 +4,7 @@ import PerdaLocalisation from '../../components/Escopo2/PerdaLocalisation'
 import EnergiaTermica from '../../components/Escopo2/EnergiaTermica'
 
 function Routes({id, tables, items, onChangeData}) {
+    // console.log(items);
   return (
     <>
         {id === 1 && 
