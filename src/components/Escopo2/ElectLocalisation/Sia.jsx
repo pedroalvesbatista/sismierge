@@ -22,7 +22,7 @@ function Sia({ tables, items }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <ModelTable 
-                    items={items?.slice(0, 6)}
+                    items={items[1]}
                 />
             </div>
             <Table 

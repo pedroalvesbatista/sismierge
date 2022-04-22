@@ -3,9 +3,16 @@ import Table from '../../Table'
 import ModelTable from '../../Table/ModelTable'
 
 function Sin({ items, dataOnchage }) {
+    const rf= ['Registro da fonte']
+    const df= ['Descrição da fonte']
     const cal= ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+    const cae= ['Compra anual de elétricidade(MWh)']
+    const etc= ['Elétricidade total comprada(MWh)']
 
-    console.log(items);
+    // console.log(items);
+    const ex = e => {
+        dataOnchage(e);
+    }
 
     return (
         <div>
@@ -16,10 +23,10 @@ function Sin({ items, dataOnchage }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <ModelTable 
-                    items={items[0]} 
+                    items={items?.slice(0, 6)} 
                     typeInput='number'
-                    indexTypeInput={[4]}
-                    dataOnchage={dataOnchage}
+                    indexTypeInput={[3, 4, 5]}
+                    dataOnchage={e => ex(e)}
                 />
             </div>
         </div>

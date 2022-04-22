@@ -14,6 +14,8 @@ function Sin({ items, dataOnchage }) {
         dataOnchage(e);
     }
 
+    console.log(items);
+
     return (
         <div>
             <Table 
@@ -23,7 +25,7 @@ function Sin({ items, dataOnchage }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <ModelTable 
-                    items={items?.slice(0, 6)} 
+                    items={items[0]} 
                     typeInput='number'
                     indexTypeInput={[3, 4, 5]}
                     dataOnchage={e => ex(e)}

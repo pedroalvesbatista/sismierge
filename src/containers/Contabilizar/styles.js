@@ -72,7 +72,7 @@ export const TitleListItem = styled.span`
 `
 export const VisorArea = styled.div`
     width: 95%;
-    /* margin-top: 40px; */
+    margin-bottom: 40px;
     background-color: #fff;
     border-radius: 5px;
     display: flex;

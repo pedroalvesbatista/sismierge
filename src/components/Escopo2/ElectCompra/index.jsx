@@ -5,7 +5,7 @@ import Routes from './Routes'
 import { useDispatch } from 'react-redux'
 import { others } from '../../../constants/redux'
 
-function ElecLocalisation({ items, tables, dataOnchage}) {
+function ElecCompra({ items, tables, dataOnchage}) {
     const [close, setClose] = useState(true)
     const dispatch = useDispatch()
     const [option, setOption] = useState('')
@@ -27,13 +27,11 @@ function ElecLocalisation({ items, tables, dataOnchage}) {
             payload: event
         })
     }
-
-    // console.log(tables);
     
 
   return (
     <Container>
-        {close &&
+        {/* {close &&
             <Notif>
                 <BtnArea>
                     <BtnClose onClick={() => setClose(!close)}>✕</BtnClose>
@@ -45,7 +43,7 @@ function ElecLocalisation({ items, tables, dataOnchage}) {
                     Relate aqui as emissões relacionadas à compra de energia elétrica distribuída por linhas de transmissão que não estão integradas ao Sistema Integrado Nacional (SIN) ou ao Sistema Isolado do Amazonas.
                 </Li>
             </Notif>
-        }
+        } */}
         <SelectArea 
             item={items.options}
             title= 'Informe como você quer relatar'
@@ -53,7 +51,7 @@ function ElecLocalisation({ items, tables, dataOnchage}) {
             value={option}
         />
         <SelectArea 
-            title={`Escolha qual sistema elétrico deseja utilizar como entrada`}
+            title={`Informe como você quer inserir as informações`}
             item={items.otherOptions}
             second={true}
             onChange={handleSubOption}
@@ -110,4 +108,4 @@ export const BtnClose = styled.div`
     }
 `
 
-export default ElecLocalisation
+export default ElecCompra

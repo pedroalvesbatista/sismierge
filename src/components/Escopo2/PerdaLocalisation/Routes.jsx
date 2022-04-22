@@ -16,20 +16,21 @@ function Routes({ tables, dataOnchage }) {
     // console.log(otherOptionSelect);
     // console.log(route[1] === otherOptionSelect);
     // console.log(route[1]);
+    // console.log(tables);
   return (
     <>
         {route[0] === otherOptionSelect &&
-            <Sin dataOnchage={(e) => dataOnchage} items={tables} />
+            <Sin dataOnchage={dataOnchage} items={tables} />
         }
         {route[1] === otherOptionSelect &&
-            <Sia dataOnchage={(e) => dataOnchage} items={tables} />
+            <Sia dataOnchage={dataOnchage} items={tables} />
         }
         {route[2] === otherOptionSelect &&
             <ModelTable 
-                items={tables?.slice(7)} 
+                items={tables[0]} 
                 typeInput='number'
                 indexTypeInput={[3, 4]}
-                dataOnchage={(e) => dataOnchage}
+                dataOnchage={dataOnchage}
             />
         }
     </>

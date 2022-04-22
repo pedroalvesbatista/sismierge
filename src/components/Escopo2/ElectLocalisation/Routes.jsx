@@ -20,6 +20,8 @@ function Routes({ tables, items, dataOnchage }) {
         'Outros sistemas isolados'
     ]
 
+    // console.log(tables);
+
   return (
     <>
         {route[0] === optionSelect && route2[0] === otherOptionSelect &&
@@ -35,7 +37,7 @@ function Routes({ tables, items, dataOnchage }) {
         }
         {route[0] === optionSelect && route2[2] === otherOptionSelect &&
             <ModelTable 
-                items={tables?.slice(7)} 
+                items={tables[0]} 
                 typeInput='number'
                 indexTypeInput={[3, 4]}
                 dataOnchage={e => dataOnchage(e)}

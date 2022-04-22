@@ -2,9 +2,11 @@ import React from 'react'
 import ElecLocalisation from '../../components/Escopo2/ElectLocalisation'
 import PerdaLocalisation from '../../components/Escopo2/PerdaLocalisation'
 import EnergiaTermica from '../../components/Escopo2/EnergiaTermica'
+import ElecCompra from '../../components/Escopo2/ElectCompra'
+import PerdaCompra from '../../components/Escopo2/PerdaCompra'
 
 function Routes({id, tables, items, dataOnchage}) {
-    // console.log(items);
+    // console.log("tables");
   return (
     <>
         {id === 1 && 
@@ -31,14 +33,14 @@ function Routes({id, tables, items, dataOnchage}) {
             />
         }
         {id === 4 && 
-            <ElecLocalisation 
+            <ElecCompra 
                 tables={tables}
                 items={items}
                 dataOnchage = {dataOnchage}
             />
         }
         {id === 5 && 
-            <ElecLocalisation 
+            <PerdaCompra 
                 tables={tables}
                 items={items}
                 dataOnchage = {dataOnchage}

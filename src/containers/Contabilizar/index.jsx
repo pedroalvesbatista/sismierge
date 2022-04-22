@@ -50,8 +50,6 @@ export const Contabilizar = () => {
     setIndexOPtion(ex[0].id);
   }
 
-  console.log(co2);
-
   const handleClick= event => {
     // setOpenDrow(false)
     setVisor(true)
@@ -59,6 +57,7 @@ export const Contabilizar = () => {
     const ex= datas[indexOPtion].item.options.filter(i => i.name.title === event)
     !storage && localStorage.setItem("@sismiegee/data:contabilizar", JSON.stringify(ex))
     setSubOptions(ex);
+    // console.log(datas[indexOPtion]);
   }
 
   const handleSaveTable = () => {
@@ -87,7 +86,7 @@ export const Contabilizar = () => {
     setPreview(!preview)
   }
 
-  // console.log(data);
+  // console.log(subOptions?.name.table);
 
 
   useEffect(() => {
@@ -138,7 +137,6 @@ export const Contabilizar = () => {
           }
           {visor &&
             <VisorArea>
-              <BarButton onPreview={handlePreviewTable} onSend={handleSendTable} onSave={handleSaveTable}  />
               <TitleVisor> {visorData} </TitleVisor>
               <div style={{display: 'flex', alignItems: 'flex-end'}}>
                 <Routes 
@@ -149,6 +147,7 @@ export const Contabilizar = () => {
                   dataOnchage= {e => setonChangeDataTable(e)}
                 />
               </div>
+              <BarButton onPreview={handlePreviewTable} onSend={handleSendTable} onSave={handleSaveTable}  />
             </VisorArea>
           }
         </>

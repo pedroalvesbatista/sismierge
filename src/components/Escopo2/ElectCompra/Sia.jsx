@@ -2,7 +2,7 @@ import React from 'react'
 import Table from '../../Table'
 import ModelTable from '../../Table/ModelTable'
 
-function Sia({ tables, items, dataOnchage }) {
+function Sia({ tables, items }) {
     const rf= ['Registro da fonte']
     const df= ['Descrição da fonte']
     const cal= ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
@@ -22,8 +22,7 @@ function Sia({ tables, items, dataOnchage }) {
             />
             <div style={{display: 'flex', justifyContent: 'space-around', width: '100%'}}>
                 <ModelTable 
-                    items={items[0]}
-                    dataOnchage={dataOnchage}
+                    items={items?.slice(0, 6)}
                 />
             </div>
             <Table 
