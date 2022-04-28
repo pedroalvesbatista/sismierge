@@ -12,6 +12,7 @@ function getColaboradors (){
       dispatch({ 
       type: colaboradorConstants.LOAD_COLABORADOR_REQUEST
     })
+    localStorage.setItem(`@sismiegee/admin/colaborador/loading`, true)
 
     colaboradorService.getColaboradors()
     .then(response => {
@@ -19,7 +20,10 @@ function getColaboradors (){
           type: colaboradorConstants.LOAD_COLABORADOR_REQUEST,
           payload: response.data
         })
-        // console.log(response.data);
+        setTimeout(() => {
+          localStorage.setItem(`@sismiegee/admin/colaborador`, JSON.stringify(response.data))
+          localStorage.setItem(`@sismiegee/admin/colaborador/loading`, false)
+        }, 5000);
     })
     .catch(error => {
       dispatch({ 

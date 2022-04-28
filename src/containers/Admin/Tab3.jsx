@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
 import { admin } from '../../constants/tailwind/colors'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 
 function Tab3() {
-    const titles= ["nome do usuário", "Email", "Tipo", "Confirmado", "Status"]
+  const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState(null)
+  const storage= JSON.parse(localStorage.getItem("@sismiegee/admin/colaborador"))
+  const loadingStorage= localStorage.getItem("@sismiegee/admin/colaborador/loading")
+
+  useEffect(() => {
+    if (loadingStorage) {
+      setLoading(true)
+      // console.log(loadingStorage)
+    }
+    if (storage) {
+      setData(storage)
+    }
+  }, [loadingStorage, storage, loading, data])
+  // console.log(loading);
+
   return (
     <Area>
       <ButtonArea>
@@ -15,7 +31,7 @@ function Tab3() {
         </Button>
       </ButtonArea>
       <CardArea>
-        <BarTable header={titles} />
+        <BarTable item={data} loading={loading} header={titles} />
       </CardArea>
     </Area>
   )

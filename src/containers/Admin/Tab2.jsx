@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
 import { admin } from '../../constants/tailwind/colors'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 
 function Tab2() {
-    const titles= ["nome do usuário", "Email", "Tipo", "Confirmado", "Status"]
+    const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
+    
+    
   return (
     <Area>
       <ButtonArea>

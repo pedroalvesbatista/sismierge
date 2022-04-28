@@ -3,42 +3,53 @@ import styled from 'styled-components'
 import { SiDatabricks } from 'react-icons/si'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { admin } from '../../../constants/tailwind/colors'
-import { useSelector } from 'react-redux'
 
-function BarTable({ item, header }) {
-    const { colaboradors, loading } = useSelector(state => state.colaborador)
-    console.log(colaboradors);
+function BarTable({ item, header, loading }) {
+
   return (
     <Area>
-        <TableArea>
-            {header && header?.map((i, key) => (
-                <Item key={key}>{i.toUpperCase()}</Item>
-            ))}
-        </TableArea>
-        {colaboradors?.length > 0 ? colaboradors.map((i, key) => (
-            <TableArea>
-                <Item> {i.username} </Item>
-                <Item> {i.email} </Item>
-                <Item> {i.colaborador} </Item>
-                <Item> {i.confirmed ? "Sim" : "Não"} </Item>
-            </TableArea>
-        ))
-            
-        : 
-            <NotCOntentArea>
-                {/* {loading ?
-                    <div>Carregando...</div>
-                    : <> */}
-                        <IconDoc />
-                        <Text>Nenhum conteúdo encontrado</Text>
-                        <Button>
-                            <IconPlus />
-                            Adicionar empresa
-                        </Button>
-                    {/* </>
-                } */}
-            </NotCOntentArea>
-        }
+        <table>
+            <thead>
+                <tr>
+                    <TableArea>
+                        {header && header?.map((i, key) => (
+                            <Item key={key}>{i.toUpperCase()}</Item>
+                        ))}
+                    </TableArea>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {
+                    // loading ?
+                    //     <NotCOntentArea>
+                    //         <div>Carregando...</div>
+                    //     </NotCOntentArea>
+                    //     :
+                        item?.length > 0 ? item.map((i, key) => (
+                            <TableArea key={key}>
+                                <Item> {i.username} </Item>
+                                <Item> {i.email} </Item>
+                                <Item> {i.type} </Item>
+                                <Item> {i.confirmed ? "Sim" : "Não"} </Item>
+                                <Item>  </Item>
+                            </TableArea>
+                        ))
+                
+                        : 
+                            <NotCOntentArea>
+                                <IconDoc />
+                                    <Text>Nenhum conteúdo encontrado</Text>
+                                <Button>
+                                    <IconPlus />
+                                    Adicionar empresa
+                                </Button>
+                            </NotCOntentArea>
+                    }
+                </tr>
+            </tbody>
+        </table>
+        
     </Area>
   )
 }
@@ -49,11 +60,13 @@ const Area = styled.div`
     flex-direction: column;
     justify-content: space-between;
 `
-const TableArea = styled.div`
+const TableArea = styled.th`
     padding: 20px 0px;
     display: flex;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    
 `
 const NotCOntentArea = styled.div`
     display: flex;
@@ -69,6 +82,7 @@ const Item = styled.div`
     font-size: 12px;
     font-weight: 600;
     flex: 1;
+    /* background-color: red; */
 `
 const IconDoc = styled(SiDatabricks)`
   color: ${admin.verde};

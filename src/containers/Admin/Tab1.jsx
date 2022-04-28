@@ -6,7 +6,7 @@ function Tab1() {
     const titles= ["nome do usuário", "Email", "Tipo", "Confirmado", "Status"]
   return (
     <Area>
-        <BarTable header={titles} />
+      <BarTable header={titles} />
     </Area>
   )
 }

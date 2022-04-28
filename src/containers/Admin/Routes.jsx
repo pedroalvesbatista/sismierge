@@ -5,7 +5,6 @@ import Tab3 from './Tab3'
 
 function Routes({tab, ex}) {
     const tabs= ["Visão geral", "Empresas", "Colaboradores"]
-    console.log(ex);
   return (
     <div >
         {tab === tabs[0] &&
