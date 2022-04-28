@@ -27,7 +27,7 @@ export const HomePage = () => {
     
   }, [storage, data, contabilizarActions.setDataStorage, loading])
 
-  // console.log(data);
+  console.log(data);
   
   return (
     <Area >

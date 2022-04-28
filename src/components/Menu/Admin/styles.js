@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { primary, second, admin } from '../../constants/tailwind/colors'
+import { primary, second, admin } from '../../../constants/tailwind/colors'
 
 export const Area = styled.div`
     height: 100vh;
@@ -60,7 +60,7 @@ export const Text = styled.span`
     align-items: center;
     color: ${({active}) => active ? primary.verde : primary.dark};
     font-weight: ${({active}) => active ? '400' : '300'};
-    font-size: ${({active}) => active ? 20 : 18}px; 
+    font-size: ${({active}) => active ? 20 : 20}px; 
     margin: ${({active}) => active ? '10px 0px' : '10px 0px'};  
     padding: 0px 10px;
 `

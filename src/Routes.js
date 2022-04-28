@@ -7,17 +7,28 @@ import {
   Contabilizar,
   Igee,
   Indicadores,
-  Verificacao
+  Verificacao,
+
 } from "./containers"
+import {
+  LoginAdmin
+} from "./containers/Admin/Login"
+import Admin from './containers/Admin/index.jsx';
 import { Routes, Route } from "react-router-dom";
-import { AdminLayout, PublicLayout } from "./components"
+import { AdminLayout, PublicLayout, SismiergeLayout } from "./components"
 import PrivateRoute from './Routes/PrivateRoute';
+import AdminRoute from './Routes/AdminRoute';
+import { useSelector } from 'react-redux';
+
 
 
 export function RoutesPage() {
 
+  const { loading, user, sucess, isLogin } = useSelector(state => state.auth)
+
   return (
     <Routes>
+      {/* Route public sismierge empresa */}
       <Route path="/auth/login" element={
         <PublicLayout>
           <Login />
@@ -28,12 +39,26 @@ export function RoutesPage() {
           <Signup />
         </PublicLayout>
       }/>
+      <Route path="/auth/admin/login" element={
+        <PublicLayout>
+          <LoginAdmin />
+        </PublicLayout>
+      }/>
       <Route path="*" element={
-        <AdminLayout>
+        <PublicLayout>
           <NotFound />
-        </AdminLayout>
+        </PublicLayout>
       }/>
       
+      {/* Route Admin Sismierge */}
+      <Route element={<AdminRoute />} >
+        <Route path='/admin' element={
+          <SismiergeLayout>
+            <Admin />
+          </SismiergeLayout>
+        } />
+      </Route>
+
       <Route element={<PrivateRoute />}>
         <Route path="/" element={
           <AdminLayout>

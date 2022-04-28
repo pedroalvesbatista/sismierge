@@ -11,6 +11,12 @@ const colors = {
     cinza: "#74787a",
     dark: "#544c4c"
   },
+  admin: {
+    roxo: "#9c348c",
+    verde: '#048c7c',
+    cinza: "#e3e1e1",
+    dark: "#544c4c"
+  },
   popBtn: {
     DEFAULT: "#2293D9"
   }

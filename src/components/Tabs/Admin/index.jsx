@@ -3,14 +3,14 @@ import {
     Container, Li, Ul
 } from './styles'
 
-function TabsAdmin({ items, onCLick, active }) {
+function Tabs({ items, onCLick, active }) {
     // console.log(items);
   return (
     <Container>
         <Ul>
             {items?.map((item, key) => (
-                <Li active={active === item ? true : false} onClick={() => onCLick(item)} key={key}> 
-                    { item } 
+                <Li active={active === item.name.title ? true : false} onClick={() => onCLick(item.name.title)} key={key}> 
+                    { item.name.title } 
                 </Li>
             ))}
         </Ul>
@@ -18,4 +18,4 @@ function TabsAdmin({ items, onCLick, active }) {
   )
 }
 
-export default TabsAdmin
+export default Tabs
