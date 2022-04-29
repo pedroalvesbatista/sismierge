@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import { othersReducer } from "../reducers/others.reducer"
 import { authReducer } from "../reducers/auth.reducers"
 import { colaboradorsReducer } from "../reducers/colaborador.reducers"
+import { companyReducer } from "../reducers/company.reducers"
 import { contabilizarReducer } from "../reducers/contabilizar.reducer"
 
 import thunkMiddleware from 'redux-thunk'
@@ -11,6 +12,7 @@ export const store = createStore(
   combineReducers({
     auth: authReducer,
     colaborador: colaboradorsReducer,
+    company: companyReducer,
     others: othersReducer,
     contabilizar: contabilizarReducer,
   }),

@@ -3,7 +3,9 @@ import { others } from "../constants/redux"
 const initialState = {
   titlePage: 'Visão geral',
   optionSelect: '',
-  otherOptionSelect: ''
+  otherOptionSelect: '',
+  isOpenModal: false,
+  displayModal: null
 }
 
 export const othersReducer = (state = initialState, action) => {
@@ -25,6 +27,19 @@ export const othersReducer = (state = initialState, action) => {
       return {
         ...state,
         otherOptionSelect: action.payload
+      }
+    
+    case others.SET_MODAL: 
+    console.log(state.isOpenModal);
+      return {
+        ...state,
+        isOpenModal: !state.isOpenModal
+      }
+    
+    case others.CHANGE_CONTENT_MODAL: 
+      return {
+        ...state,
+        displayModal: action.payload
       }
       
     default: 

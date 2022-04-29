@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useForceRender } from 'react'
-import { colaboradorConstants } from '../../constants/redux'
-import { colaboradorActions } from '../../actions'
+import React, { useEffect, useState } from 'react'
+import { colaboradorService } from '../../services'
 import TabsAdmin from '../../components/Tabs'
 import Routes from './Routes'
-import { useDispatch, useSelector } from 'react-redux'
+import Modal from '../../components/Modal'
 
 
 export function Admin() {
-    const dispatch= useDispatch()
-    const { colaboradors, loading } = useSelector(state => state.colaborador)
     const [tabActive, setTabActive] = useState('Visão geral')
+    const [dataModal, setDataModal] = useState(null)
     const tabs= ["Visão geral", "Empresas", "Colaboradores"]
     const storage= localStorage.getItem("@sismiegee/admin/tabActive")
 
@@ -19,17 +17,17 @@ export function Admin() {
     }
 
     useEffect(() => {
-      dispatch(colaboradorActions.getColaboradors())
       if (storage) {
           setTabActive(storage)
       }
-    }, [colaboradors, storage])
+    }, [storage])
     
 
   return (
     <div>
         <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} />
-        <Routes ex= {colaboradors} tab={tabActive} />
+        <Routes openModal={e => setDataModal(e)} tab={tabActive} />
+        <Modal  openModal={dataModal} />
     </div>
   )
 }

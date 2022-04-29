@@ -3,21 +3,47 @@ import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
 import { admin } from '../../constants/tailwind/colors'
 import { BsPlusCircleDotted } from 'react-icons/bs'
+import { companyService } from '../../services'
 
-function Tab2() {
-    const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
-    
+function Tab2({ openModal }) {
+  const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
+
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState([])
+  
+  const handelModal = () => {
+    openModal({
+      state: true,
+      type: 'Adicionar empresa'
+    })
+  }
+
+  const getCompanies = () => {
+    setLoading(true)
+    companyService.getUserCompany()
+        .then(res => {
+            setLoading(false)
+            setData(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+  }
+
+  useEffect(() => {
+    getCompanies()
+  }, [openModal])
     
   return (
     <Area>
       <ButtonArea>
-        <Button>
+        <Button onClick={handelModal}>
           <IconPlus />
           <Text>Adicionar empresa</Text>
         </Button>
       </ButtonArea>
       <CardArea>
-        <BarTable header={titles} />
+        <BarTable tab="2" item={data} loading={loading} header={titles} />
       </CardArea>
     </Area>
   )

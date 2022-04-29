@@ -1,64 +1,41 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { menu } from '../../constants/app'
-import { others } from '../../constants/redux'
+import Routes from './Routes'
 import { 
     Area,
+    Card,
     Header,
-    Logo,
-    MenuArea,
-    Text,
-    Notif,
-    BarActive,
-    BottomArea,
-    Img,
-    Subtext
+    Separator,
+    IconClose,
+    Text
 } from './styles'
 
-function Modal({ titleHome }) {
-    const navigate= useNavigate()
-    const [active, setActive] = useState(0)
-    const dispatch= useDispatch()
-    // const { titlePage } = useSelector(state => state.others)
+function Modal({ openModal }) {
+    const [isOpen, setIsOpen] = useState(false)
 
-    const handleActive= (key, item) => {
-        setActive(key)
-        titleHome(item.text)
-        dispatch({
-            type: others.SET_HOMETITLE,
-            payload: item.text
-        })
-        navigate(item.slug)
-    }
+    useEffect(() => {
+      setIsOpen(openModal?.state)
+    }, [openModal])
 
-    const handleLogout= () => {
-        localStorage.clear()
-        navigate('/auth/login')
+    const handleOpenModal = (e) => {
+        e.preventDefault()
+        setIsOpen(false)
     }
 
   return (
-    <Area>
-        <Header>
-            <Logo />
-        </Header>
-        <MenuArea>
-            {menu.map((item, key) => (
-                <div key={key} style={{position: 'relative'}}>
-                    <Text onClick={() => handleActive(key, item)}  active={active === key ? true : false}> {item.text} </Text>
-                    {active === key && <BarActive/>}
-                    {item.text === 'Mensagens' && <Notif>20</Notif>}
-                    {item.text === 'Notificações' && <Notif>10</Notif>}
-                </div>
-            ))}
-        </MenuArea>
-        <BottomArea>
-            <Img src='/profile.png'/>
-            <Subtext weight='bold'>Juliana Ferreira</Subtext>
-            <Subtext onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Subtext>
-        </BottomArea>
+    isOpen &&
+    <Area onClick={handleOpenModal}>
+        <Card onClick={e => e.stopPropagation()}>
+            <Header>
+                <Text> {openModal?.type} </Text>
+                <IconClose onClick={handleOpenModal} />
+            </Header>
+            <Separator />
+            <Routes openModal={e => setIsOpen(e)} type={openModal?.type} />
+        </Card>
     </Area>
   )
 }
 
-export default MOdal
+export default Modal

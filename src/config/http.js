@@ -6,8 +6,11 @@ function getStorage() {
 
   if (getAdminStorage) {
     return getAdminStorage
-  } else {
+  } 
+  else if (getStorageUser) {
     return getStorageUser
+  } else {
+    return null
   }
 }
 
@@ -16,11 +19,15 @@ function getBaseUrl() {
   return baseUrl;
 }
 
+const baseUrl = getBaseUrl();
+
+const token = getStorage()
+const verication = token ? 
+  AxiosRequest(`${baseUrl}`, {Authorization: `Bearer ${token?.jwt}`}) : 
+  AxiosRequest(`${baseUrl}`)
+
 const Http = () => {
-  const baseUrl = getBaseUrl();
-  const axiosRequest = AxiosRequest(`${baseUrl}`, getStorage()?.jwt && {
-    Authorization: `Bearer ${getStorage()?.jwt}`
-  });
+  const axiosRequest = verication
 
   return axiosRequest;
 }

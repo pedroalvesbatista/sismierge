@@ -20,6 +20,7 @@ function MenuAdmin({ titleHome }) {
     const [active, setActive] = useState(true)
     const dispatch= useDispatch()
     // const { titlePage } = useSelector(state => state.others)
+    const storage= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
 
     const handleActive= (key, item) => {
         setActive(true)
@@ -44,7 +45,7 @@ function MenuAdmin({ titleHome }) {
         </MenuArea>
         <BottomArea>
             <Img src='/profile.png'/>
-            <Subtext weight='bold'>Juliana Ferreira</Subtext>
+            <Subtext weight='bold'>{ storage.user.name ?? storage.user.username }</Subtext>
             <Subtext onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Subtext>
         </BottomArea>
     </Area>

@@ -3,15 +3,16 @@ import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
 
-function Routes({tab, ex}) {
+function Routes({tab, openModal}) {
     const tabs= ["Visão geral", "Empresas", "Colaboradores"]
+    
   return (
     <div >
         {tab === tabs[0] &&
             <Tab1 />
         }
         {tab === tabs[1] &&
-            <Tab2 />
+            <Tab2 openModal={e => openModal(e)} />
         }
         {tab === tabs[2] &&
             <Tab3 />

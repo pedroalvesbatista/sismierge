@@ -8,6 +8,7 @@ import {
   Igee,
   Indicadores,
   Verificacao,
+  RegisterCompany
 
 } from "./containers"
 import {
@@ -15,16 +16,13 @@ import {
 } from "./containers/Admin/Login"
 import Admin from './containers/Admin/index.jsx';
 import { Routes, Route } from "react-router-dom";
-import { AdminLayout, PublicLayout, SismiergeLayout } from "./components"
+import { AdminLayout, PublicLayout, SismiergeLayout, RegisterCompanyLayout } from "./components"
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoute from './Routes/AdminRoute';
-import { useSelector } from 'react-redux';
-
+import RegisterCompanyRoute from './Routes/RegisterCompanyRoute';
 
 
 export function RoutesPage() {
-
-  const { loading, user, sucess, isLogin } = useSelector(state => state.auth)
 
   return (
     <Routes>
@@ -49,6 +47,16 @@ export function RoutesPage() {
           <NotFound />
         </PublicLayout>
       }/>
+
+      {/* Route Register company */}
+
+      <Route element={<RegisterCompanyRoute />} >
+        <Route path='/register/:token' element={
+          <RegisterCompanyLayout>
+            <RegisterCompany />
+          </RegisterCompanyLayout>
+        } />
+      </Route>
       
       {/* Route Admin Sismierge */}
       <Route element={<AdminRoute />} >

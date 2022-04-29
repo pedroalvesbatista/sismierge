@@ -3,24 +3,28 @@ import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
 import { admin } from '../../constants/tailwind/colors'
 import { BsPlusCircleDotted } from 'react-icons/bs'
+import { colaboradorService } from '../../services'
 
 function Tab3() {
   const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState(null)
-  const storage= JSON.parse(localStorage.getItem("@sismiegee/admin/colaborador"))
-  const loadingStorage= localStorage.getItem("@sismiegee/admin/colaborador/loading")
+  const [data, setData] = useState([])
+
+  const getColaboradors = () => {
+    setLoading(true)
+    colaboradorService.getColaboradors()
+        .then(res => {
+            setLoading(false)
+            setData(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+  }
 
   useEffect(() => {
-    if (loadingStorage) {
-      setLoading(true)
-      // console.log(loadingStorage)
-    }
-    if (storage) {
-      setData(storage)
-    }
-  }, [loadingStorage, storage, loading, data])
-  // console.log(loading);
+    getColaboradors()
+  }, [])
 
   return (
     <Area>

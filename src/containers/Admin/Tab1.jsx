@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
+import { authService } from '../../services'
 
 function Tab1() {
-    const titles= ["nome do usuário", "Email", "Tipo", "Confirmado", "Status"]
+    const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
+    const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const getUsers = () => {
+      setLoading(true)
+      authService.loadUsers()
+          .then(res => {
+              setLoading(false)
+              setUsers(res.data)
+          })
+          .catch(err => {
+              setLoading(false)
+              console.log(err.response.data.error);
+          })
+    }
+  
+    useEffect(() => {
+      getUsers()
+    }, [])
+
+    // console.log(users);
+
   return (
     <Area>
-      <BarTable header={titles} />
+      <BarTable item={users} loading={loading} header={titles} />
     </Area>
   )
 }

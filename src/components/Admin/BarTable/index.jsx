@@ -4,7 +4,7 @@ import { SiDatabricks } from 'react-icons/si'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { admin } from '../../../constants/tailwind/colors'
 
-function BarTable({ item, header, loading }) {
+function BarTable({ item, header, loading, tab }) {
 
   return (
     <Area>
@@ -13,7 +13,7 @@ function BarTable({ item, header, loading }) {
                 <tr>
                     <TableArea>
                         {header && header?.map((i, key) => (
-                            <Item key={key}>{i.toUpperCase()}</Item>
+                            <Item title={true} key={key}>{i.toUpperCase()}</Item>
                         ))}
                     </TableArea>
                 </tr>
@@ -21,16 +21,16 @@ function BarTable({ item, header, loading }) {
             <tbody>
                 <tr>
                     {
-                    // loading ?
-                    //     <NotCOntentArea>
-                    //         <div>Carregando...</div>
-                    //     </NotCOntentArea>
-                    //     :
-                        item?.length > 0 ? item.map((i, key) => (
+                    loading ?
+                        <NotCOntentArea>
+                            <div>Carregando...</div>
+                        </NotCOntentArea>
+                        :
+                        item?.length > 0 ? item.slice(0, 10).map((i, key) => (
                             <TableArea key={key}>
-                                <Item> {i.username} </Item>
-                                <Item> {i.email} </Item>
-                                <Item> {i.type} </Item>
+                                <Item>  { i.username } </Item>
+                                <Item>  { i.email } </Item>
+                                <Item>  { i.type } </Item>
                                 <Item> {i.confirmed ? "Sim" : "Não"} </Item>
                                 <Item>  </Item>
                             </TableArea>
@@ -59,6 +59,7 @@ const Area = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 10%;
 `
 const TableArea = styled.th`
     padding: 20px 0px;
@@ -80,7 +81,7 @@ const Item = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: ${({title}) => title ? '600' : '400'};
     flex: 1;
     /* background-color: red; */
 `

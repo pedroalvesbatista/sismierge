@@ -7,3 +7,4 @@ export * from "./Igee";
 export * from "./Indicadores";
 export * from "./Verificacao";
 export * from "./Admin/index";
+export * from "./RegisterCompany";

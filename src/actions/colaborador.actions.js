@@ -8,28 +8,12 @@ export const colaboradorActions = {
 
 function getColaboradors (){
 
-    return dispatch => {
-      dispatch({ 
-      type: colaboradorConstants.LOAD_COLABORADOR_REQUEST
-    })
-    localStorage.setItem(`@sismiegee/admin/colaborador/loading`, true)
+    // return dispatch => {
+    //   dispatch({ 
+    //   type: colaboradorConstants.LOAD_COLABORADOR_REQUEST
+    // })
+    // localStorage.setItem(`@sismiegee/admin/colaborador/loading`, true)
 
     colaboradorService.getColaboradors()
-    .then(response => {
-        dispatch({ 
-          type: colaboradorConstants.LOAD_COLABORADOR_REQUEST,
-          payload: response.data
-        })
-        setTimeout(() => {
-          localStorage.setItem(`@sismiegee/admin/colaborador`, JSON.stringify(response.data))
-          localStorage.setItem(`@sismiegee/admin/colaborador/loading`, false)
-        }, 5000);
-    })
-    .catch(error => {
-      dispatch({ 
-        type: colaboradorConstants.LOAD_COLABORADOR_FAIL,
-      })
-      console.log(error);
-    })
-    }
+    // }
 }
