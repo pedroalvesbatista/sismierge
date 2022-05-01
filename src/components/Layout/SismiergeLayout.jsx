@@ -13,7 +13,7 @@ export function SismiergeLayout({ children }) {
     
     return (
         <Area>
-            <MenuAdmin titleHome={e => setTitle(e)} />
+            <MenuAdmin titleHome={e => console.log(e)} />
             <Center >
                 <HeaderAdmin />
                 {children}

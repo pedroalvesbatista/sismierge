@@ -25,6 +25,7 @@ export function ConfettiAnimation({ height, width, speed=2 }) {
             height={height ?? "100vh"}
             width={width ?? 600}
             speed={speed}
+            isClickToPauseDisabled={true}
         />
     </Area>
   )

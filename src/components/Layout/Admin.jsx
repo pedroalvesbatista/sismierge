@@ -9,6 +9,7 @@ import { escopo } from '../../constants/app'
 
 export function AdminLayout({ children }) {
     const [title, setTitle] = useState('')
+    const [closeMenu, setCloseMenu] = useState(false)
 
     // const handleActive= (key, title) => {
     //     // setActive(key)
@@ -32,8 +33,8 @@ export function AdminLayout({ children }) {
     
     return (
         <Area>
-            <Menu titleHome={e => setTitle(e)} />
-            <div style={{flex: 6, marginLeft: '10%' , padding: 0}}>
+            <Menu closeMenu={e => setCloseMenu(e)} titleHome={e => setTitle(e)} />
+            <div style={{flex: 6, marginLeft: closeMenu ? '3.2%' : '15%' , padding: 0}}>
                 <Header co2={co2} co2t={co2t} title={title} />
                 {children}
             </div>

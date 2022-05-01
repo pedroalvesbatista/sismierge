@@ -1,11 +1,21 @@
+import { FaSolarPanel } from "react-icons/fa"
+import { HiOutlineSpeakerphone } from "react-icons/hi"
+import { RiDashboardLine } from 'react-icons/ri';
+import { VscHistory } from "react-icons/vsc"
+import { RiUserSettingsLine } from "react-icons/ri"
+import { GiBlackBook } from "react-icons/gi"
+import { GiBugleCall } from "react-icons/gi"
+import { AiOutlineSetting } from "react-icons/ai"
+
 export const menu = [
-    {id: 0, text:'Inicio', slug: '/'},
-    {id: 1, text:'Escopo', slug: '/contabilizar' },
-    {id: 2, text:'Coleção', slug: '/colecao'},
-    {id: 3, text:'Histórico', slug: '/historico'},
-    {id: 4, text:'Mensagens', slug: '/mensagem'},
-    {id: 5, text:'Notificações', slug: '/notificacao'},
-    {id: 6, text:'Configurações', slug: '/configuracao'},
+    {id: 0, text:'Painel ', slug: '/', component: "painel"},
+    {id: 1, text:'Resumo', slug: '/resumo', component: "resumo" },
+    {id: 2, text:'Dashboard ', slug: '/dashboard', component: "dashboard"},
+    {id: 3, text:'Histórico', slug: '/historico', component: "historico"},
+    {id: 4, text:'Usuários e Perfis', slug: '/users-profile', component: "usersProfile"},
+    {id: 5, text:'Manual do usuário', slug: '/manual-usuario', component: "manualUsuario"},
+    {id: 6, text:'Sugestões', slug: '/sugestoes', component: "sugestoes"},
+    {id: 7, text:'Configuraçôes', slug: '/configuracao', component: "configuracao"},
 ]
 
 export const inicial = [

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
 import { AiOutlineFileDone } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 
 import { ConfettiAnimation } from '../../components/lottie'
 import { authService } from '../../services'
@@ -11,6 +12,7 @@ import {
 import { admin } from '../../constants/tailwind/colors'
 
 export const Welcome = ({dataCompany, setPage}) => {
+  const navigate= useNavigate()
 
   const [loading, setLoading] = useState(false)
 
@@ -33,7 +35,7 @@ export const Welcome = ({dataCompany, setPage}) => {
         </Text>
         
         <ConexioArea>
-          <Button aria-disabled={loading ? true : false} onClick={setPage("welcome")}> 
+          <Button aria-disabled={loading ? true : false} onClick={() => navigate('/')}> 
               {loading ? "Carregando..." : "Começar!"} 
           </Button>
         </ConexioArea>
@@ -61,6 +63,7 @@ const ConexioArea = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  z-index: 1;
 `
 export const Button = styled.div`
   cursor: pointer;
