@@ -12,14 +12,26 @@ import Input from '../../components/Input'
 export const Organisation = ({dataCompany, setPage}) => {
 
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState({})
+  const [data, setData] = useState({
+      file: "",
+      haveUnidade: ""
+  })
   const [showPassword, setShowPassword] = useState(false)
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    setPage(3)
+    if (data.haveUnidade.length > 0) {
+        if (data.haveUnidade === "Sim") {
+            setPage("unidade")
+        }else {
+            setPage("welcome")
+        }
+    }else {
+        setPage("welcome")
+    } 
+    
   }
 
   useEffect(() => {
@@ -51,7 +63,7 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Nome completo do responsável"}
-                    placeholder={`${storage.name}`}
+                    placeholder={`${storage.name ?? "Junior Silva"}`}
                 />
                 <Input 
                     label={"CPF do responsável"}
@@ -63,7 +75,7 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Email corporativo"}
-                    placeholder={`${storage.email}`}
+                    placeholder={`${storage.email ?? "jumboltda@jumbo.com"}`}
                     type="email"
                 />
                 <Input 
@@ -84,6 +96,8 @@ export const Organisation = ({dataCompany, setPage}) => {
                     spanceLeft={true}
                     type="file"
                     id={"file"}
+                    value={data.file}
+                    onChange={e => setData({...data, file: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -93,6 +107,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     qtd={["Sim", "Não"]}
                     name={"unidades"}
                     notView={true}
+                    onChange={e => setData({...data, haveUnidade: e.target.value})}
                 />
             </AreaInput>
         </Form>

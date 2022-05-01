@@ -10,13 +10,17 @@ function RegisterCompanyRoute({ children }) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-      authService.getMe(token)
-        .then(res => {
-            setData(res.data)
-        })
-        .catch(err => {
-            console.log(err);
-        })
+      // authService.getMe(token)
+      //   .then(res => {
+      //       setData(res.data)
+      //   })
+      //   .catch(err => {
+      //     if (err.response.data.error.message === "Missing or invalid credentials") {
+      //       toast.warning("Esse link nâo existe mais")
+      //       window.location.replace("/auth/login")
+      //     }
+      //       console.log(err);
+      //   })
     }, [token])
 
     useEffect(() => {
@@ -31,7 +35,7 @@ function RegisterCompanyRoute({ children }) {
         return <Navigate to='/auth/login' replace />
     }
 
-    return children ? children : <Outlet />
+    return data && children ? children : <Outlet />
 }
 
 

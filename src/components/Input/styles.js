@@ -38,6 +38,7 @@ export const Text = styled.div`
     color: ${admin.dark};
     display: flex;
     padding: 5px;
+    font-size: ${({size}) => size ?? "14"}px;
     /* margin-bottom: px; */
 `
 export const File = styled.label`
@@ -62,7 +63,8 @@ export const Left = styled.div`
     align-items: center;
     padding: 0px 15px;
     color: ${admin.dark}87;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 14px;
 `
 export const AreaRadio = styled.div`
     

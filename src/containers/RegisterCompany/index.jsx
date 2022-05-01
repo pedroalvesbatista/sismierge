@@ -22,7 +22,7 @@ import {
 
 export const RegisterCompany = () => {
   const dispatch = useDispatch()
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState("inicio")
   const [data, setData] = useState({password: '', identifier: ''})
   const [loading, setLoading] = useState(true)
   const [dataUser, setdataUser] = useState([])
@@ -42,12 +42,13 @@ export const RegisterCompany = () => {
     
 
   return (
-    <Area >
+    <Area id='register_company' >
       <Card>
-        {loading ?
-          "Carregando..."
-        : <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
-        }
+        {/* {loading ?
+          "Carregando..." */}
+        {/* :  */}
+        <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+        {/* } */}
       </Card>
     </Area>
   )

@@ -12,14 +12,27 @@ import Input from '../../components/Input'
 export const Unidade = ({dataCompany, setPage}) => {
 
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState({})
+  const [data, setData] = useState({
+    file: "",
+    haveUnidade: ""
+})
   const [showPassword, setShowPassword] = useState(false)
+
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    setPage(3)
+    if (data.haveUnidade.length > 0) {
+        if (data.haveUnidade === "Sim") {
+            setPage("unidade")
+        }else {
+            setPage("welcome")
+        }
+    }else {
+        setPage("welcome")
+    } 
+    
   }
 
   useEffect(() => {
@@ -30,7 +43,9 @@ export const Unidade = ({dataCompany, setPage}) => {
 
   return (
     <>
-        <Text size={20}>Vamos Adicionar unidade <br/> da sua organização</Text>
+        <Text size={20}>Vamos Adicionar unidade <br/>
+            da sua organização
+        </Text>
         {/* <Text size={14} color={true} fontSize={400}>
           Agora vamos cadastrar sua organização. <br/>
           Essa etapa é muito importante!
@@ -39,7 +54,7 @@ export const Unidade = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Nome da unidade"}
-                    placeholder="Uber"
+                    placeholder="Unidade leste"
                 />
                 <Input 
                     label={"CNPJ da empresa"}
@@ -51,7 +66,7 @@ export const Unidade = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Nome completo do responsável"}
-                    placeholder={`${storage.name}`}
+                    placeholder={`${storage.name ?? "Milena rocha"}`}
                 />
                 <Input 
                     label={"CPF do responsável"}
@@ -63,7 +78,7 @@ export const Unidade = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Email corporativo"}
-                    placeholder={`${storage.email}`}
+                    placeholder={`${storage.email ?? "jumboltda@jumbo.com"}`}
                     type="email"
                 />
                 <Input 
@@ -93,6 +108,7 @@ export const Unidade = ({dataCompany, setPage}) => {
                     qtd={["Sim", "Não"]}
                     name={"unidades"}
                     notView={true}
+                    onChange={e => setData({...data, haveUnidade: e.target.value})}
                 />
             </AreaInput>
         </Form>

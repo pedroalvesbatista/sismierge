@@ -31,7 +31,7 @@ function Input({ onChange, type, placeholder, required, value, label, spanceLeft
             />
             {type === "file" && 
               <File htmlFor='file'>
-                <Left>Buscar arquivo</Left>
+                <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>
                 <Rigth>Upload</Rigth>
               </File>
             }
@@ -41,7 +41,14 @@ function Input({ onChange, type, placeholder, required, value, label, spanceLeft
               <AreaRadio>
                 {qtd?.map((item, index) => (
                   <LabelRadio key={index} htmlFor={`${index}-${name}`}>
-                    <InputRadio type="radio" id={`${index}-${name}`} name={name} tabindex="1"/>
+                    <InputRadio 
+                      value={item} 
+                      onChange={onChange} 
+                      type="radio" 
+                      id={`${index}-${name}`} 
+                      name={name} 
+                      tabindex={index}
+                    />
                     <SpanRadio>{item}</SpanRadio>
                   </LabelRadio>
                 ))}
