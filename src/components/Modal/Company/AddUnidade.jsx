@@ -1,143 +1,149 @@
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { companyService, mailService, conviteService } from '../../../services'
-import { admin } from '../../../constants/tailwind/colors'
+import { toast } from 'react-toastify'
+
+import { authService } from '../../../services'
+import { LoadingAnimation } from '../../lottie'
+import { 
+  Text, 
+  Button, 
+} from './styles'
 import Input from '../../Input'
+import { othersActions } from '../../../actions'
+import { useDispatch } from 'react-redux'
 
-export function AddUnidade({ openModal }) {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [sucess, setSucess] = useState(false)
-    const [sucessMail, setSucessMail] = useState(false)
-    const [sucessConvite, setSucessConvite] = useState(false)
-    // const [idConvite, setIdConvite] = useState('')
-    const [dataCompany, setDataCompany] = useState({
-        name: '',
-        email: '',
-    })
+export const AddUnidade = ({dataCompany, setPage}) => {
+    const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState({
+    file: "",
+    haveUnidade: ""
+})
+  const [showPassword, setShowPassword] = useState(false)
 
-    const createCompany = (data) => {
-        setLoading(true)
-        setSucess(false)
-        companyService.createCompany(data)
-            .then(res => {
-                setSucess(true)
-                setSucessConvite(true)
-                setData(res.data)
-                console.log(res.data);
-            })
-            .catch(err => {
-                setSucess(false)
-                setLoading(false)
-                console.log(err);
-                if (err.response.data.error.message === "Email is already taken") {
-                    toast.error("O e-mail já foi cadastrado")
-                }
-            })
-    }
 
-    const onSubmit= e => {
-        e.preventDefault()
-        if (dataCompany.nome?.length > 0 || dataCompany.email?.length > 0) {
-            createCompany(dataCompany)
-          } else {
-            toast.warn("Os campos precisa ser preenchido")
-          }
-    }
+  const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 
-    const sendConviteCompany = () => {
-        const dataSend= {
-            email: data.user.email,
-            nome: data.user.name,
-            id_convite: data.jwt
-        }
-        setSucessMail(false)
-        mailService.sendConviteCompany(dataSend)
-            .then(() => {
-                setSucessMail(true)
-            })
-            .catch(err => {
-                console.log(err);
-                setSucessMail(false)
-                toast.success(`Nâo foi possivel enviar o link `)
-            })
-    }
-
-    useEffect(() => {
-        if (sucessMail) {
+  const handleSubmit= (e) => {
+    e.preventDefault()
+    setLoading(true)
+    if (data.haveUnidade === "Sim") {
+        setTimeout(() => {
             setLoading(false)
-            openModal(false)
-            window.location.reload()
-            toast.success(`Link foi enviado com sucesso para ${data.user.email}`)
-        }
-    }, [sucessMail])
+            dispatch(othersActions.handleOpenModal("Adicionar unidades"))
+        }, 500);
+    }else {
+        dispatch(othersActions.closeModal())
+    }
+    
+  }
+  
+  
 
-    useEffect(() => {
-        if (sucessConvite) {
-            sendConviteCompany()
-        }
-    }, [sucessConvite])
-    
-    
-    
   return (
-    <Area>
-        <Form onSubmit={onSubmit}>
-            <Input
-                label={'Nome do responsável'} 
-                placeholder={'Juliana Ferreira'}
-                required={true}
-                onChange={(e) => setDataCompany({...dataCompany, name: e.target.value})}
-                value={dataCompany.name}
-            />
-            <Input
-                type='email'
-                required={true}
-                label={'Email do responsável'} 
-                placeholder={'julianaferreira@sismierge.com'}
-                onChange={(e) => setDataCompany({...dataCompany, email: e.target.value})}
-                spanceLeft={true}
-                value={dataCompany.email}
-            />
-        </Form>
-        <AreaButton>
-            <Button isDisable={loading} disabled={loading} onClick={onSubmit}> 
-                {loading ? sucess ? "Enviando o link..." : "Adicionando..." : "Adicionar empresa"} 
-            </Button>
-        </AreaButton>
-    </Area>
+    <Fragment>
+        {loading ? (
+            <LoadingAnimation size={150}/>
+        ): (
+            <Fragment>
+                <Form onSubmit={handleSubmit}>
+                <AreaInput>
+                    <Input 
+                        label={"Nome da unidade"}
+                        placeholder="Unidade leste"
+                    />
+                    <Input 
+                        label={"CNPJ da empresa"}
+                        placeholder="32.792.884/2021-10"
+                        spanceLeft={true}
+                        type="number"
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input 
+                        label={"Nome completo do responsável"}
+                        placeholder={`Milena rocha`}
+                    />
+                    <Input 
+                        label={"CPF do responsável"}
+                        placeholder="327.928.842.02"
+                        spanceLeft={true}
+                        type="number"
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input 
+                        label={"Email corporativo"}
+                        placeholder={`jumboltda@jumbo.com`}
+                        type="email"
+                    />
+                    <Input 
+                        label={"Telefone de contato com DDD"}
+                        placeholder="11986522567"
+                        spanceLeft={true}
+                        type="tel"
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input 
+                        label={"Cargo"}
+                        placeholder={`Diretor Financeiro`}
+                        type="email"
+                    />
+                    <Input 
+                        label={"Comprovante de vinculaçâo"}
+                        spanceLeft={true}
+                        type="file"
+                        id={"file"}
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input 
+                        label={"Possui outras unidades organizacionais s serem inventariadas?"}
+                        type="radio"
+                        qtd={["Sim", "Não"]}
+                        name={"unidades"}
+                        notView={true}
+                        onChange={e => setData({...data, haveUnidade: e.target.value})}
+                    />
+                </AreaInput>
+            </Form>
+            <ConexioArea>
+                <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
+                    {loading ? "Carregando..." : "Adicionar "} 
+                </Button>
+            </ConexioArea>
+            </Fragment>
+        )}
+    </Fragment>
   )
 }
 
-const Area = styled.div`
-`
 const Form = styled.form`
     display: flex;
-    justify-content: space-between;
-`
-const AreaButton = styled.div`
-    display: flex;
-    justify-content: flex-end;
-`
-const Button = styled.button`
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: ${({isDisable}) => isDisable ? admin.verde+89 : admin.verde};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
+    flex-direction: column;
+    width: 600px;
     margin-top: 10px;
-    opacity: ${({isDisable}) => isDisable ? "0.7" : 1};;
+    /* justify-content: space-between; */
+    /* height: 200px; */
+`
+const AreaInput = styled.form`
+    display: flex;
+    width: 600px;
+    /* justify-content: space-between; */
+    /* height: 200px; */
+`
+const ConexioArea = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+`
 
-    &:hover {
-        opacity: ${({isDisable}) => isDisable ? "0.7" : "0.7"};
-    }
-    &:active {
-        opacity: ${({isDisable}) => isDisable ? "0.7" : "1"};
-    }
+const InputFile = styled.input`
+    display: flex;
+    width: 600px;
+    /* justify-content: space-between; */
+    /* height: 200px; */
 `

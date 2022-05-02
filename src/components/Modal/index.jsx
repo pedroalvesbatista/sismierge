@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
+import { othersActions } from '../../actions'
+import { firstLetterCase } from '../../functions'
+
 import Routes from './Routes'
 import { 
     Area,
@@ -11,28 +15,26 @@ import {
     Text
 } from './styles'
 
-function Modal({ openModal }) {
-    const [isOpen, setIsOpen] = useState(false)
+function Modal() {
+  const dispatch = useDispatch()
+  const { isOpenModal, displayModal } = useSelector(state => state.others)
+  const title= firstLetterCase(displayModal)
 
-    useEffect(() => {
-      setIsOpen(openModal?.state)
-    }, [openModal])
-
-    const handleOpenModal = (e) => {
-        e.preventDefault()
-        setIsOpen(false)
-    }
+  const handleCloseModal = (e) => {
+    e.preventDefault()
+    dispatch(othersActions.closeModal())
+  }
 
   return (
-    isOpen &&
-    <Area onClick={handleOpenModal}>
+    isOpenModal &&
+    <Area onClick={handleCloseModal}>
         <Card onClick={e => e.stopPropagation()}>
             <Header>
-                <Text> {openModal?.type} </Text>
-                <IconClose onClick={handleOpenModal} />
+                <Text> {title} </Text>
+                <IconClose onClick={handleCloseModal} />
             </Header>
             <Separator />
-            <Routes openModal={e => setIsOpen(e)} type={openModal?.type} />
+            <Routes/>
         </Card>
     </Area>
   )

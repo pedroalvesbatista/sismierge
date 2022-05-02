@@ -13,10 +13,10 @@ import {
     SpanRadio
 } from './styles'
 
-function Input({ onChange, type, placeholder, required, value, label, spanceLeft, id, name, qtd, notView }) {
+function Input({ width, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, id, name, qtd, notView }) {
   
   return (
-    <Area spance={spanceLeft}>
+    <Area width={width} spanceLeft={spanceLeft} spanceRight={spanceRight}>
         <Text> {label} </Text>
         {!notView &&
           <InputArea isFile={type == "file" ? true : false }>

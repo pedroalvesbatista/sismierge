@@ -3,58 +3,77 @@ import styled from 'styled-components'
 import { SiDatabricks } from 'react-icons/si'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { admin } from '../../../constants/tailwind/colors'
+import { ButtonAdd } from '../../Buttons'
 
-function BarTable({ item, header, loading, tab, title="empresa", onClick}) {
+function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa", onClick}) {
 
   return (
     <Area>
-        <table>
-            <thead>
-                <tr>
-                    <TableArea>
-                        {header && header?.map((i, key) => (
-                            <Item title={true} key={key}>{i.toUpperCase()}</Item>
-                        ))}
-                    </TableArea>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    {
-                    loading ?
-                        <NotCOntentArea>
-                            <div>Carregando...</div>
-                        </NotCOntentArea>
-                        :
-                        item?.length > 0 ? item.slice(0, 10).map((i, key) => (
-                            <TableArea key={key}>
-                                <Item>  { i.username } </Item>
-                                <Item>  { i.email } </Item>
-                                <Item>  { i.type } </Item>
-                                <Item> {i.confirmed ? "Sim" : "Não"} </Item>
-                                <Item>  </Item>
+        {addButtonTop && (
+            <ButtonArea>
+                <ButtonAdd title={title} onClick={onClick}/>
+            </ButtonArea>
+        )}
+        <Container>
+            <Content>
+                <table>
+                    <thead>
+                        <tr>
+                            <TableArea>
+                                {header && header?.map((i, key) => (
+                                    <Item title={true} key={key}>{i.toUpperCase()}</Item>
+                                ))}
                             </TableArea>
-                        ))
-                
-                        : 
-                            <NotCOntentArea>
-                                <IconDoc />
-                                    <Text>Nenhum conteúdo encontrado</Text>
-                                <Button onClick={onClick}>
-                                    <IconPlus />
-                                    Adicionar {title}
-                                </Button>
-                            </NotCOntentArea>
-                    }
-                </tr>
-            </tbody>
-        </table>
-        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {
+                            loading ?
+                                <NotCOntentArea>
+                                    <div>Carregando...</div>
+                                </NotCOntentArea>
+                                :
+                                item?.length > 0 ? item.slice(0, 10).map((i, key) => (
+                                    <TableArea key={key}>
+                                        <Item>  { i.username } </Item>
+                                        <Item>  { i.email } </Item>
+                                        <Item>  { i.type } </Item>
+                                        <Item> {i.confirmed ? "Sim" : "Não"} </Item>
+                                        <Item>  </Item>
+                                    </TableArea>
+                                ))
+                        
+                                : 
+                                    <NotCOntentArea>
+                                        <IconDoc />
+                                        <Text>Nenhum conteúdo encontrado</Text>
+                                        <ButtonAdd title={title} onClick={onClick}/>
+                                    </NotCOntentArea>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </Content>
+            
+        </Container>
     </Area>
   )
 }
 
 const Area = styled.div`
+  width: 100%;
+`
+const Container = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  /* height: 200px; */
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.1);
+  padding: 0px 30px;
+`
+const Content = styled.div`
     /* padding: 20px 0px; */
     display: flex;
     flex-direction: column;
@@ -68,6 +87,10 @@ const TableArea = styled.th`
     justify-content: center;
     align-items: center;
     
+`
+const ButtonArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
 const NotCOntentArea = styled.div`
     display: flex;
@@ -94,32 +117,6 @@ const Text = styled.span`
   color: #5b5656;
   margin-top: 10px;
   font-weight: 600;
-`
-const IconPlus = styled(BsPlusCircleDotted)`
-  color: ${admin.cinza};
-  font-size: 20px;
-  margin-right: 10px;
-`
-const Button = styled.div`
-  /* width: 200px; */
-  /* height: 40px; */
-  background-color: ${admin.verde};
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  box-shadow: 0px 0px 5px 1px #15151533;
-  color: white;
-  cursor: pointer;
-  margin-top: 20px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-  &:active {
-    opacity: 1;
-  }
 `
 
 export default BarTable

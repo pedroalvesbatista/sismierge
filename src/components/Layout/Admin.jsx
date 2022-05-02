@@ -4,10 +4,11 @@ import { primary } from '../../constants/tailwind/colors'
 import Menu from '../Menu'
 import Header from '../Header'
 import { useDispatch } from 'react-redux'
-import { contabilizarActions } from '../../actions'
+import { contabilizarActions, othersActions } from '../../actions'
 import { escopo } from '../../constants/app'
 
 export function AdminLayout({ children }) {
+    const dispatch = useDispatch()
     const [title, setTitle] = useState('')
     const [closeMenu, setCloseMenu] = useState(false)
 
@@ -29,6 +30,15 @@ export function AdminLayout({ children }) {
         setCo2t(storage2)
     }, [storage1, storage2, co2, co2t])
 
+    useEffect(() => {
+        const close = (e) => {
+          if(e.keyCode === 27){
+            dispatch(othersActions.closeModal())
+          }
+        }
+        window.addEventListener('keydown', close)
+      return () => window.removeEventListener('keydown', close)
+    },[])
     
     
     return (

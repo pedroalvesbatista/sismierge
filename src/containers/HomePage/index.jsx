@@ -37,12 +37,13 @@ export const HomePage = () => {
   // setTimeout(() => {
   //   setLoading(true)
   // }, 3000);
+  
 
-  useEffect(() => {
-    dispatch(contabilizarActions.loadData())
-    dispatch(contabilizarActions.setDataStorage(escopo))
+  // useEffect(() => {
+  //   dispatch(contabilizarActions.loadData())
+  //   dispatch(contabilizarActions.setDataStorage(escopo))
     
-  }, [storage, data, contabilizarActions.setDataStorage, loading])
+  // }, [storage, data, contabilizarActions.setDataStorage, loading])
   
   const test = () => {
     dispatch(othersActions.handleModal())
@@ -65,7 +66,7 @@ export const HomePage = () => {
           </HeaderArea>
           <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} />
           <Routes openModal={e => setDataModal(e)} tab={tabActive} />
-          <Modal  openModal={dataModal} />
+          <Modal />
       </>  
     }
     </Area>

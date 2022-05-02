@@ -1,19 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
+import { LoadingAnimation } from '../../lottie'
 
 import { authService } from '../../../services'
-import { othersActions } from '../../../actions'
-
-import { LoadingAnimation } from '../../lottie'
 import { 
   Text, 
   Button, 
 } from './styles'
 import Input from '../../Input'
 import { useDispatch } from 'react-redux'
+import { othersActions } from '../../../actions'
 
-export const AddMatriz = ({dataCompany, setPage, openModal}) => {
+export const AddFilial = ({dataCompany, setPage, openModal}) => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
@@ -26,33 +25,17 @@ export const AddMatriz = ({dataCompany, setPage, openModal}) => {
 
     const handleSubmit= (e) => {
         e.preventDefault()
-        if (data.haveUnidade.length > 0) {
-            if (data.haveUnidade === "Sim") {
-                dispatch(othersActions.closeModal())
-                setLoading(true)
-                setTimeout(() => {
-                    setLoading(false)
-                    dispatch(othersActions.handleOpenModal("Adicionar filial"))
-                }, 500);
-                // console.log("Aqui IF");
-            }else {
-                // setPage("welcome")
-                openModal({
-                    state: false,
-                    type: 'Adicionar matriz'
-                })
-                // console.log("Aqui else");
-            }
+        setLoading(true)
+        if (data.haveUnidade === "Sim") {
+            setTimeout(() => {
+                setLoading(false)
+                dispatch(othersActions.handleOpenModal("Adicionar filial"))
+            }, 500);
         }else {
-            // setPage("welcome")
-            openModal({
-                state: false,
-                type: 'Adicionar matriz'
-            })
-        } 
-        
+            dispatch(othersActions.closeModal())
+        }
     }
-  
+    
   
 
   return (

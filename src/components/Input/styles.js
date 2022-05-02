@@ -5,7 +5,9 @@ import { admin, second } from '../../constants/tailwind/colors'
 export const Area = styled.div`
     margin: 8px 0px;
     flex: 1;
-    margin-left: ${({spance}) => spance ? '20px' : 'none'};
+    margin-left: ${({spanceLeft}) => spanceLeft ? '20px' : 'none'};
+    margin-right: ${({spanceRight}) => spanceRight ? '20px' : 'none'};
+    width: ${({width}) => width ?? "none"};
 `
 
 export const InputArea = styled.div`

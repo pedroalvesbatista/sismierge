@@ -1,19 +1,22 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {
   AddMatriz,
   AddColaboradores,
-  AddUnidade
+  AddUnidade,
+  AddFilial
 } from './Company'
 
 function Routes({ type, openModal}) {
-  const modalType= ["Adicionar matriz", "Adicionar unidade", "Adicionar colaboradores"]
-    const addCompany= 'Adicionar empresa'
+  const { displayModal } = useSelector(state => state.others)
+  const modalType= ["Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial"]
     
   return (
     <>
-      {type.toLowerCase() === modalType[0].toLowerCase()  && <AddMatriz openModal={openModal} />}
-      {type.toLowerCase() === modalType[1].toLowerCase()  && <AddColaboradores openModal={openModal} />}
-      {type.toLowerCase() === modalType[2].toLowerCase()  && <AddUnidade openModal={openModal} />}
+      {displayModal === modalType[0].toLowerCase()  && <AddMatriz openModal={openModal} />}
+      {displayModal === modalType[1].toLowerCase()  && <AddUnidade openModal={openModal} />}
+      {displayModal === modalType[2].toLowerCase()  && <AddColaboradores openModal={openModal} />}
+      {displayModal === modalType[3].toLowerCase()  && <AddFilial openModal={openModal} />}
     </>
   )
 }

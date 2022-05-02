@@ -30,10 +30,15 @@ export const othersReducer = (state = initialState, action) => {
       }
     
     case others.SET_MODAL: 
-    console.log(state.isOpenModal);
       return {
         ...state,
-        isOpenModal: !state.isOpenModal
+        isOpenModal: action.payload
+      }
+    
+      case others.SET_CLOSE_MODAL: 
+      return {
+        ...state,
+        isOpenModal: action.payload
       }
     
     case others.CHANGE_CONTENT_MODAL: 
