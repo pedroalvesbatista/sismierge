@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { authActions } from '../../actions'
+import { LoadingAnimation } from '../../components/lottie'
 import { 
   Area, 
   Left, 
@@ -17,7 +20,9 @@ import {
 
 export const Login = () => {
   const navigate= useNavigate()
-  const [data, setData] = useState({password: '', email: ''})
+  const dispatch = useDispatch()
+  const { loading } = useSelector(state => state.auth)
+  const [data, setData] = useState({password: '', identifier: ''})
   const [showPassword, setShowPassword] = useState(false)
 
   const database= {
@@ -29,26 +34,15 @@ export const Login = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleOnchange= (e, type) => {
-    const value= e.target.value
-    setData({
-      password: type === 'pass' ? value : '',
-      email: type === 'email' ? value : ''
-    })
-  }
-
   const handleSubmit= () => {
-    if (data.email.length > 0 || data.password.length > 0) {
-      if (database.email === data.email || database.pass === data.password) {
-        localStorage.setItem("@sismiegee/auth", JSON.stringify(database))
-        navigate('/')
-      } else {
-        toast.error("Usuario não existe")
-      }
+    if (data.identifier.length > 0 || data.password.length > 0) {
+      dispatch(authActions.authenticate(data))
     } else {
       toast.warn("Os campos precisa ser preenchido")
     }
   }
+
+  console.log(data);
 
   return (
     <Area className='' >
@@ -60,18 +54,20 @@ export const Login = () => {
         <Form onSubmit={handleSubmit}>
           <InputArea>
             <Input 
-              type='email' 
-              placeholder='Email'
-              onChange={(e) => handleOnchange(e, 'email')}
+              // type='text' 
+              placeholder='Email ou username'
+              onChange={(e) => setData({...data, identifier: e.target.value})}
               required
+              value={data.identifier}
             />
           </InputArea>
           <InputArea>
             <Input 
               type={showPassword ? 'text' : 'password'} 
               placeholder='Senha'
-              onChange={(e) => handleOnchange(e, 'pass')}
+              onChange={(e) => setData({...data, password: e.target.value})}
               required
+              value={data.password}
               // onChange={e => console.log(e.target.type)}
             />
             {!showPassword ?
@@ -81,7 +77,7 @@ export const Login = () => {
           </InputArea>
           <ConexioArea>
             <TextArea>Esqueceu a senha?</TextArea>
-            <Button onClick={handleSubmit}>Conectar</Button>
+            <Button onClick={handleSubmit}> {loading ? <LoadingAnimation /> : "Conectar"} </Button>
           </ConexioArea>
         </Form>
       </Rigth>

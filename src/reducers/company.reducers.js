@@ -21,8 +21,6 @@ export const companyReducer = (state = initialState, action) => {
       
 
     case companyConstants.LOAD_COMPANY_SUCCESS:
-      console.log(action.type)
-      console.log(state);
       return {
         ...state,
         loading: false,
@@ -44,7 +42,6 @@ export const companyReducer = (state = initialState, action) => {
       
 
     case companyConstants.CREATE_COMPANY_SUCCESS:
-      console.log(state.company);
       return {
         ...state,
         loadingCreateCompany: false,

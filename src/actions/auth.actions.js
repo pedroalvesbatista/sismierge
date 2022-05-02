@@ -3,7 +3,8 @@ import { authConstants } from "../constants/redux"
 import { authService } from "./../services"
 
 export const authActions = {
-    authenticate
+  authenticate,
+  loadUsers,
 }
 
 function authenticate (userData, admin){
@@ -22,10 +23,17 @@ function authenticate (userData, admin){
           type: authConstants.LOGIN_USER_SUCCESS,
           payload: response.data
         })
-  
-        localStorage.setItem(`@sismiegee/${isAdmin}`, JSON.stringify(response.data))
+        console.log(response.data);
+        
         localStorage.removeItem(`@sismiegee/${isUser}`)
-        window.location.replace(`${redirect}`)
+
+        if (response.data.user.type === "colaborador") {
+          localStorage.setItem(`@sismiegee/auth/admin`, JSON.stringify(response.data))
+          window.location.replace(`/admin`)
+        } else {
+          localStorage.setItem(`@sismiegee/auth`, JSON.stringify(response.data))
+          window.location.replace(`/`)
+        }
     })
     .catch(error => {
         if (error.response.status === 400) {
@@ -37,4 +45,26 @@ function authenticate (userData, admin){
       console.log(error);
     })
     }
+}
+
+function loadUsers (){
+  return dispatch => {
+  //   dispatch({ 
+  //   type: authConstants.LOAD_USERS_REQUEST
+  // })
+
+  authService.loadUsers()
+  .then(response => {
+      dispatch({ 
+        type: authConstants.LOAD_USERS_SUCCESS,
+        payload: response.data
+      })
+  })
+  .catch(error => {
+    dispatch({ 
+      type: authConstants.LOAD_USERS_FAIL,
+    })
+    console.log(error);
+  })
+  }
 }

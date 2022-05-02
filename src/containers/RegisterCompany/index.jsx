@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { LoadingAnimation } from '../../components/lottie'
 
 import { authActions } from '../../actions'
 import { authService } from '../../services'
@@ -44,11 +45,11 @@ export const RegisterCompany = () => {
   return (
     <Area id='register_company' >
       <Card>
-        {/* {loading ?
-          "Carregando..." */}
-        {/* :  */}
+        {loading ?
+          <LoadingAnimation size={350} />
+        : 
         <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
-        {/* } */}
+        }
       </Card>
     </Area>
   )

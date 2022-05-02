@@ -3,10 +3,13 @@ import { authConstants } from "../constants/redux"
 const initialState = {
     isLogin: false,
     loading: false,
+    loadingGetUsers: false,
     sucess: false,
+    sucessGetUsers: false,
     signupSuccess: false,
     error: false,
-    user: false,
+    user: [],
+    users: [],
     resetPassToken: "",
     resetPassEmail: "",
     resetPassLoading: false,
@@ -57,6 +60,27 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        error: action.payload ,
+      }
+
+    case authConstants.LOAD_USERS_REQUEST:
+      return {
+        ...state,
+        loadingGetUsers: true,
+      }
+
+    case authConstants.LOAD_USERS_SUCCESS:
+      return {
+        ...state,
+        loadingGetUsers: false,
+        users: action.payload,
+        sucessGetUsers: true,
+      }
+
+    case authConstants.LOAD_USERS_FAIL:
+      return {
+        ...state,
+        loadingGetUsers: false,
         error: action.payload ,
       }
 

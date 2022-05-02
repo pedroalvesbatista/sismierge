@@ -6,7 +6,8 @@ import { admin } from '../../constants/tailwind/colors'
 function Avatar({
     name= "Unidade leste", 
     radius=false,
-    onClick
+    onClick,
+    bgColor
 }) {
     const nameComplete= name?.split(" ")
     const firstName= nameComplete[0]
@@ -15,7 +16,7 @@ function Avatar({
     const firstLetterSecondName= lastName?.split("")[0]?.toUpperCase()
     const isTwoName= nameComplete?.length > 1 
   return (
-    <Area onClick={onClick} isTwo={isTwoName} radius={radius}>
+    <Area bgColor={bgColor} onClick={onClick} isTwo={isTwoName} radius={radius}>
         {isTwoName ? `${firstLetter}${firstLetterSecondName}`
             : firstLetter ?? "S"
         }
@@ -27,7 +28,7 @@ const Area = styled.div`
     width: 40px;
     height: 40px;
     /* background-color: rgba(52, 155, 131, 0.4); */
-    background-color: #fff;
+    background-color: ${({bgColor}) => bgColor ? admin.verde+38 : "#fff"};
     text-align: center;
     font-size: ${({isTwo}) => isTwo ? 25 : 28}px;
     font-weight: 600;
@@ -35,7 +36,7 @@ const Area = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${admin.dark};
+    color: ${({bgColor}) => bgColor ? admin.verde : admin.dark};
     transition: all .1s ease-out;
     box-shadow: 0px 5px 5px 1px rgba(0,0,0,0.05);
     /* color: ${admin.verde}; */

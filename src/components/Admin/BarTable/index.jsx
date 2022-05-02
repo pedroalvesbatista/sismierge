@@ -28,28 +28,27 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                     </thead>
                     <tbody>
                         <tr>
-                            {
-                            loading ?
+                            {loading ?
                                 <NotCOntentArea>
                                     <div>Carregando...</div>
                                 </NotCOntentArea>
-                                :
-                                item?.length > 0 ? item.slice(0, 10).map((i, key) => (
-                                    <TableArea key={key}>
-                                        <Item>  { i.username } </Item>
-                                        <Item>  { i.email } </Item>
-                                        <Item>  { i.type } </Item>
-                                        <Item> {i.confirmed ? "Sim" : "Não"} </Item>
-                                        <Item>  </Item>
-                                    </TableArea>
-                                ))
-                        
-                                : 
+                            : (
+                                item?.length > 0 ? 
+                                    item.slice(0, 10).map((i, key) => (
+                                        <TableArea key={key}>
+                                            <Item>  { i.name } </Item>
+                                            <Item>  { i.email } </Item>
+                                            <Item>  { i.type } </Item>
+                                            <Item> {i.confirmed ? "Sim" : "Não"} </Item>
+                                            <Item>  </Item>
+                                        </TableArea>
+                                )) : 
                                     <NotCOntentArea>
                                         <IconDoc />
                                         <Text>Nenhum {title} encontrado</Text>
                                         <ButtonAdd title={title} onClick={onClick}/>
                                     </NotCOntentArea>
+                                )
                             }
                         </tr>
                     </tbody>

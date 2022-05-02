@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import { LoadingAnimation } from '../../../components/lottie'
+
 import { authActions } from '../../../actions'
 import { 
   Area, 
@@ -33,14 +35,13 @@ export const LoginAdmin = () => {
   const handleSubmit= () => {
     // e?.preventDefault
 
-    // if (data.identifier?.length > 0 || data.password?.length > 0) {
-    //   dispatch(authActions.authenticate(data, true))
-    // } else {
-    //   toast.warn("Os campos precisa ser preenchido")
-    // }
-    navigate("/admin")
+    if (data.identifier?.length > 0 || data.password?.length > 0) {
+      dispatch(authActions.authenticate(data, true))
+    } else {
+      toast.warn("Os campos precisa ser preenchido")
+    }
   }
-  
+
   console.log(data);
 
   return (
@@ -75,7 +76,10 @@ export const LoginAdmin = () => {
           </InputArea>
           <ConexioArea>
             <TextArea>Esqueceu a senha?</TextArea>
-            <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> {loading ? "Carregando..." : "Conectar"} </Button>
+            <Button aria-disabled={loading ? true : false} onClick={handleSubmit}>
+              {loading ? <LoadingAnimation /> : "Conectar"} 
+            </Button>
+            
           </ConexioArea>
         </Form>
       </Card>

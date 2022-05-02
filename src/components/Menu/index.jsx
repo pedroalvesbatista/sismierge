@@ -21,9 +21,11 @@ import {
     Close
 } from './styles'
 import { primary } from '../../constants/tailwind/colors';
+import Avatar from '../Avatar';
 
 function Menu({ titleHome, closeMenu }) {
     const navigate= useNavigate()
+    const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
     const [active, setActive] = useState(0)
     const [close, setClose] = useState(false)
     const dispatch= useDispatch()
@@ -87,8 +89,11 @@ function Menu({ titleHome, closeMenu }) {
             </div>
         </MenuArea>
         <BottomArea closed={close}>
-            <Img closed={close} src='/profile.png'/>
-            {!close && <Subtext closed={close} weight='bold'>Juliana Ferreira</Subtext>}
+            {/* <Img closed={close} src='/profile.png'/> */}
+            <Avatar bgColor radius name={storage.name} />
+            {!close && <Subtext closed={close} weight='bold'>
+                { storage ? storage.name ?? storage.username : "Nome do usuario" }
+            </Subtext>}
         </BottomArea>
     </Area>
   )

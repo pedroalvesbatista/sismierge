@@ -33,6 +33,7 @@ function createCompany(userData) {
         name,
         email,
         password,
-        type: "master"
+        type: "master",
+        confirmed: true
     })
 }

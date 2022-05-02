@@ -7,10 +7,10 @@ function AdminRoute({ children }) {
     const storage= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
     // const storage= true
     
-    // if (!storage) {
-    //     toast.error("Precisa estar logado")
-    //     return <Navigate to='/auth/admin/login' replace />
-    // }
+    if (!storage) {
+        toast.error("Precisa estar logado")
+        return <Navigate to='/auth/admin/login' replace />
+    }
 
     return children ? children : <Outlet />
 }

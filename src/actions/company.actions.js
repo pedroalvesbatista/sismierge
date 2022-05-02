@@ -4,7 +4,8 @@ import { companyService } from "../services"
 
 export const companyActions = {
     getCompanies,
-    createCompany
+    createCompany,
+    getUserCompany
 }
 
 const storageCompany= {
@@ -18,7 +19,6 @@ function getCompanies (){
       dispatch({ 
       type: companyConstants.LOAD_COMPANY_REQUEST
     })
-    localStorage.setItem(`@sismiegee/admin/company`, JSON.stringify({...storageCompany, loading: true}))
 
     companyService.getCompanies()
     .then(response => {
@@ -26,9 +26,6 @@ function getCompanies (){
           type: companyConstants.LOAD_COMPANY_REQUEST,
           payload: response.data
         })
-        setTimeout(() => {
-          localStorage.setItem(`@sismiegee/admin/company`, JSON.stringify({loading: false, data: response.data.data}))
-        }, 500);
     })
     .catch(error => {
       dispatch({ 
@@ -39,13 +36,35 @@ function getCompanies (){
     }
 }
 
+function getUserCompany (){
+
+  return dispatch => {
+    dispatch({ 
+    type: companyConstants.LOAD_COMPANY_REQUEST
+  })
+
+  companyService.getUserCompany()
+  .then(response => {
+      dispatch({ 
+        type: companyConstants.LOAD_COMPANY_REQUEST,
+        payload: response.data
+      })
+  })
+  .catch(error => {
+    dispatch({ 
+      type: companyConstants.LOAD_COMPANY_FAIL,
+    })
+    console.log(error);
+  })
+  }
+}
+
 function createCompany (userData){
 
   return dispatch => {
     dispatch({ 
     type: companyConstants.CREATE_COMPANY_REQUEST
   })
-  localStorage.setItem(`@sismiegee/admin/company`, JSON.stringify({...storageCompany, loading: true}))
 
   companyService.createCompany(userData)
   .then(response => {
@@ -54,14 +73,14 @@ function createCompany (userData){
         payload: response.data.data.attributes
       })
       console.log(response.data.data.attributes);
-      setTimeout(() => {
-        localStorage.setItem(`@sismiegee/admin/company`, JSON.stringify({...storageCompany, loading: false}))
-      }, 500);
   })
   .catch(error => {
     dispatch({ 
       type: companyConstants.CREATE_COMPANY_FAIL,
     })
+    if (error.response.data.error.message === "Email is already taken") {
+      toast.error("O e-mail já foi cadastrado")
+    }
     console.log(error.response.data.error);
   })
   }

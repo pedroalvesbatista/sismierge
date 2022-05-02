@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
 import { companyService, mailService, conviteService } from '../../../services'
+import { othersActions } from '../../../actions'
 import { admin } from '../../../constants/tailwind/colors'
 import Input from '../../Input'
+import { useDispatch } from 'react-redux'
 
 export function AddCompany({ openModal }) {
+    const dispatch = useDispatch()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [sucess, setSucess] = useState(false)
@@ -67,7 +70,8 @@ export function AddCompany({ openModal }) {
     useEffect(() => {
         if (sucessMail) {
             setLoading(false)
-            openModal(false)
+            // openModal(false)
+            dispatch(othersActions.closeModal())
             window.location.reload()
             toast.success(`Link foi enviado com sucesso para ${data.user.email}`)
         }
