@@ -88,7 +88,7 @@ export const Text = styled.span`
     align-items: center;
     color: ${({active}) => active ? primary.verde : primary.dark};
     font-weight: ${({active}) => active ? '400' : '300'};
-    font-size: ${({active}) => active ? "2.2vh" : "2vh"}; 
+    font-size: ${({active}) => active ? "1.2em" : "1em"}; 
     margin: ${({active}) => active ? '10px 0px' : '10px 0px'};  
     padding: 0px 10px;
     transition: all .2s linear;

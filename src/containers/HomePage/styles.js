@@ -5,17 +5,22 @@ export const Area = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    /* background-color: aliceblue; */
-    padding: 50px;
+    /* width: 100%; */
+    flex: 6;
+    margin-right: 20px;
+    margin-left: 20px;
+    /* padding: 0px 20px; */
+    /* align-items: center; */
+    /* padding: 50px; */
 `
 export const TextArea = styled.div`
     font-size: 30px;
 `
-export const ContentArea = styled.div`
+export const HeaderArea = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin-top: 5%;
+    justify-content: space-around;
+    padding: 0px 20px;
+    margin-bottom: 40px;
 `
 export const Card = styled.div`
     display: flex;

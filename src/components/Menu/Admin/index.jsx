@@ -45,7 +45,7 @@ function MenuAdmin({ titleHome }) {
         </MenuArea>
         <BottomArea>
             <Img src='/profile.png'/>
-            <Subtext weight='bold'>{ storage.user.name ?? storage.user.username }</Subtext>
+            <Subtext weight='bold'>{ storage ? storage.user.name ?? storage.user.username : "Flory Muenge" }</Subtext>
             <Subtext onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Subtext>
         </BottomArea>
     </Area>

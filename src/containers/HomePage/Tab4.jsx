@@ -5,7 +5,7 @@ import { admin } from '../../constants/tailwind/colors'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { colaboradorService } from '../../services'
 
-function Tab3() {
+function Tab4({ openModal }) {
   const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
@@ -22,6 +22,13 @@ function Tab3() {
         })
   }
 
+  const handelModal = () => {
+    openModal({
+      state: true,
+      type: 'Adicionar colaboradores'
+    })
+  }
+
   useEffect(() => {
     getColaboradors()
   }, [])
@@ -29,20 +36,20 @@ function Tab3() {
   return (
     <Area>
       <ButtonArea>
-        <Button>
+        <Button onClick={handelModal}>
           <IconPlus />
-          <Text>Adicionar colaborador</Text>
+          <Text>Adicionar colaboradores</Text>
         </Button>
       </ButtonArea>
       <CardArea>
-        <BarTable item={data} loading={false} header={titles} />
+        <BarTable title='colaboradores' tab={4} onClick={handelModal} item={data} loading={false} header={titles} />
       </CardArea>
     </Area>
   )
 }
 
 const Area = styled.div`
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
   /* height: 200px; */
 `
@@ -88,4 +95,4 @@ const Text = styled.span`
   margin-left: 10px;
 `
 
-export default Tab3
+export default Tab4

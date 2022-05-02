@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import BarTable from '../../components/Admin/BarTable'
 import { authService } from '../../services'
 
-function Tab1() {
+function Tab1({ openModal }) {
     const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
+    const [data, setData] = useState([])
 
     const getUsers = () => {
       setLoading(true)
@@ -25,17 +26,24 @@ function Tab1() {
       getUsers()
     }, [])
 
+    const handelModal = () => {
+      openModal({
+        state: true,
+        type: 'Adicionar matriz'
+      })
+    }
+
     // console.log(users);
 
   return (
     <Area>
-      <BarTable item={users} loading={false} header={titles} />
+      <BarTable tab={1} onClick={handelModal} title='matriz' item={users} loading={false} header={titles} />
     </Area>
   )
 }
 
 const Area = styled.div`
-    margin-top: 104px;
+    margin-top: 20px;
     width: 100%;
     /* height: 200px; */
     background-color: white;

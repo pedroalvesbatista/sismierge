@@ -7,7 +7,8 @@ export const SearchArea = styled.form`
     align-items: center;
     width: 300px;
     height: 30px;
-    border-bottom: 2px solid #c3c7c9;
+    box-shadow: 0px 5px 5px 1px rgba(0,0,0,0.05);
+    /* border-bottom: 1px solid #c3c7c9; */
     /* flex: 1; */
     /* margin: 0px 5%; */
     padding: 20px 10px;

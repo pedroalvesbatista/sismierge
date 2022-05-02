@@ -43,7 +43,7 @@ function Tab2({ openModal }) {
         </Button>
       </ButtonArea>
       <CardArea>
-        <BarTable tab="2" item={data} loading={loading} header={titles} />
+        <BarTable tab="2" item={data} loading={false} header={titles} />
       </CardArea>
     </Area>
   )

@@ -68,7 +68,7 @@ function Menu({ titleHome, closeMenu }) {
                     {/* <RiDashboardLine size={20} color={active === key ? primary.verde : primary.dark} /> */}
                     {IconComponent({ 
                         icon: item.component, 
-                        size: active === key ? 20  : 18, 
+                        size: active === key ? "1.2em"  : "1em", 
                         color: active === key ? primary.verde : primary.dark+99,
                         style: {transition: "all .2s ease-out"}
                     })}

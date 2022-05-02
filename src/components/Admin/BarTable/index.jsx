@@ -4,7 +4,7 @@ import { SiDatabricks } from 'react-icons/si'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { admin } from '../../../constants/tailwind/colors'
 
-function BarTable({ item, header, loading, tab }) {
+function BarTable({ item, header, loading, tab, title="empresa", onClick}) {
 
   return (
     <Area>
@@ -40,9 +40,9 @@ function BarTable({ item, header, loading, tab }) {
                             <NotCOntentArea>
                                 <IconDoc />
                                     <Text>Nenhum conteúdo encontrado</Text>
-                                <Button>
+                                <Button onClick={onClick}>
                                     <IconPlus />
-                                    Adicionar empresa
+                                    Adicionar {title}
                                 </Button>
                             </NotCOntentArea>
                     }

@@ -33,11 +33,12 @@ export const LoginAdmin = () => {
   const handleSubmit= () => {
     // e?.preventDefault
 
-    if (data.identifier?.length > 0 || data.password?.length > 0) {
-      dispatch(authActions.authenticate(data, true))
-    } else {
-      toast.warn("Os campos precisa ser preenchido")
-    }
+    // if (data.identifier?.length > 0 || data.password?.length > 0) {
+    //   dispatch(authActions.authenticate(data, true))
+    // } else {
+    //   toast.warn("Os campos precisa ser preenchido")
+    // }
+    navigate("/admin")
   }
   
   console.log(data);

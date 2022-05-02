@@ -32,7 +32,7 @@ function Input({ onChange, type, placeholder, required, value, label, spanceLeft
             {type === "file" && 
               <File htmlFor='file'>
                 <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>
-                <Rigth>Upload</Rigth>
+                <Rigth>UPLOAD</Rigth>
               </File>
             }
         </InputArea>

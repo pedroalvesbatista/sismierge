@@ -1,42 +1,51 @@
 import styled from 'styled-components'
+import { BiBuildingHouse } from "react-icons/bi"
 import { primary } from '../../constants/tailwind/colors'
 
+export const Container = styled.div`
+    /* width: 190px;
+    height: 190px; */
+    /* padding: 10px; */
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.3);
+    /* background-color: blueviolet; */
+`
+
 export const Area = styled.div`
-    /* width: 500px; */
-    height: 100px;
-    flex: 2;
+    width: 180px;
+    height: 180px;
     display: flex;
-    background-color: #fff;
+    background-image: ${({bgColor}) => `radial-gradient(circle at top right, ${bgColor ?? "#f073a6, #D4437E"} 50% )`};
+    flex-direction: column;
     border-radius: 10px;
     box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.08);
-    padding: 5px;
+    /* box-shadow: inset 0px 0px 32px -7px rgba(0,0,0,0.13); */
+    padding: 30px;
     justify-content: space-between;
-    align-items: center;
-`
-export const Card = styled.div`
-    flex: 1;
-    position: relative;
-    height: 70px;
-    background-color: ${'#fafafa'};
-    border-radius: 10px;
-    margin: 0px 5px;
-    box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.14);
-    display: flex;
-    /* box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.08); */
+    /* align-items: center; */
     cursor: pointer;
 
     &:hover{
-        opacity: 0.9;
+        opacity: 0.93;
     }
     &:active{
-        opacity: 0.6;
+        opacity: 1;
     }
+`
+export const Icon = styled(BiBuildingHouse)`
+    color: ${({color}) => color ?? "#D4437E"};
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 5px;
     
 `
 export const Text = styled.div`
-    color: ${({color}) => color ? '#1f1d1d' : primary.dark};
-    font-size: ${({size}) => size ? '11px' : '18px'};
-    font-weight: ${({bold}) => bold ? 'bold' : 'none'};
+    color: ${({color}) => color ?? "#fff"};
+    font-size: ${({size}) => size ?? '0.8em'};
+    font-weight: ${({bold}) => bold ?? "600"};
+    line-height: 1
     /* text-align: start; */
 `
 export const TextArea = styled.div`

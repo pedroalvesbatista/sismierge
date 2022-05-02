@@ -34,17 +34,39 @@ export function AdminLayout({ children }) {
     return (
         <Area>
             <Menu closeMenu={e => setCloseMenu(e)} titleHome={e => setTitle(e)} />
-            <div style={{flex: 6, marginLeft: closeMenu ? '3.2%' : '15%' , padding: 0}}>
+            <Wrapper closeMenu={closeMenu}>
                 <Header co2={co2} co2t={co2t} title={title} />
-                {children}
-            </div>
+                <Container>
+                    {children}
+                    <Aside />
+                </Container>
+            </Wrapper>
         </Area>
     )
 }
 
 
 const Area= styled.div`
-    background-color: ${primary.cinza};
+    /* background-color: #f8f9fc5b; */
     display: flex;
     position: relative;
+`
+const Wrapper= styled.div`
+    /* background-color: #f8f9fc5b; */
+    display: flex;
+    flex: 6;
+    position: relative;
+    flex-direction: column;
+    margin-left: ${({closeMenu}) => closeMenu ? '3.2%' : '15%'};
+`
+const Container= styled.div`
+    display: flex;
+    padding: 20px;
+    position: relative;
+`
+const Aside= styled.div`
+    /* background-color: #f8f9fc5b; */
+    display: flex;
+    position: relative;
+    flex: 2;
 `

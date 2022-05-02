@@ -4,33 +4,28 @@ import Chart from '../Chart'
 import Circle from './Circle'
 import { 
     Area,
-    Card,
+    Container,
+    Icon,
     Text,
     TextArea
  } from './styles'
 
-function Board({ co2, co2t }) {
+function Board({ title = "Custo total do uso", number= "R$ 12 032" }) {
   
   
 
   return (
-    <Area>
-      <Card>
-        <Circle percent={!co2 ? 0 : co2?.percent} />
-        <TextArea>
-          <Text bold={true}> {co2?.value.toLocaleString('pt-BR', {minimumFractionDigits: 1})} </Text>
-          <Text color={true} size={true}> Emissões totais em CO2 equivalente (toneladas métricas) </Text>
-        </TextArea>
-      </Card>
-      
-      <Card>
-        <Circle percent={!co2t ? 0 : co2t?.percent} second={true} />
-        <TextArea>
-          <Text bold={true}> {co2t?.value.toLocaleString('pt-BR', {minimumFractionDigits: 1})} </Text>
-          <Text color={true} size={true}> Emissões totais em CO2 biogênico (toneladas métricas) </Text>
-        </TextArea>
-      </Card>
-    </Area>
+    <Container>
+      <Area>
+        <Icon />
+        <Text size="3vh">
+          {number}
+        </Text>
+        <Text bold="400">
+          {title}
+        </Text>
+      </Area>
+    </Container>
   )
 }
 

@@ -1,26 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { MdOutlineNotifications } from 'react-icons/md'
+import { RiArrowDownSLine } from 'react-icons/ri'
+
 import { admin } from '../../constants/tailwind/colors'
 import Avatar from '../Avatar'
+import DropDown from '../Dropdown'
 
-function RightHeader({ name = "jULIANA ferreira" }) {
+function RightHeader({ name = "unidade leste" }) {
+    const [stateName, setStateName] = useState(name)
+    const [mouseEnter, setMouseEnter] = useState(false)
+    const [dropdown, setDropdown] = useState(false)
+    const unidades= ["Unidade leste campo", "campo grande", "Sudeste"]
     
     function firstLetterCase(name) {
-        const firstletter= name[0].toUpperCase()
-        const otherletter= name.slice(1).toLowerCase()
-        const result= firstletter.concat(otherletter)
+        const firstletter= name[0]?.toUpperCase()
+        const otherletter= name?.slice(1)?.toLowerCase() 
+        const result= firstletter?.concat(otherletter)
         return result
     }
     
-    const firstName= firstLetterCase(name?.split(" ")[0])
-    const secondName= firstLetterCase(name?.split(" ").length > 1 && name?.split(" ")[1])
+    const firstName= (nameLetter) => firstLetterCase(nameLetter?.split(" ")[0])
+    const secondName= (nameLetter) => firstLetterCase(nameLetter?.split(" ").length > 1 ? nameLetter?.split(" ")[1] : nameLetter)
+
+    const handleDropdown = (e) => {
+        setDropdown(!dropdown)
+    }
 
   return (
     <Area>
-        <Left>
-            <Avatar name={name} />
-            <Text> {`${firstName} ${secondName}`} </Text>
+        <Left mouseEnter={mouseEnter}  onMouseEnter={() => setMouseEnter(!mouseEnter)} onMouseLeave={() => setMouseEnter(!mouseEnter)}>
+            <Avatar onClick={handleDropdown} mouseEnter={mouseEnter}  name={stateName} />
+            <Text onClick={handleDropdown} mouseEnter={mouseEnter} > 
+                {stateName.split(" ").length > 1 ? `${firstName(stateName)} ${secondName(stateName)}` : firstName(stateName)} 
+            </Text>
+            <ArrowIcon onClick={handleDropdown} mouseEnter={mouseEnter}  />
+            {dropdown && 
+                <DropDown>
+                    {unidades.map((item, index) => (
+                        <AreaDropdown onClick={() => setStateName(item)} key={index}>
+                            <Avatar name={item} mouseEnter={mouseEnter}   />
+                            <Text size={""} onClick={handleDropdown} mouseEnter={mouseEnter} > 
+                                {item.split(" ").length > 2 ? 
+                                    `${firstLetterCase(item).split(" ").slice(0, 1) + " " + firstLetterCase(item).split(" ").slice(1, 2)}` : firstLetterCase(item)} 
+                            </Text>
+                        </AreaDropdown>
+                    ))}
+                </DropDown>
+            }
         </Left>
         <NotificationIcon />
     </Area>
@@ -32,17 +59,51 @@ const Area = styled.div`
     display: flex;
     justify-content: space-between;
     margin-left: 30px;
+    position: relative;
+
+    &:hover{
+        color: ${admin.dark};
+    }
+    &:active{
+        color: ${admin.dark}89;
+    }
 `
 const Left = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+`
+const AreaDropdown = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: ${admin.verde}19;
+        border-bottom: "none";
+    }
+    &:active{
+        background-color: ${admin.verde};
+        border-bottom: "none";
+        color: #fff;
+    }
 `
 const Text = styled.span`
     font-size: 400;
     color: ${admin.dark};
     margin-left: 10px;
-    font-size: 18px;
+    font-size: ${({size}) => size ?? "1.2rem"};
+    cursor: pointer;
+
+    &:hover{
+        color: ${({mouseEnter}) => mouseEnter && admin.dark+99};
+    }
+    &:active{
+        color: ${({mouseEnter}) => mouseEnter && admin.dark};
+    }
 `
 const NotificationIcon= styled(MdOutlineNotifications)`
     color: ${admin.dark};
@@ -58,12 +119,17 @@ const NotificationIcon= styled(MdOutlineNotifications)`
     align-items: center;
     cursor: pointer;
     border-radius: ${({radius}) => radius ? "50%" : "5px"};
-
+`
+const ArrowIcon= styled(RiArrowDownSLine)`
+    color: ${admin.dark}89;
+    font-size: 16px;
+    cursor: pointer;
+    
     &:hover{
-        background-color: rgba(255, 255, 255, 0.744);
+        color: ${admin.verde};
     }
     &:active{
-        background-color: rgba(255, 255, 255, 0.9);
+        color: ${admin.dark}89;
     }
 `
 

@@ -11,7 +11,7 @@ export const Area = styled.div`
     transition: all .2s ease-out;
     height: 70px;
     padding: 0px 1%;
-    border-bottom: 1px solid ${admin.dark+29};
+    /* border-bottom: 1px solid ${admin.dark+29}; */
 `
 export const Div = styled.div`
     flex: 1;
