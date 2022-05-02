@@ -16,6 +16,7 @@ const Area = styled.div`
     /* height: 100px; */
     background-color: #fff;
     padding: 10px;
+    z-index: 10;
     top: 100%;
     border-radius: 5px;
     margin-top: 10px;
