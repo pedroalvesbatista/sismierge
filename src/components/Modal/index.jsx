@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { othersActions } from '../../actions'
 import { firstLetterCase } from '../../functions'
 
-import Routes from './Routes'
+import RoutesCompany from './Company/Routes'
+import RoutesAdmin from './Admin/RoutesAdmin'
 import { 
     Area,
     Card,
@@ -34,7 +35,8 @@ function Modal() {
                 <IconClose onClick={handleCloseModal} />
             </Header>
             <Separator />
-            <Routes/>
+            <RoutesCompany/>
+            <RoutesAdmin />
         </Card>
     </Area>
   )

@@ -47,7 +47,7 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                                 : 
                                     <NotCOntentArea>
                                         <IconDoc />
-                                        <Text>Nenhum conteúdo encontrado</Text>
+                                        <Text>Nenhum {title} encontrado</Text>
                                         <ButtonAdd title={title} onClick={onClick}/>
                                     </NotCOntentArea>
                             }

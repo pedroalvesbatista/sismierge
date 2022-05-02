@@ -5,7 +5,7 @@ import {
   AddColaboradores,
   AddUnidade,
   AddFilial
-} from './Company'
+} from '.'
 
 function Routes({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)

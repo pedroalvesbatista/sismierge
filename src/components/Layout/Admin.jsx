@@ -29,16 +29,6 @@ export function AdminLayout({ children }) {
         setCo2(storage1)
         setCo2t(storage2)
     }, [storage1, storage2, co2, co2t])
-
-    useEffect(() => {
-        const close = (e) => {
-          if(e.keyCode === 27){
-            dispatch(othersActions.closeModal())
-          }
-        }
-        window.addEventListener('keydown', close)
-      return () => window.removeEventListener('keydown', close)
-    },[])
     
     
     return (

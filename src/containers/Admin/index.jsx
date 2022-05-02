@@ -27,7 +27,7 @@ export function Admin() {
     <div>
         <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} />
         <Routes openModal={e => setDataModal(e)} tab={tabActive} />
-        <Modal  openModal={dataModal} />
+        <Modal />
     </div>
   )
 }

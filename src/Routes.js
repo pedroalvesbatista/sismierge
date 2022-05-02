@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { 
   HomePage, 
   NotFound, 
@@ -20,9 +20,22 @@ import { AdminLayout, PublicLayout, SismiergeLayout, RegisterCompanyLayout } fro
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoute from './Routes/AdminRoute';
 import RegisterCompanyRoute from './Routes/RegisterCompanyRoute';
+import { othersActions } from './actions';
+import { useDispatch } from 'react-redux';
 
 
 export function RoutesPage() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const close = (e) => {
+      if(e.keyCode === 27){
+        dispatch(othersActions.closeModal())
+      }
+    }
+    window.addEventListener('keydown', close)
+  return () => window.removeEventListener('keydown', close)
+},[])
 
   return (
     <Routes>
