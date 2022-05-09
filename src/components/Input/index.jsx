@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
     Area,
     InputArea,
@@ -10,50 +10,58 @@ import {
     AreaRadio,
     LabelRadio,
     InputRadio,
-    SpanRadio
+    SpanRadio,
+    TextArea
 } from './styles'
 
-function Input({ width, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, id, name, qtd, notView }) {
+function Input({ width, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView }) {
   
   return (
-    <Area width={width} spanceLeft={spanceLeft} spanceRight={spanceRight}>
+    <Area spanceTop={spanceTop} width={width} spanceLeft={spanceLeft} spanceRight={spanceRight}>
         <Text> {label} </Text>
         {!notView &&
-          <InputArea isFile={type == "file" ? true : false }>
-            <InputEntry 
-              type={type ?? 'text'} 
-              placeholder={placeholder}
-              onChange={onChange}
-              required={required}
-              value={value}
-              isFile={type == "file" ? true : false }
-              id={id}
-            />
-            {type === "file" && 
-              <File htmlFor='file'>
-                <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>
-                <Rigth>UPLOAD</Rigth>
-              </File>
+          <InputArea height={type === "textArea" ? 100 : 40} isFile={type == "file" || type === "textArea" ? true : false }>
+            {type === "textArea" ?(
+              <TextArea placeholder={placeholder} cols={50} rows={10}  />) : (
+                <Fragment>
+                  <InputEntry 
+                    type={type ?? 'text'} 
+                    placeholder={placeholder}
+                    onChange={onChange}
+                    required={required}
+                    value={value}
+                    isFile={type == "file" ? true : false }
+                    id={id}
+                  />
+                  {type === "file" && 
+                    <File htmlFor='file'>
+                      <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>
+                      <Rigth>UPLOAD</Rigth>
+                    </File>
+                  }
+                </Fragment>
+              )
             }
-        </InputArea>
+          </InputArea>
         }
         {type === "radio" &&
-              <AreaRadio>
-                {qtd?.map((item, index) => (
-                  <LabelRadio key={index} htmlFor={`${index}-${name}`}>
-                    <InputRadio 
-                      value={item} 
-                      onChange={onChange} 
-                      type="radio" 
-                      id={`${index}-${name}`} 
-                      name={name} 
-                      tabindex={index}
-                    />
-                    <SpanRadio>{item}</SpanRadio>
-                  </LabelRadio>
-                ))}
-              </AreaRadio>
-            }
+          <AreaRadio>
+            {qtd?.map((item, index) => (
+              <LabelRadio key={index} htmlFor={`${index}-${name}`}>
+                <InputRadio 
+                  value={item} 
+                  onChange={onChange} 
+                  type="radio" 
+                  id={`${index}-${name}`} 
+                  name={name} 
+                  tabindex={index}
+                />
+                <SpanRadio>{item}</SpanRadio>
+              </LabelRadio>
+            ))}
+          </AreaRadio>
+        }
+        
     </Area>
   )
 }

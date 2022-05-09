@@ -4,6 +4,7 @@ import { admin, second } from '../../constants/tailwind/colors'
 
 export const Area = styled.div`
     margin: 8px 0px;
+    margin-top: ${({spanceTop}) => spanceTop ? spanceTop : '8px'};
     flex: 1;
     margin-left: ${({spanceLeft}) => spanceLeft ? '20px' : 'none'};
     margin-right: ${({spanceRight}) => spanceRight ? '20px' : 'none'};
@@ -13,7 +14,7 @@ export const Area = styled.div`
 export const InputArea = styled.div`
     /* width: 100%; */
     position: relative;
-    height: 40px;
+    height: ${({height}) => height ?? 400}px;
     border-radius: 5px;
     display: flex;
     background-color: white;
@@ -33,6 +34,16 @@ export const InputEntry = styled.input`
     font-size: 14px;
     border: none;
     display: ${({isFile}) => isFile ? 'none' : 'block'};
+`
+export const TextArea = styled.textarea`
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 14px;
+    border: none;
+    padding: 5px;
+    resize: none;
 `
 
 export const Text = styled.div`
@@ -72,12 +83,11 @@ export const AreaRadio = styled.div`
     
 `
 export const LabelRadio = styled.label`
-    padding: 6px;
-    border-radius: 50px;
+    padding: 0px;
     display: inline-flex;
     cursor: pointer;
     transition: background .2s ease;
-    margin: 8px 0;
+    /* margin: 8px 0; */
     -webkit-tap-highlight-color: transparent;
     
     &:hover,

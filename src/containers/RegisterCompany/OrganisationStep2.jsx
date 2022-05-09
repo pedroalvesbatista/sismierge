@@ -9,7 +9,7 @@ import {
 } from './styles'
 import Input from '../../components/Input'
 
-export const Unidade = ({dataCompany, setPage}) => {
+export const OrganisationStep2 = ({dataCompany, setPage}) => {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
@@ -39,9 +39,7 @@ export const Unidade = ({dataCompany, setPage}) => {
 
   return (
     <>
-        {/* <Text size={20}>Vamos Adicionar unidade <br/>
-            da sua organização
-        </Text> */}
+        <Text size={20}>Informações institucionais</Text>
         {/* <Text size={14} color={true} fontSize={400}>
           Agora vamos cadastrar sua organização. <br/>
           Essa etapa é muito importante!
@@ -49,62 +47,54 @@ export const Unidade = ({dataCompany, setPage}) => {
         <Form onSubmit={handleSubmit}>
             <AreaInput>
                 <Input 
-                    label={"Nome da unidade"}
-                    placeholder="Unidade leste"
+                    type={"textArea"}
+                    label={"Bio (historia)"}
+                    placeholder="Conta um pouco sobre a empresa..."
                 />
                 <Input 
-                    label={"CNPJ da empresa"}
-                    placeholder="32.792.884/2021-10"
+                    label={"Clientes atendidos"}
+                    placeholder="Quais são seus clientes?"
                     spanceLeft={true}
-                    type="number"
+                    type="textArea"
                 />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Nome completo do responsável"}
-                    placeholder={`${storage.name ?? "Milena rocha"}`}
+                    type={"textArea"}
+                    label={"Processos da empresa"}
+                    placeholder="Conta um pouco sobre o processos..."
                 />
                 <Input 
-                    label={"CPF do responsável"}
-                    placeholder="327.928.842.02"
+                    label={"Sub-processos da empresa"}
+                    placeholder="Conta um pouco sobre o Sub-processos..."
                     spanceLeft={true}
-                    type="number"
+                    type="textArea"
                 />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Email corporativo"}
-                    placeholder={`${storage.email ?? "jumboltda@jumbo.com"}`}
-                    type="email"
+                    type={"textArea"}
+                    label={"Missão da empresa"}
+                    placeholder="Conta aqui..."
                 />
                 <Input 
-                    label={"Telefone de contato com DDD"}
-                    placeholder="11986522567"
+                    label={"Visão da empresa"}
+                    placeholder="Conta aqui..."
                     spanceLeft={true}
-                    type="tel"
+                    type="textArea"
                 />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Cargo"}
-                    placeholder={`Diretor Financeiro`}
-                    type="email"
+                    type={"textArea"}
+                    label={"Valores da empresa"}
+                    placeholder="Conta aqui..."
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
                     spanceLeft={true}
                     type="file"
                     id={"file"}
-                />
-            </AreaInput>
-            <AreaInput>
-                <Input 
-                    label={"Possui outras unidades organizacionais s serem inventariadas?"}
-                    type="radio"
-                    qtd={["Sim", "Não"]}
-                    name={"unidades"}
-                    notView={true}
-                    onChange={e => setData({...data, haveUnidade: e.target.value})}
                 />
             </AreaInput>
         </Form>
@@ -130,7 +120,7 @@ const AreaInput = styled.form`
     display: flex;
     width: 600px;
     /* justify-content: space-between; */
-    /* height: 200px; */
+    /* height: 100px; */
 `
 const ConexioArea = styled.div`
     display: flex;

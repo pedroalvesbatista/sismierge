@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { admin, primary, second } from '../../constants/tailwind/colors'
 
-function SelectArea({ value, onChange, item, title, modal=true, width, placeholder }) {
+function SelectArea({ value, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop }) {
 
   return (
-    <Area width={width}>
+    <Area spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
         <Label>{title}</Label>
         <Container
             value={value} 
@@ -25,9 +25,11 @@ function SelectArea({ value, onChange, item, title, modal=true, width, placehold
 
 const Area = styled.div`
     width: ${({width}) => width ?? "none"};
+    margin-top: ${({spanceTop}) => spanceTop ? spanceTop : "10px"};
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: ${({spaceLeft}) => spaceLeft ? "20px" : "0px"};
 `
 const Label = styled.label`
     font-size: 14px;

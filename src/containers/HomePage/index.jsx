@@ -20,7 +20,7 @@ export const HomePage = () => {
   const { isOpenModal } = useSelector(state => state.others)
   const [tabActive, setTabActive] = useState('Visão geral')
   const [dataModal, setDataModal] = useState(null)
-  const tabs= ["Visão geral", "Matriz", "Unidades", "Colaboradores"]
+  const tabs= ["Visão geral", "Unidades", "Colaboradores"]
   const navigate= useNavigate()
   const dispatch= useDispatch()
   const storage= JSON.parse(localStorage.getItem("@sismiegee/data"))

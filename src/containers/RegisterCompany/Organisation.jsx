@@ -8,35 +8,43 @@ import {
   Button, 
 } from './styles'
 import Input from '../../components/Input'
+import SelectArea from '../../components/Select'
 
 export const Organisation = ({dataCompany, setPage}) => {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-      file: "",
-      haveUnidade: ""
+    file: "",
+    haveUnidade: "",
+    typeCadastral: "",
   })
-  const [showPassword, setShowPassword] = useState(false)
+  const [showTypeCadastral, setShowTypeCadastral] = useState(false)
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
+  const optionsTypes= ["Holding", "Participação acionaria", "Apenas unidade de negocio"]
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (data.haveUnidade.length > 0) {
-        if (data.haveUnidade === "Sim") {
-            setPage("unidade")
-        }else {
-            setPage("welcome")
-        }
-    }else {
-        setPage("welcome")
-    } 
-    
+    // if (data.haveUnidade.length > 0) {
+    //     if (data.haveUnidade === "Sim") {
+    //         setPage("unidade")
+    //     }else {
+    //         setPage("welcome")
+    //     }
+    // }else {
+    //     setPage("welcome")
+    // }
+    setPage("organisationStep2")
   }
 
   useEffect(() => {
-    toast.success("Conta criando com sucesso")
-  }, [])
+    if (data.typeCadastral === "Participação acionaria") {
+        setShowTypeCadastral(true)
+    }else {
+        setShowTypeCadastral(false)
+    }
+  }, [data.typeCadastral])
+  
   
   
 
@@ -48,6 +56,23 @@ export const Organisation = ({dataCompany, setPage}) => {
           Essa etapa é muito importante!
         </Text>
         <Form onSubmit={handleSubmit}>
+            <AreaInput>
+                <SelectArea 
+                    onChange={e => setData({...data, typeCadastral: e.target.value})} 
+                    value={data.typeCadastral} 
+                    title={"O que deseja cadastrar?"} item={optionsTypes} 
+                    width= "50%"
+                    placeholder="Escolhe um tipo..."
+                />
+                {showTypeCadastral && 
+                    <Input 
+                        label={"Porcentagem de participação"}
+                        placeholder="30%"
+                        spanceLeft={true}
+                        type="number"
+                    />
+                }
+            </AreaInput>
             <AreaInput>
                 <Input 
                     label={"Nome da empresa"}
@@ -100,7 +125,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     onChange={e => setData({...data, file: e.target.value})}
                 />
             </AreaInput>
-            <AreaInput>
+            {/* <AreaInput>
                 <Input 
                     label={"Possui outras unidades organizacionais s serem inventariadas?"}
                     type="radio"
@@ -109,7 +134,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     notView={true}
                     onChange={e => setData({...data, haveUnidade: e.target.value})}
                 />
-            </AreaInput>
+            </AreaInput> */}
         </Form>
         <ConexioArea>
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 

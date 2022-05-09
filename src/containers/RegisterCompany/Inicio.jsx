@@ -37,31 +37,33 @@ export const Inicio = ({ dataUser, setPage }) => {
   const handleSubmit= (e) => {
     e.preventDefault()
 
-    if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
-        const pass= data.password.length > 8 ? data : {
-            username: data?.username, 
-            name: data?.name,
-            email: data.email,
-            id: data.id,
-            first: true
-        }
-        setLoading(true)
-        authService.editUser(data.id, pass)
-            .then(res => {
-                setLoading(false)
-                setPage("organisation")
-                setData({...data,  
-                })
-                localStorage.setItem(`@sismiegee/auth`, JSON.stringify(res.data))
-                localStorage.removeItem(`@sismiegee/auth/admin`)
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    } else {
-      toast.warn("Os campos precisa ser preenchido")
-    }
+    // if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
+    //     const pass= data.password.length > 8 ? data : {
+    //         username: data?.username, 
+    //         name: data?.name,
+    //         email: data.email,
+    //         id: data.id,
+    //         first: true
+    //     }
+    //     setLoading(true)
+    //     authService.editUser(data.id, pass)
+    //         .then(res => {
+    //             setLoading(false)
+    //             setPage("organisation")
+    //             setData({...data,  
+    //             })
+    //             localStorage.setItem(`@sismiegee/auth`, JSON.stringify(res.data))
+    //             localStorage.removeItem(`@sismiegee/auth/admin`)
+    //             console.log(res.data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // } else {
+    //   toast.warn("Os campos precisa ser preenchido")
+    // }
+
+    setPage("organisation")
     
   }
 
