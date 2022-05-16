@@ -38,7 +38,7 @@ function Menu({ titleHome, closeMenu }) {
             type: others.SET_HOMETITLE,
             payload: item.text
         })
-        // navigate(item.slug)
+        navigate(item.slug)
     }
 
     const handleLogout= () => {
