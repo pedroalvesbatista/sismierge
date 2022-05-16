@@ -12,8 +12,10 @@ export const Container = styled.div`
 `
 
 export const Area = styled.div`
-    width: 180px;
-    height: 180px;
+    // width: 180px;
+    // height: 180px;
+    width: 220px;
+    height: 220px;
     display: flex;
     background-image: ${({bgColor}) => `radial-gradient(circle at top right, ${bgColor ?? "#f073a6, #D4437E"} 50% )`};
     flex-direction: column;
