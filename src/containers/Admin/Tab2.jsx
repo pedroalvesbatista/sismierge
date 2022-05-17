@@ -7,11 +7,11 @@ import { companyService } from '../../services'
 import { othersActions, companyActions, authActions } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux'
 
-function Tab2({ openModal }) {
+function Tab2({  }) {
   const dispatch = useDispatch()
   const { companies } = useSelector(state => state.company)
   const { loadingGetUsers, users } = useSelector(state => state.auth)
-  const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
+  const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
@@ -33,6 +33,7 @@ function Tab2({ openModal }) {
       item={users?.filter(i => i.type === "master")} 
       loading={false} 
       header={titles} 
+      onEdit={() => dispatch(othersActions.handleOpenModal("Editar Usuário"))}
     />
   )
 }

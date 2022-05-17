@@ -33,8 +33,6 @@ function MenuAdmin({ titleHome }) {
         navigate('/auth/admin/login')
     }
 
-    console.log(user);
-
   return (
     <Area>
         <Header>

@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react'
+import { Routes, Route } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+
 import {
   HomePage,
   NotFound,
@@ -9,6 +12,7 @@ import {
   Indicadores,
   Verificacao,
   RegisterCompany,
+
 } from "./containers";
 
 import {  Resumo} from "./containers/Resumo";
@@ -23,13 +27,11 @@ import {
   LoginAdmin
 } from "./containers/Admin/Login"
 import Admin from './containers/Admin/index.jsx';
-import { Routes, Route } from "react-router-dom";
 import { AdminLayout, PublicLayout, SismiergeLayout, RegisterCompanyLayout } from "./components"
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoute from './Routes/AdminRoute';
 import RegisterCompanyRoute from './Routes/RegisterCompanyRoute';
 import { othersActions } from './actions';
-import { useDispatch } from 'react-redux';
 
 
 export function RoutesPage() {

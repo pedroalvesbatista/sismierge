@@ -4,7 +4,8 @@ import { others } from "../constants/redux"
 export const othersActions = {
     handleOpenModal,
     closeModal,
-    changeDisplayModal
+    changeDisplayModal,
+    setDataModal,
 }
 
 function handleOpenModal (display){
@@ -35,6 +36,15 @@ function closeModal (){
         dispatch({ 
             type: others.SET_CLOSE_MODAL,
             payload: false
+        })
+    }
+}
+
+function setDataModal (data){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_DATA_MODAL,
+            payload: data
         })
     }
 }

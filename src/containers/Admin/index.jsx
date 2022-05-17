@@ -18,7 +18,7 @@ export function Admin() {
 
     useEffect(() => {
       if (storage) {
-          setTabActive(storage)
+        setTabActive(storage)
       }
     }, [storage])
     
@@ -26,7 +26,7 @@ export function Admin() {
   return (
     <div>
         <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} />
-        <Routes openModal={e => setDataModal(e)} tab={tabActive} />
+        <Routes tab={tabActive} />
         <Modal />
     </div>
   )
