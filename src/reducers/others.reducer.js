@@ -5,7 +5,8 @@ const initialState = {
   optionSelect: '',
   otherOptionSelect: '',
   isOpenModal: false,
-  displayModal: null
+  displayModal: null,
+  dataModal: null
 }
 
 export const othersReducer = (state = initialState, action) => {
@@ -45,6 +46,12 @@ export const othersReducer = (state = initialState, action) => {
       return {
         ...state,
         displayModal: action.payload
+      }
+    
+    case others.SET_DATA_MODAL: 
+      return {
+        ...state,
+        dataModal: action.payload
       }
       
     default: 

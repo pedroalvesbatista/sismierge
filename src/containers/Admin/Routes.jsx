@@ -12,7 +12,7 @@ function Routes({tab, openModal}) {
             <Tab1 />
         }
         {tab === tabs[1] &&
-            <Tab2 openModal={e => openModal(e)} />
+            <Tab2 />
         }
         {tab === tabs[2] &&
             <Tab3 />
