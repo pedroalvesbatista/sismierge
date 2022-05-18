@@ -1,31 +1,44 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { RiDashboardLine } from 'react-icons/ri';
-import { primary, second, admin } from '../../../constants/tailwind/colors'
-import Avatar from '../../Avatar';
+import { RiLogoutBoxLine } from 'react-icons/ri';
+
+import { IconComponent } from '../../CreateComponent'
+import { menuAdmin } from '../../../constants/app'
+import { others } from '../../../constants/redux'
 import { 
     Area,
     Header,
     Logo,
     MenuArea,
     Text,
-    AreaItem,
+    Notif,
+    BarActive,
     BottomArea,
     Img,
-    Subtext
-} from './styles'
+    Subtext,
+    AreaItem,
+    Close
+} from '../styles'
+import { primary } from '../../../constants/tailwind/colors';
+import Avatar from '../../Avatar';
 
-function MenuAdmin({ titleHome }) {
+function MenuAdmin({ titleHome, closeMenu }) {
     const navigate= useNavigate()
-    const [active, setActive] = useState(true)
-    const dispatch= useDispatch()
-    const { user } = useSelector(state => state.auth)
     const storage= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
+    const [active, setActive] = useState(0)
+    const [close, setClose] = useState(false)
+    const dispatch= useDispatch()
+    // const { titlePage } = useSelector(state => state.others)
 
     const handleActive= (key, item) => {
-        setActive(true)
-        // titleHome(item.text)
+        setActive(key)
+        dispatch({
+            type: others.SET_HOMETITLE,
+            payload: item.text
+        })
+        navigate("/admin"+item.slug)
+        console.log(item.slug);
     }
 
     const handleLogout= () => {
@@ -33,22 +46,54 @@ function MenuAdmin({ titleHome }) {
         navigate('/auth/admin/login')
     }
 
+    const handleClose= () => {
+        setClose(!close)
+        console.log(close);
+    }
+
+    // useEffect(() => {
+    //     closeMenu(close)
+    // }, [close])
+    
+
+    
+
   return (
-    <Area>
-        <Header>
-            <Logo />
+    <Area closed={close}>
+        <Header closed={close}>
+            <Logo onClick={() => navigate("/")} closed={close}/>
+            <Close onClick={handleClose}  />
         </Header>
-        <MenuArea>
-            <AreaItem onClick={() => handleActive()}  active={active}>
-                <RiDashboardLine size={20} color={active ? primary.verde : primary.dark} />
-                <Text active={active}> Dashboard </Text>
-            </AreaItem>
+        <MenuArea closed={close}>
+            {menuAdmin.map((item, key) => (
+                <AreaItem key={key} onClick={() => handleActive(key, item)}  active={active === key ? true : false}>
+                    {/* <RiDashboardLine size={20} color={active === key ? primary.verde : primary.dark} /> */}
+                    {IconComponent({ 
+                        icon: item.component, 
+                        size: active === key ? "1.2em"  : "1em", 
+                        color: active === key ? primary.verde : primary.dark+99,
+                        style: {transition: "all .2s ease-out"}
+                    })}
+                    {!close && <Text active={active === key ? true : false}> {item.text} </Text>}
+                </AreaItem>
+            ))}
+            <div style={{width: "100%", height: "100%", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", }}>
+                <AreaItem active={true}>
+                    <RiLogoutBoxLine 
+                        size= {18} 
+                        color= {primary.verde}
+                        style= {{transition: "all .2s ease-out"}} 
+                    />
+                    {!close && <Text active={true} onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Text>}
+                </AreaItem>
+            </div>
         </MenuArea>
-        <BottomArea>
-            {/* <Img src='/profile.png'/> */}
+        <BottomArea closed={close}>
+            {/* <Img closed={close} src='/profile.png'/> */}
             <Avatar bgColor radius name={storage.user.name} />
-            <Subtext weight='bold'>{ storage ? storage.user.name ?? storage.user.username : "Flory Muenge" }</Subtext>
-            <Subtext onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Subtext>
+            {!close && <Subtext closed={close} weight='bold'>
+                { storage ? storage.user.name ?? storage.user.username : "Nome do usuario" }
+            </Subtext>}
         </BottomArea>
     </Area>
   )

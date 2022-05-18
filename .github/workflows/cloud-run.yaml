@@ -1,0 +1,111 @@
+# Copyright 2019 Google, LLC.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+name: Build and Deploy to Cloud Run
+env:
+  PROJECT_ID: sismierge-2022-v1-testing
+  #PROJECT_DEV: sismierge-2022-v1-testing
+  #PROJECT_STAGING: sismierge-2022-v1-testing
+  SERVICE: sismierge-testing
+  #SERVICE_DEV: sismierge-dev
+  #SERVICE_STAGING: sismierge-staging
+  REGION: southamerica-east1
+  RELEASE_VERSION: v1.0
+  ARTIFACT_REGISTRY_REPO: sismierge-testing
+  IMAGE_NAME: sismierge-testing
+  GIT_TAG: v1.0
+
+
+on:
+  push:
+    branches:
+    - master
+  #  pull_request:
+    - # [dev, staging, v1.0]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Configure Workload Identity Federation and generate an access token.
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        workload_identity_provider: 'projects/497273267874/locations/global/workloadIdentityPools/mainpool/providers/mainprovider'
+        service_account: 'githubactions@sismierge-2022-v1-testing.iam.gserviceaccount.com'
+
+    # Alternative option - authentication via credentials json
+    # - id: 'auth'
+    #   uses: 'google-github-actions/auth@v0'
+    #   with:
+    #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    # Setup gcloud CLI
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0
+
+    - name: Authorize Docker push
+      run: gcloud auth configure-docker southamerica-east1-docker.pkg.dev
+
+    - name: Build and Push Container
+      run: |-
+        docker build -t southamerica-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env. ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE }}:${{ env.RELEASE_VERSION}} .
+        DOCKER_BUILDKIT=0 docker push southamerica-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env. ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE }}:${{ env.RELEASE_VERSION}}
+    - name: Deploy to Cloud Run
+      run: |-
+        gcloud run deploy ${{ env.SERVICE }} \
+          --region ${{ env.REGION }} \
+          --image southamerica-east1-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env. ARTIFACT_REGISTRY_REPO }}/${{ env.SERVICE }}:${{ env.RELEASE_VERSION}} \
+          --port=3000 --min-instances 1 --max-instances 10 --memory 2G --cpu 2 --allow-unauthenticated
+          --platform "managed" \
+          --quiet
+
+    # name: Run development branch 
+    #  run: |-
+          #if: ${{ github.ref == 'refs/heads/dev' }}
+          #    docker build -t gcr.io/${{ env.PROJECT_DEV }}/${{ env.SERVICE_DEV }}:${{  github.sha }} .
+          #    docker tag -v v1.0-dev
+          #    docker push gcr.io/${{ env.PROJECT_DEV }}/${{ env.SERVICE_DEV }}:${{  github.sha }}
+          # - name: Deploy to Cloud Run Dev Environment
+      #run: |-
+      #  gcloud run deploy ${{ env.SERVICE_DEV }} \
+      #    --region ${{ env.REGION }} \
+      #    --image gcr.io/${{ env.PROJECT_DEV }}/${{ env.SERVICE_DEV }}:${{  github.sha }} \
+      #    --platform "managed" \
+      #    --quiet                
+    # - name: Run staging branch
+    #  run: |-
+          #if: ${{ github.ref == 'refs/heads/staging' }}
+          #    docker build -t gcr.io/${{ env.PROJECT_STAGING }}/${{ env.SERVICE_STAGING }}:${{  github.sha }} .
+          #    docker tag -v v1.0-staging
+          #    docker push gcr.io/${{ env.PROJECT_STAGING }}/${{ env.SERVICE_STAGING }}:${{  github.sha }} 
+    # - name: Deploy to Cloud Run Staging Environment
+      #run: |-
+      #  gcloud run deploy ${{ env.SERVICE_STAGING }} \
+      #    --region ${{ env.REGION }} \
+      #    --image gcr.io/${{ env.PROJECT_STAGING }}/${{ env.SERVICE_STAGING }}:${{  github.sha }} \
+      #    --platform "managed" \
+      #    --quiet            
+    
