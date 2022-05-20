@@ -5,7 +5,10 @@ import { contabilizarActions, othersActions } from "../../actions";
 import { escopo, inicial } from "../../constants/app/";
 import Board from "../../components/Board";
 
-import { Area, TextArea, HeaderArea, Card } from "./styles";
+import {Card, CardContent, Button }  from '@mui/material';
+// import CardContent from '@mui/material/CardContent';
+
+import { Area, TextArea, HeaderArea,} from "./styles";
 import { Container, Ul, Li } from "../Admin/../../components/Tabs/styles";
 import TabsAdmin from "../../components/Tabs";
 import Modal from "../../components/Modal";
@@ -21,6 +24,8 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   const storage = JSON.parse(localStorage.getItem("@sismiegee/data"));
   const [loading, setLoading] = useState(true);
+  const [mouseOnCard, setMouseOnCard] = useState(false);
+  const [idxCard, setIdxCard] = useState("");
 
   // const [dataBoard, setdataBoard] = useState([
   //   {id: 1, title: "Custo total do uso", icon: "", number: "12 032"},
@@ -29,9 +34,9 @@ export const HomePage = () => {
   //   {id: 1, title: "Consumo total de energia", icon: "", number: "194.3"}
   // ])
   const [dataBoard, setdataBoard] = useState([
-    { id: 1, title: "Escopo 1", icon: "", number: "12 032" },
-    { id: 2, title: "Escopo 2", icon: "", number: "7 361 800" },
-    { id: 1, title: "Escopo 3", icon: "", number: "9.7M" },
+    { id: 1, title: "Escopo 1", icon: "", number: "12 032", subItem:["teste1", "teste2","test3"] },
+    { id: 2, title: "Escopo 2", icon: "", number: "7 361 800",subItem:["teste1", "teste2","test3"] },
+    { id: 1, title: "Escopo 3", icon: "", number: "9.7M" , subItem:["teste1", "teste2","test3"]},
   ]);
 
   // setTimeout(() => {
@@ -54,23 +59,53 @@ export const HomePage = () => {
     localStorage.setItem(`@sismiegee/tabActive`, e);
   };
 
+
   return (
     <Area>
       {!loading ? (
         "Carregando..."
       ) : (
         <>
-          <HeaderArea>
+          {/* <HeaderArea>
             {dataBoard.map((item, index) => (
-              <Board key={index} number={item.number} title={item.title} />
+              <Board key={index} {... item} />
             ))}
-          </HeaderArea>
+          </HeaderArea> */}
+             <div className="d-flex justify-content-around justify-content-center mb-5">
+           {dataBoard.map((item, index) => {
+              return (
+                <div>
+                <Card className="d-flex  justify-content-center align-items-center" style={{ width: 200 , backgroundColor:"#9c348c",cursor:"pointer"}}  >
+                  <CardContent  onMouseEnter={() => {setMouseOnCard(true); setIdxCard(index)}}
+                    >
+                    <h1 className="text-light fs-3">{item.title}</h1>
+                  </CardContent>
+                </Card>
+                 {idxCard == index  && mouseOnCard && (
+                      <div className="d-flex flex-column justify-content-between align-items-center mt-3" onMouseLeave={() => setMouseOnCard(false)}>
+                        <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Baixar todas as NF</Button>
+                        <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Iniciar Inventariação</Button>
+
+                      </div>
+
+                      )}
+
+                      </div>
+              )
+              })}
+                </div>
+          
+        <hr/>
+        <div className="d-flex justify-content-around mt-3">
+          <Button  variant="outlined" size="small" color="success">Dados Rastreáveis</Button>
+          <Button  variant="outlined" size="small" color="success">Fatores de Emissão</Button>
+        </div>
           {/* <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} /> */}
-          <Container>
+          {/* <Container>
             <Ul>
               <Li active={true}>Relatórios</Li>
-            </Ul>
-            <ul className="mt-2 pb-3">
+            </Ul> */}
+            {/* <ul className="mt-2 pb-3">
               <li>
                 <button type="button" class="btn btn-outline-success btn-sm w-100" title="Inventário Completo">Inventário Completo</button>
                 
@@ -101,11 +136,11 @@ export const HomePage = () => {
               <li>
                 <button type="button" class="btn btn-outline-success btn-sm w-100" title="Clique aqui para incluir seu relatário/selo de auditoria">Clique aqui para incluir seu relatário/selo de auditoria</button>
                  {/* somente para o login do auditor!*/}
-              </li>
-            </ul>
-          </Container>
+              {/* </li>
+            </ul>  */}
+          {/* </Container> */}
           {/* <Routes openModal={(e) => setDataModal(e)} tab={tabActive} /> */}
-          <Modal />
+          {/* <Modal /> */}
         </>
       )}
     </Area>

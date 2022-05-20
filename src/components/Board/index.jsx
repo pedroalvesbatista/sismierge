@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Chart from '../Chart'
-import Circle from './Circle'
-import { 
-    Area,
-    Container,
-    Icon,
-    Text,
-    TextArea
- } from './styles'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Chart from "../Chart";
+import Circle from "./Circle";
+import { Area, Container, Icon, Text, TextArea } from "./styles";
+import Button from '@mui/material/Button';
 
-function Board({ title = "Custo total do uso", number= "R$ 12 032" }) {
-  
-  
-
+function Board({...props }) {
+ const {subItem, title} = props
   return (
     // <Container>
     //   <Area>
@@ -30,23 +23,23 @@ function Board({ title = "Custo total do uso", number= "R$ 12 032" }) {
     <Container>
       <Area>
         {/* <Icon /> */}
-        <Text size="3vh">
-          {/* {number} */}
-          {title}
-        </Text>
-        <Text bold="400">
-        <a  href="#" title="Clique para Baixar todas as NF"><i>Baixar todas as NF</i></a>
-        </Text>
-        <Text bold="400">
-        <a  href="#" title="Dados rastreáveis"><i>Dados rastreáveis</i></a>
-        </Text>
-        <Text bold="400">
-        <a  href="#" title="Clique para Baixar todas as NF"><i>Fatores de Emissão</i></a>
-        </Text>
-        <button type="button" class="btn btn-secondary btn-sm" title="Salvar e Enviar"><i>Salvar e Enviar</i></button>
+        <Text size="3vh">{title}</Text>
+        {subItem && subItem.map((elem) => {
+          return(
+          <Text bold="400">
+            <a href="#">
+              <i>{elem}</i>
+            </a>
+          </Text>
+          )
+        })}
+        {/* <button type="button" class="btn btn-secondary btn-sm">
+          <i>Iniciar Inventariação</i>
+        </button> */}
+        <Button variant="outlined" size="small" color="success">Iniciar Inventariação</Button>
       </Area>
     </Container>
-  )
+  );
 }
 
-export default Board
+export default Board;
