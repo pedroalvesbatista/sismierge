@@ -129,6 +129,19 @@ export const Inicio = ({ dataUser, setPage }) => {
             </InputArea>
           </div>
           <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
+            <Text color={true} left={true} size={14}>Cargo</Text>
+            <InputArea aria-disabled={true}>
+                <Input 
+                    type='text' 
+                    placeholder='CEO'
+                    onChange={(e) => setData({...data, email: e.target.value})}
+                    required
+                    // value={data.email}
+                    // disabled={true}
+                />
+            </InputArea>
+          </div>
+          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
             <Text color={true} left={true} size={14}>Senha</Text>
             <InputArea aria-disabled={true}>
                 <Input 
