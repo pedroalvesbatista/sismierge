@@ -22,7 +22,7 @@ export const HomePage = () => {
   // const tabs= ["Visão geral", "Unidades", "Colaboradores"]
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const storage = JSON.parse(localStorage.getItem("@sismiegee/data"));
+  const storage = JSON.parse(localStorage.getItem("@sismierge/data"));
   const [loading, setLoading] = useState(true);
   const [mouseOnCard, setMouseOnCard] = useState(false);
   const [idxCard, setIdxCard] = useState("");
@@ -58,6 +58,14 @@ export const HomePage = () => {
     setTabActive(e);
     localStorage.setItem(`@sismiegee/tabActive`, e);
   };
+
+  useEffect(() => {
+    if (storage?.company?.user.length === 1) {
+      dispatch(othersActions.handleOpenModal("Adicionar colaboradores"))
+    }
+    // console.log(storage?.company.user.length);
+  }, [])
+  
 
 
   return (
@@ -140,7 +148,7 @@ export const HomePage = () => {
             </ul>  */}
           {/* </Container> */}
           {/* <Routes openModal={(e) => setDataModal(e)} tab={tabActive} /> */}
-          {/* <Modal /> */}
+          <Modal />
         </>
       )}
     </Area>

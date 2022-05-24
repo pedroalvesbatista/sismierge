@@ -1,0 +1,125 @@
+{
+    "fatoresEmissaoGeracaoEnergia": [
+    {
+            "fatores_emissao_convertidos_emissao_energia_combustiveis_fosseis": [
+                {"Nº ref.": "", "Combustível": " ", "Combustível correspondente adotado pelo IPCC": "", "Unidades": "", "Poder CaloríficoInferior (PCI)(GJ/t)": "", "Densidade (kg/unidade)": "", "Referência": ""},
+                {"Fatores de Emissão original": [
+                    {
+                        "CO2 (kg/TJ)": "",
+                        "Fonte": "",
+                        "Setor Energia": [
+                            {
+                                "CH4 (kg/TJ)": "",
+                                "N2O (kg/TJ)": ""
+                            }
+                        ]
+                    }
+                ],
+                "Fatores de Emissão convertidos t / MWh": [
+                {
+                        "Setor - Energia": [
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""}
+                        ]
+                    }
+
+
+                ],
+                "fatores_emissao_convertidos_emissao_energia_biocombustíveis": [
+                {"Nº ref.": "", "Combustível": " ", "Combustível correspondente adotado pelo IPCC": "", "Unidades": "", "Poder CaloríficoInferior (PCI)(GJ/t)": "", "Densidade (kg/unidade)": "", "Referência": ""},
+                {"Fatores de Emissão original": [
+                    {
+                        "CO2 (kg/TJ)": "",
+                        "Fonte": "",
+                        "Setor Energia": [
+                            {
+                                "CH4 (kg/TJ)": "",
+                                "N2O (kg/TJ)": ""
+                            }
+                        ]
+                    }
+                ],
+                "Fatores de Emissão convertidos t / MWh": [
+                {
+                        "Setor - Energia": [
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""},
+                            {"t CO2 /MWh": "", "t CH4 / MWh": "", "t N2O / TJ": "", "t CO2 biogênico / MWh": ""}
+                        ]
+                }
+                ]
+        }    
+    ]
+     
+}

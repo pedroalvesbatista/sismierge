@@ -13,8 +13,8 @@ export const Area = styled.div`
 `
 export const Card = styled.div`
     display: flex;
-    /* height: 700px;
-    width: 650px; */
+    max-height: 700px;
+    /* width: 650px; */
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);

@@ -81,7 +81,19 @@ jobs:
           --port=3000 --min-instances 1 --max-instances 10 --memory 2G --cpu 2 --allow-unauthenticated
           --platform "managed" \
           --quiet
-
+    
+    # Checks for updates on a branch and commit it to the created image
+    # - name: Checking new commits
+    #   run: | -
+    #       git fetch origin 
+    #       docker tag sismierge-testing-v1.0
+    #       
+    #
+    #
+    #
+    #
+    #
+    #
     # name: Run development branch 
     #  run: |-
           #if: ${{ github.ref == 'refs/heads/dev' }}

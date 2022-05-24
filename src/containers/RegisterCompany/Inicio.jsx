@@ -20,14 +20,18 @@ export const Inicio = ({ dataUser, setPage }) => {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-      password: '', 
-      username: dataUser?.username, 
-      name: dataUser?.name,
-      email: dataUser.email,
-      id: dataUser.id,
-      first: true
-    })
+    type_user: "master",
+    password: '', 
+    username: dataUser?.username, 
+    name: dataUser?.name,
+    email: dataUser.email,
+    id: dataUser.id,
+    first: true,
+    cargo: null,
+    company: null,
+  })
   const [showPassword, setShowPassword] = useState(false)
+  const token= window.location.pathname.split('/')[2]
 
 
   const handleShowPassword= () => {
@@ -36,7 +40,10 @@ export const Inicio = ({ dataUser, setPage }) => {
 
   const handleSubmit= (e) => {
     e.preventDefault()
-
+    localStorage.setItem("@sismierge/data", JSON.stringify({
+      user: data,
+      company: null
+    }))
     // if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
     //     const pass= data.password.length > 8 ? data : {
     //         username: data?.username, 
@@ -62,23 +69,26 @@ export const Inicio = ({ dataUser, setPage }) => {
     // } else {
     //   toast.warn("Os campos precisa ser preenchido")
     // }
-
-    setPage("organisation")
+    if (token == 2) {
+      setPage("organisationStep2")
+    } else {
+      setPage("organisation") 
+    }
     
   }
 
 //   console.log(dataUser);
 
-  useEffect(() => {
-    setData({
-        password: '', 
-        username: dataUser?.username, 
-        name: dataUser?.name,
-        email: dataUser.email,
-        id: dataUser.id,
-        first: true
-      })
-  }, [dataUser])
+  // useEffect(() => {
+  //   setData({
+  //       password: '', 
+  //       username: dataUser?.username, 
+  //       name: dataUser?.name,
+  //       email: dataUser.email,
+  //       id: dataUser.id,
+  //       first: true
+  //     })
+  // }, [dataUser])
   
 
   return (
@@ -134,7 +144,7 @@ export const Inicio = ({ dataUser, setPage }) => {
                 <Input 
                     type='text' 
                     placeholder='CEO'
-                    onChange={(e) => setData({...data, email: e.target.value})}
+                    onChange={(e) => setData({...data, cargo: e.target.value})}
                     required
                     // value={data.email}
                     // disabled={true}

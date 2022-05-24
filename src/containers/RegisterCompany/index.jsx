@@ -38,6 +38,7 @@ export const RegisterCompany = () => {
         })
         .catch(err => {
             console.log(err);
+            setLoading(false)
         })
     }, [token])
     

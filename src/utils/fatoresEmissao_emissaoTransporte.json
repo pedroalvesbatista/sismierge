@@ -1,0 +1,588 @@
+{
+    "fatoresEmissaoTransporte": [
+    {
+
+            "fatoresCombustaoMovel": 
+            [
+               {
+                    "fatorEmissaoTipoCombustivel": [
+                    {    
+                       "fatoresEmissaoCombustiveisFosseisFontesMoveis": [
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""}
+                        ],
+                       "fatoresEmissaoBiocombustiveisFosseisFontesMoveis": [
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""}
+            
+                       ],
+                       "fatoresEmissaoUtilizacaoCarvaoTransporteFerroviario": [
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""},
+                           {"combustivel": "", "unidade": "", "poder_calorifico": "", "densidade": "", "referencia": "", "fator_emissao_co2": "", "fator_emissao_ch4": "", "fator_emissao_n2o": ""}
+            
+                       ]
+                    }
+                ],          
+
+                    "fatorEmissaoFrotaTipoCombustivel": [
+                    {    
+                        "fatorEmissaoFrotaTipoCombustivel": [
+                        {
+                                "combustivel": [
+                                {    
+                                    "gasolina_automotiva_comercial": [
+                                    {    
+                                        "tipo_veiculo": [
+                                            {}
+                                        ],
+                                        "fatores_emissao_mma_2014_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_mma_2014_N2O": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_N2O": [
+                                            {
+
+                                            }
+                                        ]
+                                    }
+                                    ],
+                                    "oleo_diesel_comercial": [
+                                    {    
+                                        "tipo_veiculo": [
+                                            {}
+                                        ],
+                                        "fatores_emissao_mma_2014_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_mma_2014_N2O": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_N2O": [
+                                            {
+
+                                            }
+                                        ]
+                                    }    
+                                    ],
+                                    "gas_natural_veicular_gnv": [
+                                    {    
+                                        "tipo_veiculo": [
+                                            {}
+                                        ],
+                                        "fatores_emissao_mma_2014_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_mma_2014_N2O": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_CH4": [
+                                            {
+
+                                            }
+
+                                        ],
+                                        "fatores_emissao_unidades convertidas_N2O": [
+                                            {
+
+                                            }
+                                        ]
+                                }
+                            
+                        ],
+                        "fatorEmissaoFrotaTipoBiocombustivel": 
+                        [
+                            {
+                                
+                                "combustivel": [
+                                {    
+                                    "etanol_hidratado": [
+                                        {    
+                                            "tipo_veiculo": [
+                                                {}
+                                            ],  
+                                            "fatores_emissao_mma_2014_CH4": [
+                                                {
+    
+                                                }
+    
+                                            ],
+                                            "fatores_emissao_mma_2014_N2O": [
+                                                {
+    
+                                                }
+    
+                                            ],
+                                            "fatores_emissao_unidades convertidas_CH4": [
+                                                {
+    
+                                                }
+    
+                                            ],
+                                            "fatores_emissao_unidades convertidas_N2O": [
+                                                {
+    
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                                ]   
+                            }
+                        ]
+                    }
+                ],
+                "consumoMedioCombustivelTipoFrota": [
+                    {
+                            "consumoMedioCombustivelTipoFrota": [
+                                {
+                                    "tipo_veiculo": [
+
+                                    ],
+                                    "unidade": [
+        
+                                    ],
+                                    "todos_os_anos": [
+        
+                                    ],
+                                    "ate2000": [
+
+                                    ],
+                                    "2001":[], 
+                                    "2002":[], 
+                                    "2003":[], 
+                                    "2004":[], 
+                                    "2005":[], 
+                                    "2006":[], 
+                                    "2007":[], 
+                                    "2008":[], 
+                                    "2009":[], 
+                                    "2010":[], 
+                                    "2011":[], 
+                                    "2012":[], 
+                                    "2013":[], 
+                                    "2014":[], 
+                                    "2015":[], 
+                                    "2016":[],
+                                    "2017":[], 
+                                    "2018":[],
+                                    "2019":[],
+                                    "2020":[], 
+                                    "2021":[] 
+                                }
+                            ],
+                            "fatoresEmissaoTransportePassageiroOnibusMunicipal":
+                            [
+                                {
+                                    "tipo_onibus": [],
+                                    "ano": [],
+                                    "fator_consumo":[],
+                                    "oleo_diesel": [
+                                        {
+                                            "emissao_kg CO2/p.km": "",
+
+                                            "Emissão_kg_CH4/p.km": "",
+
+                                            "Emissão_kg_N2O/p.km": ""
+                                        }
+                                    ],
+                                    "biodiesel": [
+                                        {
+                                            "Emissao_kg CO2/p.km)": "",
+
+                                            "Emissao_kg CH4/p.km)": "",
+
+                                            "emissao_(kg N2O/p.km)": ""
+                                        }
+                                    ]
+                                }
+                            ],
+                            "fatoresEmissaoTransportePassageiroOnibusViagem":[
+                                {
+                                    "tipo_onibus":[],
+                                    "ano": [],
+                                    "fator_emissao_defra_kg_CO2e/passageiro.km": "",
+
+                                    "fator_de_consumo_L/passageiro.km": "",
+
+                                    "Emissão_kg_CO2/p.km": "",
+
+                                    "Emissão_kg_CH4/p.km": "",
+
+                                    "Emissão_kg_N2O/p.km": ""
+                                }
+                            ],
+                            "fatoresEmissaoTransporteCargaCaminhao":[
+                                {
+                                    "tipo_caminhao":[],
+                                    "fator_emissao_defra_kg CO2e/t.km": "",
+
+                                    "fator_consumo_litro/t.km": "",
+
+                                    "oleo_diesel": [
+                                        {
+                                            "emissao_kg_CO2/t.km": "",
+
+                                            "emissao_kg_CH4/t.km": "",
+
+                                            "emissao_kg_N2O/t.km": ""
+                                        }
+                                    ],
+                                    "biodiesel": [
+                                        {
+                                            "emissao_kg_CO2/t.km": "",
+
+                                            "emissao_kg_CH4/t.km": "",
+
+                                            "emissao_kg_N2O/t.km": ""
+                                        }
+                                    ]
+
+
+                                }
+                            ]
+
+
+                        }
+                    ]
+                }
+            ],
+            "fatoresTransporteAereo": [
+                {
+                    "Tabela 12. Fatores de emissão para aviação civil - transporte de passageiros": [
+                    {
+                        "distancia_aerea": "",
+                        "acrescimo para refletir a rota real": "",
+                        "Fatores de emissão originais (DEFRA)": [
+                            {"Fator de emissão de CO2(kgCO2e / passageiro.km)": "", "Fator de emissão de CH4(kgCO2e / passageiro.km)": "", "Fator de emissão de N2O(kgCO2e/passageiro.km)": ""}
+                        ],
+                        "fatores_emissao_convertidos": [
+                            {"Fator de emissão de CO2(kgCO2/passageiro.km": "", "Fator de emissão de CH4(kgCO2/passageiro.km": "", "Fator de emissão de CH4(kgCH4 / passageiro.km": "", "Fator de emissão de N2OkgN2O / passageiro.km)": ""}
+                        ]
+                    }
+                    ],
+                    "fatores_emissao_transporte_carga": [
+                        {
+                            "distancia_aerea": "",
+                            "Acréscimo para refletir a rota real": "",
+                            "Fatores de emissão originais (DEFRA)": [
+                                {"Fator de emissão de CO2(kgCO2e / passageiro.km)": "", "Fator de emissão de CH4(kgCO2e / passageiro.km)": "", "Fator de emissão de N2O(kgCO2e / passageiro.km)": ""}
+                            ],
+                            "Fatores de emissão convertidos": [
+                                {"Fator de emissão de CO2(kgCO2/passageiro.km": "", "Fator de emissão de CH4(kgCO2/passageiro.km": "", "Fator de emissão de CH4(kgCH4 / passageiro.km": "", "Fator de emissão de N2OkgN2O / passageiro.km)": ""}
+                            ]
+                        }
+                    ]
+                    
+
+
+                }
+
+            ],
+            "fatoresTransporteMetroferroviario": [
+            {   
+                "Tabela 14. Fatores de emissão para transporte de passageiro em metrô": [
+                    {"Ano": "", "": ""}
+                ],
+                "Tabela 15. Fatores de emissão para transporte de passageiros em trem": [
+                    {"kWh / P.km": "", "FE SIN (t CO2 / MWh)": "", "Emissão (g CO2 / P.km)": ""}
+                ],
+                "Tabela 16. Fatores de emissão para  transporte de carga em trem": [
+                    {"Concessionária": "", "kg CO2 / tku": "", "kg CH4 / tku": "", "kg N2O / tku": ""}
+                    
+                ]
+            }
+      
+            ],
+
+            "fatoresTransporteHidroviario": [
+            {    
+             "Tabela 17. Fatores de emissão para transporte de passageiros em balsas": [
+                {"Tipo de embarcação": "Balsa de passageiros","Fator de emissão - DEFRA(kg CO2e / passageiro.km)": "0,01874","Fator de consumo(litro / passageiro.km)": "",
+                    "Óleo Diesel": [
+                        {
+                            "Fator de emissão(kg CO2 / passageiro.km)": "",
+                            "Fator de emissão(kg CH4 / passageiro.km)": "",
+                            "Fator de emissão(kg N2O / passageiro.km)": ""
+                        }
+                    ]
+                 },
+                 {"Tipo de embarcação": "Balsa de veículos","Fator de emissão - DEFRA(kg CO2e / passageiro.km)": "","Fator de consumo(litro / passageiro.km)": "",
+                    "Óleo Diesel": [
+                        {
+                            "Fator de emissão(kg CO2 / passageiro.km)": "",
+                            "Fator de emissão(kg CH4 / passageiro.km)": "",
+                            "Fator de emissão(kg N2O / passageiro.km)": ""
+                        }
+                    ]
+                 },
+                 {"Tipo de embarcação": "Balsa híbrida veículos e passageiros","Fator de emissão - DEFRA(kg CO2e / passageiro.km)": "","Fator de consumo(litro / passageiro.km)": "",
+                    "Óleo Diesel": [
+                        {
+                            "Fator de emissão(kg CO2 / passageiro.km)": "",
+                            "Fator de emissão(kg CH4 / passageiro.km)": "",
+                            "Fator de emissão(kg N2O / passageiro.km)": ""
+                        }
+                    ]
+                 }      
+    
+             ],
+             "Tabela 18. Fatores de emissão para transporte de carga em navio": [
+                {"tipo_navio": [
+                   {    
+                    "petroleiro": [
+                        {
+                            "subtipo": [
+                                {
+                                    "navio_tanque_petroleo_bruto": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_tanque_petroleo_refinado": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_tanque_produtos_quimicos": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_gaseiro_gnl": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_gaseiro_glp": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ]
+                                }
+                            ]
+                            
+                        }
+                    ],
+                    "cargueiro":[
+                        {
+                            "subtipo": [
+                                {
+                                    "navio_graneleiro": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_carga_geral": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_porta_containers": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_porta_veiculos": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_ro_ro": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_cruzeiro": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ],
+                                    "navio_refrigerado": [
+                                        {"tamanho": "", "diesel_fator_emissao_original_defra_uk": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ], "diesel_fator_emissao_convertido": [
+                                            {
+                                                "Emissão(kg CO2/t.km)": "",
+                                                "Emissão(kg CH4/t.km)": "",
+                                                "Emissão(kg N2O/t.km)": ""
+                                            }
+                                        ]}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                    
+                   }
+                ]
+               }
+               
+            ]   
+             
+            }  
+            
+            ]       
+        }
+        
+    ]
+}
