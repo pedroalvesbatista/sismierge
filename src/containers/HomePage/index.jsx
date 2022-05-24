@@ -49,9 +49,9 @@ export const HomePage = () => {
 
   // }, [storage, data, contabilizarActions.setDataStorage, loading])
 
-  const test = () => {
-    dispatch(othersActions.handleModal());
-    console.log("okey");
+  const handleInventariacao = (e) => {
+    e.stopPropagation()
+    dispatch(othersActions.handleOpenModal("Formulário de Inventariação"));
   };
 
   const handleTabActive = (e) => {
@@ -92,7 +92,7 @@ export const HomePage = () => {
                  {idxCard == index  && mouseOnCard && (
                       <div className="d-flex flex-column justify-content-between align-items-center mt-3" onMouseLeave={() => setMouseOnCard(false)}>
                         <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Baixar todas as NF</Button>
-                        <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Iniciar Inventariação</Button>
+                        <Button onClick={handleInventariacao} className="mt-1 mb-1" variant="contained" size="small" color="success">Iniciar Inventariação</Button>
 
                       </div>
 

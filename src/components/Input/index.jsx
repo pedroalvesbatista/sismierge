@@ -14,7 +14,7 @@ import {
     TextArea
 } from './styles'
 
-function Input({ width, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView }) {
+function Input({ width, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView, fontSize }) {
   
   return (
     <Area spanceTop={spanceTop} width={width} spanceLeft={spanceLeft} spanceRight={spanceRight}>
@@ -32,6 +32,7 @@ function Input({ width, onChange, type, placeholder, required, value, label, spa
                     value={value}
                     isFile={type == "file" ? true : false }
                     id={id}
+                    size={fontSize}
                   />
                   {type === "file" && 
                     <File htmlFor='file'>
