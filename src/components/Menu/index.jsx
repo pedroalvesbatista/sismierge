@@ -42,7 +42,7 @@ function Menu({ titleHome, closeMenu }) {
     }
 
     const handleLogout= () => {
-        localStorage.clear()
+        localStorage.removeItem("@sismiegee/auth")
         navigate('/auth/login')
     }
 

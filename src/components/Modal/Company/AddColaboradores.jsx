@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 
 export function AddColaboradores({ openModal }) {
     const dispatch = useDispatch()
+    const storage = JSON.parse(localStorage.getItem("@sismierge/data"));
     const [data, setData] = useState({
         TypePermission: "",
         typeUnidade: ""
@@ -21,11 +22,21 @@ export function AddColaboradores({ openModal }) {
     const [sucessConvite, setSucessConvite] = useState(false)
     const [msgCargo, setMsgCargo] = useState(``)
     const [dataCompany, setDataCompany] = useState({
-        name: '',
-        email: '',
+        type_user: "",
+        password: 'sismierge2022', 
+        username: "newUser2022", 
+        name: null,
+        email: null,
+        id: storage.company.user.length + 1,
+        first: true,
+        cargo: null,
+        company:  storage.company,
+        cpf: null,
+        telefone: null
     })
+    
     const optionCargo= ["Diretor(a)", "Auditor(a)", "Analista"]
-    const optionUnidade= ["Unidade 2", "Unidade 4"]
+    const optionUnidade= [storage.company.nome, storage.company.filial?.name]
 
     const createCompany = (data) => {
         setLoading(true)
@@ -50,7 +61,17 @@ export function AddColaboradores({ openModal }) {
     const onSubmit= e => {
         e.preventDefault()
         if (dataCompany.nome?.length > 0 || dataCompany.email?.length > 0) {
-            // createCompany(dataCompany)
+            setLoading(true)
+            const newData= {...storage, company: {...storage.company, user: [...storage.company.user, dataCompany]}}
+            localStorage.setItem("@sismierge/data", JSON.stringify(newData))
+            setTimeout(() => {
+                toast.success("Adicionando com sucesso")
+                setLoading(false)
+                dispatch(othersActions.closeModal())
+                setTimeout(() => {
+                    window.location.reload()
+                }, 500);
+            }, 500);
           } else {
             toast.warn("Os campos precisa ser preenchido")
           }
@@ -108,7 +129,7 @@ export function AddColaboradores({ openModal }) {
     }, [sucessConvite])
 
     useEffect(() => {
-      if (data.TypePermission === "Diretor(a)") {
+      if (dataCompany.type_user === "Diretor(a)") {
         setMsgCargo(`
         Não podem atterar nenhum dado nem cadastrar novos usuários,
         somente podem ver o Dasboard por escopo, ver os relatórios de
@@ -116,18 +137,18 @@ export function AddColaboradores({ openModal }) {
         (que foram incluídas (planilhas e documentos), indicadores.
         `)
       }
-      if (data.TypePermission === "Auditor(a)") {
+      if (dataCompany.type_user === "Auditor(a)") {
         setMsgCargo(`Relatório de auditoria contendo os documentos base (contas, NF,
             certificados, RECS...), o memorial de cálculo, os fatores de emissão
             utilizados, o GWP, a rastreabilidade, controle de acessos (históricos).
         `)
       }
-      if (data.TypePermission === "Analista") {
+      if (dataCompany.type_user === "Analista") {
         setMsgCargo(`Sem alterar escopos, criar usuários e conceder permissões,
         mas irá realizar a alimentação dos dados.
         `)
       }
-    }, [data.TypePermission])
+    }, [dataCompany.type_user])
     
     
     
@@ -161,21 +182,27 @@ export function AddColaboradores({ openModal }) {
                         label={"CPF do responsável"}
                         placeholder="327.928.842.02"
                         type="number"
+                        onChange={(e) => setDataCompany({...dataCompany, cpf: e.target.value})}
+                        value={dataCompany.cpf}
                     />
                     <Input 
                         label={"Telefone de contato com DDD"}
                         placeholder="11986522567"
                         spanceLeft={true}
                         type="tel"
+                        onChange={(e) => setDataCompany({...dataCompany, telefone: e.target.value})}
+                        value={dataCompany.telefone}
                     />
                 </AreaInput>
                 <AreaInput>
                     <Input 
                         label={"Cargo do responsável"}
                         placeholder={`Gerente`}
-                        type="email"
+                        type="text"
                         width={"100%"}
                         spanceRight={true}
+                        onChange={(e) => setDataCompany({...dataCompany, cargo: e.target.value})}
+                        value={dataCompany.cargo}
                     />
                     <SelectArea 
                         onChange={e => setData({...data, typeUnidade: e.target.value})} 
@@ -187,8 +214,8 @@ export function AddColaboradores({ openModal }) {
                 </AreaInput>
                 <AreaInput>
                     <SelectArea 
-                        onChange={e => setData({...data, TypePermission: e.target.value})} 
-                        value={data.TypePermission} 
+                        onChange={e => setDataCompany({...dataCompany, type_user: e.target.value})} 
+                        // value={data.TypePermission} 
                         title={"Tipos de permissão"} item={optionCargo} 
                         width= "100%"
                         placeholder={"Escolhe tipos de permissão..."}
@@ -197,9 +224,10 @@ export function AddColaboradores({ openModal }) {
                 </AreaInput>
             </Form>
             <AreaButton>
-                <ButtonMore onClick={onAddOther}> Adicionar mais colaborador </ButtonMore>
+                {/* <ButtonMore onClick={onAddOther}> Adicionar mais colaborador </ButtonMore> */}
                 <Button isDisable={loading} disabled={loading} onClick={onSubmit}> 
-                    {loading ? sucess ? "Enviando o link..." : "Adicionando..." : "Adicionar colaborador"} 
+                    {/* {loading ? sucess ? "Enviando o link..." : "Adicionando..." : "Adicionar colaborador"}  */}
+                    {loading ? "Adicionando..." : "Adicionar colaborador"}
                 </Button>
             </AreaButton>
         </Area>

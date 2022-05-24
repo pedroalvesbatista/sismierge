@@ -23,15 +23,15 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (data.haveUnidade.length > 0) {
-        if (data.haveUnidade === "Sim") {
-            setPage("unidade")
-        }else {
+    // if (data.haveUnidade.length > 0) {
+    //     if (data.haveUnidade === "Sim") {
+    //         setPage("unidade")
+    //     }else {
             setPage("welcome")
-        }
-    }else {
-        setPage("welcome")
-    } 
+    //     }
+    // }else {
+    //     setPage("welcome")
+    // } 
     
   }
   
@@ -39,7 +39,7 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
 
   return (
     <>
-        <Text size={20}>Informações institucionais</Text>
+        <Text size={20}>Continue o cadastro da sua empresa!</Text>
         {/* <Text size={14} color={true} fontSize={400}>
           Agora vamos cadastrar sua organização. <br/>
           Essa etapa é muito importante!
@@ -48,12 +48,25 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     type={"textArea"}
-                    label={"Bio (historia)"}
+                    label={"Relate a história da sua empresa"}
                     placeholder="Conta um pouco sobre a empresa..."
                 />
                 <Input 
-                    label={"Clientes atendidos"}
-                    placeholder="Quais são seus clientes?"
+                    label={"Descrição sucinta dos serviços prestados"}
+                    placeholder="Digite aqui..."
+                    spanceLeft={true}
+                    type="textArea"
+                />
+            </AreaInput>
+            <AreaInput>
+                <Input 
+                    type={"textArea"}
+                    label={"Produtos fabricados"}
+                    placeholder="Digite aqui..."
+                />
+                <Input 
+                    label={"Clientes Atendidos"}
+                    placeholder="Digite aqui..."
                     spanceLeft={true}
                     type="textArea"
                 />
@@ -91,7 +104,15 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     placeholder="Conta aqui..."
                 />
                 <Input 
-                    label={"Comprovante de vinculaçâo"}
+                    type={"textArea"}
+                    label={" Área total construída (m2)"}
+                    placeholder="Digite aqui..."
+                    spanceLeft={true}
+                />  
+            </AreaInput>
+            <AreaInput>
+                <Input 
+                    label={"Organograma"}
                     spanceLeft={true}
                     type="file"
                     id={"file"}
@@ -113,6 +134,8 @@ const Form = styled.form`
     flex-direction: column;
     width: 600px;
     margin-top: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
     /* justify-content: space-between; */
     /* height: 200px; */
 `

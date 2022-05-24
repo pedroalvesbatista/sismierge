@@ -11,34 +11,51 @@ import Input from '../../components/Input'
 import SelectArea from '../../components/Select'
 
 export const Organisation = ({dataCompany, setPage}) => {
-
+    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/data"))
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-    email: "unidade@gmail.com",
-    cnpj: 3432222222222222,
-    cpf: 34532333,
+    id: 1,
+    email: null,
+    cnpj: null,
+    cpf: null,
     nome: null,
     nome_do_responsavel: null,
     nome_fantasia: null,
     telefone: null,
-    cargo: null,
     razao_social: null,
     endereco: null,
     setor_economico: null,
     subsetor: null,
     setor_atividade: null,
-    escopo: null
+    escopo: null,
+    filial: null,
+    sector_aditivdade: null,
+    logo: null,
+    comprovante: null,
+    user: [dataLocal.user]
   })
-  const [showTypeCadastral, setShowTypeCadastral] = useState(false)
+  const [haveUnidade, setHaveUnidade] = useState("")
 
+  
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
   const optionsTypes= ["Energia ", "Manufatura ou Construção", "Comercial ou Institucional", "Residencial, Agricultura, Florestal ou Pesca"]
-  const optionsEscopo= ["Escopo 1", "Escopo 2", "Escopo 3", "Todos escopos"]
+  const optionsEscopo= [
+    "Escopo 1", 
+    "Escopo 2", 
+    "Escopo 3", 
+    "Escopo 1 e Escopo 2", 
+    "Escopo 1 e Escopo 3", 
+    "Escopo 2 e Escopo 3", 
+    "Todos escopos"
+]
+
+    const newUserList= {...dataLocal.user, company: data}
+    const newData= {company: data, user: newUserList}
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (data.haveUnidade.length > 0) {
-        if (data.haveUnidade === "Sim") {
+    if (haveUnidade.length > 0) {
+        if (haveUnidade === "Sim") {
             setPage("unidade")
         }else {
             setPage("welcome")
@@ -46,17 +63,18 @@ export const Organisation = ({dataCompany, setPage}) => {
     }else {
         setPage("welcome")
     }
-    localStorage.setItem("@sismierge/data", JSON.stringify(data))
+    
+    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
     // setPage("organisationStep2")
   }
 
-  useEffect(() => {
-    if (data.typeCadastral === "Participação acionaria") {
-        setShowTypeCadastral(true)
-    }else {
-        setShowTypeCadastral(false)
-    }
-  }, [data.typeCadastral])
+//   useEffect(() => {
+//     if (data.typeCadastral === "Participação acionaria") {
+//         setShowTypeCadastral(true)
+//     }else {
+//         setShowTypeCadastral(false)
+//     }
+//   }, [data.typeCadastral])
   
   
   
@@ -160,7 +178,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     type="file"
                     id={"file"}
                     value={data.file}
-                    onChange={e => setData({...data, file: e.target.value})}
+                    onChange={e => setData({...data, logo: e.target.value})}
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
@@ -168,7 +186,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     type="file"
                     id={"file"}
                     value={data.file}
-                    onChange={e => setData({...data, file: e.target.value})}
+                    onChange={e => setData({...data, comprovante: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -178,7 +196,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     qtd={["Sim", "Não"]}
                     name={"unidades"}
                     notView={true}
-                    onChange={e => setData({...data, haveUnidade: e.target.value})}
+                    onChange={e => setHaveUnidade(e.target.value)}
                 />
             </AreaInput>
         </Form>

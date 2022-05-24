@@ -14,28 +14,50 @@ export const Unidade = ({dataCompany, setPage}) => {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-    file: "",
-    haveUnidade: ""
+    id: 2,
+    email: null,
+    cnpj: null,
+    cpf: null,
+    nome: null,
+    nome_do_responsavel: null,
+    nome_fantasia: null,
+    telefone: null,
+    cargo: null,
+    razao_social: null,
+    endereco: null,
+    setor_economico: null,
+    subsetor: null,
+    setor_atividade: null,
+    escopo: null,
+    company_id: 1,
+    sector_aditivdade: null,
+    logo: null,
+    comprovante: null,
+    user: null
 })
   const [showPassword, setShowPassword] = useState(false)
   const optionsTypes= ["Energia ", "Manufatura ou Construção", "Comercial ou Institucional", "Residencial, Agricultura, Florestal ou Pesca"]
   const optionsEscopo= ["Escopo 1", "Escopo 2", "Escopo 3", "Todos escopos"]
+  const [haveUnidade, setHaveUnidade] = useState("")
+  const dataLocal= JSON.parse(localStorage.getItem("@sismierge/data"))
 
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (data.haveUnidade.length > 0) {
-        if (data.haveUnidade === "Sim") {
+    if (haveUnidade.length > 0) {
+        if (haveUnidade === "Sim") {
             setPage("unidade")
         }else {
             setPage("welcome")
         }
     }else {
         setPage("welcome")
-    } 
-    
+    }
+    const newData= {...dataLocal, filial: data}
+    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
+    // setPage("organisationStep2")
   }
   
   
@@ -148,7 +170,7 @@ export const Unidade = ({dataCompany, setPage}) => {
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Quer cadastrar filiais ?"}
+                    label={"Quer cadastrar mais filiais ?"}
                     type="radio"
                     qtd={["Sim", "Não"]}
                     name={"unidades"}
