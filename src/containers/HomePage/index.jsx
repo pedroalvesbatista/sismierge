@@ -33,7 +33,7 @@ export const HomePage = () => {
   //   {id: 1, title: "Produção fotovoltaica total", icon: "", number: "9.7M"},
   //   {id: 1, title: "Consumo total de energia", icon: "", number: "194.3"}
   // ])
-  const escopos= storage?.company.escopo.split(" e ")
+  const escopos= storage?.company?.escopo?.split(" e ")
   const [dataBoard, setdataBoard] = useState([
     { id: 1, title: "Escopo 1", icon: "", number: "12 032", subItem:["teste1", "teste2","test3"] },
     { id: 2, title: "Escopo 2", icon: "", number: "7 361 800",subItem:["teste1", "teste2","test3"] },
@@ -81,7 +81,7 @@ export const HomePage = () => {
             ))}
           </HeaderArea> */}
              <div className="d-flex justify-content-around justify-content-center mb-5">
-           {escopos.map((item, index) => {
+           {escopos?.map((item, index) => {
               return (
                 <div>
                 <Card className="d-flex  justify-content-center align-items-center" style={{ width: 200 , backgroundColor:"#9c348c",cursor:"pointer"}}  >
