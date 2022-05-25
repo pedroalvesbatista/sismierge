@@ -52,7 +52,7 @@ function ModelTable({
                 <Thead>
                     <Tr>
                         {items.map((item, index) => (
-                            <Th key={index}> {item.name} </Th>
+                            <Th key={index}> {item} </Th>
                         ))}
                     </Tr>
                 </Thead>
@@ -69,14 +69,14 @@ function ModelTable({
                                         >
                                             <option>  </option>
                                             {itemsSelecOption?.map((item, indexOptions) => (
-                                                <option key={indexOptions}> {item.combustivel} </option>
+                                                <option key={indexOptions}> {item} </option>
                                             ))}
                                         </select>
 
                                     :   <Input 
                                             type={typeInput && indexTypeInput.filter(i => i === indexCol).length > 0 && typeInput} 
                                             onChange={(e) => handleChange(e.target.value, indexCol, indexRow)}
-                                            value={state[indexCol]?.valor[indexRow]}
+                                            // value={state[indexCol]?.valor[indexRow]}
                                         />
                                     }
                                 </Td>

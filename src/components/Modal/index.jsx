@@ -30,13 +30,13 @@ function Modal() {
     isOpenModal &&
     <Area onClick={handleCloseModal}>
         <Card onClick={e => e.stopPropagation()}>
-            <Header>
-                <Text> {title} </Text>
-                <IconClose onClick={handleCloseModal} />
-            </Header>
-            <Separator />
-            <RoutesCompany/>
-            <RoutesAdmin />
+          <Header>
+              <Text> {title} </Text>
+              <IconClose onClick={handleCloseModal} />
+          </Header>
+          <Separator />
+          <RoutesCompany/>
+          <RoutesAdmin />
         </Card>
     </Area>
   )

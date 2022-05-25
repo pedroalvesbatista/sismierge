@@ -22,7 +22,7 @@ export const HomePage = () => {
   // const tabs= ["Visão geral", "Unidades", "Colaboradores"]
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const storage = JSON.parse(localStorage.getItem("@sismiegee/data"));
+  const storage = JSON.parse(localStorage.getItem("@sismierge/data"));
   const [loading, setLoading] = useState(true);
   const [mouseOnCard, setMouseOnCard] = useState(false);
   const [idxCard, setIdxCard] = useState("");
@@ -33,6 +33,7 @@ export const HomePage = () => {
   //   {id: 1, title: "Produção fotovoltaica total", icon: "", number: "9.7M"},
   //   {id: 1, title: "Consumo total de energia", icon: "", number: "194.3"}
   // ])
+  const escopos= storage?.company.escopo.split(" e ")
   const [dataBoard, setdataBoard] = useState([
     { id: 1, title: "Escopo 1", icon: "", number: "12 032", subItem:["teste1", "teste2","test3"] },
     { id: 2, title: "Escopo 2", icon: "", number: "7 361 800",subItem:["teste1", "teste2","test3"] },
@@ -49,15 +50,23 @@ export const HomePage = () => {
 
   // }, [storage, data, contabilizarActions.setDataStorage, loading])
 
-  const test = () => {
-    dispatch(othersActions.handleModal());
-    console.log("okey");
+  const handleInventariacao = (e) => {
+    e.stopPropagation()
+    dispatch(othersActions.handleOpenModal("Formulário de Inventariação"));
   };
 
   const handleTabActive = (e) => {
     setTabActive(e);
     localStorage.setItem(`@sismiegee/tabActive`, e);
   };
+
+  useEffect(() => {
+    if (storage?.company?.user.length === 1) {
+      dispatch(othersActions.handleOpenModal("Adicionar colaboradores"))
+    }
+    // console.log(storage?.company.user.length);
+  }, [])
+  
 
 
   return (
@@ -72,19 +81,19 @@ export const HomePage = () => {
             ))}
           </HeaderArea> */}
              <div className="d-flex justify-content-around justify-content-center mb-5">
-           {dataBoard.map((item, index) => {
+           {escopos.map((item, index) => {
               return (
                 <div>
                 <Card className="d-flex  justify-content-center align-items-center" style={{ width: 200 , backgroundColor:"#9c348c",cursor:"pointer"}}  >
                   <CardContent  onMouseEnter={() => {setMouseOnCard(true); setIdxCard(index)}}
                     >
-                    <h1 className="text-light fs-3">{item.title}</h1>
+                    <h1 className="text-light fs-3">{item}</h1>
                   </CardContent>
                 </Card>
                  {idxCard == index  && mouseOnCard && (
                       <div className="d-flex flex-column justify-content-between align-items-center mt-3" onMouseLeave={() => setMouseOnCard(false)}>
                         <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Baixar todas as NF</Button>
-                        <Button className="mt-1 mb-1" variant="contained" size="small" color="success">Iniciar Inventariação</Button>
+                        <Button onClick={handleInventariacao} className="mt-1 mb-1" variant="contained" size="small" color="success">Iniciar Inventariação</Button>
 
                       </div>
 
@@ -140,7 +149,7 @@ export const HomePage = () => {
             </ul>  */}
           {/* </Container> */}
           {/* <Routes openModal={(e) => setDataModal(e)} tab={tabActive} /> */}
-          {/* <Modal /> */}
+          <Modal />
         </>
       )}
     </Area>

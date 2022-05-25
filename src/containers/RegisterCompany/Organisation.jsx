@@ -11,39 +11,70 @@ import Input from '../../components/Input'
 import SelectArea from '../../components/Select'
 
 export const Organisation = ({dataCompany, setPage}) => {
-
+    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/data"))
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-    file: "",
-    haveUnidade: "",
-    typeCadastral: "",
+    id: 1,
+    email: null,
+    cnpj: null,
+    cpf: null,
+    nome: null,
+    nome_do_responsavel: null,
+    nome_fantasia: null,
+    telefone: null,
+    razao_social: null,
+    endereco: null,
+    setor_economico: null,
+    subsetor: null,
+    setor_atividade: null,
+    escopo: null,
+    filial: null,
+    sector_aditivdade: null,
+    logo: null,
+    comprovante: null,
+    user: [dataLocal.user]
   })
-  const [showTypeCadastral, setShowTypeCadastral] = useState(false)
+  const [haveUnidade, setHaveUnidade] = useState("")
 
+  
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
-  const optionsTypes= ["Holding", "Participação acionaria", "Apenas unidade de negocio"]
+  const optionsTypes= ["Energia ", "Manufatura ou Construção", "Comercial ou Institucional", "Residencial, Agricultura, Florestal ou Pesca"]
+  const optionsEscopo= [
+    "Escopo 1", 
+    "Escopo 2", 
+    "Escopo 3", 
+    "Escopo 1 e Escopo 2", 
+    "Escopo 1 e Escopo 3", 
+    "Escopo 2 e Escopo 3", 
+    "Todos escopos"
+]
+
+    const newUserList= {...dataLocal.user, company: data}
+    const newData= {company: data, user: newUserList}
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    // if (data.haveUnidade.length > 0) {
-    //     if (data.haveUnidade === "Sim") {
-    //         setPage("unidade")
-    //     }else {
-    //         setPage("welcome")
-    //     }
-    // }else {
-    //     setPage("welcome")
-    // }
-    setPage("organisationStep2")
+    if (haveUnidade.length > 0) {
+        if (haveUnidade === "Sim") {
+            setPage("unidade")
+        }else {
+            setPage("welcome")
+        }
+    }else {
+        setPage("welcome")
+    }
+    
+    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
+    // setPage("organisationStep2")
   }
 
-  useEffect(() => {
-    if (data.typeCadastral === "Participação acionaria") {
-        setShowTypeCadastral(true)
-    }else {
-        setShowTypeCadastral(false)
-    }
-  }, [data.typeCadastral])
+//   useEffect(() => {
+//     if (data.typeCadastral === "Participação acionaria") {
+//         setShowTypeCadastral(true)
+//     }else {
+//         setShowTypeCadastral(false)
+//     }
+//   }, [data.typeCadastral])
   
   
   
@@ -56,11 +87,12 @@ export const Organisation = ({dataCompany, setPage}) => {
           Essa etapa é muito importante!
         </Text>
         <Form onSubmit={handleSubmit}>
-            <AreaInput>
+            {/* <AreaInput>
                 <SelectArea 
                     onChange={e => setData({...data, typeCadastral: e.target.value})} 
                     value={data.typeCadastral} 
-                    title={"O que deseja cadastrar?"} item={optionsTypes} 
+                    title={"O que deseja cadastrar?"} 
+                    item={optionsTypes} 
                     width= "50%"
                     placeholder="Escolhe um tipo..."
                 />
@@ -72,49 +104,81 @@ export const Organisation = ({dataCompany, setPage}) => {
                         type="number"
                     />
                 }
+            </AreaInput> */}
+            <AreaInput>
+                <Input 
+                    label={"Razão Social"}
+                    // placeholder="Uber"
+                    value={data.nome}
+                    onChange= {e => setData({...data, nome: e.target.value})}
+                />
+                <Input 
+                    label={"Nome fantasia"}
+                    // placeholder="Uber"
+                    value={data.nome_fantasia}
+                    spanceLeft={true}
+                    onChange= {e => setData({...data, nome_fantasia: e.target.value})}
+                />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Nome da empresa"}
-                    placeholder="Uber"
-                />
-                <Input 
-                    label={"CNPJ da empresa"}
+                    label={"CNPJ"}
                     placeholder="32.792.884/2021-10"
-                    spanceLeft={true}
                     type="number"
-                />
-            </AreaInput>
-            <AreaInput>
-                <Input 
-                    label={"Nome completo do responsável"}
-                    placeholder={`${storage.name ?? "Junior Silva"}`}
+                    value={data.cnpj}
+                    onChange= {e => setData({...data, cnpj: e.target.value})}
                 />
                 <Input 
-                    label={"CPF do responsável"}
-                    placeholder="327.928.842.02"
+                    label={"Endereço completo"}
+                    placeholder={`rua, número, complemento, cep, cidade e estado`}
                     spanceLeft={true}
-                    type="number"
+                    value={data.endereco}
+                    onChange= {e => setData({...data, endereco: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Email corporativo"}
-                    placeholder={`${storage.email ?? "jumboltda@jumbo.com"}`}
-                    type="email"
+                    label={"Setor econômico"}
+                    // placeholder={``}
+                    // type="email"
+                    value={data.setor_economico}
+                    onChange= {e => setData({...data, setor_economico: e.target.value})}
                 />
                 <Input 
-                    label={"Telefone de contato com DDD"}
-                    placeholder="11986522567"
+                    label={"Subsetor"}
+                    // placeholder="11986522567"
                     spanceLeft={true}
-                    type="tel"
+                    type="text"
+                    value={data.subsetor}
+                    onChange= {e => setData({...data, subsetor: e.target.value})}
+                />
+            </AreaInput>
+            <AreaInput>
+                <SelectArea 
+                    onChange={e => setData({...data, setor_atividade: e.target.value})} 
+                    value={data.setor_atividade} 
+                    title={"Escolha o setor de atividade"} 
+                    item={optionsTypes} 
+                    width= "48%"
+                    placeholder="Escolhe um tipo..."
+                />
+                <SelectArea 
+                    onChange={e => setData({...data, escopo: e.target.value})} 
+                    value={data.escopo} 
+                    title={"Escolha os Escopos"} 
+                    item={optionsEscopo} 
+                    width= "48%"
+                    placeholder="Escolhe escopo..."
+                    spaceLeft={"10px"}
                 />
             </AreaInput>
             <AreaInput>
                 <Input 
-                    label={"Cargo"}
-                    placeholder={`Diretor Financeiro`}
-                    type="email"
+                    label={"Logo da empresa"}
+                    type="file"
+                    id={"file"}
+                    value={data.file}
+                    onChange={e => setData({...data, logo: e.target.value})}
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
@@ -122,19 +186,19 @@ export const Organisation = ({dataCompany, setPage}) => {
                     type="file"
                     id={"file"}
                     value={data.file}
-                    onChange={e => setData({...data, file: e.target.value})}
+                    onChange={e => setData({...data, comprovante: e.target.value})}
                 />
             </AreaInput>
-            {/* <AreaInput>
+            <AreaInput>
                 <Input 
-                    label={"Possui outras unidades organizacionais s serem inventariadas?"}
+                    label={"Quer cadastrar filiais ?"}
                     type="radio"
                     qtd={["Sim", "Não"]}
                     name={"unidades"}
                     notView={true}
-                    onChange={e => setData({...data, haveUnidade: e.target.value})}
+                    onChange={e => setHaveUnidade(e.target.value)}
                 />
-            </AreaInput> */}
+            </AreaInput>
         </Form>
         <ConexioArea>
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 

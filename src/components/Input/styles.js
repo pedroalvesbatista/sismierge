@@ -31,7 +31,7 @@ export const InputEntry = styled.input`
     width: 100%;
     height: 100%;
     outline: none;
-    font-size: 14px;
+    font-size: ${({size}) => size ?? "14"}px;;
     border: none;
     display: ${({isFile}) => isFile ? 'none' : 'block'};
 `
