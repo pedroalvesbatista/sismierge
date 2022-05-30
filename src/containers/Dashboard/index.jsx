@@ -152,7 +152,7 @@ const [age, setAge] = React.useState('');
             <div style={{ width: 530 }}  className="m-4">
               <FormControl style={{ width: 130 }}>
                <InputLabel id="demo-simple-select-label">Indicador</InputLabel>
-              <Select
+          <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={age}
