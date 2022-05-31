@@ -1635,7 +1635,9 @@ export const HomePage = () => {
                     </div>
                     <div>
                       <h3 className=" mb-3">Compostagem anaeróbica</h3>
-                      <Button lassName="p-3" variant="contained" size="medium">Inserir Porcentagem de residuo</Button>
+                      <Button lassName="p-3 m-3" variant="contained" size="medium">Inserir Dados de Compostagem</Button>
+                      <Button lassName="p-3 m-1" variant="contained" size="medium">Inserir Dados de Incineração</Button>
+                      <Button lassName="p-3 m-1" variant="contained" size="medium">Cálculo por outras ferramentas</Button>
                     </div>
                   </div>
                 </div>
