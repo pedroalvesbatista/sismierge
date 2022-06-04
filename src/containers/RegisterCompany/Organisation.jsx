@@ -169,7 +169,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     placeholder="Escolhe escopo..."
                     // spaceLeft={"10px"}
                 /> */}
-                {showEscopo1Options &&
+                {/* {showEscopo1Options && */}
                     <ContainerAreaInput style={{display: "flex"}}>
                         <WrapperAreaInput>
                             {list.map(item => (
@@ -204,7 +204,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                         </WrapperAreaInput>
                         <MoreItems onClickLess={handlLessTable} onClickMore={handleMoreTable}  item={list} />
                     </ContainerAreaInput>
-                }
+                {/* } */}
             </AreaInput>
             <AreaInput>
                 <Input 
@@ -247,8 +247,10 @@ export const Organisation = ({dataCompany, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 630px;
     margin-top: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
     /* justify-content: space-between; */
     /* height: 200px; */
 `
