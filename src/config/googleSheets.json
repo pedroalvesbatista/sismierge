@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sismierge",
+  "private_key_id": "ded9523d3629e831a17f2477333684288ab81a22",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDY8Er4gLllVqWl\nq3Hvx8TiH+Q1dWoUr+T/dkSKdiyGHDDBb7Mn+d+d3n6WWdHpv7Noh47z8QF/5abq\nkKbaRIkjFKBsZsG9Zld2VKEZQ5kqhTgUfLz10Rk6fRXRdhm9vVsWvKeEbE8FZkry\n9UMXDUUqHE6WSM09R0qQKKmBCSvSDPHn7cHIlm26IxqJAg2nmE8TEQ58n3G9X2xk\njkr7PYdgZSEpI7C768NkdZNI2A5EHq0kxEhNNASgJ3jYz7PSif72exfy9zgFqb2w\n+0Wba54uGSvyaE171qIZSRnbvMhI8zw1NmTnmzQ9iIScE+u79y0jde0Bjus7S/BJ\nDBfinSPhAgMBAAECggEAA9RqbvpKfd8IQanc16s2M53jA18EF4MLSBDSnHC4/bZk\nDGIqifmXw/uZhW0wAVA4BaIjSz5jIn9GbQyYC8ObDAcIFdeJjmfzgkDhbwtsR6/+\nT2sjCUbn+KWclz5MCPdLV8O8VqBP3PVKKhPJbfSAMlSnPhVzlBsKn4usOPQw4xnY\ncEmA9bVJPpRJlSWZrsqgHW1Wy/6QAV5HEyenP6/5iENctANEDSnJjkXnbE+hAxRF\nCm6XbzuuDwKUqfte/lzd5k8ah94ewtR5bX8au2daO9VVyxX/0IdLZGos7o5eavHX\namvLDD5Ge6aBvYVLvNFBFqdycP6LRg+lhRSxpd5K8QKBgQDtKZ2ykxGAg9PN7pPw\nlJbTrgTa2tQ+4g8KrRu32WcCqGigedJ5v54vebjzZF2tu6gBxgzBYxbprZxNyHFe\nBv31GDWXU84mnluwo+cUdDn7J8DSflfBvM3HmeDDKyOtrsphqcwdsIzfyWxGTcXZ\nfoQOyFKZqC/wQwzugA5BVc4PqQKBgQDqK3NSIq5CT9XlxHBI8OTRGdurqumlmY7r\nI681NxPlRghZFvDqxjDsJnjztKwnfpgiK50zrV+yqgQDd3jSWWlB0XgCyA/OlWEi\nOmyHxysUN8qVPri3YJ+gTBcAQcFDFpTpP4+JiETkyNvGj9L5D7xdEQNUxMrUPX9G\niJg1lkP1eQJ/WO9CM7Ty2z6ULqVI1O7joH2hVHC7JtmeymIgAtGDz3tXwNXuF7nD\nmAoNUThR6NR2LDQYlGyUKwzvkDuaR6hXk5GAhz7mD5VSzOqpvQHYvFYr+MNoJT6n\n7DHIF2gV+QuS2QzTfk62hTUDZVnE18qZuvFkCDsJvw9lygo7TkTfAQKBgEPSI8tF\nGh1AjB3I4BBwHIVnLNUyYgtBR0BZDHSoKA3+U4qh91K35hFvLxa+XCHwK1WyNgxy\niUXwscrjPk4F8VNLvKtpkBJv9zr3mtlUWOi5I+ZHzS3nQTQm9X5wjO3GS4imjQbz\nPajZd7WxkBPsd8yokcNqX6hKy2L9SsAybipZAoGBAN6jcPJcBMpME4XvfuiiMUfM\n7DseE+4gvBOeELWoOKvhqP+dAKi+9nsXQvs6p0uyVGErpNsnz1lUWw7JvIVBmBG7\nVdZVSNILyJIKVJSDMs/sybD/suspP8h9LVKBvhdQYJ/MFdYE+W+BL4hlPT4JAEnb\n+SFkMjk4NVgknIhCjpnm\n-----END PRIVATE KEY-----\n",
+  "client_email": "planilha@sismierge.iam.gserviceaccount.com",
+  "client_id": "118313856663493751373",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/planilha%40sismierge.iam.gserviceaccount.com"
+}

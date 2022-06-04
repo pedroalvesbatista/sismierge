@@ -3,9 +3,13 @@ import { colaboradorService } from '../../services'
 import TabsAdmin from '../../components/Tabs'
 import Routes from './Routes'
 import Modal from '../../components/Modal'
+import { authActions, othersActions } from '../../actions'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export function Admin() {
+    const dispatch = useDispatch()
+    const { roles, sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
     const [tabActive, setTabActive] = useState('Visão geral')
     const [dataModal, setDataModal] = useState(null)
     const tabs= ["Visão geral", "Empresas", "Colaboradores"]
@@ -20,7 +24,13 @@ export function Admin() {
       if (storage) {
         setTabActive(storage)
       }
-    }, [storage])
+
+      sucessEditUser && dispatch(othersActions.closeModal())
+      sucessDeleteUser && dispatch(othersActions.closeModal())
+
+      dispatch(authActions.loadRoles())
+    }, [storage, roles, sucess])
+    
     
 
   return (

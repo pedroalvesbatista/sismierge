@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { authActions } from '../../actions'
 
 import { authService } from '../../services'
 import {  
@@ -16,16 +17,18 @@ import {
   Button, 
   TextArea } from './styles'
 
-export const Inicio = ({ dataUser, setPage }) => {
+export const Inicio = ({ setPage }) => {
 
+  const dispatch = useDispatch()
+  const { loadingEditUser, sucessEditUser, myData } = useSelector(state => state.auth)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
     type_user: "master",
     password: '', 
-    username: dataUser?.username, 
-    name: dataUser?.name,
-    email: dataUser.email,
-    id: dataUser.id,
+    username: myData?.username, 
+    name: myData?.name,
+    email: myData.email,
+    id: myData.id,
     first: true,
     cargo: null,
     company: null,
@@ -40,55 +43,35 @@ export const Inicio = ({ dataUser, setPage }) => {
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    localStorage.setItem("@sismierge/data", JSON.stringify({
-      user: data,
-      company: null
-    }))
-    // if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
-    //     const pass= data.password.length > 8 ? data : {
-    //         username: data?.username, 
-    //         name: data?.name,
-    //         email: data.email,
-    //         id: data.id,
-    //         first: true
-    //     }
-    //     setLoading(true)
-    //     authService.editUser(data.id, pass)
-    //         .then(res => {
-    //             setLoading(false)
-    //             setPage("organisation")
-    //             setData({...data,  
-    //             })
-    //             localStorage.setItem(`@sismiegee/auth`, JSON.stringify(res.data))
-    //             localStorage.removeItem(`@sismiegee/auth/admin`)
-    //             console.log(res.data);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // } else {
-    //   toast.warn("Os campos precisa ser preenchido")
-    // }
-    if (token == 2) {
-      setPage("organisationStep2")
+    if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
+        const newData= {
+          username: data?.username,
+          name: data?.name,
+          email: data.email,
+          password: data.password,
+          cargo: data.cargo,
+          user_first: false
+        }
+        dispatch(authActions.editUser(data.id, newData))
     } else {
-      setPage("organisation") 
+      toast.warn("Os campos precisa ser preenchido")
     }
     
   }
 
-//   console.log(dataUser);
-
-  // useEffect(() => {
-  //   setData({
-  //       password: '', 
-  //       username: dataUser?.username, 
-  //       name: dataUser?.name,
-  //       email: dataUser.email,
-  //       id: dataUser.id,
-  //       first: true
-  //     })
-  // }, [dataUser])
+  useEffect(() => {
+    if (sucessEditUser) {
+      if (myData.role.type === "master") {
+        setPage("organisation")
+      }
+      else if (myData.role.type === "diretores") {
+        setPage("organisationStep2")
+      }
+      else {
+        setPage("welcome")
+      }
+    }
+  }, [sucessEditUser])
   
 
   return (
@@ -108,7 +91,7 @@ export const Inicio = ({ dataUser, setPage }) => {
                     placeholder='Juliana Silva'
                     onChange={(e) => setData({...data, name: e.target.value})}
                     required
-                    defaultValue={dataUser?.username}
+                    defaultValue={myData?.username}
                     value={data.name}
                 />
             </InputArea>
@@ -169,7 +152,7 @@ export const Inicio = ({ dataUser, setPage }) => {
             </InputArea>
           </div>
           <ConexioArea>
-            <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
+            <Button aria-disabled={loadingEditUser ? true : false} onClick={handleSubmit}> 
                 {loading ? "Carregando..." : "Continuar "} 
                 &#8674;
             </Button>

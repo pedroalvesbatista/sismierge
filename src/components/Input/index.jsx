@@ -21,8 +21,9 @@ function Input({ width, onChange, type, placeholder, required, value, label, spa
         <Text> {label} </Text>
         {!notView &&
           <InputArea height={type === "textArea" ? 100 : 40} isFile={type == "file" || type === "textArea" ? true : false }>
-            {type === "textArea" ?(
-              <TextArea placeholder={placeholder} cols={50} rows={10}  />) : (
+            {type === "textArea" ? (
+                <TextArea placeholder={placeholder} cols={50} rows={10}  />) 
+              : (
                 <Fragment>
                   <InputEntry 
                     type={type ?? 'text'} 

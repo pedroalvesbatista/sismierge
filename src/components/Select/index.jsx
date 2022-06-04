@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { admin, primary, second } from '../../constants/tailwind/colors'
 
-function SelectArea({ value, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop }) {
+function SelectArea({ value, type, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop }) {
 
   return (
     <Area spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
@@ -14,9 +14,15 @@ function SelectArea({ value, onChange, item, title, modal=true, width, placehold
         >
             <option style={{color: primary.cinza}} > {placeholder} </option>
             {item?.map((i, index) => (
-                <Option value={i}>
-                    {i}
-                </Option>
+                type === "collections" ? (
+                    <Option value={i.name}>
+                        {i.name}
+                    </Option>
+                ) : (
+                    <Option value={i}>
+                        {i}
+                    </Option>
+                )
             ))}
         </Container>
     </Area>

@@ -2,86 +2,64 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
 import { companyService, mailService, conviteService } from '../../../services'
-import { othersActions } from '../../../actions'
+import { authActions, othersActions } from '../../../actions'
 import { admin } from '../../../constants/tailwind/colors'
 import Input from '../../Input'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { randPassUser } from '../../../functions'
+import { mailActions } from '../../../actions/mail.actions'
 
 export function AddColaboradores({ openModal }) {
     const dispatch = useDispatch()
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [sucess, setSucess] = useState(false)
-    const [sucessMail, setSucessMail] = useState(false)
-    const [sucessConvite, setSucessConvite] = useState(false)
-    // const [idConvite, setIdConvite] = useState('')
-    const [dataCompany, setDataCompany] = useState({
+    const { loading, signupSuccess, user, roles, sucessEditUser } = useSelector(state => state.auth)
+    const { loadingSendConvite, sucessSendConvite, errorSendConvite, dataConvite } = useSelector(state => state.mail)
+    const [data, setData] = useState({
         name: '',
         email: '',
     })
-
-    const createCompany = (data) => {
-        setLoading(true)
-        setSucess(false)
-        companyService.createCompany(data)
-            .then(res => {
-                setSucess(true)
-                setSucessConvite(true)
-                setData(res.data)
-                console.log(res.data);
-            })
-            .catch(err => {
-                setSucess(false)
-                setLoading(false)
-                console.log(err);
-                if (err.response.data.error.message === "Email is already taken") {
-                    toast.error("O e-mail já foi cadastrado")
-                }
-            })
-    }
+    const { username, password } = randPassUser(data.email, data.name)
 
     const onSubmit= e => {
         e.preventDefault()
-        if (dataCompany.nome?.length > 0 || dataCompany.email?.length > 0) {
-            createCompany(dataCompany)
+        const { name, email } = data
+        const newData= {
+            name,
+            email,
+            username,
+            password,
+            user_first: true,
+            confirmed: true
+        }
+        if (data.name?.length > 0 || data.email?.length > 0) {
+            dispatch(authActions.createUser(newData))
           } else {
             toast.warn("Os campos precisa ser preenchido")
           }
     }
 
-    const sendConviteCompany = () => {
-        const dataSend= {
-            email: data.user.email,
-            nome: data.user.name,
-            id_convite: data.jwt
+    useEffect(() => {
+
+        if (signupSuccess) {
+            const dataSend= {
+                email: user.user.email,
+                nome: user.user.name,
+                id_convite: user.jwt
+            }
+            dispatch(mailActions.sendConvite(dataSend))
         }
-        setSucessMail(false)
-        mailService.sendConviteCompany(dataSend)
-            .then(() => {
-                setSucessMail(true)
-            })
-            .catch(err => {
-                console.log(err);
-                setSucessMail(false)
-                toast.success(`Nâo foi possivel enviar o link `)
-            })
-    }
+
+    }, [signupSuccess, ])
 
     useEffect(() => {
-        if (sucessMail) {
-            setLoading(false)
-            // openModal(false)
-            dispatch(othersActions.closeModal())
-            window.location.reload()
-            toast.success(`Link foi enviado com sucesso para ${data.user.email}`)
+        if (sucessSendConvite) {
+            dispatch(authActions.editUser(user.user?.id, {role: roles?.filter(i => i.type === "authenticated")[0]}))
+            if (sucessEditUser) {
+                dispatch(othersActions.closeModal())
+                window.location.reload()
+            }
+            
         }
-    }, [sucessMail])
-
-    useEffect(() => {
-        if (sucessConvite) {
-            sendConviteCompany()
-        }
-    }, [sucessConvite])
+    }, [sucessSendConvite, sucessEditUser])
     
     
     
@@ -92,22 +70,22 @@ export function AddColaboradores({ openModal }) {
                 label={'Nome do responsável'} 
                 placeholder={'Juliana Ferreira'}
                 required={true}
-                onChange={(e) => setDataCompany({...dataCompany, name: e.target.value})}
-                value={dataCompany.name}
+                onChange={(e) => setData({...data, name: e.target.value})}
+                value={data.name}
             />
             <Input
                 type='email'
                 required={true}
                 label={'Email do responsável'} 
                 placeholder={'julianaferreira@sismierge.com'}
-                onChange={(e) => setDataCompany({...dataCompany, email: e.target.value})}
+                onChange={(e) => setData({...data, email: e.target.value})}
                 spanceLeft={true}
-                value={dataCompany.email}
+                value={data.email}
             />
         </Form>
         <AreaButton>
             <Button isDisable={loading} disabled={loading} onClick={onSubmit}> 
-                {loading ? sucess ? "Enviando o link..." : "Adicionando..." : "Adicionar colaborador"} 
+                {loading ?  "Adicionando..." : loadingSendConvite ? "Enviando o link..." : "Adicionar empresa"} 
             </Button>
         </AreaButton>
     </Area>

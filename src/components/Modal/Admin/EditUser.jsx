@@ -5,21 +5,22 @@ import { companyService, mailService, conviteService } from '../../../services'
 import { admin } from '../../../constants/tailwind/colors'
 import Input from '../../Input'
 import SelectArea from '../../Select'
-import { othersActions } from '../../../actions'
+import { authActions, othersActions } from '../../../actions'
 import { LoadingAnimation } from '../../lottie'
 import { useDispatch, useSelector } from 'react-redux'
 
 export function EditUser({ openModal }) {
     const dispatch = useDispatch()
     const { dataModal } = useSelector(state => state.others)
+    const { roles, loadingEditUser, sucessEditUser } = useSelector(state => state.auth)
     const [data, setData] = useState({
-        TypePermission: "",
+        TypePermission: dataModal?.role.name,
         typeUnidade: "",
         blocked: dataModal?.blocked,
         email: dataModal?.email,
         id: dataModal?.id,
         name: dataModal?.name,
-        type: dataModal?.type,
+        role: dataModal?.role.name,
         username: dataModal?.username
     })
     const [loading, setLoading] = useState(false)
@@ -28,6 +29,18 @@ export function EditUser({ openModal }) {
     const optionCargo= ["Master", "Colaborador", "Diretor(a)", "Auditor(a)", "Analista"]
 
     // console.log(dataModal);
+
+    const handleSubmit = () => {
+        // console.log(roles.filter(i => i.name === data.TypePermission)[0]);
+        const newData= {
+            role: roles.filter(i => i.name === data.TypePermission)[0],
+            blocked: data?.blocked,
+            email: data?.email,
+            name: data?.name,
+            username: data?.username
+        }
+        dispatch(authActions.editUser(dataModal.id, newData))
+    }
 
     useEffect(() => {
       if (data.TypePermission === "Diretor(a)") {
@@ -67,7 +80,7 @@ export function EditUser({ openModal }) {
         <LoadingAnimation size={150} />
     ): (
         <Area>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <AreaInput>
                     <Input
                         label={'Nome'} 
@@ -117,7 +130,7 @@ export function EditUser({ openModal }) {
                         spanceLeft={true}
                     />
                 </AreaInput>
-                <AreaInput>
+                {/* <AreaInput>
                     <Input 
                         label={"Nivel"}
                         // placeholder={`Gerente`}
@@ -125,14 +138,16 @@ export function EditUser({ openModal }) {
                         width={"50%"}
                         // spanceRight={true}
                         // spanceLeft={true}
-                        value={data.type}
+                        value={data.role}
                     />
-                </AreaInput>
+                </AreaInput> */}
                 <AreaInput>
                     <SelectArea 
                         onChange={e => setData({...data, TypePermission: e.target.value})} 
                         value={data.TypePermission} 
-                        title={"Tipos de permissão"} item={optionCargo} 
+                        title={"Tipos de permissão"} 
+                        type={"collections"}
+                        item={roles.slice(1)} 
                         width= "100%"
                         placeholder={"Escolhe tipos de permissão..."}
                     />
@@ -145,13 +160,13 @@ export function EditUser({ openModal }) {
                         qtd={["Sim", "Não"]}
                         name={"blocked"}
                         notView={true}
-                        onChange={e => setData({...data, blocked: e.target.value})}
+                        onChange={e => setData({...data, blocked: e.target.value === "Sim" ? true : false})}
                     />
                 </AreaInput>
             </Form>
             <AreaButton>
-                <Button isDisable={loading} disabled={loading} onClick={""}> 
-                    {loading ? sucess ? "Enviando o link..." : "Adicionando..." : "Salvar"} 
+                <Button isDisable={loadingEditUser} disabled={loadingEditUser} onClick={handleSubmit}> 
+                    {loadingEditUser ? "Carregando..." : "Salvar"} 
                 </Button>
             </AreaButton>
         </Area>

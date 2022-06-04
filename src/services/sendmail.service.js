@@ -3,7 +3,7 @@ import Smtp from "../config/smtp"
 const smtp= Smtp()
 
 export const mailService = { 
-    sendConviteCompany
+    sendConvite
 }
 
 const data = {
@@ -13,7 +13,7 @@ const data = {
     template_params: {}
 }
 
-function sendConviteCompany(userData) {
+function sendConvite(userData) {
     const template= {
         'subject': 'Bem vindo a Sismierge',
         'name': userData.nome,

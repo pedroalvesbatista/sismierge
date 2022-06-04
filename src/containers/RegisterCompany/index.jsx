@@ -23,24 +23,25 @@ import {
 
 export const RegisterCompany = () => {
   const dispatch = useDispatch()
+  const { loading, sucess, error, myData } = useSelector(state => state.auth)
   const [page, setPage] = useState("inicio")
   const [data, setData] = useState({password: '', identifier: ''})
-  const [loading, setLoading] = useState(true)
   const [dataUser, setdataUser] = useState([])
 
-  const token= window.location.pathname.split('/')[2]
-
     useEffect(() => {
-      authService.getMe(token)
-        .then(res => {
-          setdataUser(res.data)
-            setLoading(false)
-        })
-        .catch(err => {
-            console.log(err);
-            setLoading(false)
-        })
-    }, [token])
+      dispatch(authActions.getMe())
+      // authService.getMe(token)
+      //   .then(res => {
+      //     setdataUser(res.data)
+      //     setLoading(false)
+          
+      //     console.log(res.data);
+      //   })
+      //   .catch(err => {
+      //       console.log(err);
+      //       setLoading(false)
+      //   })
+    }, [])
     
 
   return (
@@ -48,8 +49,11 @@ export const RegisterCompany = () => {
       <Card>
         {loading ?
           <LoadingAnimation size={350} />
-        : 
-        <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+        : error ? (
+          <span>Convite expirado</span>
+        ) : (
+            <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+          )
         }
       </Card>
     </Area>

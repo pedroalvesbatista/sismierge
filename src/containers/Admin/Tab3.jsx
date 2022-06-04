@@ -22,7 +22,7 @@ function Tab3() {
   return (
     <BarTable 
       title='colaboradores' 
-      item={users?.filter(i => i.type === "colaborador")} 
+      item={users?.filter(i => i.role.type === "authenticated")} 
       loading={false} 
       header={titles} 
       onClick={handelModal}

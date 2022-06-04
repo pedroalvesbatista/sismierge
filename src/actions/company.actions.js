@@ -78,9 +78,6 @@ function createCompany (userData){
     dispatch({ 
       type: companyConstants.CREATE_COMPANY_FAIL,
     })
-    if (error.response.data.error.message === "Email is already taken") {
-      toast.error("O e-mail já foi cadastrado")
-    }
     console.log(error.response.data.error);
   })
   }

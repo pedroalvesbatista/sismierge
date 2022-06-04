@@ -1,0 +1,272 @@
+[
+    {
+        "id": "1",
+        "type": "Escopo 1",
+        "options": [
+            {
+                "id": "1",
+                "title": "Combustão estacionária",
+                "setor_atividade": [
+                    {
+                        "type": "Energia",
+                        "combustivel_id": "1"
+                    },
+                    {
+                        "type": "Manufatura ou Construção",
+                        "combustivel_id": "2"
+                    },
+                    {
+                        "type": "Comercial ou Institucional",
+                        "combustivel_id": "3"
+                    },
+                    {
+                        "type": "Residencial, Agricultura, Florestal ou Pesca",
+                        "combustivel_id": "4"
+                    }
+                ],    
+                "table": [
+                    {
+                        "id": "1",
+                        "name": "Fatores de emissão para combustão de fontes estacionárias",
+                        "items": [
+                            {
+                                "key": "Registro da fonte",
+                                "value": []
+                            },
+                            {
+                                "key": "Descrição da fonte",
+                                "value": []
+                            },
+                            {
+                                "key": "Combustível utilizado",
+                                "value": []
+                            },
+                            {
+                                "key": "Quantidade consumida",
+                                "value": []
+                            },
+                            {
+                                "key": "Unidades",
+                                "value": []
+                            },
+                            {
+                                "key": "O combustível utilizado é formado por:",
+                                "items": [
+                                    {
+                                        "key": "Combustível fóssil", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Biocombustível", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Quantidade comsumida de combustível (por unidade)",
+                                "items": [
+                                    {
+                                        "key": "Combustível fóssil", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Biocombustível", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Fatores de emissão - combustível fóssil",
+                                "items": [
+                                    {
+                                        "key": "CO2 (kg/un)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "CH4 (kg/un)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "N2O (kg/un)", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Fatores de emissão - biocombustível",
+                                "items": [
+                                    {
+                                        "key": "CO2 (kg/un)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "CH4 (kg/un)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "N2O (kg/un)", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Combustíveis fósseis",
+                                "items": [
+                                    {
+                                        "key": "Emissões CO2 (t)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Emissões CH4 (t)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Emissões N2O (t)", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Biocombustíveis",
+                                "items": [
+                                    {
+                                        "key": "Emissões CO2 (t)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Emissões CH4 (t)", 
+                                        "value": []
+                                    },
+                                    {
+                                        "key": "Emissões N2O (t)", 
+                                        "value": []
+                                    }
+                                ]
+                            },
+                            {
+                                "key": "Emissões fósseis totais t CO2e",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões biogênicas t CO2",
+                                "value": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "2",
+                        "name": "Relato de emissões estacionárias calculadas em outras ferramentas.",
+                        "items": [
+                            {
+                                "key": "Registro da fonte",
+                                "value": []
+                            },
+                            {
+                                "key": "Descrição da fonte",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões de CO2 fóssil (t)",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões de CH4 (t)",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões de N2O (t)",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões de CO2 biogênico (t)",
+                                "value": []
+                            },
+                            {
+                                "key": "Emissões fósseis totais (t CO2e)",
+                                "value": []
+                            }
+                        ]
+                    }
+                ],
+                "total": [
+                    {
+                        "key": "Emissões totais em CO2 equivalente (toneladas métricas)",
+                        "value": ""
+                    },
+                    {
+                        "key": "Emissões totais em CO2 biogênico (toneladas métricas)",
+                        "value": ""
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "title": "Combustão móvel",
+                "total": [
+                    {
+                        "key": "Emissões totais em CO2 equivalente (toneladas métricas)",
+                        "value": ""
+                    },
+                    {
+                        "key": "Emissões totais em CO2 biogênico (toneladas métricas)",
+                        "value": ""
+                    }
+                ],
+                "table": [
+
+                ]
+            },
+            {
+                "id": "3",
+                "title": "Emissões fugitivas",
+                "total": [
+                    {
+                        "key": "Emissões totais em CO2 equivalente (toneladas métricas)",
+                        "value": ""
+                    },
+                    {
+                        "key": "Emissões totais em CO2 biogênico (toneladas métricas)",
+                        "value": ""
+                    }
+                ],
+                "table": [
+                    
+                ]
+            },
+            {
+                "id": "4",
+                "title": "Processos industriais",
+                "total": [
+                    {
+                        "key": "Emissões totais em CO2 equivalente (toneladas métricas)",
+                        "value": ""
+                    },
+                    {
+                        "key": "Emissões totais em CO2 biogênico (toneladas métricas)",
+                        "value": ""
+                    }
+                ],
+                "table": [
+                    
+                ]
+            },
+            {
+                "id": "5",
+                "title": "Atividades de agricultura",
+                "total": [
+                    {
+                        "key": "Emissões totais em CO2 equivalente (toneladas métricas)",
+                        "value": ""
+                    },
+                    {
+                        "key": "Emissões totais em CO2 biogênico (toneladas métricas)",
+                        "value": ""
+                    }
+                ],
+                "table": [
+                    
+                ]
+            }
+        ]
+    }
+]

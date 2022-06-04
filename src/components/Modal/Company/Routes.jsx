@@ -13,7 +13,7 @@ function Routes({ type, openModal}) {
   const modalType= ["Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação"]
     
   return (
-    <div style={{height: 600, overflowY: 'auto'}}>
+    <div >
       {displayModal === modalType[0].toLowerCase()  && <AddMatriz openModal={openModal} />}
       {displayModal === modalType[1].toLowerCase()  && <AddUnidade openModal={openModal} />}
       {displayModal === modalType[2].toLowerCase()  && <AddColaboradores openModal={openModal} />}

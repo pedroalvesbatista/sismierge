@@ -23,17 +23,5 @@ function getUserCompany() {
 }
 
 function createCompany(userData) {
-    const { name, email } = userData
-    const num= "1234567890"
-    const letter= "abcdefghijkl"
-    const username= randUiConvite(num+letter)
-    const password= randUiConvite(email+name+num)
-    return httpBackend.post(`auth/local/register`, {
-        username,
-        name,
-        email,
-        password,
-        type: "master",
-        confirmed: true
-    })
+    return httpBackend.post(`api/companies`, userData)
 }

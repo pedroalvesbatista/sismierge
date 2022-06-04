@@ -15,29 +15,36 @@ import {
     IconClose,
     Text
 } from './styles'
+import { LoadingAnimation } from '../lottie'
 
-function Modal() {
+function Modal({ loading }) {
   const dispatch = useDispatch()
   const { isOpenModal, displayModal } = useSelector(state => state.others)
   const title= firstLetterCase(displayModal)
 
   const handleCloseModal = (e) => {
     e.preventDefault()
-    dispatch(othersActions.closeModal())
+    loading && dispatch(othersActions.closeModal())
   }
+  
 
   return (
     isOpenModal &&
     <Area onClick={handleCloseModal}>
-        <Card onClick={e => e.stopPropagation()}>
-          <Header>
+      {displayModal === "loading" ? (
+          <LoadingAnimation size={150}/>
+        ) : (
+          <Card onClick={e => e.stopPropagation()}>
+            <Header>
               <Text> {title} </Text>
               <IconClose onClick={handleCloseModal} />
-          </Header>
-          <Separator />
-          <RoutesCompany/>
-          <RoutesAdmin />
-        </Card>
+            </Header>
+            <Separator />
+            <RoutesCompany/>
+            <RoutesAdmin />
+          </Card>
+        )
+      }
     </Area>
   )
 }
