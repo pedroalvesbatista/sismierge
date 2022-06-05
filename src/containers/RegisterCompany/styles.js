@@ -22,6 +22,7 @@ export const Card = styled.div`
     justify-content: center;
     flex-direction: column;
     padding: 2%;
+    /* overflow-y: scroll; */
 `
 export const AreaLogo = styled.div`
     display: flex;

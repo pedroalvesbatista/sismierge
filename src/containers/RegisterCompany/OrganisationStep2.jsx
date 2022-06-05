@@ -8,8 +8,12 @@ import {
   Button, 
 } from './styles'
 import Input from '../../components/Input'
+import { othersActions } from '../../actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { AddInventariacao } from '../../components/Modal/Company'
 
 export const OrganisationStep2 = ({dataCompany, setPage}) => {
+    const { displayModal } = useSelector(state => state.others)
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
@@ -20,6 +24,7 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
 
 
   const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
+  const dispatch = useDispatch()
 
   const handleSubmit= (e) => {
     e.preventDefault()
@@ -27,7 +32,8 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
     //     if (data.haveUnidade === "Sim") {
     //         setPage("unidade")
     //     }else {
-            setPage("welcome")
+            setPage("inventariacao")
+            // dispatch(othersActions.handleOpenModal("Adicionar filial"))
     //     }
     // }else {
     //     setPage("welcome")
@@ -125,6 +131,7 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                 &#8674;
             </Button>
           </ConexioArea>
+          {displayModal === "Formulário de Inventariação"  && <AddInventariacao openModal={""} />}
     </>
   )
 }
