@@ -424,7 +424,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
           </div>
         </div>
         <div>
-          <Button variant="contained" size="large" onClick={handleChangeEsco1}>
+          <Button variant="contained" size="large">
             Salvar
           </Button>
         </div>

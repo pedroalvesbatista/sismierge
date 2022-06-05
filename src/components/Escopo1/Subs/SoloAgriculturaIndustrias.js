@@ -137,7 +137,7 @@ const SoloAgriculturaIndustrias = ({
           </p>
         )}
         <div className="mt-5">
-          <Button variant="contained" size="large" onClick={handleChangeEsco1}>
+          <Button variant="contained" size="large" >
             Salvar
           </Button>
         </div>
