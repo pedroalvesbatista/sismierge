@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  TextField,
   Box,
   Button,
   Typography,
   Modal,
-  TextField,
+  CardContent,
+  Card,
 } from "@mui/material";
 
 import { style } from "../../../utils/util";
+import { anoInventariadoCET } from "../selectionData";
 
-const SoloAgriculturaIndustrias = ({
-  nextEsco1Button,
-  handleChangeEsco1,
-  mudancaSolo,
-  atividadesAgricultura,
-  processosIndustrias,
-}) => {
+const ComprasEnergiaTermica = ({nextEsco1Button, handleChangeEsco2 }) => {
+    const [anoInventariado, setAnoInventariado] = useState("");
+
+    const handleChangeAnoInventariado =(e) =>{
+        setAnoInventariado(e.target.value)
+    }
   return (
     <Modal
       open={nextEsco1Button}
@@ -26,16 +32,10 @@ const SoloAgriculturaIndustrias = ({
         <div className="d-flex justify-content-between mb-5 pt-3">
           <div>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Primeiro Escopo
+              Segundo Escopo
             </Typography>
 
-            <h2 className="mt-3 pb-2">
-              {atividadesAgricultura
-                ? "Atividades Agricolas"
-                : processosIndustrias
-                ? "Processos Industriais"
-                : "Mudanças no uso do solo"}
-            </h2>
+            <h2 className="mt-3 pb-2">Compras de Energia Térmica</h2>
             <hr
               style={{
                 width: 90,
@@ -45,22 +45,51 @@ const SoloAgriculturaIndustrias = ({
             />
           </div>
           <div>
+            <Card
+              className="d-flex  justify-content-center align-items-center"
+              style={{
+                width: 480,
+                minHeight: 100,
+                backgroundColor: "#4682B4",
+                cursor: "pointer",
+              }}
+            >
+              <CardContent>
+                <h3 className="text-light fs-3">
+                  Selecione O Ano Inventariado
+                </h3>
+                <FormControl sx={{ m: 1, minWidth: 200 }} required>
+                  <InputLabel id="anoInventariado">
+                    Selecione O Ano Inventariado
+                  </InputLabel>
+                  <Select
+                    className="text-light"
+                    labelId="anoInventariado"
+                    id="anoInventariado"
+                    value={anoInventariado}
+                    onChange={handleChangeAnoInventariado}
+                    autoWidth
+                    label="Selecionar O Ano Inventariado..."
+                  >
+                    {anoInventariadoCET?.map((elem) => (
+                      <MenuItem value={elem}>{elem}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </CardContent>
+            </Card>
+          </div>
+          <div>
             <Button
               variant="contained"
               size="large"
-              onClick={handleChangeEsco1}
+              onClick={handleChangeEsco2}
             >
               Voltar
             </Button>
           </div>
         </div>
         <div className="d-flex flex-column align-items-start">
-          {mudancaSolo && (
-            <div>
-              <h2>Selecione o tipo de transporte:</h2>
-            </div>
-          )}
-
           <div className="d-flex  justify-content-between ">
             <div className="m-2">
               <h3>Registro da Fonte</h3>
@@ -79,27 +108,27 @@ const SoloAgriculturaIndustrias = ({
               />
             </div>
             <div className="m-2">
-              <h3>Descrição da Atividade</h3>
+              <h3>Combustível Utilizado</h3>
               <TextField
-                id="desc-font"
-                label="Digite descrição Atividade..."
+                id="comb-utilizado"
+                label="Digite aqui..."
                 variant="outlined"
               />
             </div>
           </div>
           <div className="d-flex  justify-content-between mb-3 ">
             <div className="m-2">
-              <h3>Gás de Efeito Estufa (GEE)</h3>
+              <h3>Eficiencia do Fervedor</h3>
               <TextField
-                id="gas-estufa"
+                id="efi-fervedor"
                 label="Digite aqui..."
                 variant="outlined"
               />
             </div>
             <div className="m-2">
-              <h3>Emissão (GEE) t</h3>
+              <h3>Vapor Comprado</h3>
               <TextField
-                id="emissa-gee"
+                id="vapor-comprado"
                 label="Digite aqui..."
                 variant="outlined"
               />
@@ -113,12 +142,7 @@ const SoloAgriculturaIndustrias = ({
               />
             </div>
             <div className="m-2">
-              <h3>
-                {atividadesAgricultura || processosIndustrias
-                  ? "Remoções "
-                  : "Remissão "}
-                de CO2 Biogenio (t)
-              </h3>
+              <h3> Remoções de CO2 Biogenio (t)</h3>
               <TextField
                 id="remissao-biogenio"
                 label="Digite aqui..."
@@ -127,17 +151,8 @@ const SoloAgriculturaIndustrias = ({
             </div>
           </div>
         </div>
-        {processosIndustrias && (
-          <p className="m-3">
-            Para mais informações sobre emissões de Processos Industriais,
-            consulte as Especificações do Programa Brasileiro GHG Protocol
-            (https://eaesp.fgv.br/centros/centro-estudos-sustentabilidade/projetos/programa-brasileiro-ghg-protocol)
-            e os Inventários Nacionais de Emissões de GEE do Brasil (MCTIC,
-            2005; 2010;2016).
-          </p>
-        )}
         <div className="mt-5">
-          <Button variant="contained" size="large" >
+          <Button variant="contained" size="large">
             Salvar
           </Button>
         </div>
@@ -146,4 +161,4 @@ const SoloAgriculturaIndustrias = ({
   );
 };
 
-export default SoloAgriculturaIndustrias;
+export default ComprasEnergiaTermica;

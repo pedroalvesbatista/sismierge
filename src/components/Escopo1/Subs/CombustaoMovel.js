@@ -1,6 +1,6 @@
 import React from "react";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import { tipoTransporteEsco1 } from "../selectionData";
 
 import {
@@ -162,40 +162,40 @@ const CombustaoMovel = ({
                   </div>
                 </div>
               </>
-            ) : (
-              <div>
-                <div className="mb-3">
-                  <h3>
-                    {curentIdxEsco1 === 1
-                      ? "Registro da Frota de TREM"
-                      : curentIdxEsco1 === 2
-                      ? "Registro da Frota de Hidroviário"
-                      : "Registro da Frota de Hidroviário"}
-                  </h3>
-                  <TextField
-                    id="regist-fronta"
-                    label="Digite o registro Frota ..."
-                    variant="outlined"
-                  />
-                </div>
-                <div className="mb-3">
-                  <h3>Descrição da Frota</h3>
-                  <TextField
-                    id="desc-fronta"
-                    label="Digite descrição da Frota..."
-                    variant="outlined"
-                  />
-                </div>
-                <div className="mb-3">
-                  <h3>Descrição da Frota</h3>
-                  <TextField
-                    id="desc-fronta"
-                    label="Digite descrição da Frota..."
-                    variant="outlined"
-                  />
-                </div>
-              </div>
-            )}
+            ) : (curentIdxEsco1 === 1 | curentIdxEsco1 === 2 | curentIdxEsco1 === 3) ? (
+                  <div>
+                    <div className="mb-3">
+                      <h3>
+                        {curentIdxEsco1 === 1
+                          ? "Registro da Frota de TREM"
+                          : curentIdxEsco1 === 2
+                          ? "Registro da Frota de Hidroviário"
+                          : "Registro da Frota de Hidroviário"}
+                      </h3>
+                      <TextField
+                        id="regist-fronta"
+                        label="Digite o registro Frota ..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <h3>Descrição da Frota</h3>
+                      <TextField
+                        id="desc-fronta"
+                        label="Digite descrição da Frota..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <h3>Descrição da Frota</h3>
+                      <TextField
+                        id="desc-fronta"
+                        label="Digite descrição da Frota..."
+                        variant="outlined"
+                      />
+                    </div>
+                  </div>
+                ): (<></>)}
           </div>
           <div>
             <div className="mb-4">

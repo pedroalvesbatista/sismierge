@@ -8,7 +8,7 @@ import {
     TextField,
 } from "@mui/material";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import SubModalEsc1 from "./SubModalEsc1";
 
 const ResiduosSolidos =({nextEsco1Button, handleChangeEsco1})=>{

@@ -12,7 +12,7 @@ import React,{useState} from "react";import {
   TextField,
 } from "@mui/material";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import { subEffluentTypeItem, optionBiogasDestination } from "../selectionData";
 
 
@@ -285,7 +285,7 @@ const Efluentes = ({nextEsco1Button, handleChangeEsco1 }) => {
           </div>
         </div>
         <div>
-          <Button variant="contained" size="large" onClick={handleChangeEsco1}>
+          <Button variant="contained" size="large">
             Salvar
           </Button>
         </div>

@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 
-import {style} from "./../util"
+import { style } from "../../../utils/util";
 import { fuelUsedEsco1Item } from "../selectionData";
 
 const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
@@ -424,7 +424,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
           </div>
         </div>
         <div>
-          <Button variant="contained" size="large" onClick={handleChangeEsco1}>
+          <Button variant="contained" size="large">
             Salvar
           </Button>
         </div>

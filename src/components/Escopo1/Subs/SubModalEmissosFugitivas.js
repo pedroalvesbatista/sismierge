@@ -17,7 +17,8 @@ import {
   FormControlLabel,
   FormLabel,
 } from "@mui/material";
-import { style} from "../util"
+import { style} from "../../../utils/util"
+import { itemEmissaoEqRefrRAC } from "../selectionData";
 
 const SubModalEmissosFugitivas = ({
   itemEmissosFugitivas,
@@ -26,12 +27,6 @@ const SubModalEmissosFugitivas = ({
 }) => {
   const [curentIdxSubEsco1, setCurentIdxSubEsco1] = useState();
 
-  const tipoTransporteSubEsco1 = [
-    "Transporte Rodoviario",
-    "Transporte Ferroviário",
-    "Transporte Hidroviário",
-    "Trasnporte Aereo",
-  ];
   return (
     <>
       <Modal
@@ -78,7 +73,7 @@ const SubModalEmissosFugitivas = ({
           {itemEmissosFugitivas.id === 0 && (
             <div className="d-flex  justify-content-between">
               <div className="d-flex flex-column align-items-start">
-                {tipoTransporteSubEsco1?.map((elem, idx) => {
+                {itemEmissaoEqRefrRAC?.map((elem, idx) => {
                   return (
                     <div className="mb-3" id={idx}>
                       <Card

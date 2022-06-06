@@ -7,6 +7,7 @@ import { Button, CardContent, Card } from "@mui/material";
 
 import { Area } from "./styles";
 import Escopo1 from "../../components/Escopo1";
+import Escopo2 from "../../components/Escopo2";
 
 
 export const HomePage = () => {
@@ -15,7 +16,8 @@ export const HomePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [mouseOnCard, setMouseOnCard] = useState(false);
-  const [openStartInvet, setOpenStartInvet] = useState(false);
+  const [openStartInvetEsco1, setOpenStartInvetEsco1] = useState(false);
+  const [openStartInvetEsco2, setOpenStartInvetEsco2] = useState(false);
   const [ selectedScope, setSelectedScope] = useState("")
   const [idxCard, setIdxCard] = useState("");
 
@@ -23,7 +25,8 @@ export const HomePage = () => {
 
   const handleInventariacao = (e) => {
     e.stopPropagation();
-    selectedScope === 0 && setOpenStartInvet(true);
+    selectedScope === 0 && setOpenStartInvetEsco1(true);
+    selectedScope === 1 && setOpenStartInvetEsco2(true);
   };
 
   return (
@@ -92,11 +95,15 @@ export const HomePage = () => {
               Fatores de Emissão
             </Button>
           </div>
-         
-            <Escopo1
-              openStartInvet={openStartInvet}
-              setOpenStartInvet={setOpenStartInvet}
-            />
+
+          <Escopo1
+            openStartInvet={openStartInvetEsco1}
+            setOpenStartInvet={setOpenStartInvetEsco1}
+          />
+          <Escopo2
+            openStartInvet={openStartInvetEsco2}
+            setOpenStartInvet={setOpenStartInvetEsco2}
+          />
         </>
       )}
     </Area>

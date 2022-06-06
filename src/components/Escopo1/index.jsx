@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 import { subItemEscopo1 } from "./selectionData";
-import { style } from "./util";
+import { style } from "../../utils/util";
 import CombustaoEstacionaria from "./Subs/CombustaoEstacionaria";
 import CombustaoMovel from "./Subs/CombustaoMovel";
 import SoloAgriculturaIndustrias from "./Subs/SoloAgriculturaIndustrias";

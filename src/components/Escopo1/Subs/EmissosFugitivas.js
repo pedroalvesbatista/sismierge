@@ -8,7 +8,7 @@ import {
   Card,
 } from "@mui/material";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import { tipoEmissaoFugitivas } from "../selectionData";
 import SubModalEmissosFugitivas from "./SubModalEmissosFugitivas";
 
