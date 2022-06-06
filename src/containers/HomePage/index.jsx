@@ -65,8 +65,8 @@ export const HomePage = () => {
       ) : (
         <>
           <div className="d-flex justify-content-around justify-content-center mt-5 mb-5">
-            {filterEscopoData.length < 1 && "Não existe nenhum escopo selecionado"}
-            {filterEscopoData.length > 0 && filterEscopoData?.map((item, index) => {
+            {!filterEscopoData && "Não existe nenhum escopo selecionado"}
+            {filterEscopoData?.length > 0 && filterEscopoData?.map((item, index) => {
               return (
                 <div>
                   <Card
@@ -117,7 +117,7 @@ export const HomePage = () => {
           </div>
 
           <hr />
-          {filterEscopoData.length > 0 &&
+          {filterEscopoData?.length > 0 &&
             <div className="d-flex justify-content-around mt-3">
               <Button variant="outlined" size="small" color="success">
                 Dados Rastreáveis
