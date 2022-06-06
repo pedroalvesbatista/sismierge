@@ -21,7 +21,7 @@ export const HomePage = () => {
   const storageTab= localStorage.getItem("@sismiegee/admin/tabActive")
   const storageUser = JSON.parse(localStorage.getItem("@sismiegee/auth"));
 
-  const filterEscopoData = storage.escopos.filter(i => i.items.length > 0)
+  const filterEscopoData = storage?.escopos?.filter(i => i.items.length > 0)
 
   const { roles, sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
 
@@ -136,7 +136,7 @@ export const HomePage = () => {
             openStartInvet={openStartInvetEsco2}
             setOpenStartInvet={setOpenStartInvetEsco2}
           />
-          {storageUser?.user.role.type === "master" &&
+          {storageUser?.user?.role?.type === "master" &&
             <>
               <TabsAdmin onCLick={(e) => handleTabActive(e)} active={tabActive} items={tabs} />
               <Routes tab={tabActive} />
