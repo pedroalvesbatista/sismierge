@@ -1,9 +1,11 @@
-export   const optionLandfilClassification = ["A", "B", "C", "D", "E"];
+export const optionLandfilClassification = ["A", "B", "C", "D", "E"];
 
-export  const optionBiogasDestination = ["Queima Em Flare", "Geração de Energia"];
+export const optionBiogasDestination = [
+  "Queima Em Flare",
+  "Geração de Energia",
+];
 
-
-export   const shippingYearData = [
+export const shippingYearData = [
   {
     id: 0,
     title: "Ano de envio",
@@ -156,7 +158,7 @@ export   const shippingYearData = [
   },
 ];
 
-export  const subItemEscopo1 = [
+export const subItemEscopo1 = [
   "Combustão Estacionária",
   "Combustão móvel",
   "Mudanças no uso do solo",
@@ -167,7 +169,7 @@ export  const subItemEscopo1 = [
   "Processos Industriais",
 ];
 
-export   const fuelUsedEsco1Item = [
+export const fuelUsedEsco1Item = [
   "Coque de Carvão Mineral",
   "Carvão Vegetal",
   "Carvão Vapor sem Espeficicação",
@@ -191,43 +193,44 @@ export   const fuelUsedEsco1Item = [
   "Acetileno",
 ];
 
+export const subEffluentTypeItem = [
+  "Digestor Anaerobico",
+  "Lodo Ativado",
+  "Fossa Séptica",
+  "Reator Anaerobico",
+  "Lagoa Facultativo",
+  "Lagoa Mista",
+  "Lançamento Em Curso D´Agua Sem Coleta",
+  "Tratamentos Sequenciais",
+];
 
- export const subEffluentTypeItem = [
-   "Digestor Anaerobico",
-   "Lodo Ativado",
-   "Fossa Séptica",
-   "Reator Anaerobico",
-   "Lagoa Facultativo",
-   "Lagoa Mista",
-   "Lançamento Em Curso D´Agua Sem Coleta",
-   "Tratamentos Sequenciais",
- ];
+export const tipoTransporteEsco1 = [
+  "Transporte Rodoviario",
+  "Transporte Ferroviário",
+  "Transporte Hidroviário",
+  "Trasnporte Aereo",
+];
 
- export const tipoTransporteEsco1 = [
-   "Transporte Rodoviario",
-   "Transporte Ferroviário",
-   "Transporte Hidroviário",
-   "Trasnporte Aereo",
- ];
+export const tipoEmissaoFugitivas = [
+  {
+    abrev: "Emissões Eq.Refr. e Ar RAC e Extintores",
+    title:
+      "Emissões de Equipamentos de Refrigeração e Ar Condicionado (RAC) e Extintores de Incêndio",
+  },
+  {
+    abrev: "Emissões utl. Exofre (SF6) e (NF3)",
+    title:
+      "Emissões por utilização de hexafluoreto de enxofre (SF6) e trifluoreto de nitrogênio (NF3)",
+  },
+  {
+    abrev: "Relatório outras Ferramentas",
+    title:
+      "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo",
+  },
+];
 
- export const tipoEmissaoFugitivas = [
-   {
-     abrev: "Emissões Eq.Refr. e Ar RAC e Extintores",
-     title:
-       "Emissões de Equipamentos de Refrigeração e Ar Condicionado (RAC) e Extintores de Incêndio",
-   },
-   {
-     abrev: "Emissões utl. Exofre (SF6) e (NF3)",
-     title:
-       "Emissões por utilização de hexafluoreto de enxofre (SF6) e trifluoreto de nitrogênio (NF3)",
-   },
-   {
-     abrev: "Relatório outras Ferramentas",
-     title:
-       "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo",
-   },
- ];
-
-
-
-
+export const itemEmissaoEqRefrRAC = [
+  "Balanço de Materias estagio de Ciclo de vida",
+  "Balanço de massa",
+  "Método de triagem de fontes",
+];

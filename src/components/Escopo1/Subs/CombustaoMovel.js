@@ -1,6 +1,6 @@
 import React from "react";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import { tipoTransporteEsco1 } from "../selectionData";
 
 import {

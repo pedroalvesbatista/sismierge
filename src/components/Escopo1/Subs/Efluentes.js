@@ -12,7 +12,7 @@ import React,{useState} from "react";import {
   TextField,
 } from "@mui/material";
 
-import { style } from "../util";
+import { style } from "../../../utils/util";
 import { subEffluentTypeItem, optionBiogasDestination } from "../selectionData";
 
 
