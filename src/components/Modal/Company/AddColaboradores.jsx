@@ -27,7 +27,7 @@ export function AddColaboradores({ openModal }) {
         username: "newUser2022", 
         name: null,
         email: null,
-        id: storage.company.user.length + 1,
+        id: "storage.company.user.length + 1",
         first: true,
         cargo: null,
         company:  storage.company,
@@ -36,7 +36,7 @@ export function AddColaboradores({ openModal }) {
     })
     
     const optionCargo= ["Diretor(a)", "Auditor(a)", "Analista"]
-    const optionUnidade= [storage.company.nome, storage.company.filial?.name]
+    const optionUnidade= [storage?.company?.nome, storage?.company?.filial?.name]
 
     const createCompany = (data) => {
         setLoading(true)

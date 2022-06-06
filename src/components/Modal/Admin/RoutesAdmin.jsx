@@ -11,6 +11,7 @@ function RoutesAdmin({ type, openModal}) {
       {displayModal === modalType[0].toLowerCase()  && <AddCompany />}
       {displayModal === modalType[1].toLowerCase()  && <AddColaboradores />}
       {displayModal === modalType[2].toLowerCase()  && <EditUser />}
+      {/* {displayModal === modalType[3].toLowerCase()  && <AddUser />} */}
     </>
   )
 }

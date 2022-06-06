@@ -7,3 +7,18 @@ export function firstLetterCase(name) {
 
 export const firstName= (nameLetter) => firstLetterCase(nameLetter?.split(" ")[0])
 export const secondName= (nameLetter) => firstLetterCase(nameLetter?.split(" ").length > 1 ? nameLetter?.split(" ")[1] : nameLetter)
+
+const randdConvite = (params) => {
+    const result= params.split('').sort(function(){return 0.5-Math.random()}).join('').substring(0,100)
+    return result
+}
+
+export const randPassUser = (email, name) => {
+    
+    const num= "1234567890"
+    const letter= "abcdefghijkl"
+    const username= randdConvite(num+letter)
+    const password= randdConvite(email+name+num)
+
+    return {username, password}
+}

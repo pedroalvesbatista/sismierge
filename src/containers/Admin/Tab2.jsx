@@ -30,7 +30,7 @@ function Tab2({  }) {
   return (
     <BarTable 
       onClick={handelModal} 
-      item={users?.filter(i => i.type === "master")} 
+      item={users?.filter(i => i.role.type === "master")} 
       loading={false} 
       header={titles} 
       onEdit={() => dispatch(othersActions.handleOpenModal("Editar Usuário"))}

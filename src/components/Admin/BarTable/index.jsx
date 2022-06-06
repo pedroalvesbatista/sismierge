@@ -5,7 +5,7 @@ import { BsPlusCircleDotted, BsPencilSquare, BsTrash } from 'react-icons/bs'
 import { admin } from '../../../constants/tailwind/colors'
 import { ButtonAdd } from '../../Buttons'
 import Toogle from '../../Input/Toogle'
-import { othersActions } from '../../../actions'
+import { authActions, othersActions } from '../../../actions'
 import { useDispatch } from 'react-redux'
 
 function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa", onClick}) {
@@ -15,7 +15,11 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
     const handleEdit = (item) => {
         dispatch(othersActions.handleOpenModal("Editar Usuário"))
         dispatch(othersActions.setDataModal(item))
-        console.log(item);
+    }
+
+    const handleDelete = (id) => {
+        dispatch(othersActions.handleOpenModal("loading"))
+        dispatch(authActions.deleteUser(id))
     }
 
   return (
@@ -49,10 +53,14 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                                         <TableArea key={key}>
                                             <Item onClick={() => handleEdit(i)}>  { i.name } </Item>
                                             <Item onClick={() => handleEdit(i)}>  { i.email } </Item>
-                                            <Item onClick={() => handleEdit(i)}>  { i.type } </Item>
+                                            <Item onClick={() => handleEdit(i)}>  { i.role.name } </Item>
                                             <Item> 
                                                 <BsPencilSquare onClick={() => handleEdit(i)} size={14} color={admin.verde} />
-                                                <BsTrash size={14} color={"red"} />
+                                                <BsTrash 
+                                                    size={14} 
+                                                    color={"red"} 
+                                                    onClick={() => handleDelete(i.id)}
+                                                />
                                             </Item>
                                             <Item> 
                                                 <Toogle onClick={() => setToogle(!toogle)} active={toogle} />     

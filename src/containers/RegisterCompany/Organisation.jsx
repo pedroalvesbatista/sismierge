@@ -9,75 +9,77 @@ import {
 } from './styles'
 import Input from '../../components/Input'
 import SelectArea from '../../components/Select'
+import MoreItems from '../../components/Modal/Company/MoreItems'
+import { useDispatch, useSelector } from 'react-redux'
+import InputTag from '../../components/Input/InputTag'
+import { companyActions, othersActions } from '../../actions'
+import InputChoose from '../../components/Input/InputChoose'
 
 export const Organisation = ({dataCompany, setPage}) => {
-    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/data"))
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState({
-    id: 1,
-    email: null,
-    cnpj: null,
-    cpf: null,
-    nome: null,
-    nome_do_responsavel: null,
-    nome_fantasia: null,
-    telefone: null,
-    razao_social: null,
-    endereco: null,
-    setor_economico: null,
-    subsetor: null,
-    setor_atividade: null,
-    escopo: null,
-    filial: null,
-    sector_aditivdade: null,
-    logo: null,
-    comprovante: null,
-    user: [dataLocal.user]
-  })
-  const [haveUnidade, setHaveUnidade] = useState("")
+    const dispatch= useDispatch()
+    const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
+    const { loadingEscopos, sucessEscopos, dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
 
-  
-  const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
-  const optionsTypes= ["Energia ", "Manufatura ou Construção", "Comercial ou Institucional", "Residencial, Agricultura, Florestal ou Pesca"]
-  const optionsEscopo= [
-    "Escopo 1", 
-    "Escopo 2", 
-    "Escopo 3", 
-    "Escopo 1 e Escopo 2", 
-    "Escopo 1 e Escopo 3", 
-    "Escopo 2 e Escopo 3", 
-    "Todos escopos"
-]
-
-    const newUserList= {...dataLocal.user, company: data}
-    const newData= {company: data, user: newUserList}
+    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/auth"))
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState({
+        email: "",
+        cnpj: "",
+        cpf: "",
+        nome_do_responsavel: "",
+        nome_fantasia: "",
+        telefone: "",
+        razao_social: "",
+        endereco: "",
+        setor_economico: "",
+        subsetor: "",
+        setor_atividade: dataEscopo[1],
+        escopos: dataEscopo[0],
+        comprovante: "",
+        users: [dataLocal?.user]
+    })
+    const [haveUnidade, setHaveUnidade] = useState("")
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (haveUnidade.length > 0) {
-        if (haveUnidade === "Sim") {
-            setPage("unidade")
-        }else {
-            setPage("welcome")
-        }
-    }else {
-        setPage("welcome")
-    }
+    const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
+    dispatch(companyActions.createCompany({
+        email,
+        razao_social,
+        escopos,
+        users,
+        cnpj,
+        nome_do_responsavel,
+        subsetor,
+        // cpf,
+        nome_fantasia,
+        endereco,
+        setor_economico,
+        setor_atividade
+    }))
+
+    localStorage.setItem("@sismierge/data", JSON.stringify(data))
+    setPage("welcome")
+
+    // if (haveUnidade.length > 0) {
+    //     if (haveUnidade === "Sim") {
+    //         setPage("unidade")
+    //     }else {
+    //         setPage("welcome")
+    //     }
+    // }else {
+    //     setPage("welcome")
+    // }
     
-    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
+    // localStorage.setItem("@sismierge/data", JSON.stringify(newData))
     // setPage("organisationStep2")
   }
 
-//   useEffect(() => {
-//     if (data.typeCadastral === "Participação acionaria") {
-//         setShowTypeCadastral(true)
-//     }else {
-//         setShowTypeCadastral(false)
-//     }
-//   }, [data.typeCadastral])
+//   console.log(data);
+// console.log(data.escopo);
   
   
-  
+//   console.log(data.setor_economico);
 
   return (
     <>
@@ -87,30 +89,12 @@ export const Organisation = ({dataCompany, setPage}) => {
           Essa etapa é muito importante!
         </Text>
         <Form onSubmit={handleSubmit}>
-            {/* <AreaInput>
-                <SelectArea 
-                    onChange={e => setData({...data, typeCadastral: e.target.value})} 
-                    value={data.typeCadastral} 
-                    title={"O que deseja cadastrar?"} 
-                    item={optionsTypes} 
-                    width= "50%"
-                    placeholder="Escolhe um tipo..."
-                />
-                {showTypeCadastral && 
-                    <Input 
-                        label={"Porcentagem de participação"}
-                        placeholder="30%"
-                        spanceLeft={true}
-                        type="number"
-                    />
-                }
-            </AreaInput> */}
             <AreaInput>
                 <Input 
                     label={"Razão Social"}
                     // placeholder="Uber"
-                    value={data.nome}
-                    onChange= {e => setData({...data, nome: e.target.value})}
+                    value={data.razao_social}
+                    onChange= {e => setData({...data, razao_social: e.target.value})}
                 />
                 <Input 
                     label={"Nome fantasia"}
@@ -118,6 +102,22 @@ export const Organisation = ({dataCompany, setPage}) => {
                     value={data.nome_fantasia}
                     spanceLeft={true}
                     onChange= {e => setData({...data, nome_fantasia: e.target.value})}
+                />
+            </AreaInput>
+            <AreaInput>
+                <Input 
+                    label={"Nome do responsavel"}
+                    placeholder="Digite aqui"
+                    // type="number"
+                    value={data.nome_do_responsavel}
+                    onChange= {e => setData({...data, nome_do_responsavel: e.target.value})}
+                />
+                <Input 
+                    label={"Email corporativo"}
+                    placeholder={`jose@gmail.com`}
+                    spanceLeft={true}
+                    value={data.email}
+                    onChange= {e => setData({...data, email: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -137,39 +137,26 @@ export const Organisation = ({dataCompany, setPage}) => {
                 />
             </AreaInput>
             <AreaInput>
-                <Input 
+                <InputTag 
                     label={"Setor econômico"}
-                    // placeholder={``}
-                    // type="email"
-                    value={data.setor_economico}
-                    onChange= {e => setData({...data, setor_economico: e.target.value})}
+                    items={e => setData({...data, setor_economico: e})}
                 />
-                <Input 
+                <InputTag 
                     label={"Subsetor"}
                     // placeholder="11986522567"
                     spanceLeft={true}
-                    type="text"
-                    value={data.subsetor}
-                    onChange= {e => setData({...data, subsetor: e.target.value})}
+                    items={e => setData({...data, subsetor: e})}
                 />
             </AreaInput>
-            <AreaInput>
+            <AreaInput NoFlex={true}>
                 <SelectArea 
-                    onChange={e => setData({...data, setor_atividade: e.target.value})} 
-                    value={data.setor_atividade} 
-                    title={"Escolha o setor de atividade"} 
-                    item={optionsTypes} 
-                    width= "48%"
-                    placeholder="Escolhe um tipo..."
-                />
-                <SelectArea 
-                    onChange={e => setData({...data, escopo: e.target.value})} 
-                    value={data.escopo} 
+                    type = "collections"
                     title={"Escolha os Escopos"} 
-                    item={optionsEscopo} 
-                    width= "48%"
+                    item={escopoSheetData} 
+                    // width= "48%"
                     placeholder="Escolhe escopo..."
-                    spaceLeft={"10px"}
+                    isMultiple={true}
+                    // spaceLeft={"10px"}
                 />
             </AreaInput>
             <AreaInput>
@@ -177,8 +164,8 @@ export const Organisation = ({dataCompany, setPage}) => {
                     label={"Logo da empresa"}
                     type="file"
                     id={"file"}
-                    value={data.file}
-                    onChange={e => setData({...data, logo: e.target.value})}
+                    // value={data.file}
+                    // onChange={e => setData({...data, logo: e.target.value})}
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
@@ -189,7 +176,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     onChange={e => setData({...data, comprovante: e.target.value})}
                 />
             </AreaInput>
-            <AreaInput>
+            {/* <AreaInput>
                 <Input 
                     label={"Quer cadastrar filiais ?"}
                     type="radio"
@@ -198,7 +185,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     notView={true}
                     onChange={e => setHaveUnidade(e.target.value)}
                 />
-            </AreaInput>
+            </AreaInput> */}
         </Form>
         <ConexioArea>
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
@@ -213,13 +200,15 @@ export const Organisation = ({dataCompany, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 630px;
     margin-top: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
     /* justify-content: space-between; */
     /* height: 200px; */
 `
 const AreaInput = styled.form`
-    display: flex;
+    display: ${({NoFlex}) => NoFlex ? "block" : "flex"};
     width: 600px;
     /* justify-content: space-between; */
     /* height: 200px; */
@@ -235,6 +224,28 @@ const ConexioArea = styled.div`
 const InputFile = styled.input`
     display: flex;
     width: 600px;
+    /* justify-content: space-between; */
+    /* height: 200px; */
+`
+const ContainerAreaInput = styled.div`
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-end;
+    width: 100%;
+    justify-content: flex-start;
+    /* height: 200px; */
+`
+const WrapperAreaInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: space-between; */
+    /* height: 200px; */
+`
+const ContentAreaInput = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
     /* justify-content: space-between; */
     /* height: 200px; */
 `

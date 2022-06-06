@@ -9,10 +9,10 @@ import { authActions } from '../../actions'
 function Tab1() {
   const dispatch = useDispatch()
     const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
-    const { loadingGetUsers, users } = useSelector(state => state.auth)
+    const { loadingGetUsers, users, roles } = useSelector(state => state.auth)
 
     const handelModal = () => {
-      dispatch(othersActions.handleOpenModal("Adicionar empresa"))
+      dispatch(othersActions.handleOpenModal("loading"))
     }
 
     const handleEdit = () => {
@@ -22,6 +22,7 @@ function Tab1() {
   
     useEffect(() => {
       dispatch(authActions.loadUsers())
+      // console.log(roles);
     }, [users])
 
 

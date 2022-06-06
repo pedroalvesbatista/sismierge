@@ -1,12 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux"
-import { othersReducer } from "../reducers/others.reducer"
-import { authReducer } from "../reducers/auth.reducers"
-import { colaboradorsReducer } from "../reducers/colaborador.reducers"
-import { companyReducer } from "../reducers/company.reducers"
-import { contabilizarReducer } from "../reducers/contabilizar.reducer"
-
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { 
+  othersReducer, 
+  authReducer, 
+  colaboradorsReducer, 
+  companyReducer, 
+  contabilizarReducer, 
+  mailReducer,
+  escoposReducer
+} from "../reducers"
 
 export const store = createStore(
   combineReducers({
@@ -15,6 +18,9 @@ export const store = createStore(
     company: companyReducer,
     others: othersReducer,
     contabilizar: contabilizarReducer,
+    mail: mailReducer,
+    sheet: escoposReducer
   }),
+  
   composeWithDevTools(applyMiddleware(thunkMiddleware))
 );

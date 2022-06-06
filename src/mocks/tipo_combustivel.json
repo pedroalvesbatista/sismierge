@@ -1,0 +1,207 @@
+[
+    {   
+        "id": "1",
+        "type": "Combustíveis fósseis",
+        "items": [
+            {
+                "id": "1",
+                "type": "Energia",
+                "items": [
+                    {
+                        "id": 2,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 3,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "type": "Manufatura ou Construção",
+                "items": [
+                    {
+                        "id": 4,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 5,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "type": "Comercial ou Institucional",
+                "items": [
+                    {
+                        "id": 6,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 7,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "4",
+                "type": "Residencial, Agricultura, Florestal ou Pesca",
+                "items": [
+                    {
+                        "id": 8,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 9,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            }
+        ]
+    },
+
+    {   
+        "id": "1",
+        "type": "biocombustiveis",
+        "items": [
+            {
+                "id": "1",
+                "type": "Energia",
+                "items": [
+                    {
+                        "id": 2,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 3,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "type": "Manufatura ou Construção",
+                "items": [
+                    {
+                        "id": 4,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 5,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "type": "Comercial ou Institucional",
+                "items": [
+                    {
+                        "id": 6,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 7,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            },
+            {
+                "id": "4",
+                "type": "Residencial, Agricultura, Florestal ou Pesca",
+                "items": [
+                    {
+                        "id": 8,
+                        "name": "Acetileno",
+                        "unidade": "kg",
+                        "consumo_combustivel": "",
+                        "co2": "3",
+                        "ch4": "",
+                        "n20": ""
+                    },
+                    {
+                        "id": 9,
+                        "name": "Alcatrão",
+                        "unidade": "m³",
+                        "consumo_combustivel": "",
+                        "co2": "2888",
+                        "ch4": "0,35797",
+                        "n20": "0,05370"
+                    }
+                ]
+            }
+        ]
+    }
+]

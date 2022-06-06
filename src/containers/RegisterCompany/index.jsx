@@ -4,43 +4,26 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { LoadingAnimation } from '../../components/lottie'
 
-import { authActions } from '../../actions'
+import { authActions, sheetActions } from '../../actions'
 import { authService } from '../../services'
 import Routes from './Routes'
 import { 
   Area, 
-  Card, 
-  Logo,
-  Text, 
-  Input, 
-  Form, 
-  InputArea, 
-  IconeEye, 
-  IconeEyeSplash, 
-  ConexioArea, 
-  Button, 
-  TextArea } from './styles'
+  Card, } from './styles'
+import Modal from '../../components/Modal'
 
 export const RegisterCompany = () => {
   const dispatch = useDispatch()
+  const { loading, sucess, error, myData } = useSelector(state => state.auth)
+  
   const [page, setPage] = useState("inicio")
   const [data, setData] = useState({password: '', identifier: ''})
-  const [loading, setLoading] = useState(true)
   const [dataUser, setdataUser] = useState([])
 
-  const token= window.location.pathname.split('/')[2]
-
     useEffect(() => {
-      authService.getMe(token)
-        .then(res => {
-          setdataUser(res.data)
-            setLoading(false)
-        })
-        .catch(err => {
-            console.log(err);
-            setLoading(false)
-        })
-    }, [token])
+      dispatch(authActions.getMe())
+      dispatch(sheetActions.loadEscopos())
+    }, [])
     
 
   return (
@@ -48,10 +31,14 @@ export const RegisterCompany = () => {
       <Card>
         {loading ?
           <LoadingAnimation size={350} />
-        : 
-        <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+        : error ? (
+          <span>Convite expirado</span>
+        ) : (
+            <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+          )
         }
       </Card>
+      <Modal />
     </Area>
   )
 }
