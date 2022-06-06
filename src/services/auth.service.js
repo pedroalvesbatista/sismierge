@@ -7,7 +7,7 @@ const storageUser= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
 const storageAdmin= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 const storageToken= storageUser?.length > 0 ? storageUser?.jwt : storageAdmin?.length > 0 ? storageAdmin?.jwt : tokenJwt  
 // const token= 
-console.log("tokenJwt");
+// console.log("tokenJwt");
 
 export const authService = { 
     createUser,

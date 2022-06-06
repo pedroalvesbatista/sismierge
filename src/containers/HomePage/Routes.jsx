@@ -3,9 +3,11 @@ import Tab1 from './Tab1'
 import Tab2 from './Tab2'
 import Tab3 from './Tab3'
 import Tab4 from './Tab4'
+import Tab5 from './Tab5'
 
 function Routes({tab, openModal}) {
-    const tabs= ["Visão geral", "Matriz", "Unidades", "Colaboradores"]
+    const storageUser = JSON.parse(localStorage.getItem("@sismierge/auth"));
+    const tabs= ["Visão geral", "Matriz", "Unidades", "Colaboradores", "Usuarios"]
     
   return (
     <div >
@@ -20,6 +22,9 @@ function Routes({tab, openModal}) {
         }
         {tab === tabs[3] &&
             <Tab4 openModal={e => openModal(e)} />
+        }
+        {tab === tabs[4] &&
+            <Tab5 openModal={e => openModal(e)} />
         }
     </div>
   )

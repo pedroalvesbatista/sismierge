@@ -6,12 +6,13 @@ import {
   AddUnidade,
   AddFilial,
   AddInventariacao,
-  ChooseEscopo
+  ChooseEscopo,
+  AddUser
 } from '.'
 
 function Routes({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)
-  const modalType= ["Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos"]
+  const modalType= ["Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios"]
     
   return (
     <div >
@@ -21,6 +22,7 @@ function Routes({ type, openModal}) {
       {displayModal === modalType[3].toLowerCase()  && <AddFilial openModal={openModal} />}
       {displayModal === modalType[4].toLowerCase()  && <AddInventariacao openModal={openModal} />}
       {displayModal === modalType[5].toLowerCase()  && <ChooseEscopo openModal={openModal} />}
+      {displayModal === modalType[6].toLowerCase()  && <AddUser openModal={openModal} />}
     </div>
   )
 }

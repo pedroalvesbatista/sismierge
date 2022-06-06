@@ -6,6 +6,6 @@ export const colaboradorService = {
     getColaboradors
 }
 
-function getColaboradors() {
-    return httpBackend.get(`users?filters[type][$eq]=colaborador`)
+function getColaboradors({type}) {
+    return httpBackend.get(`users?filters[type][$eq]=${type ?? "colaborador"}`)
 }
