@@ -12,92 +12,74 @@ import SelectArea from '../../components/Select'
 import MoreItems from '../../components/Modal/Company/MoreItems'
 import { useDispatch, useSelector } from 'react-redux'
 import InputTag from '../../components/Input/InputTag'
+import { companyActions, othersActions } from '../../actions'
+import InputChoose from '../../components/Input/InputChoose'
 
 export const Organisation = ({dataCompany, setPage}) => {
     const dispatch= useDispatch()
     const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
-    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/data"))
+    const { loadingEscopos, sucessEscopos, dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
+
+    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/auth"))
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
-        id: 1,
-        email: null,
-        cnpj: null,
-        cpf: null,
-        razao_social: null,
-        nome_do_responsavel: null,
-        nome_fantasia: null,
-        telefone: null,
-        razao_social: null,
-        endereco: null,
-        setor_economico: null,
-        subsetor: null,
-        setor_atividade: null,
-        escopo: [],
-        filial: null,
-        sector_aditivdade: null,
-        logo: null,
-        comprovante: null,
-        user: [dataLocal?.user]
+        email: "",
+        cnpj: "",
+        cpf: "",
+        nome_do_responsavel: "",
+        nome_fantasia: "",
+        telefone: "",
+        razao_social: "",
+        endereco: "",
+        setor_economico: "",
+        subsetor: "",
+        setor_atividade: dataEscopo[1],
+        escopos: dataEscopo[0],
+        comprovante: "",
+        users: [dataLocal?.user]
     })
     const [haveUnidade, setHaveUnidade] = useState("")
 
-    const optionsEscopo= [
-        {name: "Escopo 1", options: ["Combustão estacionária", "Combustão móvel", "Emissões fugitivas", "Processos industriais", "Atividades agrícolas", "Mudanças no uso do solo", "Resíduos sólidos", "Efluentes"]},
-        {name: "Escopo 2", options: ["Combustão estacionária", "Combustão móvel", "Emissões fugitivas", "Processos industriais", "Atividades agrícolas", "Mudanças no uso do solo", "Resíduos sólidos", "Efluentes"]},
-        {name: "Escopo 3", options: ["Combustão estacionária", "Combustão móvel", "Emissões fugitivas", "Processos industriais", "Atividades agrícolas", "Mudanças no uso do solo", "Resíduos sólidos", "Efluentes"]}
-    ]
-
-    const [list, setList] = useState([1])
-    const [showEscopo1Options, setShowEscopo1Options] = useState(false)
-
-    const newUserList= {...dataLocal?.user, company: data}
-    const newData= {company: data, user: newUserList}
-
   const handleSubmit= (e) => {
     e.preventDefault()
-    if (haveUnidade.length > 0) {
-        if (haveUnidade === "Sim") {
-            setPage("unidade")
-        }else {
-            setPage("welcome")
-        }
-    }else {
-        setPage("welcome")
-    }
+    const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
+    dispatch(companyActions.createCompany({
+        email,
+        razao_social,
+        escopos,
+        users,
+        cnpj,
+        nome_do_responsavel,
+        subsetor,
+        // cpf,
+        nome_fantasia,
+        endereco,
+        setor_economico,
+        setor_atividade
+    }))
+
+    localStorage.setItem("@sismierge/data", JSON.stringify(data))
+    setPage("welcome")
+
+    // if (haveUnidade.length > 0) {
+    //     if (haveUnidade === "Sim") {
+    //         setPage("unidade")
+    //     }else {
+    //         setPage("welcome")
+    //     }
+    // }else {
+    //     setPage("welcome")
+    // }
     
-    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
+    // localStorage.setItem("@sismierge/data", JSON.stringify(newData))
     // setPage("organisationStep2")
   }
 
-    const handleMoreTable= () => {
-        setList([...list, list.length + 1])
-    }
-
-    const handlLessTable= () => {
-        setList(list.splice(0, list.length - 1))
-    }
-
-    const handleOnchageEscopo = (e) => {
-        const newList= optionsEscopo.filter(i => i.name === e.target.value)
-        setData({...data, escopo: [...data.escopo, ...newList]})
-    } 
-
-  useEffect(() => {
-      const verification= data.escopo.filter(i => i.name === "Escopo 1").length > 0
-    if (verification) {
-        setShowEscopo1Options(true)
-    }else {
-        setShowEscopo1Options(false)
-    }
-    if (data.escopo.length > 0) {
-        const uniqueList= [...new Set(data.escopo)]
-        setData({...data, escopo: uniqueList })
-    }
-    // console.log(data.escopo);
-  }, [data.escopo])
+//   console.log(data);
+// console.log(data.escopo);
   
   
-  
+//   console.log(data.setor_economico);
 
   return (
     <>
@@ -124,6 +106,22 @@ export const Organisation = ({dataCompany, setPage}) => {
             </AreaInput>
             <AreaInput>
                 <Input 
+                    label={"Nome do responsavel"}
+                    placeholder="Digite aqui"
+                    // type="number"
+                    value={data.nome_do_responsavel}
+                    onChange= {e => setData({...data, nome_do_responsavel: e.target.value})}
+                />
+                <Input 
+                    label={"Email corporativo"}
+                    placeholder={`jose@gmail.com`}
+                    spanceLeft={true}
+                    value={data.email}
+                    onChange= {e => setData({...data, email: e.target.value})}
+                />
+            </AreaInput>
+            <AreaInput>
+                <Input 
                     label={"CNPJ"}
                     placeholder="32.792.884/2021-10"
                     type="number"
@@ -141,78 +139,33 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <InputTag 
                     label={"Setor econômico"}
-                    items={e => console.log(e)}
+                    items={e => setData({...data, setor_economico: e})}
                 />
                 <InputTag 
                     label={"Subsetor"}
                     // placeholder="11986522567"
                     spanceLeft={true}
-                    items={e => console.log(e)}
+                    items={e => setData({...data, subsetor: e})}
                 />
             </AreaInput>
             <AreaInput NoFlex={true}>
-                {/* <SelectArea 
-                    onChange={e => setData({...data, setor_atividade: e.target.value})} 
-                    value={data.setor_atividade} 
-                    title={"Escolha o setor de atividade"} 
-                    item={optionsTypes} 
-                    width= "48%"
-                    placeholder="Escolhe um tipo..."
-                /> */}
-                {/* <SelectArea 
-                    onChange={handleOnchageEscopo} 
-                    value={data.escopo} 
+                <SelectArea 
                     type = "collections"
                     title={"Escolha os Escopos"} 
-                    item={optionsEscopo} 
-                    width= "48%"
+                    item={escopoSheetData} 
+                    // width= "48%"
                     placeholder="Escolhe escopo..."
+                    isMultiple={true}
                     // spaceLeft={"10px"}
-                /> */}
-                {/* {showEscopo1Options && */}
-                    <ContainerAreaInput style={{display: "flex"}}>
-                        <WrapperAreaInput>
-                            {list.map(item => (
-                                <ContentAreaInput key={item}>
-                                    <SelectArea 
-                                        title={"Escolha os Escopos"} 
-                                        item={optionsEscopo} 
-                                        placeholder="escolhe escopo..."
-                                        width= "50%"
-                                        type = "collections"
-                                        // onChange={e => setMetaEscopo(e.target.value === "Sim" ? true : false)}
-                                        // spaceLeft
-                                    />
-                                    <Input 
-                                        // label={"Numero de funcionário no ano inventariado"}
-                                        placeholder="Por intensidade"
-                                        spanceLeft={true}
-                                        type="numeric"
-                                        // width={"100%"}
-                                        fontSize={12}
-                                    />
-                                    <Input 
-                                        // label={"Numero de funcionário no ano inventariado"}
-                                        placeholder="Por absoluta"
-                                        spanceLeft={true}
-                                        type="numeric"
-                                        fontSize={12}
-                                        // width={"100%"}
-                                    />
-                                </ContentAreaInput>
-                            ))}
-                        </WrapperAreaInput>
-                        <MoreItems onClickLess={handlLessTable} onClickMore={handleMoreTable}  item={list} />
-                    </ContainerAreaInput>
-                {/* } */}
+                />
             </AreaInput>
             <AreaInput>
                 <Input 
                     label={"Logo da empresa"}
                     type="file"
                     id={"file"}
-                    value={data.file}
-                    onChange={e => setData({...data, logo: e.target.value})}
+                    // value={data.file}
+                    // onChange={e => setData({...data, logo: e.target.value})}
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
@@ -223,7 +176,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     onChange={e => setData({...data, comprovante: e.target.value})}
                 />
             </AreaInput>
-            <AreaInput>
+            {/* <AreaInput>
                 <Input 
                     label={"Quer cadastrar filiais ?"}
                     type="radio"
@@ -232,7 +185,7 @@ export const Organisation = ({dataCompany, setPage}) => {
                     notView={true}
                     onChange={e => setHaveUnidade(e.target.value)}
                 />
-            </AreaInput>
+            </AreaInput> */}
         </Form>
         <ConexioArea>
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 

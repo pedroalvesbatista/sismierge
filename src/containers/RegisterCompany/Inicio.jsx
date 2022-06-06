@@ -21,6 +21,7 @@ export const Inicio = ({ setPage }) => {
 
   const dispatch = useDispatch()
   const { loadingEditUser, sucessEditUser, myData } = useSelector(state => state.auth)
+
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
     type_user: "master",
@@ -30,7 +31,7 @@ export const Inicio = ({ setPage }) => {
     email: myData.email,
     id: myData.id,
     first: true,
-    cargo: null,
+    cargo: myData.cargo,
     company: null,
   })
   const [showPassword, setShowPassword] = useState(false)
@@ -129,7 +130,7 @@ export const Inicio = ({ setPage }) => {
                     placeholder='CEO'
                     onChange={(e) => setData({...data, cargo: e.target.value})}
                     required
-                    // value={data.email}
+                    value={data.cargo}
                     // disabled={true}
                 />
             </InputArea>

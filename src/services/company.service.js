@@ -23,5 +23,5 @@ function getUserCompany() {
 }
 
 function createCompany(userData) {
-    return httpBackend.post(`api/companies`, userData)
+    return httpBackend.post(`companies`, {data: userData})
 }

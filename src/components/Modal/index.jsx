@@ -23,8 +23,8 @@ function Modal({ loading }) {
   const title= firstLetterCase(displayModal)
 
   const handleCloseModal = (e) => {
-    e.preventDefault()
-    loading && dispatch(othersActions.closeModal())
+    e.stopPropagation()
+    dispatch(othersActions.closeModal())
   }
   
 

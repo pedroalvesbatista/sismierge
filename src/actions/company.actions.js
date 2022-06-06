@@ -78,7 +78,7 @@ function createCompany (userData){
     dispatch({ 
       type: companyConstants.CREATE_COMPANY_FAIL,
     })
-    console.log(error.response.data.error);
+    console.log(error.response);
   })
   }
 }

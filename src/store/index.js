@@ -7,7 +7,8 @@ import {
   colaboradorsReducer, 
   companyReducer, 
   contabilizarReducer, 
-  mailReducer 
+  mailReducer,
+  escoposReducer
 } from "../reducers"
 
 export const store = createStore(
@@ -18,6 +19,7 @@ export const store = createStore(
     others: othersReducer,
     contabilizar: contabilizarReducer,
     mail: mailReducer,
+    sheet: escoposReducer
   }),
   
   composeWithDevTools(applyMiddleware(thunkMiddleware))
