@@ -17,6 +17,9 @@ import { subItemEscopo2 } from "./selectionData";
 import { style } from "../../utils/util";
 import ComprasEnergiaTermica from "./Subs/ComprasEnergiaTermica";
 import EletricaLocalizacao from "./Subs/EletricaLocalizacao";
+import PerdasTdLocalizacao from "./Subs/PerdasTdLocalizacao";
+import EletricidadeEscCompra from "./Subs/EletricidadeEscCompra";
+import PerdasTdEscCompras from "./Subs/PerdasTdEscCompras";
 
 const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
   let initDataSubEsco2 = {
@@ -130,6 +133,27 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
 
       {showSubEsco2.eletricidade_localizacao && (
         <EletricaLocalizacao
+          nextEsco1Button={nextEsco1Button}
+          handleChangeEsco2={handleChangeEsco2}
+        />
+      )}
+
+      {showSubEsco2.perdas_td_localizacao && (
+        <PerdasTdLocalizacao
+          nextEsco1Button={nextEsco1Button}
+          handleChangeEsco2={handleChangeEsco2}
+        />
+      )}
+
+      {showSubEsco2.eletricidade_esc_compra && (
+        <EletricidadeEscCompra
+          nextEsco1Button={nextEsco1Button}
+          handleChangeEsco2={handleChangeEsco2}
+        />
+      )}
+
+      {showSubEsco2.perdas_td_esc_compras && (
+        <PerdasTdEscCompras
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco2={handleChangeEsco2}
         />

@@ -90,9 +90,9 @@ function Menu({ titleHome, closeMenu }) {
         </MenuArea>
         <BottomArea closed={close}>
             {/* <Img closed={close} src='/profile.png'/> */}
-            <Avatar bgColor radius name={storage.name} />
+            <Avatar bgColor radius name={storage?.name} />
             {!close && <Subtext closed={close} weight='bold'>
-                { storage ? storage.name ?? storage.username : "Nome do usuario" }
+                { storage ? storage?.name ?? storage.username : "Nome do usuario" }
             </Subtext>}
         </BottomArea>
     </Area>

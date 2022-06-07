@@ -412,8 +412,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.m-4 {
-  margin: 1rem !important;
+.absolute {
+  position: absolute !important;
 }
 
 .m-2 {
@@ -424,12 +424,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 0.75rem !important;
 }
 
+.m-4 {
+  margin: 1rem !important;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem !important;
 }
 
 .mt-3 {
   margin-top: 0.75rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1rem !important;
 }
 
 .mb-3 {
@@ -442,10 +450,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-1 {
   margin-bottom: 0.25rem !important;
-}
-
-.mb-4 {
-  margin-bottom: 1rem !important;
 }
 
 .block {
@@ -476,12 +480,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 1px !important;
 }
 
+.p-4 {
+  padding: 1rem !important;
+}
+
+.p-2 {
+  padding: 0.5rem !important;
+}
+
+.p-3 {
+  padding: 0.75rem !important;
+}
+
+.p-5 {
+  padding: 1.25rem !important;
+}
+
 .pt-3 {
   padding-top: 0.75rem !important;
 }
 
 .pb-2 {
   padding-bottom: 0.5rem !important;
+}
+
+.pl-5 {
+  padding-left: 1.25rem !important;
+}
+
+.pb-5 {
+  padding-bottom: 1.25rem !important;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem !important;
 }
 
 .outline {

@@ -15,7 +15,7 @@ import {
 import { style } from "../../../utils/util";
 import { anoInventariadoCET, meses } from "../selectionData";
 
-const EletricaLocalizacao = ({ nextEsco1Button, handleChangeEsco2 }) => {
+const PerdasTdLocalizacao = ({ nextEsco1Button, handleChangeEsco2 }) => {
   const [anoInventariado, setAnoInventariado] = useState("");
   const [btn_SIA, setBtn_SIA] = useState(false);
   const [btn_OSIA, setBtn_OSIA] = useState(false);
@@ -36,7 +36,7 @@ const EletricaLocalizacao = ({ nextEsco1Button, handleChangeEsco2 }) => {
               Segundo Escopo
             </Typography>
 
-            <h2 className="mt-3 pb-2">Energia Eletrica (Localização)</h2>
+            <h2 className="mt-3 pb-2">Perdas T & D Abordagem de Localização</h2>
             {btn_SIA && (
               <h2 className="mt-3 pb-2">Sistemas Isolado Amazonas</h2>
             )}
@@ -251,4 +251,4 @@ const EletricaLocalizacao = ({ nextEsco1Button, handleChangeEsco2 }) => {
   );
 };
 
-export default EletricaLocalizacao;
+export default PerdasTdLocalizacao;
