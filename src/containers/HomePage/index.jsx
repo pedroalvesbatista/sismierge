@@ -131,6 +131,7 @@ export const HomePage = () => {
           <Escopo1
             openStartInvet={openStartInvetEsco1}
             setOpenStartInvet={setOpenStartInvetEsco1}
+            // data={}
           />
           <Escopo2
             openStartInvet={openStartInvetEsco2}

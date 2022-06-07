@@ -43,10 +43,10 @@ export const Organisation = ({dataCompany, setPage}) => {
   const handleSubmit= (e) => {
     e.preventDefault()
     const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
-    dispatch(companyActions.createCompany({
+    const newData = {
         email,
         razao_social,
-        escopos,
+        escopos: dataEscopo[0],
         users,
         cnpj,
         nome_do_responsavel,
@@ -55,10 +55,24 @@ export const Organisation = ({dataCompany, setPage}) => {
         nome_fantasia,
         endereco,
         setor_economico,
-        setor_atividade
+        setor_atividade: dataEscopo[1]
+    }
+    dispatch(companyActions.createCompany({
+        email,
+        razao_social,
+        escopos: dataEscopo[0],
+        users,
+        cnpj,
+        nome_do_responsavel,
+        subsetor,
+        // cpf,
+        nome_fantasia,
+        endereco,
+        setor_economico,
+        setor_atividade: dataEscopo[1]
     }))
 
-    localStorage.setItem("@sismierge/data", JSON.stringify(data))
+    localStorage.setItem("@sismierge/data", JSON.stringify(newData))
     setPage("welcome")
 
     // if (haveUnidade.length > 0) {
@@ -74,6 +88,14 @@ export const Organisation = ({dataCompany, setPage}) => {
     // localStorage.setItem("@sismierge/data", JSON.stringify(newData))
     // setPage("organisationStep2")
   }
+
+//   useEffect(() => {
+//     setData({...data, escopos: dataEscopo[0]})
+//     setData({...data, setor_atividade: dataEscopo[1]})
+//   }, [dataEscopo, data.escopos])
+
+//   console.log(dataEscopo);
+  
 
 //   console.log(data);
 // console.log(data.escopo);
