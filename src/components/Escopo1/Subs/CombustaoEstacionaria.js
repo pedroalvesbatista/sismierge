@@ -15,11 +15,12 @@ import {
 
 import { style } from "../../../utils/util";
 import { fuelUsedEsco1Item } from "../selectionData";
-import { sheetActions } from "../../../actions";
+import { companyActions, sheetActions } from "../../../actions";
 
 const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
   const dispatch = useDispatch()
   const { loadingSubEscopo, sucessSubEscopo, dataSubEscopo, sucessCreateSubEscopo } = useSelector(state => state.sheet)
+  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(state => state.company)
   const [ itemSubEscopo, setItemSubEscopo ] = useState({
     registro_fonte: "",
     desc_fonte: "",
@@ -44,11 +45,6 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
     //   n2o: ""
     // }
   })
-   const [fuelUsedEsco1, setFuelUsedEsco1] = useState();
-
-   const handleChangeFuelUsedEsco1 = (event) => {
-       setFuelUsedEsco1(event.target.value);
-    };
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -57,8 +53,6 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
 
   useEffect(() => {
     dispatch(sheetActions.loadSubEscopos(1093763195))
-    // console.log(sucessCreateSubEscopo);
-    // console.log(dataSubEscopo);
   }, [sucessCreateSubEscopo])
 
   useEffect(() => {
@@ -69,6 +63,12 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
         values:[registro_fonte, desc_fonte, combustivel_utilizado, qtd_consumida]
       }))
     }
+    // if (sucessCreateCompany) {
+    //   dispatch(sheetActions.setSubEscopo({
+    //     range: "Combustão estacionária!A11:D11",
+    //     values:['', '', '', '']
+    //   }))
+    // }
   }, [itemSubEscopo])
   
   
@@ -486,15 +486,20 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
         </div>
         <div>
           <Button onClick={() => {
-            const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado } = itemSubEscopo
-            dispatch(sheetActions.setSubEscopo({
-              range: "Combustão estacionária!A11:D11",
-              values:[registro_fonte, desc_fonte, combustivel_utilizado, qtd_consumida]
-            }))
+            let indexEscopo= companies.escopos.findIndex(i => i.id === 1)
+            let indexSubEscopo= companies.escopos[indexEscopo].items.findIndex(i => i.sheetId === 1093763195)
+            let filterTypeSubEscopo= companies.escopos[indexEscopo].items.filter(i => i.sheetId === 1093763195)[0]
+            filterTypeSubEscopo= {...filterTypeSubEscopo, items: dataSubEscopo}
+            
+            let newDataEscopo= {...companies}
+            newDataEscopo.escopos[indexEscopo].items[indexSubEscopo] = filterTypeSubEscopo
+
+            dispatch(companyActions.updateCompany(newDataEscopo, companies.id))
+
           }} 
           variant="contained" size="large"
           >
-            Salvar
+            {loadingCreateCompany ? "Salvando...": "Salvar"}
           </Button>
         </div>
       </Box>

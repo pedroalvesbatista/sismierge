@@ -40,7 +40,7 @@ function loadRoles() {
 }
 
 function editUser(id, userData, token) {
-    console.log(storageToken);
+    // console.log(storageToken);
     return httpBackend.put(`users/${id}`, userData, { headers: {"Authorization" : `Bearer ${token ?? storageToken}`} })
 }
 

@@ -2,17 +2,11 @@ import HttpBackend from "../config/http"
 
 const httpBackend= HttpBackend()
 
-
-
-const randUiConvite = (params) => {
-    const result= params.split('').sort(function(){return 0.5-Math.random()}).join('').substring(0,100)
-    return result
-}
-
 export const companyService = { 
     getCompanies,
     createCompany,
-    getUserCompany
+    getUserCompany,
+    updateCompany
 }
 
 function getCompanies() {
@@ -24,4 +18,8 @@ function getUserCompany() {
 
 function createCompany(userData) {
     return httpBackend.post(`companies`, {data: userData})
+}
+
+function updateCompany(userData, id) {
+    return httpBackend.put(`companies/${id}`, {data: userData})
 }

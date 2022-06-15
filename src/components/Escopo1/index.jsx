@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import CloseIcon from "@material-ui/icons/Close";
 import {
   Select,
@@ -26,19 +27,10 @@ import { sheetActions } from "../../actions";
 
 const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const dispatch = useDispatch()
-  const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
+  // const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
+  const { sucessCreateCompany } = useSelector(state => state.company)
   const [invetYear, setInvetYear] = useState("");
   const [setor, setSetor] = useState("");
-  let initDataSubEsco1 = {
-    combustao_estacionaria: false,
-    combustao_movel: false,
-    mudanca_solo: false,
-    emissos_fugitivas: false,
-    atividades_agricultura: false,
-    efluentes: false,
-    residuos_solidos: false,
-    processos_industrias: false,
-  };
 
   const [showSubEsco1, setShowSubEsco1] = useState("");
   const [nextEsco1Button, setnextEsco1Button] = useState(false);
@@ -88,7 +80,23 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
     setnextEsco1Button(!nextEsco1Button);
     setOpenStartInvet(!openStartInvet);
     setCurentIdxEsco1("");
+    dispatch(sheetActions.setSubEscopo({
+      range: "Combustão estacionária!A11:D11",
+      values:['', '', '', '']
+    }))
   };
+
+  useEffect(() => {
+    if (sucessCreateCompany) {
+      dispatch(sheetActions.setSubEscopo({
+        range: "Combustão estacionária!A11:D11",
+        values:['', '', '', '']
+      }))
+      handleChangeEsco1()
+      toast.success("Salvando com sucesso")
+    }
+  }, [sucessCreateCompany])
+  
 
   // console.log(dataSubEscopo);
 
@@ -185,7 +193,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
                     width: 200,
                     margin: 20,
                     backgroundColor:
-                      curentIdxEsco1 === elem.sheetId ? "#4682B4" : "#ccc",
+                      curentIdxEsco1 === elem.sheetId ? elem.items.length > 0 ? "#3bc8a7" : "#4682B4" : elem.items.length > 0 ? "#349b83" : "#ccc",
                     cursor: "pointer",
                   }}
                   onClick={() => {

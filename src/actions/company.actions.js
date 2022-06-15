@@ -5,7 +5,8 @@ import { companyService } from "../services"
 export const companyActions = {
     getCompanies,
     createCompany,
-    getUserCompany
+    getUserCompany,
+    updateCompany
 }
 
 const storageCompany= {
@@ -28,7 +29,7 @@ function getCompanies (){
       })
       dispatch({ 
         type: companyConstants.LOAD_COMPANY_SUCCESS,
-        payload: filterById[0].attributes
+        payload: {id: filterById[0].id, ...filterById[0].attributes}
       })
     })
     .catch(error => {
@@ -81,6 +82,30 @@ function createCompany (userData){
   .catch(error => {
     dispatch({ 
       type: companyConstants.CREATE_COMPANY_FAIL,
+    })
+    console.log(error.response);
+  })
+  }
+}
+
+function updateCompany (userData, id){
+
+  return dispatch => {
+    dispatch({ 
+    type: companyConstants.UPDATE_COMPANY_REQUEST
+  })
+
+  companyService.updateCompany(userData, id)
+  .then(response => {
+      dispatch({ 
+        type: companyConstants.UPDATE_COMPANY_SUCCESS,
+        payload: response.data
+      })
+      // console.log(response.data.data.attributes);
+  })
+  .catch(error => {
+    dispatch({ 
+      type: companyConstants.UPDATE_COMPANY_FAIL,
     })
     console.log(error.response);
   })

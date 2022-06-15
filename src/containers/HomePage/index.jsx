@@ -138,7 +138,7 @@ export const HomePage = () => {
           <Escopo1
             openStartInvet={openStartInvetEsco1}
             setOpenStartInvet={setOpenStartInvetEsco1}
-            data={companies?.escopos?.filter(i => i.id === 1)[0].items}
+            data={companies?.escopos?.filter(i => i.id === 1)[0]?.items}
           />
           <Escopo2
             openStartInvet={openStartInvetEsco2}

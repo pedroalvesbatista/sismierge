@@ -8,6 +8,7 @@ const initialState = {
     error: false,
     companies: [],
     company: [],
+    newCompany: [],
 }
 
 export const companyReducer = (state = initialState, action) => {
@@ -50,6 +51,29 @@ export const companyReducer = (state = initialState, action) => {
       }
 
     case companyConstants.CREATE_COMPANY_FAIL:
+      return {
+        ...state,
+        loadingCreateCompany: false,
+        error: action.payload
+      }
+
+    case companyConstants.UPDATE_COMPANY_REQUEST:
+      return {
+        ...state,
+        loadingCreateCompany: true,
+        sucessCreateCompany: false,
+      }
+      
+
+    case companyConstants.UPDATE_COMPANY_SUCCESS:
+      return {
+        ...state,
+        loadingCreateCompany: false,
+        sucessCreateCompany: true,
+        newCompany: action.payload,
+      }
+
+    case companyConstants.UPDATE_COMPANY_FAIL:
       return {
         ...state,
         loadingCreateCompany: false,
