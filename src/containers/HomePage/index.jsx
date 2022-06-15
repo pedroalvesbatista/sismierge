@@ -10,7 +10,7 @@ import { Area } from "./styles";
 import Escopo1 from "../../components/Escopo1";
 import Escopo2 from "../../components/Escopo2";
 import Routes from "./Routes";
-import { authActions, othersActions } from "../../actions";
+import { authActions, othersActions, companyActions } from "../../actions";
 import TabsAdmin from "../../components/Tabs";
 
 
@@ -21,9 +21,8 @@ export const HomePage = () => {
   const storageTab= localStorage.getItem("@sismiegee/admin/tabActive")
   const storageUser = JSON.parse(localStorage.getItem("@sismiegee/auth"));
 
-  const filterEscopoData = storage?.escopos?.filter(i => i.items.length > 0)
-
   const { roles, sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
+  const { companies } = useSelector(state => state.company)
 
   const [loading, setLoading] = useState(true);
   const [mouseOnCard, setMouseOnCard] = useState(false);
@@ -48,6 +47,7 @@ export const HomePage = () => {
 }
 
   useEffect(() => {
+    dispatch(companyActions.getCompanies())
     if (storageTab) {
       setTabActive(storageTab)
     }
@@ -58,6 +58,13 @@ export const HomePage = () => {
     dispatch(authActions.loadRoles())
   }, [storageTab, roles, sucess])
 
+  useEffect(() => {
+    dispatch(companyActions.getCompanies())
+  }, [])
+
+  // console.log(companies.escopos);
+  
+
   return (
     <Area>
       {!loading ? (
@@ -65,8 +72,8 @@ export const HomePage = () => {
       ) : (
         <>
           <div className="d-flex justify-content-around justify-content-center mt-5 mb-5">
-            {!filterEscopoData && "Não existe nenhum escopo selecionado"}
-            {filterEscopoData?.length > 0 && filterEscopoData?.map((item, index) => {
+            {!companies.escopos && "Não existe nenhum escopo selecionado"}
+            {companies.escopos?.length > 0 && companies.escopos?.map((item, index) => {
               return (
                 <div>
                   <Card
@@ -116,8 +123,8 @@ export const HomePage = () => {
             })}
           </div>
 
-          <hr />
-          {filterEscopoData?.length > 0 &&
+          {/* <hr />
+          {companies.escopos?.length > 0 &&
             <div className="d-flex justify-content-around mt-3">
               <Button variant="outlined" size="small" color="success">
                 Dados Rastreáveis
@@ -126,12 +133,12 @@ export const HomePage = () => {
                 Fatores de Emissão
               </Button>
             </div>
-          }
+          } */}
 
           <Escopo1
             openStartInvet={openStartInvetEsco1}
             setOpenStartInvet={setOpenStartInvetEsco1}
-            // data={}
+            data={companies?.escopos?.filter(i => i.id === 1)[0].items}
           />
           <Escopo2
             openStartInvet={openStartInvetEsco2}

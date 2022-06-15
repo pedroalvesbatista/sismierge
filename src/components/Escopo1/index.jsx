@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import {
   Select,
@@ -13,7 +14,7 @@ import {
   Card,
 } from "@mui/material";
 
-import { subItemEscopo1 } from "./selectionData";
+import { data } from "./selectionData";
 import { style } from "../../utils/util";
 import CombustaoEstacionaria from "./Subs/CombustaoEstacionaria";
 import CombustaoMovel from "./Subs/CombustaoMovel";
@@ -21,8 +22,11 @@ import SoloAgriculturaIndustrias from "./Subs/SoloAgriculturaIndustrias";
 import EmissosFugitivas from "./Subs/EmissosFugitivas";
 import ResiduosSolidos from "./Subs/ResiduosSolidos";
 import Efluentes from "./Subs/Efluentes";
+import { sheetActions } from "../../actions";
 
-const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
+const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
+  const dispatch = useDispatch()
+  const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
   const [invetYear, setInvetYear] = useState("");
   const [setor, setSetor] = useState("");
   let initDataSubEsco1 = {
@@ -36,62 +40,38 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
     processos_industrias: false,
   };
 
-  const [showSubEsco1, setShowSubEsco1] = useState(initDataSubEsco1);
+  const [showSubEsco1, setShowSubEsco1] = useState("");
   const [nextEsco1Button, setnextEsco1Button] = useState(false);
   const [curentIdxEsco1, setCurentIdxEsco1] = useState();
   const handleClose = () => setOpenStartInvet(false);
 
-  const handleEsco1 = (name) => {
+  const handleEsco1 = (name, id) => {
     let nameToSwitch = name.toLowerCase();
 
     switch (nameToSwitch) {
       case "combustão estacionária":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          combustao_estacionaria: !initDataSubEsco1.combustao_estacionaria,
-        });
+        setShowSubEsco1(name);
         break;
       case "combustão móvel":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          combustao_movel: !initDataSubEsco1.combustao_movel,
-        });
+        setShowSubEsco1(name);
         break;
       case "mudanças no uso do solo":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          mudanca_solo: !initDataSubEsco1.mudanca_solo,
-        });
+        setShowSubEsco1(name);
         break;
       case "emissões fugitivas":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          emissos_fugitivas: !initDataSubEsco1.emissos_fugitivas,
-        });
+        setShowSubEsco1(name);
         break;
       case "atividades de agricultura":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          atividades_agricultura: !initDataSubEsco1.atividades_agricultura,
-        });
+        setShowSubEsco1(name);
         break;
       case "efluentes":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          efluentes: !initDataSubEsco1.efluentes,
-        });
+        setShowSubEsco1(name);
         break;
       case "resíduos sólidos":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          residuos_solidos: !initDataSubEsco1.residuos_solidos,
-        });
+        setShowSubEsco1(name);
         break;
       case "processos industriais":
-        setShowSubEsco1({
-          ...initDataSubEsco1,
-          processos_industrias: !initDataSubEsco1.processos_industrias,
-        });
+        setShowSubEsco1(name);
         break;
     }
   };
@@ -109,6 +89,8 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
     setOpenStartInvet(!openStartInvet);
     setCurentIdxEsco1("");
   };
+
+  // console.log(dataSubEscopo);
 
   return (
     <>
@@ -194,24 +176,27 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
             </Card>
           </div>
           <div className=" mt-4 mb-5 d-flex align-content-center flex-wrap ">
-            {subItemEscopo1?.map((elem, idx) => {
+            {data?.map((elem, idx) => {
               return (
                 <Card
+                  key={idx}
                   id={idx}
                   style={{
                     width: 200,
                     margin: 20,
                     backgroundColor:
-                      curentIdxEsco1 === idx ? "#4682B4" : "#ccc",
+                      curentIdxEsco1 === elem.sheetId ? "#4682B4" : "#ccc",
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    handleEsco1(elem);
-                    setCurentIdxEsco1(idx);
+                    handleEsco1(elem.title);
+                    setCurentIdxEsco1(elem.sheetId);
+                    // console.log(curentIdxEsco1);
+                    dispatch(sheetActions.loadSubEscopos(elem.sheetId))
                   }}
                 >
                   <CardContent className="text-light font-weight-bold text-uppercase">
-                    {elem}
+                    {elem.title}
                   </CardContent>
                 </Card>
               );
@@ -223,14 +208,15 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
         </Box>
       </Modal>
 
-      {showSubEsco1.combustao_estacionaria && (
+      {showSubEsco1 === "Combustão estacionária" && (
         <CombustaoEstacionaria
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
+          // idSheet={data[0].sheetId}
         />
       )}
 
-      {showSubEsco1.combustao_movel && (
+      {showSubEsco1 === "Combustão móvel" && (
         <CombustaoMovel
           curentIdxEsco1={curentIdxEsco1}
           setCurentIdxEsco1={setCurentIdxEsco1}
@@ -239,9 +225,9 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
         />
       )}
 
-      {(showSubEsco1.mudanca_solo ||
-        showSubEsco1.atividades_agricultura ||
-        showSubEsco1.processos_industrias) && (
+      {(showSubEsco1 === "Mudança no uso do solo" ||
+        showSubEsco1 === "Atividades de agricultura" ||
+        showSubEsco1 === "Processos industriais") && (
         <SoloAgriculturaIndustrias
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
@@ -251,7 +237,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
         />
       )}
 
-      {showSubEsco1.emissos_fugitivas && (
+      {showSubEsco1 === "Emissões fugitivas" && (
         <EmissosFugitivas
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
@@ -260,14 +246,14 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet }) => {
         />
       )}
 
-      {showSubEsco1.residuos_solidos && (
+      {showSubEsco1?.title === "Resíduos sólidos" && (
         <ResiduosSolidos
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
         />
       )}
 
-      {showSubEsco1.efluentes && (
+      {showSubEsco1 === "Efluentes" && (
         <Efluentes
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}

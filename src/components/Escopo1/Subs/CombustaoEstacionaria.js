@@ -1,4 +1,5 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Select,
   MenuItem,
@@ -14,15 +15,65 @@ import {
 
 import { style } from "../../../utils/util";
 import { fuelUsedEsco1Item } from "../selectionData";
+import { sheetActions } from "../../../actions";
 
 const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
+  const dispatch = useDispatch()
+  const { loadingSubEscopo, sucessSubEscopo, dataSubEscopo, sucessCreateSubEscopo } = useSelector(state => state.sheet)
+  const [ itemSubEscopo, setItemSubEscopo ] = useState({
+    registro_fonte: "",
+    desc_fonte: "",
+    qtd_consumida: "",
+    combustivel_utilizado: "",
+    // combustivel_utilizado_formado: {
+    //   combustivel_fossil: "",
+    //   biocombustivel: ""
+    // },
+    // qtd_combustivel_consumida_unidade: {
+    //   combustivel_fossil: "",
+    //   biocombustivel: ""
+    // },
+    // fator_emissao_comb_fossil: {
+    //   co2: "",
+    //   ch4: "",
+    //   n2o: ""
+    // },
+    // fator_emissao_comb_biocombustivel: {
+    //   co2: "",
+    //   ch4: "",
+    //   n2o: ""
+    // }
+  })
    const [fuelUsedEsco1, setFuelUsedEsco1] = useState();
 
    const handleChangeFuelUsedEsco1 = (event) => {
        setFuelUsedEsco1(event.target.value);
     };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setItemSubEscopo({...itemSubEscopo, [name]: value});
+  };
+
+  useEffect(() => {
+    dispatch(sheetActions.loadSubEscopos(1093763195))
+    // console.log(sucessCreateSubEscopo);
+    // console.log(dataSubEscopo);
+  }, [sucessCreateSubEscopo])
+
+  useEffect(() => {
+    if (itemSubEscopo.qtd_consumida.length > 1) {
+      const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado } = itemSubEscopo
+      dispatch(sheetActions.setSubEscopo({
+        range: "Combustão estacionária!A11:D11",
+        values:[registro_fonte, desc_fonte, combustivel_utilizado, qtd_consumida]
+      }))
+    }
+  }, [itemSubEscopo])
+  
+  
     
-    
+  // console.log(itemSubEscopo);  
   return (
     <Modal
       open={nextEsco1Button}
@@ -75,6 +126,9 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                   id="regist-font"
                   label=" Digite o registro da fonte..."
                   variant="outlined"
+                  name={"registro_fonte"}
+                  onChange={handleChange}
+                  value={itemSubEscopo.registro_fonte}
                 />
               </div>
               <div className="m-2">
@@ -83,6 +137,9 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                   id="desc-font"
                   label="Digite descrição da Fonte..."
                   variant="outlined"
+                  name={"desc_fonte"}
+                  onChange={handleChange}
+                  value={itemSubEscopo.desc_fonte}
                 />
               </div>
             </div>
@@ -93,6 +150,9 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                   id="quant-consu"
                   label="Digite a Quantidade..."
                   variant="outlined"
+                  name={"qtd_consumida"}
+                  onChange={handleChange}
+                  value={itemSubEscopo.qtd_consumida}
                 />
               </div>
               <div className="m-2">
@@ -101,7 +161,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                   disabled
                   id="unidade"
                   label=""
-                  defaultValue="Toneladas"
+                  defaultValue={dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]}
                   variant="filled"
                 />
               </div>
@@ -115,8 +175,9 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                 <Select
                   labelId="fuelUsedEsco1"
                   id="fuelUsedEsco1"
-                  value={fuelUsedEsco1}
-                  onChange={handleChangeFuelUsedEsco1}
+                  value={itemSubEscopo.combustivel_utilizado}
+                  name={"combustivel_utilizado"}
+                  onChange={handleChange}
                   autoWidth
                   label="Selecionar Combustível..."
                 >
@@ -132,7 +193,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
               <div className="d-flex justify-content-around">
                 <div className="m-2">
                   <h3 className="mb-3">
-                    Quantidade de Combustível consumida(por unidade)
+                    O combustível utilizado é formado por:
                   </h3>
                   <div className="d-flex justify-content-around">
                     <div>
@@ -146,7 +207,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][5]}
                       </Card>
                     </div>
                     <div>
@@ -159,7 +220,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][6]}
                       </Card>
                     </div>
                   </div>
@@ -180,7 +241,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][7]}
                       </Card>
                     </div>
                     <div>
@@ -193,7 +254,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][8]}
                       </Card>
                     </div>
                   </div>
@@ -218,7 +279,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][9]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -231,7 +292,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][10]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -244,7 +305,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][11]}
                       </Card>
                     </div>
                   </div>
@@ -263,7 +324,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][12]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -276,7 +337,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][13]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -289,7 +350,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][14]}
                       </Card>
                     </div>
                   </div>
@@ -312,7 +373,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -325,7 +386,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -338,7 +399,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17]}
                       </Card>
                     </div>
                   </div>
@@ -356,7 +417,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        434,3
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][18]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -369,7 +430,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19]}
                       </Card>
                     </div>
                     <div className="m-2">
@@ -382,7 +443,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                           backgroundColor: "#ccc",
                         }}
                       >
-                        34,33000
+                        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20]}
                       </Card>
                     </div>
                   </div>
@@ -402,7 +463,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                         backgroundColor: "#ccc",
                       }}
                     >
-                      434,3
+                      {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21]}
                     </Card>
                   </div>
                   <div className="m-2">
@@ -415,7 +476,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                         backgroundColor: "#ccc",
                       }}
                     >
-                      34,33000
+                      {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]}
                     </Card>
                   </div>
                 </div>
@@ -424,7 +485,15 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
           </div>
         </div>
         <div>
-          <Button variant="contained" size="large">
+          <Button onClick={() => {
+            const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado } = itemSubEscopo
+            dispatch(sheetActions.setSubEscopo({
+              range: "Combustão estacionária!A11:D11",
+              values:[registro_fonte, desc_fonte, combustivel_utilizado, qtd_consumida]
+            }))
+          }} 
+          variant="contained" size="large"
+          >
             Salvar
           </Button>
         </div>

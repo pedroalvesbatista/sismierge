@@ -43,7 +43,6 @@ function MenuAdmin({ titleHome, closeMenu }) {
 
     const handleLogout= () => {
         localStorage.clear()
-        // navigate('/auth/admin/login')
         window.location.href = '/auth/admin/login'
     }
 

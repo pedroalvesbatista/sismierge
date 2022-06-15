@@ -14,6 +14,7 @@ const storageCompany= {
 }
 
 function getCompanies (){
+  const storage= JSON.parse(localStorage.getItem("@sismiegee/auth")).user
 
     return dispatch => {
       dispatch({ 
@@ -22,10 +23,13 @@ function getCompanies (){
 
     companyService.getCompanies()
     .then(response => {
-        dispatch({ 
-          type: companyConstants.LOAD_COMPANY_REQUEST,
-          payload: response.data
-        })
+      const filterById = response.data.data.filter((item) => {
+        return item.attributes.users.includes(storage.id);
+      })
+      dispatch({ 
+        type: companyConstants.LOAD_COMPANY_SUCCESS,
+        payload: filterById[0].attributes
+      })
     })
     .catch(error => {
       dispatch({ 

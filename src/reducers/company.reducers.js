@@ -45,6 +45,7 @@ export const companyReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingCreateCompany: false,
+        sucessCreateCompany: true,
         company: action.payload,
       }
 
