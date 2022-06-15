@@ -234,3 +234,10 @@ export const itemEmissaoEqRefrRAC = [
   "Balanço de massa",
   "Método de triagem de fontes",
 ];
+
+export const fatoresEmissaoSetor = [
+  "Energia",
+  "Manufatura ou Construção",
+  "Comercial ou Institucional",
+  "Residencial, Agricultura, Florestal ou Pesca"
+]
