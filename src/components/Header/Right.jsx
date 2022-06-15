@@ -29,7 +29,7 @@ function RightHeader({ name = "unidade leste" }) {
 
   return (
     <Area>
-        <Left mouseEnter={mouseEnter}  onMouseEnter={() => setMouseEnter(!mouseEnter)} onMouseLeave={() => setMouseEnter(!mouseEnter)}>
+        {/* <Left mouseEnter={mouseEnter}  onMouseEnter={() => setMouseEnter(!mouseEnter)} onMouseLeave={() => setMouseEnter(!mouseEnter)}>
             <Avatar onClick={handleDropdown} mouseEnter={mouseEnter}  name={stateName} />
             <Text onClick={handleDropdown} mouseEnter={mouseEnter} > 
                 {stateName.split(" ").length > 1 ? `${firstName(stateName)} ${secondName(stateName)}` : firstName(stateName)} 
@@ -48,7 +48,7 @@ function RightHeader({ name = "unidade leste" }) {
                     ))}
                 </DropDown>
             }
-        </Left>
+        </Left> */}
         <NotificationIcon />
     </Area>
   )
@@ -57,7 +57,7 @@ function RightHeader({ name = "unidade leste" }) {
 const Area = styled.div`
     flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-left: 30px;
     position: relative;
 

@@ -20,7 +20,7 @@ export const Organisation = ({dataCompany, setPage}) => {
     const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
     const { loadingEscopos, sucessEscopos, dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
 
-    const dataLocal= JSON.parse(localStorage.getItem("@sismierge/auth"))
+    const dataLocal= JSON.parse(localStorage.getItem("@sismiegee/auth"))
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
         email: "",
@@ -35,18 +35,17 @@ export const Organisation = ({dataCompany, setPage}) => {
         subsetor: "",
         setor_atividade: dataEscopo[1],
         escopos: dataEscopo[0],
-        comprovante: "",
-        users: [dataLocal?.user]
+        users: JSON.stringify([dataLocal?.user.id])
     })
     const [haveUnidade, setHaveUnidade] = useState("")
 
   const handleSubmit= (e) => {
     e.preventDefault()
     const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
-    dispatch(companyActions.createCompany({
+    const newData = {
         email,
         razao_social,
-        escopos,
+        escopos: dataEscopo[0],
         users,
         cnpj,
         nome_do_responsavel,
@@ -55,28 +54,41 @@ export const Organisation = ({dataCompany, setPage}) => {
         nome_fantasia,
         endereco,
         setor_economico,
-        setor_atividade
+        setor_atividade: dataEscopo[1]
+    }
+    dispatch(companyActions.createCompany({
+        email,
+        razao_social,
+        escopos,
+        users,
+        id_user_create: dataLocal?.user?.id?.toString(),
+        cnpj,
+        nome_do_responsavel,
+        subsetor,
+        // cpf,
+        nome_fantasia,
+        endereco,
+        setor_economico,
+        setor_atividade: dataEscopo[1]
     }))
-
-    localStorage.setItem("@sismierge/data", JSON.stringify(data))
-    setPage("welcome")
-
-    // if (haveUnidade.length > 0) {
-    //     if (haveUnidade === "Sim") {
-    //         setPage("unidade")
-    //     }else {
-    //         setPage("welcome")
-    //     }
-    // }else {
-    //     setPage("welcome")
-    // }
-    
-    // localStorage.setItem("@sismierge/data", JSON.stringify(newData))
-    // setPage("organisationStep2")
   }
 
+  useEffect(() => {
+    if (sucessCreateCompany) {
+        setPage("welcome")
+    }
+  }, [sucessCreateCompany])
+
+  useEffect(() => {
+    setData({...data, escopos: dataEscopo[0]?.filter(i => i.items.length > 0), setor_atividade: dataEscopo[1]})
+  }, [dataEscopo])
+  
+
+//   console.log(dataEscopo);
+  
+
 //   console.log(data);
-// console.log(data.escopo);
+// console.log(JSON.parse(data.users));
   
   
 //   console.log(data.setor_economico);
@@ -188,8 +200,8 @@ export const Organisation = ({dataCompany, setPage}) => {
             </AreaInput> */}
         </Form>
         <ConexioArea>
-            <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
-                {loading ? "Carregando..." : "Continuar "} 
+            <Button aria-disabled={loadingCreateCompany ? true : false} onClick={handleSubmit}> 
+                {loadingCreateCompany ? "Carregando..." : "Continuar "} 
                 &#8674;
             </Button>
           </ConexioArea>

@@ -79,13 +79,11 @@ function authenticate (userData, admin){
 
     authService.authenticate(userData)
     .then(response => {
-        localStorage.removeItem(`@sismiegee/${isUser}`)
-        localStorage.setItem(`@sismiegee/auth/admin`, JSON.stringify(response.data))
         authService.getMe(response.data.jwt)
         .then(res => {
           dispatch({ 
             type: authConstants.LOGIN_USER_SUCCESS,
-            payload: response.data
+            payload: res.data
           })
 
           if (res.data.role.type === "authenticated") {

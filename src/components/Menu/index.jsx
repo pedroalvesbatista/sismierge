@@ -42,13 +42,12 @@ function Menu({ titleHome, closeMenu }) {
     }
 
     const handleLogout= () => {
-        localStorage.removeItem("@sismiegee/auth")
-        navigate('/auth/login')
+        localStorage.clear()
+        window.location.href = '/auth/login'
     }
 
     const handleClose= () => {
         setClose(!close)
-        console.log(close);
     }
 
     useEffect(() => {

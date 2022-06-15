@@ -36,7 +36,7 @@ export const Login = () => {
 
   const handleSubmit= () => {
     if (data.identifier.length > 0 || data.password.length > 0) {
-      dispatch(authActions.authenticate(data))
+      dispatch(authActions.authenticate(data, false))
     } else {
       toast.warn("Os campos precisa ser preenchido")
     }

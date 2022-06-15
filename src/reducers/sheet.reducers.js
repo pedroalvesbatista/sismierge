@@ -3,9 +3,16 @@ import { sheetConstants } from "../constants/redux"
 const initialState = {
     loadingEscopos: false,
     sucessEscopos: false,
+    loadingCreateSubEscopo: false,
+    sucessCreateSubEscopo: false,
+    errorCreateSubEscopo: false,
+    loadingSubEscopo: false,
+    sucessSubEscopo: false,
     errorEscopos: false,
+    errorSubEscopo: false,
     escopoSheetData: [],
     dataEscopo: [],
+    dataSubEscopo: []
 }
 
 export const escoposReducer = (state = initialState, action) => {
@@ -35,6 +42,57 @@ export const escoposReducer = (state = initialState, action) => {
         sucessEscopos: false,
         errorEscopos: action.payload
       }
+
+    case sheetConstants.LOAD_SUBESCOPO_REQUEST:
+      return {
+        ...state,
+        loadingSubEscopo: true,
+        sucessSubEscopo: false,
+        errorSubEscopo: false
+      }
+      
+
+    case sheetConstants.LOAD_SUBESCOPO_SUCCESS:
+      return {
+        ...state,
+        loadingSubEscopo: false,
+        sucessSubEscopo: true,
+        dataSubEscopo: action.payload,
+      }
+
+    case sheetConstants.LOAD_SUBESCOPO_FAIL:
+      return {
+        ...state,
+        loadingSubEscopo: false,
+        sucessSubEscopo: false,
+        errorSubEscopo: action.payload
+      }
+    
+    case sheetConstants.SET_SUBESCOPO_REQUEST:
+      return {
+        ...state,
+        loadingCreateSubEscopo: true,
+        sucessCreateSubEscopo: false,
+        errorCreateSubEscopo: false
+      }
+      
+
+    case sheetConstants.SET_SUBESCOPO_SUCCESS:
+      return {
+        ...state,
+        loadingCreateSubEscopo: false,
+        sucessCreateSubEscopo: true,
+        errorCreateSubEscopo: false
+      }
+
+    case sheetConstants.SET_SUBESCOPO_FAIL:
+      return {
+        ...state,
+        loadingCreateSubEscopo: false,
+        sucessCreateSubEscopo: false,
+        errorCreateSubEscopo: true
+      }
+  
 
     case sheetConstants.SET_DATA_ESCOPO:
       return {
