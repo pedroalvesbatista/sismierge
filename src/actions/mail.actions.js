@@ -19,8 +19,6 @@ function sendConvite (userData){
                     payload: response.data
                 })
 
-                console.log("Enviado deu certo");
-
                 toast.success(`Link foi enviado com sucesso para ${userData.email}`)
                 
             })

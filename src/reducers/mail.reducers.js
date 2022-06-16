@@ -32,6 +32,14 @@ export const mailReducer = ( state= initialState, action) => {
                 sucessSendConvite: false,
                 errorSendConvite: true
             }
+        
+        case mailConstants.CLEAR_All:
+            return {
+                ...state,
+                loadingSendConvite: false,
+                sucessSendConvite: false,
+                errorSendConvite: false
+            }
     
         default:
             return state;

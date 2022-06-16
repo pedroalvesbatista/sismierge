@@ -51,7 +51,6 @@ function createUser (userData){
 
   authService.createUser(userData)
   .then(response => {
-    console.log(response.data);
     dispatch({ 
       type: authConstants.CREATE_USER_SUCCESS,
       payload: response.data
@@ -62,6 +61,9 @@ function createUser (userData){
     dispatch({ 
       type: authConstants.CREATE_USER_FAIL,
     })
+    if (error.response.data.error.message === "Email is already taken") {
+      toast.error("O e-mail já foi usado")
+    }
     console.log(error);
   })
   }
@@ -225,7 +227,7 @@ function editUser (id, userData){
   }
 }
 
-function deleteUser (id, userData){
+function deleteUser (id){
 
   return dispatch => {
     dispatch({ 

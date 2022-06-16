@@ -3,7 +3,7 @@ import Lottie from 'react-lottie'
 
 import animationData from '../assets/loading.json'
 import styled from 'styled-components'
-import { admin } from '../../../constants/tailwind/colors'
+import { admin, primary } from '../../../constants/tailwind/colors'
 
 export function LoadingAnimation({ height, width, speed=1, size=50 }) {
 
@@ -20,24 +20,28 @@ export function LoadingAnimation({ height, width, speed=1, size=50 }) {
 
   return (
     <Area>
-        <Lottie 
-            options={defaultOptions}
-            height={height ?? size}
-            width={width ?? size}
-            speed={speed}
-            isClickToPauseDisabled={true}
-        />
+      <Lottie 
+        options={defaultOptions}
+        height={height ?? size}
+        width={width ?? size}
+        speed={speed}
+        isClickToPauseDisabled={true}
+      />
     </Area>
   )
 }
 
 const Area = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    /* position: fixed; */
-    /* left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; */
+  height: 100vh;
+  width: 100%;
+  background-color: ${primary.verde}81;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  box-shadow: 5px 0px 6px -2px rgba(0,0,0,0.10);
+  position: fixed;
+  top: 0;
+  left: 0;
 `

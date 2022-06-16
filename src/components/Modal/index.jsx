@@ -20,20 +20,20 @@ import { LoadingAnimation } from '../lottie'
 function Modal({ loading }) {
   const dispatch = useDispatch()
   const { isOpenModal, displayModal } = useSelector(state => state.others)
+  const { loadingDeleteUser } = useSelector(state => state.auth)
   const title= firstLetterCase(displayModal)
 
   const handleCloseModal = (e) => {
     e.stopPropagation()
     dispatch(othersActions.closeModal())
   }
-  
 
   return (
-    isOpenModal &&
-    <Area onClick={handleCloseModal}>
-      {displayModal === "loading" ? (
-          <LoadingAnimation size={150}/>
-        ) : (
+    loadingDeleteUser ? (
+      <LoadingAnimation size={150}/>
+    )  : (
+      isOpenModal &&
+        <Area onClick={handleCloseModal}>
           <Card onClick={e => e.stopPropagation()}>
             <Header>
               <Text> {title} </Text>
@@ -43,9 +43,8 @@ function Modal({ loading }) {
             <RoutesCompany/>
             <RoutesAdmin />
           </Card>
-        )
-      }
-    </Area>
+        </Area>
+    )
   )
 }
 

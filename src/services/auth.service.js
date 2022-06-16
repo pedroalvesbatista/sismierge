@@ -39,13 +39,13 @@ function loadRoles() {
     return httpBackend.get(`users-permissions/roles`)
 }
 
-function editUser(id, userData, token) {
+function editUser(id, userData) {
     // console.log(storageToken);
-    return httpBackend.put(`users/${id}`, userData, { headers: {"Authorization" : `Bearer ${token ?? storageToken}`} })
+    return httpBackend.put(`users/${id}`, userData)
 }
 
-function deleteUser(id, token) {
-    return httpBackend.delete(`users/${id}`, { headers: {"Authorization" : `Bearer ${token ?? storageToken}`} })
+function deleteUser(id) {
+    return httpBackend.delete(`users/${id}`)
 }
 
 function getMe(token) {

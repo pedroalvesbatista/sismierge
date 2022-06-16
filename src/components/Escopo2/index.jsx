@@ -77,7 +77,7 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
     setCurentIdxEsco2("");
   };
 
-  console.log(showSubEsco2);
+  // console.log(showSubEsco2);
   return (
     <>
       <Modal

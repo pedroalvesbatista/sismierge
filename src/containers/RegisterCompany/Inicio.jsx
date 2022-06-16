@@ -44,7 +44,9 @@ export const Inicio = ({ setPage }) => {
 
   const handleSubmit= (e) => {
     e.preventDefault()
+    // console.log("Testando");
     if (data.username?.length > 0 || data.password?.length > 0 || data.name?.length > 0 ) {
+      // console.log("Entramos");
         const newData= {
           username: data?.username,
           name: data?.name,

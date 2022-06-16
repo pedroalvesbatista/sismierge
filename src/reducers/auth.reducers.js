@@ -148,6 +148,7 @@ export const authReducer = (state = initialState, action) => {
         return {
           ...state,
           loadingDeleteUser: true,
+          sucessDeleteUser: false,
         }
   
     case authConstants.DELETE_USER_SUCCESS:
@@ -171,61 +172,19 @@ export const authReducer = (state = initialState, action) => {
           roles: action.payload ,
         }
 
-    case authConstants.CLEAR_ALL_LOGIN:
+    case authConstants.CLEAR_ALL:
+      return { 
+        ...state,
+        loadingDeleteUser: false,
+        sucessDeleteUser: false,
+        loadingEditUser: false,
+        sucessEditUser: false,
+        signupSuccess: false,
+      }
+
     case authConstants.LOGOUT: 
       localStorage.clear();
       return initialState;
-
-    case authConstants.CLEAR_ERRORS:
-      return {
-        ...state,
-        error: false
-      }
-
-    case authConstants.ERR_SHORT_PASSWORD: 
-      return { 
-        ...state,
-        error: "SHORT_PASS"
-      }
-
-    case authConstants.FORGOT_PASSWORD_REQUEST: 
-      return {
-        ...state,
-        resetPassLoading: true,
-      }
-
-    case authConstants.FORGOT_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        resetPassLoading: false,
-        resetPassEmail: action.payload,
-      }
-
-    case authConstants.FORGOT_PASSWORD_FAIL:
-      return {
-        ...state,
-        resetPassLoading: false,
-        resetPassError: true
-      }
-
-    case authConstants.SET_RESET_PASS_TOKEN:
-      return { 
-        ...state,
-        resetPassToken: action.payload
-      }
-
-    case authConstants.SET_RESET_PASS_EMAIL:
-      return {
-        ...state,
-        resetPassEmail: action.payload
-      }
-    
-    case authConstants.CLEAR_RESET_PASS_TOKEN:
-      return {
-        ...state,
-        resetPassToken: "",
-        resetPassEmail: ""
-      }
 
     default: 
       return state;

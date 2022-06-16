@@ -8,6 +8,7 @@ import Input from '../../Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { randPassUser } from '../../../functions'
 import { mailActions } from '../../../actions/mail.actions'
+import { authConstants, mailConstants } from '../../../constants/redux'
 
 export function AddColaboradores({ openModal }) {
     const dispatch = useDispatch()
@@ -48,24 +49,33 @@ export function AddColaboradores({ openModal }) {
             dispatch(mailActions.sendConvite(dataSend))
         }
 
+        
+
     }, [signupSuccess, ])
 
     useEffect(() => {
+
         if (sucessSendConvite) {
             dispatch(authActions.editUser(user.user?.id, {role: roles?.filter(i => i.type === "authenticated")[0]}))
-            if (sucessEditUser) {
-                dispatch(othersActions.closeModal())
-                window.location.reload()
-            }
-            
         }
+
+        if (sucessEditUser) {
+            dispatch(othersActions.closeModal())
+            setData({
+                name: '',
+                email: '',
+            })
+            dispatch({ 
+                type: mailConstants.CLEAR_All
+            })
+        }
+
     }, [sucessSendConvite, sucessEditUser])
     
     
-    
   return (
-    <Area>
-        <Form onSubmit={onSubmit}>
+    <Area onSubmit={onSubmit}>
+        <Form>
             <Input
                 label={'Nome do responsável'} 
                 placeholder={'Juliana Ferreira'}
@@ -84,17 +94,17 @@ export function AddColaboradores({ openModal }) {
             />
         </Form>
         <AreaButton>
-            <Button isDisable={loading} disabled={loading} onClick={onSubmit}> 
-                {loading ?  "Adicionando..." : loadingSendConvite ? "Enviando o link..." : "Adicionar empresa"} 
+            <Button isDisable={loading || loadingSendConvite} disabled={loading || loadingSendConvite} onClick={onSubmit}> 
+                {loading ?  "Adicionando..." : loadingSendConvite ? "Enviando o link..." : "Adicionar colaborador"} 
             </Button>
         </AreaButton>
     </Area>
   )
 }
 
-const Area = styled.div`
+const Area = styled.form`
 `
-const Form = styled.form`
+const Form = styled.div`
     display: flex;
     justify-content: space-between;
 `

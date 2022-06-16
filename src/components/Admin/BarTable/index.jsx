@@ -18,7 +18,6 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
     }
 
     const handleDelete = (id) => {
-        dispatch(othersActions.handleOpenModal("loading"))
         dispatch(authActions.deleteUser(id))
     }
 
@@ -36,7 +35,7 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                         <tr>
                             <TableArea>
                                 {header && header?.map((i, key) => (
-                                    <Item title={true} key={key}>{i.toUpperCase()}</Item>
+                                    <Item title={true.toString()} key={key}>{i.toUpperCase()}</Item>
                                 ))}
                             </TableArea>
                         </tr>
@@ -51,9 +50,9 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                                 item?.length > 0 ? 
                                     item.slice(0, 10).map((i, key) => (
                                         <TableArea key={key}>
-                                            <Item onClick={() => handleEdit(i)}>  { i.name } </Item>
-                                            <Item onClick={() => handleEdit(i)}>  { i.email } </Item>
-                                            <Item onClick={() => handleEdit(i)}>  { i.role.name } </Item>
+                                            <Item onClick={() => handleEdit(i)}>  { i?.name } </Item>
+                                            <Item onClick={() => handleEdit(i)}>  { i?.email } </Item>
+                                            <Item onClick={() => handleEdit(i)}>  { i?.role?.name } </Item>
                                             <Item> 
                                                 <BsPencilSquare onClick={() => handleEdit(i)} size={14} color={admin.verde} />
                                                 <BsTrash 
@@ -122,14 +121,14 @@ const ButtonArea = styled.div`
   display: flex;
   justify-content: flex-end;
 `
-const NotCOntentArea = styled.div`
+const NotCOntentArea = styled.th`
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 300px;
 `
-const Item = styled.div`
+const Item = styled.span`
     display: flex;
     gap: 10px;
     justify-content: center;

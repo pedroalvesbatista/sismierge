@@ -61,8 +61,6 @@ export const HomePage = () => {
   useEffect(() => {
     dispatch(companyActions.getCompanies())
   }, [])
-
-  // console.log(companies.escopos);
   
 
   return (

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { LoadingAnimation } from '../../../components/lottie'
@@ -22,8 +21,7 @@ import {
 
 export const LoginAdmin = () => {
   const dispatch = useDispatch()
-  const navigate= useNavigate()
-  const { loading, user, sucess, isLogin } = useSelector(state => state.auth)
+  const { loading } = useSelector(state => state.auth)
   const [data, setData] = useState({password: '', identifier: ''})
   const [showPassword, setShowPassword] = useState(false)
 
@@ -33,7 +31,6 @@ export const LoginAdmin = () => {
   }
 
   const handleSubmit= () => {
-    // e?.preventDefault
 
     if (data.identifier?.length > 0 || data.password?.length > 0) {
       dispatch(authActions.authenticate(data, true))
@@ -41,8 +38,6 @@ export const LoginAdmin = () => {
       toast.warn("Os campos precisa ser preenchido")
     }
   }
-
-  console.log(data);
 
   return (
     <Area className='' >
@@ -67,7 +62,6 @@ export const LoginAdmin = () => {
               onChange={(e) => setData({...data, password: e.target.value})}
               required
               value={data.password}
-              // onChange={e => console.log(e.target.type)}
             />
             {!showPassword ?
               <IconeEye onClick={handleShowPassword} />
@@ -76,7 +70,7 @@ export const LoginAdmin = () => {
           </InputArea>
           <ConexioArea>
             <TextArea>Esqueceu a senha?</TextArea>
-            <Button aria-disabled={loading ? true : false} onClick={handleSubmit}>
+            <Button  aria-disabled={loading ? true : false} onClick={handleSubmit}>
               {loading ? <LoadingAnimation /> : "Conectar"} 
             </Button>
             

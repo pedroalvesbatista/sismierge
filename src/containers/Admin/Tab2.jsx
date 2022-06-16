@@ -13,14 +13,9 @@ function Tab2({  }) {
   const { loadingGetUsers, users } = useSelector(state => state.auth)
   const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
 
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([])
-
-  // useEffect(() => {
-  //   dispatch(companyActions.getUserCompany())
-  // }, [companies])
-
-  // console.log(users);
+  useEffect(() => {
+    dispatch(authActions.loadUsers())
+  }, [users])
   
 
   const handelModal = () => {
@@ -30,7 +25,7 @@ function Tab2({  }) {
   return (
     <BarTable 
       onClick={handelModal} 
-      item={users?.filter(i => i.role.type === "master")} 
+      item={users?.filter(i => i?.role?.type === "master")} 
       loading={false} 
       header={titles} 
       onEdit={() => dispatch(othersActions.handleOpenModal("Editar Usuário"))}

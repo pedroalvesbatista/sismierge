@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect } from 'react'
 import BarTable from '../../components/Admin/BarTable'
-import { admin } from '../../constants/tailwind/colors'
-import { BsPlusCircleDotted } from 'react-icons/bs'
-import { colaboradorService } from '../../services'
 import { useDispatch, useSelector } from 'react-redux'
-import { othersActions } from '../../actions'
+import { authActions, othersActions } from '../../actions'
 
 function Tab3() {
   const dispatch = useDispatch()
-  const { loadingGetUsers, users } = useSelector(state => state.auth)
+  const { users } = useSelector(state => state.auth)
   const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([])
+
+  useEffect(() => {
+    dispatch(authActions.loadUsers())
+  }, [users])
   
 
   const handelModal = () => {

@@ -103,7 +103,7 @@ export const ConexioArea = styled.div`
     align-items: center;
     margin-top: 10px;
 `
-export const Button = styled.div`
+export const Button = styled.button`
     cursor: pointer;
     width: 100px;
     height: 30px;

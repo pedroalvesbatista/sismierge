@@ -16,7 +16,7 @@ function Avatar({
     const firstLetterSecondName= lastName?.split("")[0]?.toUpperCase()
     const isTwoName= nameComplete?.length > 1 
   return (
-    <Area bgColor={bgColor} onClick={onClick} isTwo={isTwoName} radius={radius}>
+    <Area bgColor={bgColor} onClick={onClick} isTwo={isTwoName} radius={radius.toString()}>
         {isTwoName ? `${firstLetter}${firstLetterSecondName}`
             : firstLetter ?? "S"
         }
