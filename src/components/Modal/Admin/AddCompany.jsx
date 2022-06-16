@@ -53,6 +53,7 @@ export function AddCompany({ openModal }) {
     }, [signupSuccess, ])
 
     useEffect(() => {
+        console.log(roles);
         if (sucessSendConvite) {
             dispatch(authActions.editUser(user.user?.id, {role: roles?.filter(i => i.type === "master")[0]}))
             if (sucessEditUser) {
@@ -62,6 +63,8 @@ export function AddCompany({ openModal }) {
             
         }
     }, [sucessSendConvite, sucessEditUser])
+
+    console.log(roles);
     
     
     

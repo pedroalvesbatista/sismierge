@@ -500,6 +500,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem !important;
 }
 
+.pl-5 {
+  padding-left: 1.25rem !important;
+}
+
+.pb-5 {
+  padding-bottom: 1.25rem !important;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem !important;
+}
+
 .outline {
   outline-style: solid !important;
 }
