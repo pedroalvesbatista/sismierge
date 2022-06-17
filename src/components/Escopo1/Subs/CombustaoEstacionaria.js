@@ -14,55 +14,60 @@ import {
 } from "@mui/material";
 
 import { style } from "../../../utils/util";
-import { fuelUsedEsco1Item, fatoresEmissaoSetor } from "../selectionData";
+import {
+  fuelUsedEsco1Item,
+  fatoresEmissaoSetor,
+} from "../selectionData";
 import { companyActions, sheetActions } from "../../../actions";
+import ShowInfo from "./ShowInfo";
 
-const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
-  const dispatch = useDispatch()
-  const { loadingSubEscopo, sucessSubEscopo, dataSubEscopo, sucessCreateSubEscopo } = useSelector(state => state.sheet)
-  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(state => state.company)
-  const [ itemSubEscopo, setItemSubEscopo ] = useState({
-    registro_fonte: "",
-    desc_fonte: "",
-    qtd_consumida: "",
-    combustivel_utilizado: "",
-    fator_emissao_setor:"",
-    // combustivel_utilizado_formado: {
-    //   combustivel_fossil: "",
-    //   biocombustivel: ""
-    // },
-    // qtd_combustivel_consumida_unidade: {
-    //   combustivel_fossil: "",
-    //   biocombustivel: ""
-    // },
-    // fator_emissao_comb_fossil: {
-    //   co2: "",
-    //   ch4: "",
-    //   n2o: ""
-    // },
-    // fator_emissao_comb_biocombustivel: {
-    //   co2: "",
-    //   ch4: "",
-    //   n2o: ""
-    // }
-  })
+const CombustaoEstacionaria = ({
+  nextEsco1Button,
+  handleChangeEsco1,
+  itemSubEscopo,
+  setItemSubEscopo,
+}) => {
+  const dispatch = useDispatch();
+  const {
+    loadingSubEscopo,
+    sucessSubEscopo,
+    dataSubEscopo,
+    sucessCreateSubEscopo,
+  } = useSelector((state) => state.sheet);
+  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(
+    (state) => state.company
+  );
+const [ showHowToFill, setShowHowToFill]=useState(false);
+const [section1, setSection1] = useState(false);
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setItemSubEscopo({...itemSubEscopo, [name]: value});
+    const { name, value } = event.target;
+    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
   };
 
   useEffect(() => {
-    dispatch(sheetActions.loadSubEscopos(1093763195))
-  }, [sucessCreateSubEscopo])
+    dispatch(sheetActions.loadSubEscopos(1093763195));
+  }, [sucessCreateSubEscopo]);
 
   useEffect(() => {
     if (itemSubEscopo.qtd_consumida.length > 1) {
-      const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado } = itemSubEscopo
-      dispatch(sheetActions.setSubEscopo({
-        range: "Combustão estacionária!A11:D11",
-        values:[registro_fonte, desc_fonte, combustivel_utilizado, qtd_consumida]
-      }))
+      const {
+        registro_fonte,
+        desc_fonte,
+        qtd_consumida,
+        combustivel_utilizado,
+      } = itemSubEscopo;
+      dispatch(
+        sheetActions.setSubEscopo({
+          range: "Combustão estacionária!A11:D11",
+          values: [
+            registro_fonte,
+            desc_fonte,
+            combustivel_utilizado,
+            qtd_consumida,
+          ],
+        })
+      );
     }
     // if (sucessCreateCompany) {
     //   dispatch(sheetActions.setSubEscopo({
@@ -70,11 +75,9 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
     //     values:['', '', '', '']
     //   }))
     // }
-  }, [itemSubEscopo])
-  
-  
-    
-  // console.log(itemSubEscopo);  
+  }, [itemSubEscopo]);
+
+  // console.log(companies);
   return (
     <Modal
       open={nextEsco1Button}
@@ -98,10 +101,24 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
             />
           </div>
           <div>
-            <Button className="m-1" variant="contained" size="large">
+            <Button
+              className="m-1"
+              variant="outlined"
+              size="large"
+              onClick={() => {
+                setShowHowToFill(!showHowToFill);
+              }}
+            >
               Como Preencher ?
             </Button>
-            <Button className="m-1" variant="contained" size="large">
+            <Button
+              className="m-1"
+              variant="outlined"
+              size="large"
+              onClick={() => {
+                setSection1(!section1);
+              }}
+            >
               Seção 1
             </Button>
             <Button
@@ -114,6 +131,12 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
             </Button>
           </div>
         </div>
+        <ShowInfo
+          showHowToFill={showHowToFill}
+          setShowHowToFill={setShowHowToFill}
+          section1={section1}
+          setSection1={setSection1}
+        />
         <div className=" mb-5" style={{ maxWidth: 380 }}>
           <h3
             style={{ color: "#953fc6" }}
@@ -147,7 +170,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
             </div>
             <div>
               <h3>Fatores de Emissão-setor:</h3>
-              <FormControl sx={{ m: 1, maxWidth: 300 }} required>
+              <FormControl sx={{ m: 1, minWidth: 200 }} required>
                 <InputLabel id="fator_emissao_setor">
                   Fatores de Emissão para o setor
                 </InputLabel>
@@ -160,7 +183,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
                   autoWidth
                   label="Fatores de Emissão para o setor..."
                 >
-                  {fatoresEmissaoSetor?.map((elem) => (
+                  {companies.setor_atividade?.map((elem) => (
                     <MenuItem value={elem}>{elem}</MenuItem>
                   ))}
                 </Select>
@@ -228,7 +251,7 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
               <div className="d-flex justify-content-between">
                 <div className="m-2">
                   <h3 className="mb-3">
-                    Quantidade de Combustível consumida(por unidade)
+                    O combustível utilizado é formado por:
                   </h3>
                   <div className="d-flex justify-content-around">
                     <div>
@@ -556,21 +579,32 @@ const CombustaoEstacionaria = ({ nextEsco1Button, handleChangeEsco1 }) => {
           </div>
         </div>
         <div>
-          <Button onClick={() => {
-            let indexEscopo= companies.escopos.findIndex(i => i.id === 1)
-            let indexSubEscopo= companies.escopos[indexEscopo].items.findIndex(i => i.sheetId === 1093763195)
-            let filterTypeSubEscopo= companies.escopos[indexEscopo].items.filter(i => i.sheetId === 1093763195)[0]
-            filterTypeSubEscopo= {...filterTypeSubEscopo, items: dataSubEscopo}
-            
-            let newDataEscopo= {...companies}
-            newDataEscopo.escopos[indexEscopo].items[indexSubEscopo] = filterTypeSubEscopo
+          <Button
+            onClick={() => {
+              let indexEscopo = companies.escopos.findIndex((i) => i.id === 1);
+              let indexSubEscopo = companies.escopos[
+                indexEscopo
+              ].items.findIndex((i) => i.sheetId === 1093763195);
+              let filterTypeSubEscopo = companies.escopos[
+                indexEscopo
+              ].items.filter((i) => i.sheetId === 1093763195)[0];
+              filterTypeSubEscopo = {
+                ...filterTypeSubEscopo,
+                items: dataSubEscopo,
+              };
 
-            dispatch(companyActions.updateCompany(newDataEscopo, companies.id))
+              let newDataEscopo = { ...companies };
+              newDataEscopo.escopos[indexEscopo].items[indexSubEscopo] =
+                filterTypeSubEscopo;
 
-          }} 
-          variant="contained" size="large"
+              dispatch(
+                companyActions.updateCompany(newDataEscopo, companies.id)
+              );
+            }}
+            variant="contained"
+            size="large"
           >
-            {loadingCreateCompany ? "Salvando...": "Salvar"}
+            {loadingCreateCompany ? "Salvando..." : "Salvar"}
           </Button>
         </div>
       </Box>

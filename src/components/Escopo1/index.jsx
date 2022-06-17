@@ -24,18 +24,19 @@ import EmissosFugitivas from "./Subs/EmissosFugitivas";
 import ResiduosSolidos from "./Subs/ResiduosSolidos";
 import Efluentes from "./Subs/Efluentes";
 import { sheetActions } from "../../actions";
+import { initialItemData } from "./selectionData";
 
 const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const dispatch = useDispatch()
   // const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
   const { sucessCreateCompany } = useSelector(state => state.company)
   const [invetYear, setInvetYear] = useState("");
-  const [setor, setSetor] = useState("");
 
   const [showSubEsco1, setShowSubEsco1] = useState("");
   const [nextEsco1Button, setnextEsco1Button] = useState(false);
   const [curentIdxEsco1, setCurentIdxEsco1] = useState();
   const handleClose = () => setOpenStartInvet(false);
+  const [dataItemCE, setDataItemCE] = useState(initialItemData);
 
   const handleEsco1 = (name, id) => {
     let nameToSwitch = name.toLowerCase();
@@ -68,13 +69,10 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChangeYear = (event) => {
     setInvetYear(event.target.value);
   };
 
-  const handleChangeSetor = (event) => {
-    setSetor(event.target.value);
-  };
 
   const handleChangeEsco1 = () => {
     setnextEsco1Button(!nextEsco1Button);
@@ -84,6 +82,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
       range: "Combustão estacionária!A11:D11",
       values:['', '', '', '']
     }))
+    setDataItemCE(initialItemData);
   };
 
   useEffect(() => {
@@ -121,10 +120,10 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
             className="mt-4"
             style={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "align-content-start",
             }}
           >
-            <Card sx={{ width: 185 }}>
+            <Card sx={{ width: 285 }}>
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}
@@ -140,44 +139,13 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
                     labelId="invetYear-label"
                     id="invetYear"
                     value={invetYear}
-                    onChange={handleChange}
+                    onChange={handleChangeYear}
                     autoWidth
                     label="Selecione o Ano"
                   >
                     <MenuItem value={2015}>2015</MenuItem>
                     <MenuItem value={2010}>2010</MenuItem>
                     <MenuItem value={2020}>2020</MenuItem>
-                  </Select>
-                </FormControl>
-              </CardContent>
-            </Card>
-            <Card sx={{ width: 285 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  Selecione o setor de Atividade
-                </Typography>
-
-                <FormControl sx={{ m: 1, minWidth: 80 }} required>
-                  <InputLabel id="setor-label">Setor</InputLabel>
-                  <Select
-                    labelId="setor-label"
-                    id="setor"
-                    value={setor}
-                    onChange={handleChangeSetor}
-                    autoWidth
-                    label="Selecione o setor de Atividade"
-                  >
-                    <MenuItem value={"energia"}>Energia</MenuItem>
-                    <MenuItem value={"manufatura"}>
-                      Manufatura ou Construção
-                    </MenuItem>
-                    <MenuItem value={"comercial_Inst"}>
-                      Comercial ou Institucional
-                    </MenuItem>
                   </Select>
                 </FormControl>
               </CardContent>
@@ -193,14 +161,20 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
                     width: 200,
                     margin: 20,
                     backgroundColor:
-                      curentIdxEsco1 === elem.sheetId ? elem.items.length > 0 ? "#3bc8a7" : "#4682B4" : elem.items.length > 0 ? "#349b83" : "#ccc",
+                      curentIdxEsco1 === elem.sheetId
+                        ? elem.items.length > 0
+                          ? "#3bc8a7"
+                          : "#4682B4"
+                        : elem.items.length > 0
+                        ? "#349b83"
+                        : "#ccc",
                     cursor: "pointer",
                   }}
                   onClick={() => {
                     handleEsco1(elem.title);
                     setCurentIdxEsco1(elem.sheetId);
                     // console.log(curentIdxEsco1);
-                    dispatch(sheetActions.loadSubEscopos(elem.sheetId))
+                    dispatch(sheetActions.loadSubEscopos(elem.sheetId));
                   }}
                 >
                   <CardContent className="text-light font-weight-bold text-uppercase">
@@ -221,6 +195,8 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
           // idSheet={data[0].sheetId}
+          itemSubEscopo={dataItemCE}
+          setItemSubEscopo={setDataItemCE}
         />
       )}
 
