@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Select,
   MenuItem,
@@ -17,8 +17,9 @@ import {
   FormControlLabel,
   FormLabel,
 } from "@mui/material";
-import { style} from "../../../utils/util"
+import { style } from "../../../utils/util";
 import { itemEmissaoEqRefrRAC } from "../selectionData";
+import ShowInfo from "./ShowInfo";
 
 const SubModalEmissosFugitivas = ({
   itemEmissosFugitivas,
@@ -26,6 +27,7 @@ const SubModalEmissosFugitivas = ({
   setOpenSubEmissosFugitivas,
 }) => {
   const [curentIdxSubEsco1, setCurentIdxSubEsco1] = useState();
+  const [showHowToFill, setShowHowToFill] = useState(false);
 
   return (
     <>
@@ -50,16 +52,20 @@ const SubModalEmissosFugitivas = ({
                 }}
               />
             </div>
-            <div className="d-flex align-items-end">
-              <h2
-                style={{ color: "#953fc6" }}
-                className="fs-3 font-weight-bold text-uppercase"
-              >
-                {itemEmissosFugitivas.title}
-              </h2>
-            </div>
+
             <div className="d-flex align-items-start">
               <Button
+                className="m-1"
+                variant="outlined"
+                size="large"
+                onClick={() => {
+                  setShowHowToFill(!showHowToFill);
+                }}
+              >
+                Como Preencher ?
+              </Button>
+              <Button
+                className="m-1"
                 variant="contained"
                 size="large"
                 onClick={() => {
@@ -70,9 +76,216 @@ const SubModalEmissosFugitivas = ({
               </Button>
             </div>
           </div>
+          <ShowInfo
+            showHowToFillSEF={showHowToFill}
+            setShowHowToFillSEF={setShowHowToFill}
+          />
+          <div
+            className="mb-5 d-flex align-items-end"
+            style={{
+              width: 490,
+            }}
+          >
+            <h2
+              style={{ color: "#953fc6" }}
+              className="fs-3 font-weight-bold text-uppercase"
+            >
+              {itemEmissosFugitivas.title}
+            </h2>
+          </div>
           {itemEmissosFugitivas.id === 0 && (
-            <div className="d-flex  justify-content-between">
-              <div className="d-flex flex-column align-items-start">
+            <>
+              <div className="border border-warning p-3 mt-5 mb-5">
+                {curentIdxSubEsco1 === 0 ? (
+                  <div className="d-flex  justify-content-between mb-5">
+                    <div className="">
+                      <h2 className=" mb-3">Unidades Novas</h2>
+                      <div className="d-flex justify-content-around">
+                        <div className="m-2">
+                          <h3>Registro da Fonte</h3>
+                          <TextField
+                            id="regist-fonta"
+                            label=" Digite o registro da fonte..."
+                            variant="outlined"
+                          />
+                        </div>
+                        <div className="m-2">
+                          <h3>Gás ou Composto</h3>
+                          <TextField
+                            id="gas-composto"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+
+                        <div className="m-2">
+                          <h3>Carga (kg)</h3>
+                          <TextField
+                            id="cargaUN"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+                        <div className="m-2">
+                          <h3>Capacidade (kg)</h3>
+                          <TextField
+                            id="capacidadeUN"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="d-flex  justify-content-around">
+                      <div className="d-flex flex-column align-items-end">
+                        <h3 className="mb-3">Unidades Existentes</h3>
+                        <div className="m-2  ">
+                          <h3>Carga (kg)</h3>
+                          <TextField
+                            id="cargaUE"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="mb-3">Unidades Dispersadas</h3>
+                        <div className="d-flex  justify-content-around">
+                          <div className="m-2">
+                            <h3>Capacidade (kg)</h3>
+                            <TextField
+                              id="capacidadeUD"
+                              label="Digite Aqui..."
+                              variant="outlined"
+                            />
+                          </div>
+                          <div className="m-2">
+                            <h3>Recuperada (kg)</h3>
+                            <TextField
+                              id="recuperadaUD"
+                              label="Digite Aqui..."
+                              variant="outlined"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : curentIdxSubEsco1 === 1 ? (
+                  <div className="d-flex  justify-content-around align-items-end">
+                    <div className="m-2">
+                      <h3>Registro da Fonte</h3>
+                      <TextField
+                        id="regist-fonte"
+                        label=" Digite o registro da fonte..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="m-2">
+                      <h3>Gás ou Composto</h3>
+                      <TextField
+                        id="gas-composto"
+                        label="Digite Aqui..."
+                        variant="outlined"
+                      />
+                    </div>
+
+                    <div>
+                      <h3 className=" mb-3">Variação no Estoque</h3>
+                      <div className="m-2">
+                        <h3>VE</h3>
+                        <TextField
+                          id="variacaoE"
+                          label="Digite Aqui..."
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className=" mb-3">Quantidade Transferida</h3>
+                      <div className="m-2">
+                        <h3>T (kg)</h3>
+                        <TextField
+                          id="quantTransf"
+                          label="Digite Aqui..."
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className=" mb-3">Mudança de Capacidade</h3>
+                      <div className="m-2">
+                        <h3>MC (kg)</h3>
+                        <TextField
+                          id="cargaUE"
+                          label="Digite Aqui..."
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : curentIdxSubEsco1 === 2 ? (
+                  <div className="d-flex  justify-content-around align-items-end">
+                    <div className="m-2">
+                      <h3>Registro da Fonte</h3>
+                      <TextField
+                        id="regist-fonte"
+                        label=" Digite o registro da fonte..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="m-2">
+                      <h3>Gás ou Composto</h3>
+                      <TextField
+                        id="gas-composto"
+                        label="Digite Aqui..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="m-2">
+                      <h3>Tipo de Equipamento</h3>
+                      <TextField
+                        id="tipo-equipamento"
+                        label="Digite Aqui..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div className="m-2">
+                      <h3>Carga das Unidades Novas</h3>
+                      <TextField
+                        id="carga-UN"
+                        label="Digite Aqui..."
+                        variant="outlined"
+                      />
+                    </div>
+                    <div>
+                      <h3 className=" mb-1">Capacidade</h3>
+                      <div className="d-flex  justify-content-center ">
+                        <div className="m-2">
+                          <h3>Unidade de Operação(kg)</h3>
+                          <TextField
+                            id="uni-Ope"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+                        <div className="m-2">
+                          <h3>Unidade Dispensadas(kg)</h3>
+                          <TextField
+                            id="uni-dis"
+                            label="Digite Aqui..."
+                            variant="outlined"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="mt-5 d-flex  justify-content-around align-items-end">
                 {itemEmissaoEqRefrRAC?.map((elem, idx) => {
                   return (
                     <div className="mb-3" id={idx}>
@@ -98,207 +311,7 @@ const SubModalEmissosFugitivas = ({
                   );
                 })}
               </div>
-              <div>
-                {curentIdxSubEsco1 === 0 ? (
-                  <>
-                    <div className="d-flex  justify-content-around mb-3">
-                      <div className="d-flex align-items-end">
-                        <div className="d-flex justify-content-around">
-                          <div className="m-2">
-                            <h3>Registro da Fonte</h3>
-                            <TextField
-                              id="regist-fonta"
-                              label=" Digite o registro da fonte..."
-                              variant="outlined"
-                            />
-                          </div>
-                          <div className="m-2">
-                            <h3>Gás ou Composto</h3>
-                            <TextField
-                              id="gas-composto"
-                              label="Digite Aqui..."
-                              variant="outlined"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <h2>Unidades Novas</h2>
-                        <div className="d-flex  justify-content-around">
-                          <div className="m-2">
-                            <h3>Carga (kg)</h3>
-                            <TextField
-                              id="cargaUN"
-                              label="Digite Aqui..."
-                              variant="outlined"
-                            />
-                          </div>
-                          <div className="m-2">
-                            <h3>Capacidade (kg)</h3>
-                            <TextField
-                              id="capacidadeUN"
-                              label="Digite Aqui..."
-                              variant="outlined"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="d-flex  justify-content-around mt-5">
-                      <div>
-                        <h3 className=" mb-3">Unidades Existentes</h3>
-                        <div className="m-2">
-                          <h3>Carga (kg)</h3>
-                          <TextField
-                            id="cargaUE"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="mb-3">Unidades Dispersadas</h3>
-                        <div className="d-flex  justify-content-around mb-3">
-                          <div className="m-2">
-                            <h3>Capacidade (kg)</h3>
-                            <TextField
-                              id="capacidadeUD"
-                              label="Digite Aqui..."
-                              variant="outlined"
-                            />
-                          </div>
-                          <div className="m-2">
-                            <h3>Recuperada (kg)</h3>
-                            <TextField
-                              id="recuperadaUD"
-                              label="Digite Aqui..."
-                              variant="outlined"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : curentIdxSubEsco1 === 1 ? (
-                  <>
-                    <div className="d-flex  justify-content-around mb-3">
-                      <div className="m-2">
-                        <h3>Registro da Fonte</h3>
-                        <TextField
-                          id="regist-fonte"
-                          label=" Digite o registro da fonte..."
-                          variant="outlined"
-                        />
-                      </div>
-                      <div className="m-2">
-                        <h3>Gás ou Composto</h3>
-                        <TextField
-                          id="gas-composto"
-                          label="Digite Aqui..."
-                          variant="outlined"
-                        />
-                      </div>
-                    </div>
-                    <div className="d-flex  justify-content-around mt-5">
-                      <div>
-                        <h3 className=" mb-3">Variação no Estoque</h3>
-                        <div className="m-2">
-                          <h3>VE</h3>
-                          <TextField
-                            id="variacaoE"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className=" mb-3">Quantidade Transferida</h3>
-                        <div className="m-2">
-                          <h3>T (kg)</h3>
-                          <TextField
-                            id="quantTransf"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className=" mb-3">Mudança de Capacidade</h3>
-                        <div className="m-2">
-                          <h3>MC (kg)</h3>
-                          <TextField
-                            id="cargaUE"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : curentIdxSubEsco1 === 2 ? (
-                  <>
-                    <div className="d-flex  justify-content-around mb-3">
-                      <div className="m-2">
-                        <h3>Registro da Fonte</h3>
-                        <TextField
-                          id="regist-fonte"
-                          label=" Digite o registro da fonte..."
-                          variant="outlined"
-                        />
-                      </div>
-                      <div className="m-2">
-                        <h3>Gás ou Composto</h3>
-                        <TextField
-                          id="gas-composto"
-                          label="Digite Aqui..."
-                          variant="outlined"
-                        />
-                      </div>
-                      <div className="m-2">
-                        <h3>Tipo de Equipamento</h3>
-                        <TextField
-                          id="tipo-equipamento"
-                          label="Digite Aqui..."
-                          variant="outlined"
-                        />
-                      </div>
-                      <div className="m-2">
-                        <h3>Carga das Unidades Novas</h3>
-                        <TextField
-                          id="carga-UN"
-                          label="Digite Aqui..."
-                          variant="outlined"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className=" mb-1">Capacidade</h3>
-                      <div className="d-flex  justify-content-center ">
-                        <div className="m-2">
-                          <h3>Unidade de Operação(kg)</h3>
-                          <TextField
-                            id="uni-Ope"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                        <div className="m-2">
-                          <h3>Unidade Dispensadas(kg)</h3>
-                          <TextField
-                            id="uni-dis"
-                            label="Digite Aqui..."
-                            variant="outlined"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
+            </>
           )}
           {itemEmissosFugitivas.id === 1 && (
             <div className="d-flex flex-wrap justify-content-center">
@@ -380,6 +393,7 @@ const SubModalEmissosFugitivas = ({
               </div>
             </div>
           )}
+
           <div className="m-3">
             <Button
               variant="contained"

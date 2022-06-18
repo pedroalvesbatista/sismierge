@@ -15,11 +15,61 @@ const ShowInfo = ({
   setShowHowToFillCE,
   showHowToFillCM,
   setShowHowToFillCM,
+  showHowToFillSEF,
+  setShowHowToFillSEF,
   section1,
   setSection1,
 }) => {
   return (
     <>
+      <Modal
+        open={showHowToFillSEF}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="d-flex justify-content-end">
+            <Button
+              onClick={() => {
+                setShowHowToFillSEF(!showHowToFillSEF);
+              }}
+            >
+              <CloseIcon />
+            </Button>
+          </div>
+
+          <div className="p-5 d-flex flex-column align-items-start">
+            <h2 className="p-5">Emissões fugitivas</h2>
+            <h2 className="p-5">Orientações gerais:</h2>
+            <ul className="p-5 d-flex flex-column align-items-start">
+              <li className="p-3"> (A) Esta seção da ferramenta permite o cálculo de emissões  fugitivas pela utilização de equipamentos de refrigeração e ar  condicionado (RAC), extintores de incêndio, e por utilização de hexafluoreto de enxofre (SF6) e trifluoreto de nitrogênio (NF3).
+              </li>
+              <li className="p-3">
+                (B) Alguns gases utilizados como refrigerantes são, na verdade,
+                uma mistura de gases. Nesta ferramenta, eles são chamados de
+                compostos.
+              </li>
+              <li className="p-3">
+                (C) No caso dos compostos, esta ferramenta considera apenas a
+                parcela referente aos GEE contemplados pelo Protocolo de Quioto.
+              </li>
+              <li className="p-3">
+                (D) Esta ferramenta permite o cálculo de outros gases de efeito
+                estufa não contemplados pelo Protocolo de Quioto na aba
+                "Fugitivas - GEE não Quioto".
+              </li>
+              <li className="p-3">
+                (E) Preencha somente as células LARANJA CLARO, utilizando as
+                unidades corretas.
+              </li>
+              <li className="p-3">
+                (F) Ao final desta seção são apresentadas as emissões fugitivas
+                totais, em tCO2e.
+              </li>
+            </ul>
+          </div>
+        </Box>
+      </Modal>
       <Modal
         open={showHowToFillCM}
         aria-labelledby="modal-modal-title"

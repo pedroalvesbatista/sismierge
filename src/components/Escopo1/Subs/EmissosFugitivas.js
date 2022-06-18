@@ -58,10 +58,10 @@ const EmissosFugitivas = ({
             </Button>
           </div>
         </div>
-        <div>
+        <div className="d-flex  justify-content-center" style={{marginTop:"11%"}}>
           {tipoEmissaoFugitivas?.map((elem, idx) => {
             return (
-              <div className="mb-3 d-flex  justify-content-between" id={idx}>
+              <div className="m-3 " id={idx}>
                 <Card
                   className="d-flex  justify-content-center align-items-center"
                   style={{
@@ -87,12 +87,6 @@ const EmissosFugitivas = ({
                     <h1 className="text-light fs-3">{elem.abrev}</h1>
                   </CardContent>
                 </Card>
-                <h2
-                  style={{ color: "#953fc6", width: 800 }}
-                  className="fs-3 font-weight-bold text-uppercase d-flex align-items-center"
-                >
-                  {elem.title}
-                </h2>
               </div>
             );
           })}
