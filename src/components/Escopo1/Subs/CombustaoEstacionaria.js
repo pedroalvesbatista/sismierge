@@ -132,8 +132,8 @@ const [section1, setSection1] = useState(false);
           </div>
         </div>
         <ShowInfo
-          showHowToFill={showHowToFill}
-          setShowHowToFill={setShowHowToFill}
+          showHowToFillCE={showHowToFill}
+          setShowHowToFillCE={setShowHowToFill}
           section1={section1}
           setSection1={setSection1}
         />
