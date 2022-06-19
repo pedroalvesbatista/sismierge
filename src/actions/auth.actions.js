@@ -222,6 +222,11 @@ function editUser (id, userData){
       if (error.response.data.error.message === "Email is already taken") {
         toast.error("O e-mail já foi cadastrado")
       }
+      else if (error.response.data.error.message === "password must be at least 1 characters") {
+        toast.warn("A senha deve ter pelo menos 1 caractere")
+      }else {
+        toast.error("Algo deu errado")
+      }
       console.log(error);
     })
   }

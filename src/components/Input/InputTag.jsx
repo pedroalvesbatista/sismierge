@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { IoMdClose } from 'react-icons/io'
 import { admin, second } from '../../constants/tailwind/colors'
 
-function InputTag({ label, items, spanceLeft, spanceRight }) {
+function InputTag({ label, items, spanceLeft, spanceRight, placeholder }) {
     const [data, setData] = useState([])
     const [value, setValue] = useState("")
 
@@ -96,6 +96,10 @@ const AreaSelected= styled.div`
     margin-bottom: 5px;
     flex: none;
     
+`
+const Placeholder = styled.span`
+    font-size: 10px;
+    color: ${admin.cinza};
 `
 const Text= styled.div`
     padding: 2px;

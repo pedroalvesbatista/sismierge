@@ -6,7 +6,7 @@ import { authActions, othersActions } from '../../actions'
 function Tab3() {
   const dispatch = useDispatch()
   const { users } = useSelector(state => state.auth)
-  const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
+  const titles= ["nome completo", "Email", "Nível", "opções"]
 
   useEffect(() => {
     dispatch(authActions.loadUsers())

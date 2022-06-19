@@ -3,19 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { authActions } from '../../actions'
+import { LoadingAnimation } from '../../components/lottie'
 
 import { authService } from '../../services'
-import {  
-  Logo,
-  Text, 
+import { 
+  Area, 
+  Left, 
+  Rigth, 
+  TitleArea, 
   Input, 
   Form, 
   InputArea, 
+  Container,
+  Label,
   IconeEye, 
   IconeEyeSplash, 
   ConexioArea, 
   Button, 
-  TextArea } from './styles'
+  TextArea } from '../Login/styles'
+  import { Text } from './styles'
 
 export const Inicio = ({ setPage }) => {
 
@@ -65,102 +71,106 @@ export const Inicio = ({ setPage }) => {
   useEffect(() => {
     if (sucessEditUser) {
       if (myData.role.type === "master") {
-        setPage("organisation")
-      }
-      else if (myData.role.type === "diretores") {
-        setPage("organisationStep2")
-      }
-      else {
         setPage("welcome")
       }
+      // else if (myData.role.type === "diretores") {
+      //   setPage("organisationStep2")
+      // }
+      // else {
+      //   setPage("welcome")
+      // }
     }
   }, [sucessEditUser])
   
 
   return (
-    <>
-        <Logo/>
-        <Text>Bem-vindo(a)!</Text>
-        <Text size={14} color={true} fontSize={400}>
+    <Area className='' >
+      <Left className=''>
+        Sismierge.
+      </Left>
+      <Rigth>
+        <TitleArea>Bem-vindo(a)!</TitleArea>
+        <Text left="left" size={14} color={true} fontSize={400}>
           Vamos terminar seu cadastro. <br/>
           Complenta todos os campos para poder continuar!
         </Text>
         <Form onSubmit={handleSubmit}>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
-            <Text color={true} left={true} size={14}>Nome completo</Text>
-            <InputArea>
-                <Input 
-                    type='text' 
-                    placeholder='Juliana Silva'
-                    onChange={(e) => setData({...data, name: e.target.value})}
-                    required
-                    defaultValue={myData?.username}
-                    value={data.name}
-                />
-            </InputArea>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
-            <Text color={true} left={true} size={14}>Usuário</Text>
-            <InputArea>
-                <Input 
-                    type='text' 
-                    placeholder='julianasilva'
-                    onChange={(e) => setData({...data, username: e.target.value})}
-                    required
-                    value={data.username}
-                />
-            </InputArea>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
-            <Text color={true} left={true} size={14}>Email</Text>
-            <InputArea aria-disabled={true}>
-                <Input 
-                    type='email' 
-                    placeholder='julianasilva@gmail.com'
-                    onChange={(e) => setData({...data, email: e.target.value})}
-                    required
-                    value={data.email}
-                    disabled={true}
-                />
-            </InputArea>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
-            <Text color={true} left={true} size={14}>Cargo</Text>
-            <InputArea aria-disabled={true}>
-                <Input 
-                    type='text' 
-                    placeholder='CEO'
-                    onChange={(e) => setData({...data, cargo: e.target.value})}
-                    required
-                    value={data.cargo}
-                    // disabled={true}
-                />
-            </InputArea>
-          </div>
-          <div style={{display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: 10 }}>
-            <Text color={true} left={true} size={14}>Senha</Text>
-            <InputArea aria-disabled={true}>
-                <Input 
-                    type={showPassword ? 'text' : 'password'} 
-                    placeholder='Senha'
-                    onChange={(e) => setData({...data, password: e.target.value})}
-                    required
-                    value={data.password}
-                // onChange={e => console.log(e.target.type)}
-                />
-                {!showPassword ?
+          <InputArea>
+            <Label> Nome completo </Label>
+            <Container>
+              <Input 
+                type='text' 
+                placeholder='Ex: Juliana Silva'
+                onChange={(e) => setData({...data, name: e.target.value})}
+                required
+                defaultValue={myData?.username}
+                value={data.name}
+              />
+            </Container>
+          </InputArea>
+          <InputArea>
+            <Label> Usuário </Label>
+            <Container>
+              <Input 
+                type='text' 
+                placeholder='Ex: julianasilva'
+                onChange={(e) => setData({...data, username: e.target.value})}
+                required
+                value={data.username}
+              />
+            </Container>
+          </InputArea>
+          <InputArea disabled={true.toString()}>
+            <Label> Email </Label>
+            <Container disabled={true.toString()}>
+              <Input 
+                type='email' 
+                placeholder='Ex: julianasilva@gmail.com'
+                onChange={(e) => setData({...data, email: e.target.value})}
+                required
+                value={data.email}
+                disabled={true}
+              />
+            </Container>
+          </InputArea>
+          <InputArea>
+            <Label> Cargo </Label>
+            <Container>
+              <Input 
+                type='text' 
+                placeholder='Ex: Diretor'
+                onChange={(e) => setData({...data, cargo: e.target.value})}
+                required
+                value={data.cargo}
+              />
+            </Container>
+          </InputArea>
+          <InputArea>
+            <Label> Senha </Label>
+            <Container>
+              <Input 
+                type={showPassword ? 'text' : 'password'} 
+                placeholder='digite a senha'
+                onChange={(e) => setData({...data, password: e.target.value})}
+                required
+                value={data.password}
+              />
+              {!showPassword ?
                 <IconeEye onClick={handleShowPassword} />
                 : <IconeEyeSplash onClick={handleShowPassword} />
-                }
-            </InputArea>
-          </div>
-          <ConexioArea>
-            <Button aria-disabled={loadingEditUser ? true : false} onClick={handleSubmit}> 
-                {loading ? "Carregando..." : "Continuar "} 
-                &#8674;
+              }
+            </Container>
+          </InputArea>
+          <ConexioArea flexEnd={true}>
+            <Button 
+              onClick={handleSubmit}
+              aria-disabled={loadingEditUser ? true.toString() : false.toString()}
+            > 
+              {loading ? "carregando..." : "Conectar"} 
             </Button>
           </ConexioArea>
         </Form>
-    </>
+      </Rigth>
+    </Area>
   )
 }

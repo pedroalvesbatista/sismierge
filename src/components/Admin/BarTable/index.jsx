@@ -61,9 +61,9 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
                                                     onClick={() => handleDelete(i.id)}
                                                 />
                                             </Item>
-                                            <Item> 
+                                            {/* <Item> 
                                                 <Toogle onClick={() => setToogle(!toogle)} active={toogle} />     
-                                            </Item>
+                                            </Item> */}
                                         </TableArea>
                                 )) : 
                                     <NotCOntentArea>

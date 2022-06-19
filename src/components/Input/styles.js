@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { admin, second } from '../../constants/tailwind/colors'
-
+import InputMask from "react-input-mask";
 
 export const Area = styled.div`
     margin: 8px 0px;
@@ -14,6 +14,7 @@ export const Area = styled.div`
 export const InputArea = styled.div`
     /* width: 100%; */
     position: relative;
+    opacity: ${({disabled}) => disabled === "true" && "0.5"};
     height: ${({height}) => height ?? 400}px;
     border-radius: 5px;
     display: flex;
@@ -26,7 +27,7 @@ export const InputArea = styled.div`
         border-color: ${admin.verde};
     }
 `
-export const InputEntry = styled.input`
+export const InputEntry = styled(InputMask)`
     border-radius: 5px;
     width: 100%;
     height: 100%;

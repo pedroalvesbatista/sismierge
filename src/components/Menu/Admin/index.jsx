@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RiLogoutBoxLine } from 'react-icons/ri';
@@ -12,10 +12,7 @@ import {
     Logo,
     MenuArea,
     Text,
-    Notif,
-    BarActive,
     BottomArea,
-    Img,
     Subtext,
     AreaItem,
     Close
@@ -29,7 +26,6 @@ function MenuAdmin({ titleHome, closeMenu }) {
     const [active, setActive] = useState(0)
     const [close, setClose] = useState(false)
     const dispatch= useDispatch()
-    // const { titlePage } = useSelector(state => state.others)
 
     const handleActive= (key, item) => {
         setActive(key)
@@ -38,7 +34,6 @@ function MenuAdmin({ titleHome, closeMenu }) {
             payload: item.text
         })
         navigate("/admin"+item.slug)
-        // console.log(item.slug);
     }
 
     const handleLogout= () => {
@@ -52,8 +47,6 @@ function MenuAdmin({ titleHome, closeMenu }) {
     }
     
 
-    
-
     return (
         <Area closed={close}>
             <Header closed={close}>
@@ -63,7 +56,6 @@ function MenuAdmin({ titleHome, closeMenu }) {
             <MenuArea closed={close}>
                 {menuAdmin.map((item, key) => (
                     <AreaItem key={key} onClick={() => handleActive(key, item)}  active={active === key ? true : false}>
-                        {/* <RiDashboardLine size={20} color={active === key ? primary.verde : primary.dark} /> */}
                         {IconComponent({ 
                             icon: item.component, 
                             size: active === key ? "1.2em"  : "1em", 
@@ -73,23 +65,22 @@ function MenuAdmin({ titleHome, closeMenu }) {
                         {!close && <Text active={active === key ? true : false}> {item.text} </Text>}
                     </AreaItem>
                 ))}
-                <div style={{width: "100%", height: "100%", display: "flex", justifyContent: "flex-end", alignItems: "flex-end", }}>
-                    <AreaItem active={true}>
-                        <RiLogoutBoxLine 
-                            size= {18} 
-                            color= {primary.verde}
-                            style= {{transition: "all .2s ease-out"}} 
-                        />
-                        {!close && <Text active={true} onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Text>}
-                    </AreaItem>
-                </div>
             </MenuArea>
             <BottomArea closed={close}>
-                {/* <Img closed={close} src='/profile.png'/> */}
                 <Avatar bgColor radius name={storage.user.name} />
                 {!close && <Subtext closed={close} weight='bold'>
                     { storage ? storage.user.name ?? storage.user.username : "Nome do usuario" }
                 </Subtext>}
+                <div style={{width: "100%", padding: "0px 20px", display: "flex", justifyContent: "center", alignItems: "center", }}>
+                    <AreaItem active={true}>
+                        <RiLogoutBoxLine 
+                            size= {18} 
+                            color= {primary.verde}
+                            style= {{transition: "all .2s ease-out"}}
+                        />
+                        {!close && <Text active={true} onClick={handleLogout} weight='500' hover='true' color='true'>Sair</Text>}
+                    </AreaItem>
+                </div>
             </BottomArea>
         </Area>
     )

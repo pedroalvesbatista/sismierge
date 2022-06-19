@@ -28,16 +28,28 @@ export const RegisterCompany = () => {
 
   return (
     <Area id='register_company' >
-      <Card>
-        {loading ?
-          <LoadingAnimation size={350} />
-        : error ? (
+      {page === "inicio" ? (
+        loading ? (
+          <Card>
+            <LoadingAnimation size={350} />
+          </Card>
+        ) : error ? (
           <span>Convite expirado</span>
         ) : (
-            <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
-          )
-        }
-      </Card>
+          <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+        )
+      ) : (
+        <Card>
+          {loading ?
+            <LoadingAnimation size={350} />
+          : error ? (
+            <span>Convite expirado</span>
+          ) : (
+              <Routes setPage={e => setPage(e)} data={dataUser} page={page} />
+            )
+          }
+        </Card>
+      )}
       <Modal />
     </Area>
   )

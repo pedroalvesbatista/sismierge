@@ -20,8 +20,8 @@ export const menu = [
 
 export const menuAdmin = [
     {id: 0, text:'Painel ', slug: '/', component: "painel"},
-    {id: 1, text:'Relatorio', slug: '/relatorio', component: "resumo" },
-    {id: 3, text:'Histórico', slug: '/historico', component: "historico"},
+    // {id: 1, text:'Relatorio', slug: '/relatorio', component: "resumo" },
+    // {id: 3, text:'Histórico', slug: '/historico', component: "historico"},
     // {id: 7, text:'Configuraçôes', slug: '/configuracao', component: "configuracao"},
 ]
 

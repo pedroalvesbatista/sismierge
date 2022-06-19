@@ -1,11 +1,13 @@
 import { toast } from "react-toastify";
 import { others } from "../constants/redux"
+import { othersService } from "../services";
 
 export const othersActions = {
     handleOpenModal,
     closeModal,
     changeDisplayModal,
     setDataModal,
+    loadCep
 }
 
 function handleOpenModal (display){
@@ -48,3 +50,40 @@ function setDataModal (data){
         })
     }
 }
+
+function loadCep (cep){
+
+    return dispatch => {
+      dispatch({ 
+      type: others.LOAD_CEP_REQUEST
+    })
+  
+    othersService.loadCep(cep)
+    .then(response => {
+  
+      dispatch({ 
+        type: others.LOAD_CEP_SUCCESS,
+        payload: response.data
+      })
+
+      setTimeout(() => {
+        dispatch({ 
+            type: others.CLEAN_CEP
+        })
+      }, 1000);
+        
+    })
+    .catch(error => {
+      dispatch({ 
+        type: others.LOAD_CEP_FAIL,
+      })
+      toast.error("cep inválido")
+      setTimeout(() => {
+        dispatch({ 
+            type: others.CLEAN_CEP
+        })
+      }, 1000);
+      console.log(error);
+    })
+    }
+  }
