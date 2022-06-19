@@ -56,9 +56,9 @@ export const InputArea = styled.div`
     height: 42px;
     border-radius: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: ${({row}) => row ? "row" : "column"};
     background-color: white;
-    /* align-items: center; */
+    align-items: ${({row}) => row ? "center" : "none"};
     padding: 0px 15px;
     position: relative;
     
@@ -88,7 +88,7 @@ export const Input = styled.input`
     outline: none;
     font-size: 14px;
     border: none;
-    margin-top: 10px;
+    margin-top: ${({row}) => row ? "none" : "10px"};
     background-color: transparent;
 
     &:disabled{

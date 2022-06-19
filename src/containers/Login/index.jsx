@@ -16,7 +16,8 @@ import {
   IconeEyeSplash, 
   ConexioArea, 
   Button, 
-  TextArea } from './styles'
+  TextArea,
+  Container } from './styles'
 
 export const Login = () => {
   const navigate= useNavigate()
@@ -52,8 +53,9 @@ export const Login = () => {
       <Rigth>
         <TitleArea>Fazer login</TitleArea>
         <Form onSubmit={handleSubmit}>
-          <InputArea>
-            <Input 
+          <InputArea row={true.toString()}>
+            <Input
+              row={true.toString()} 
               // type='text' 
               placeholder='Email ou username'
               onChange={(e) => setData({...data, identifier: e.target.value})}
@@ -61,8 +63,9 @@ export const Login = () => {
               value={data.identifier}
             />
           </InputArea>
-          <InputArea>
-            <Input 
+          <InputArea row={true.toString()}>
+            <Input
+              row={true.toString()} 
               type={showPassword ? 'text' : 'password'} 
               placeholder='Senha'
               onChange={(e) => setData({...data, password: e.target.value})}
