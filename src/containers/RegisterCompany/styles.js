@@ -47,6 +47,7 @@ export const Text = styled.div`
     color: ${({color}) => color ? "#5e5757" : "#000"};
     text-align: ${({left}) => left ? "left" : "center"} ;
     padding: 2px 5px;
+    margin-bottom: 10px;
     /* margin-bottom: 10px; */
 `
 export const TextArea = styled.div`

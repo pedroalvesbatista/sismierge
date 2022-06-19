@@ -8,7 +8,7 @@ import { authActions } from '../../actions'
 
 function Tab1() {
   const dispatch = useDispatch()
-  const titles= ["nome completo", "Email", "Nível", "opções", "Status"]
+  const titles= ["nome completo", "Email", "Nível", "opções"]
   const { loadingGetUsers, users, roles } = useSelector(state => state.auth)
 
   const handelModal = () => {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import InputMask from "react-input-mask";
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
 
@@ -8,7 +9,7 @@ import {
   Button, 
 } from './styles'
 import Input from '../../components/Input'
-import SelectArea from '../../components/Select'
+import SelectArea from '../../components/Select/MultiSelect'
 import MoreItems from '../../components/Modal/Company/MoreItems'
 import { useDispatch, useSelector } from 'react-redux'
 import InputTag from '../../components/Input/InputTag'
@@ -18,7 +19,8 @@ import InputChoose from '../../components/Input/InputChoose'
 export const Organisation = ({dataCompany, setPage}) => {
     const dispatch= useDispatch()
     const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
-    const { loadingEscopos, sucessEscopos, dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
+    const { dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
+    const { loadingCep, sucessCep, dataCep } = useSelector(state => state.others)
 
     const dataLocal= JSON.parse(localStorage.getItem("@sismiegee/auth"))
     const [loading, setLoading] = useState(false)
@@ -30,7 +32,15 @@ export const Organisation = ({dataCompany, setPage}) => {
         nome_fantasia: "",
         telefone: "",
         razao_social: "",
-        endereco: "",
+        endereco: {
+            cep: "",
+            logradouro: "",
+            numero: "",
+            complemento: "",
+            bairro: "",
+            cidade: "",
+            estado: ""
+        },
         setor_economico: "",
         subsetor: "",
         setor_atividade: dataEscopo[1],
@@ -74,20 +84,23 @@ export const Organisation = ({dataCompany, setPage}) => {
   }
 
   useEffect(() => {
+    let cep = data.endereco.cep.split("-")[0]+data.endereco.cep.split("-")[1]
+    cep = cep.split('_')[0]
+    // console.log(dataCep);
     if (sucessCreateCompany) {
         setPage("welcome")
     }
-  }, [sucessCreateCompany])
+    if (cep.length == 8) {
+        dispatch(othersActions.loadCep(cep))
+    }
+  }, [sucessCreateCompany, data.endereco.cep])
 
   useEffect(() => {
     setData({...data, escopos: dataEscopo[0]?.filter(i => i.items.length > 0), setor_atividade: dataEscopo[1]})
   }, [dataEscopo])
   
 
-//   console.log(dataEscopo);
-  
-
-//   console.log(data);
+//   console.log(escopoSheetData);
 // console.log(JSON.parse(data.users));
   
   
@@ -104,13 +117,13 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Razão Social"}
-                    // placeholder="Uber"
+                    placeholder="Digite aqui"
                     value={data.razao_social}
                     onChange= {e => setData({...data, razao_social: e.target.value})}
                 />
                 <Input 
                     label={"Nome fantasia"}
-                    // placeholder="Uber"
+                    placeholder="Digite aqui"
                     value={data.nome_fantasia}
                     spanceLeft={true}
                     onChange= {e => setData({...data, nome_fantasia: e.target.value})}
@@ -119,14 +132,15 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"Nome do responsavel"}
-                    placeholder="Digite aqui"
+                    placeholder="Ex: Alan Silva"
                     // type="number"
                     value={data.nome_do_responsavel}
                     onChange= {e => setData({...data, nome_do_responsavel: e.target.value})}
                 />
                 <Input 
                     label={"Email corporativo"}
-                    placeholder={`jose@gmail.com`}
+                    placeholder={`Ex: jose@gmail.com`}
+                    required={"true"}
                     spanceLeft={true}
                     value={data.email}
                     onChange= {e => setData({...data, email: e.target.value})}
@@ -135,23 +149,73 @@ export const Organisation = ({dataCompany, setPage}) => {
             <AreaInput>
                 <Input 
                     label={"CNPJ"}
-                    placeholder="32.792.884/2021-10"
-                    type="number"
+                    placeholder="Ex: 32.792.884/2021-10"
+                    // type="number"
                     value={data.cnpj}
                     onChange= {e => setData({...data, cnpj: e.target.value})}
+                    mask="cnpj"
                 />
                 <Input 
-                    label={"Endereço completo"}
-                    placeholder={`rua, número, complemento, cep, cidade e estado`}
+                    label={"CEP"}
+                    placeholder={`Ex: 12345-678`}
+                    loading={loadingCep}
+                    mask="cep"
                     spanceLeft={true}
-                    value={data.endereco}
-                    onChange= {e => setData({...data, endereco: e.target.value})}
+                    value={data.endereco.cep}
+                    onChange= {e => setData({...data, endereco: {...data.endereco, cep: e.target.value}})}
                 />
             </AreaInput>
+            {sucessCep &&
+                <>
+                    <AreaInput>
+                        <Input 
+                            label={"Endereço"}
+                            value={dataCep.street}
+                            disabled= "true"
+                        />
+                        <Input 
+                            label={"Numero"}
+                            placeholder={`Ex: 123`}
+                            required={"true"}
+                            spanceLeft={true}
+                            value={data.endereco.numero}
+                            onChange= {e => setData({...data, endereco: {...data.endereco, numero: e.target.value}})}
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Complemento"}
+                            placeholder={`Ex: Apto 1202 B`}
+                            value={data.endereco.complemento}
+                            onChange= {e => setData({...data, endereco: {...data.endereco, complemento: e.target.value}})}
+                        />
+                        <Input 
+                            label={"Bairro"}
+                            value={dataCep.neighborhood}
+                            disabled= "true"
+                            spanceLeft={true}
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Cidade"}
+                            value={dataCep.city}
+                            disabled= "true"
+                        />
+                        <Input 
+                            label={"Estado"}
+                            value={dataCep.state}
+                            disabled= "true"
+                            spanceLeft={true}
+                        />
+                    </AreaInput>
+                </>
+            }
             <AreaInput>
                 <InputTag 
                     label={"Setor econômico"}
                     items={e => setData({...data, setor_economico: e})}
+                    placeholder="digite aqui"
                 />
                 <InputTag 
                     label={"Subsetor"}

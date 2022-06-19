@@ -75,7 +75,7 @@ export const Inventariacao = ({dataCompany, setPage}) => {
                         />
                         <Input 
                             label={"Motivo pelo qual decidiu elaborar o IGEE"}
-                            placeholder="ex: 10"
+                            placeholder="Digite aqui"
                             spanceLeft={true}
                             type="text"
                         />
@@ -276,18 +276,18 @@ export const Inventariacao = ({dataCompany, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 100%;
     margin-top: 10px;
     /* max-height: 600px; */
     /* justify-content: space-between; */
     /* height: 200px; */
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 0px 20px;
 `
 const AreaInput = styled.form`
     display: ${({NoFlex}) => NoFlex ? "block" : "flex"};
     width: 600px;
+    margin-right: 10px;
     /* justify-content: space-between; */
     /* height: 200px; */
 `

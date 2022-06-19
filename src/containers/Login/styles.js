@@ -53,12 +53,33 @@ export const Form = styled.form`
 export const InputArea = styled.div`
     margin: 8px 0px;
     width: 100%;
-    height: 40px;
+    height: 42px;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     background-color: white;
-    align-items: center;
+    /* align-items: center; */
     padding: 0px 15px;
+    position: relative;
+    
+    cursor: ${({disabled}) => disabled && "no-drop"};
+    opacity: ${({disabled}) => disabled && "0.6"};
+`
+export const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* padding: 5px 0px; */
+    cursor: ${({disabled}) => disabled && "no-drop"};
+`
+export const Label = styled.span`
+    position: absolute;
+    /* margin-bottom: 10px; */
+    top: 0px;
+    /* background-color: red; */
+    color: ${primary.dark}89;
+    font-size: 12px;
 `
 export const Input = styled.input`
     border-radius: 5px;
@@ -67,6 +88,12 @@ export const Input = styled.input`
     outline: none;
     font-size: 14px;
     border: none;
+    margin-top: 10px;
+    background-color: transparent;
+
+    &:disabled{
+        cursor: no-drop;
+    }
 `
 export const IconeEye = styled(BsEye)`
     margin-left: 5px;
@@ -80,11 +107,11 @@ export const IconeEyeSplash = styled(BsEyeSlash)`
 `
 export const ConexioArea = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: ${({flexEnd}) => flexEnd ? "flex-end" : "space-between"};
     align-items: center;
     margin-top: 10px;
 `
-export const Button = styled.div`
+export const Button = styled.button`
     cursor: pointer;
     width: 100px;
     height: 30px;

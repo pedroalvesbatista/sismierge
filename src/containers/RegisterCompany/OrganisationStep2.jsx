@@ -139,7 +139,7 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 100%;
     margin-top: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -149,6 +149,7 @@ const Form = styled.form`
 const AreaInput = styled.form`
     display: flex;
     width: 600px;
+    margin-right: 10px;
     /* justify-content: space-between; */
     /* height: 100px; */
 `

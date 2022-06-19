@@ -6,7 +6,10 @@ const initialState = {
   otherOptionSelect: '',
   isOpenModal: false,
   displayModal: null,
-  dataModal: null
+  dataModal: null,
+  loadingCep: false,
+  sucessCep: false,
+  dataCep: null
 }
 
 export const othersReducer = (state = initialState, action) => {
@@ -53,6 +56,28 @@ export const othersReducer = (state = initialState, action) => {
         ...state,
         dataModal: action.payload
       }
+    
+    case others.LOAD_CEP_REQUEST:
+      return {
+        ...state,
+        loadingCep: true,
+        sucessCep: false,
+      }
+
+    case others.LOAD_CEP_SUCCESS:
+      return {
+        ...state,
+        loadingCep: false,
+        sucessCep: true,
+        dataCep: action.payload
+      }
+
+    case others.LOAD_CEP_FAIL:
+      return {
+        ...state,
+        loadingCep: false,
+        sucessCep: false,
+     }
       
     default: 
       return state;

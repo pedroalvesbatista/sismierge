@@ -10,25 +10,11 @@ function RegisterCompanyRoute({ children }) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-      // authService.getMe(token)
-      //   .then(res => {
-      //       setData(res.data)
-      //   })
-      //   .catch(err => {
-      //     if (err.response.data.error.message === "Missing or invalid credentials") {
-      //       toast.warning("Esse link nâo existe mais")
-      //       window.location.replace("/auth/login")
-      //     }
-      //       console.log(err);
-      //   })
-    }, [token])
-
-    useEffect(() => {
-        if (data) {
-          const isAdmin= data.type === "colaborador" ? 'auth/admin' : 'auth'
-          localStorage.setItem(`@sismiegee/${isAdmin}`, JSON.stringify(data))
-        }
-      }, [data])
+      if (data) {
+        const isAdmin= data.type === "colaborador" ? 'auth/admin' : 'auth'
+        localStorage.setItem(`@sismiegee/${isAdmin}`, JSON.stringify(data))
+      }
+    }, [data])
     
     if (data.length > 0 && data?.first) {
         toast.warning("Esse link nâo existe mais")
