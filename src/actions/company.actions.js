@@ -24,12 +24,12 @@ function getCompanies (){
 
     companyService.getCompanies()
     .then(response => {
-      const filterById = response.data.data.filter((item) => {
-        return item.attributes.users.includes(storage.id);
+      const filterById = response?.data?.data?.filter((item) => {
+        return item?.attributes?.users?.includes(storage?.id);
       })
       dispatch({ 
         type: companyConstants.LOAD_COMPANY_SUCCESS,
-        payload: {id: filterById[0].id, ...filterById[0].attributes}
+        payload: {id: filterById[0]?.id, ...filterById[0]?.attributes}
       })
     })
     .catch(error => {

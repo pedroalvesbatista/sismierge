@@ -70,9 +70,6 @@ function createUser (userData){
 }
 
 function authenticate (userData, admin){
-    const isAdmin= admin ? 'auth/admin' : 'auth' 
-    const isUser= admin ? 'auth' : 'auth/admin' 
-    const redirect= admin ? '/admin' : '/' 
 
     return dispatch => {
       dispatch({ 

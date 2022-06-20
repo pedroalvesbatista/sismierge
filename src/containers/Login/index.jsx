@@ -35,7 +35,8 @@ export const Login = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleSubmit= () => {
+  const handleSubmit= (e) => {
+    e.preventDefault()
     if (data.identifier.length > 0 || data.password.length > 0) {
       dispatch(authActions.authenticate(data, false))
     } else {
@@ -43,7 +44,7 @@ export const Login = () => {
     }
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <Area className='' >
