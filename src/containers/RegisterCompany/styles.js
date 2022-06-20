@@ -41,13 +41,13 @@ export const Logo = styled.img.attrs(({src}) => ({
     cursor: pointer;
 `
 export const Text = styled.div`
-    font-size: ${({size}) => size ?? '30'}px !important;
+    font-size: ${({size}) => size ?? '20'}px !important;
     /* line-height: 2.5rem16px !important; */
     font-weight: ${({fontSize}) => fontSize ?? '600'};
     color: ${({color}) => color ? "#5e5757" : "#000"};
     text-align: ${({left}) => left ? "left" : "center"} ;
     padding: 2px 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     /* margin-bottom: 10px; */
 `
 export const TextArea = styled.div`

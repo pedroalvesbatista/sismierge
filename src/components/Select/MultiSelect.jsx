@@ -110,7 +110,7 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
     
 
     useEffect(() => {
-        console.log(selectedOption);
+        // console.log(selectedOption);
         selectedOption.filter(i => i.sheetId == "1093763195").length > 0 ? setOpenSetor(true) : setOpenSetor(false)
         dispatch(sheetActions.setDataEscopo([dataFinal, selectSetor]))
     }, [selectedOption, dataFinal, selectSetor, openSetor, data])
@@ -122,7 +122,7 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
     <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
         <Label>{title}</Label>
         <Container modal= {modal}>
-            <AreaSelected column={true}>
+            <AreaSelected column={data.length > 0 ? true : false}>
                 {item?.map((i, index) => (
                     <>
                         <Text 

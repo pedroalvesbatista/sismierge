@@ -75,14 +75,17 @@ function createCompany (userData){
   .then(response => {
       dispatch({ 
         type: companyConstants.CREATE_COMPANY_SUCCESS,
-        payload: response.data.data.attributes
+        payload: response.data.data
       })
-      console.log(response.data.data.attributes);
+      console.log(response.data.data);
   })
   .catch(error => {
     dispatch({ 
       type: companyConstants.CREATE_COMPANY_FAIL,
     })
+    if (error.response.data.error.message === "email must be a valid email") {
+      toast.error("O e-mail deve ser um e-mail válido")
+    }
     console.log(error.response);
   })
   }
@@ -99,7 +102,7 @@ function updateCompany (userData, id){
   .then(response => {
       dispatch({ 
         type: companyConstants.UPDATE_COMPANY_SUCCESS,
-        payload: response.data
+        payload: response.data.data
       })
       // console.log(response.data.data.attributes);
   })

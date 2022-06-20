@@ -3,8 +3,10 @@ import { companyConstants } from "../constants/redux"
 const initialState = {
     loading: false,
     loadingCreateCompany: false,
+    loadingUpdateCompany: false,
     sucess: false,
     sucessCreateCompany: false,
+    sucessUpdateCompany: false,
     error: false,
     companies: [],
     company: [],
@@ -60,23 +62,23 @@ export const companyReducer = (state = initialState, action) => {
     case companyConstants.UPDATE_COMPANY_REQUEST:
       return {
         ...state,
-        loadingCreateCompany: true,
-        sucessCreateCompany: false,
+        loadingUpdateCompany: true,
+        sucessUpdateCompany: false,
       }
       
 
     case companyConstants.UPDATE_COMPANY_SUCCESS:
       return {
         ...state,
-        loadingCreateCompany: false,
-        sucessCreateCompany: true,
+        loadingUpdateCompany: false,
+        sucessUpdateCompany: true,
         newCompany: action.payload,
       }
 
     case companyConstants.UPDATE_COMPANY_FAIL:
       return {
         ...state,
-        loadingCreateCompany: false,
+        loadingUpdateCompany: false,
         error: action.payload
       }
     

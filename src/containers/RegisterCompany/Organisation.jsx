@@ -15,8 +15,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import InputTag from '../../components/Input/InputTag'
 import { companyActions, othersActions } from '../../actions'
 import InputChoose from '../../components/Input/InputChoose'
+import { admin } from '../../constants/tailwind/colors';
 
-export const Organisation = ({dataCompany, setPage}) => {
+export const Organisation = ({skip, setPage}) => {
     const dispatch= useDispatch()
     const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
     const { dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
@@ -34,15 +35,15 @@ export const Organisation = ({dataCompany, setPage}) => {
         razao_social: "",
         endereco: {
             cep: "",
-            logradouro: "",
+            logradouro: dataCep?.street,
             numero: "",
             complemento: "",
-            bairro: "",
-            cidade: "",
-            estado: ""
+            bairro: dataCep?.neighborhood,
+            cidade: dataCep?.city,
+            estado: dataCep?.state
         },
-        setor_economico: "",
-        subsetor: "",
+        setor_economico: [],
+        subsetor: [],
         setor_atividade: dataEscopo[1],
         escopos: dataEscopo[0],
         users: JSON.stringify([dataLocal?.user.id])
@@ -52,44 +53,30 @@ export const Organisation = ({dataCompany, setPage}) => {
   const handleSubmit= (e) => {
     e.preventDefault()
     const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
-    const newData = {
-        email,
-        razao_social,
-        escopos: dataEscopo[0],
-        users,
-        cnpj,
-        nome_do_responsavel,
-        subsetor,
-        // cpf,
-        nome_fantasia,
-        endereco,
-        setor_economico,
-        setor_atividade: dataEscopo[1]
-    }
+    // console.log(subsetor);
     dispatch(companyActions.createCompany({
         email,
         razao_social,
         escopos,
         users,
         id_user_create: dataLocal?.user?.id?.toString(),
-        cnpj,
+        cnpj: data.cnpj.length > 0 ? data.cnpj.split(/[,.-/-\s]/).join("") : null,
         nome_do_responsavel,
-        subsetor,
-        // cpf,
         nome_fantasia,
         endereco,
+        setor_atividade: dataEscopo[1],
         setor_economico,
-        setor_atividade: dataEscopo[1]
+        subsetor,
     }))
   }
 
   useEffect(() => {
     let cep = data.endereco.cep.split("-")[0]+data.endereco.cep.split("-")[1]
     cep = cep.split('_')[0]
-    // console.log(dataCep);
-    if (sucessCreateCompany) {
-        setPage("welcome")
-    }
+    
+    // if (sucessCreateCompany) {
+    //     setPage("welcome")
+    // }
     if (cep.length == 8) {
         dispatch(othersActions.loadCep(cep))
     }
@@ -101,16 +88,11 @@ export const Organisation = ({dataCompany, setPage}) => {
   
 
 //   console.log(escopoSheetData);
-// console.log(JSON.parse(data.users));
-  
-  
-//   console.log(data.setor_economico);
 
   return (
     <>
-        <Text>Parabéns!</Text>
+        <Text>Fale nos sobre sua organização</Text>
         <Text size={14} color={true} fontSize={400}>
-          Agora vamos cadastrar sua organização. <br/>
           Essa etapa é muito importante!
         </Text>
         <Form onSubmit={handleSubmit}>
@@ -263,12 +245,15 @@ export const Organisation = ({dataCompany, setPage}) => {
                 />
             </AreaInput> */}
         </Form>
-        <ConexioArea>
-            <Button aria-disabled={loadingCreateCompany ? true : false} onClick={handleSubmit}> 
-                {loadingCreateCompany ? "Carregando..." : "Continuar "} 
-                &#8674;
-            </Button>
-          </ConexioArea>
+        {/* {!notShowButton && */}
+            <ConexioArea skip={skip}>
+                {skip && <TextSkip> Ou ignore esta etapa por enquanto. </TextSkip>}
+                <Button aria-disabled={loadingCreateCompany ? true : false} onClick={handleSubmit}> 
+                    {loadingCreateCompany ? "Carregando..." : "Continuar "} 
+                    &#8674;
+                </Button>
+            </ConexioArea>
+        {/* } */}
     </>
   )
 }
@@ -280,6 +265,7 @@ const Form = styled.form`
     margin-top: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    /* border-top: 1px solid ${admin.cinza}; */
     /* justify-content: space-between; */
     /* height: 200px; */
 `
@@ -292,7 +278,7 @@ const AreaInput = styled.form`
 const ConexioArea = styled.div`
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: ${({skip}) => skip ? "space-between" : "flex-end"};
     align-items: center;
     margin-top: 10px;
 `
@@ -302,6 +288,14 @@ const InputFile = styled.input`
     width: 600px;
     /* justify-content: space-between; */
     /* height: 200px; */
+`
+const TextSkip = styled.span`
+    font-size: 12px;
+    cursor: pointer;
+    
+    &:hover{
+        text-decoration: underline;
+    }
 `
 const ContainerAreaInput = styled.div`
     display: flex;

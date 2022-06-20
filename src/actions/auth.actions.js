@@ -181,7 +181,7 @@ function getMe (){
     .then(response => {
       const typeUser= response.data.role.type === "authenticated" ? "auth/admin" : "auth"
       localStorage.setItem(`@sismiegee/${typeUser}`, JSON.stringify({ jwt: token,  user: response.data }))
-
+      // console.log(response.data);
       dispatch({ 
         type: authConstants.LOAD_ME_SUCCESS,
         payload: response.data

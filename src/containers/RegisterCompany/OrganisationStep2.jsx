@@ -8,40 +8,35 @@ import {
   Button, 
 } from './styles'
 import Input from '../../components/Input'
-import { othersActions } from '../../actions'
+import { companyActions, othersActions } from '../../actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddInventariacao } from '../../components/Modal/Company'
 
-export const OrganisationStep2 = ({dataCompany, setPage}) => {
+export const OrganisationStep2 = ({skip, setPage}) => {
+    const dispatch= useDispatch()
+    const { loadingCreateCompany, sucessCreateCompany, companies, company, newCompany } = useSelector(state => state.company)
     const { displayModal } = useSelector(state => state.others)
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-    file: "",
-    haveUnidade: ""
+    historia: null,
+    desc_servicos_prestado: null,
+    produto_fabricado: null,
+    cliente_atendido: null,
+    processos_empresa: null,
+    subprocesso_empresa: null,
+    missao: null,
+    visao: null,
+    valores: null,
+    area_total_m2: null,
+    organograma: null
 })
-  const [showPassword, setShowPassword] = useState(false)
-
-
-  const storage= JSON.parse(localStorage.getItem("@sismiegee/auth"))
-  const dispatch = useDispatch()
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    // if (data.haveUnidade.length > 0) {
-    //     if (data.haveUnidade === "Sim") {
-    //         setPage("unidade")
-    //     }else {
-            setPage("inventariacao")
-            // dispatch(othersActions.handleOpenModal("Adicionar filial"))
-    //     }
-    // }else {
-    //     setPage("welcome")
-    // } 
+    dispatch(companyActions.updateCompany(data, company.id))
     
   }
-  
-  
 
   return (
     <>
@@ -56,12 +51,16 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     type={"textArea"}
                     label={"Relate a história da sua empresa"}
                     placeholder="Conta um pouco sobre a empresa..."
+                    value={data.historia}
+                    onChange={e => setData({...data, historia: e.target.value})}
                 />
                 <Input 
                     label={"Descrição sucinta dos serviços prestados"}
                     placeholder="Digite aqui..."
                     spanceLeft={true}
                     type="textArea"
+                    value={data.desc_servicos_prestado}
+                    onChange={e => setData({...data, desc_servicos_prestado: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -69,12 +68,16 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     type={"textArea"}
                     label={"Produtos fabricados"}
                     placeholder="Digite aqui..."
+                    value={data.produto_fabricado}
+                    onChange={e => setData({...data, produto_fabricado: e.target.value})}
                 />
                 <Input 
                     label={"Clientes Atendidos"}
                     placeholder="Digite aqui..."
                     spanceLeft={true}
                     type="textArea"
+                    value={data.cliente_atendido}
+                    onChange={e => setData({...data, cliente_atendido: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -82,12 +85,16 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     type={"textArea"}
                     label={"Processos da empresa"}
                     placeholder="Conta um pouco sobre o processos..."
+                    value={data.processos_empresa}
+                    onChange={e => setData({...data, processos_empresa: e.target.value})}
                 />
                 <Input 
                     label={"Sub-processos da empresa"}
                     placeholder="Conta um pouco sobre o Sub-processos..."
                     spanceLeft={true}
                     type="textArea"
+                    value={data.subprocesso_empresa}
+                    onChange={e => setData({...data, subprocesso_empresa: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -95,12 +102,16 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     type={"textArea"}
                     label={"Missão da empresa"}
                     placeholder="Conta aqui..."
+                    value={data.missao}
+                    onChange={e => setData({...data, missao: e.target.value})}
                 />
                 <Input 
                     label={"Visão da empresa"}
                     placeholder="Conta aqui..."
                     spanceLeft={true}
                     type="textArea"
+                    value={data.visao}
+                    onChange={e => setData({...data, visao: e.target.value})}
                 />
             </AreaInput>
             <AreaInput>
@@ -108,12 +119,16 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                     type={"textArea"}
                     label={"Valores da empresa"}
                     placeholder="Conta aqui..."
+                    value={data.valores}
+                    onChange={e => setData({...data, valores: e.target.value})}
                 />
                 <Input 
                     type={"textArea"}
                     label={" Área total construída (m2)"}
                     placeholder="Digite aqui..."
                     spanceLeft={true}
+                    value={data.area_total_m2}
+                    onChange={e => setData({...data, area_total_m2: e.target.value})}
                 />  
             </AreaInput>
             <AreaInput>
@@ -125,12 +140,13 @@ export const OrganisationStep2 = ({dataCompany, setPage}) => {
                 />
             </AreaInput>
         </Form>
-        <ConexioArea>
+        <ConexioArea skip={skip}>
+            {skip && <TextSkip> Ou ignore esta etapa por enquanto. </TextSkip>}
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
                 {loading ? "Carregando..." : "Continuar "} 
                 &#8674;
             </Button>
-          </ConexioArea>
+        </ConexioArea>
           {displayModal === "Formulário de Inventariação"  && <AddInventariacao openModal={""} />}
     </>
   )
@@ -156,7 +172,7 @@ const AreaInput = styled.form`
 const ConexioArea = styled.div`
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: ${({skip}) => skip ? "space-between" : "flex-end"};
     align-items: center;
     margin-top: 10px;
 `
@@ -166,4 +182,12 @@ const InputFile = styled.input`
     width: 600px;
     /* justify-content: space-between; */
     /* height: 200px; */
+`
+const TextSkip = styled.span`
+    font-size: 12px;
+    cursor: pointer;
+    
+    &:hover{
+        text-decoration: underline;
+    }
 `

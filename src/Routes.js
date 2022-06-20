@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import {
   HomePage,
+  StartUp,
   NotFound,
   Login,
   Signup,
@@ -115,6 +116,15 @@ export function RoutesPage() {
           element={
             <AdminLayout>
               <HomePage />
+            </AdminLayout>
+          }
+        />
+        <Route
+          exact
+          path="/start-up"
+          element={
+            <AdminLayout>
+              <StartUp />
             </AdminLayout>
           }
         />

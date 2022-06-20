@@ -24,7 +24,7 @@ import {
   import { Text } from './styles'
 
 export const Inicio = ({ setPage }) => {
-
+  const navigate= useNavigate()
   const dispatch = useDispatch()
   const { loadingEditUser, sucessEditUser, myData } = useSelector(state => state.auth)
 
@@ -36,7 +36,6 @@ export const Inicio = ({ setPage }) => {
     name: myData?.name,
     email: myData.email,
     id: myData.id,
-    first: true,
     cargo: myData.cargo,
     company: null,
   })
@@ -59,7 +58,7 @@ export const Inicio = ({ setPage }) => {
           email: data.email,
           password: data.password,
           cargo: data.cargo,
-          user_first: false
+          // user_first: false
         }
         dispatch(authActions.editUser(data.id, newData))
     } else {
@@ -71,14 +70,10 @@ export const Inicio = ({ setPage }) => {
   useEffect(() => {
     if (sucessEditUser) {
       if (myData.role.type === "master") {
-        setPage("welcome")
+        myData.user_first ? navigate('/start-up') : navigate('/')
+      }else {
+        navigate('/')
       }
-      // else if (myData.role.type === "diretores") {
-      //   setPage("organisationStep2")
-      // }
-      // else {
-      //   setPage("welcome")
-      // }
     }
   }, [sucessEditUser])
   
