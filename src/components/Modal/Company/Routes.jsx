@@ -18,7 +18,7 @@ import { Unidade } from '../../../containers/RegisterCompany/Unidade'
 function Routes({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)
   const modalType= [
-    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "inventariacao"
+    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação"
   ]
     
   return (

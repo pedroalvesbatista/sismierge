@@ -32,7 +32,7 @@ export const HomePage = () => {
   const [ selectedScope, setSelectedScope] = useState("")
   const [idxCard, setIdxCard] = useState("");
   
- const tabs= ["Visão geral", "Usuarios"]
+ const tabs= ["Visão geral", "Inventariação", "Usuarios"]
 
   const handleInventariacao = (e) => {
     e.stopPropagation();

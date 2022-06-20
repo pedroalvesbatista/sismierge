@@ -95,8 +95,8 @@ function SelectArea({ value, type, onChange, item, title, modal=true, width, pla
     <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
         <Label>{title}</Label>
         <Container
-            // value={value} 
-            onChange={handleOnchageEscopo}
+            value={type !== "collections" && value} 
+            onChange={type === "collections" ? handleOnchageEscopo : onChange}
             modal= {modal}
         >
             <option style={{color: primary.cinza}} > {placeholder} </option>

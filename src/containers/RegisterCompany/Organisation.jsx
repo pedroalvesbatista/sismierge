@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import InputMask from "react-input-mask";
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
 
@@ -18,6 +19,7 @@ import InputChoose from '../../components/Input/InputChoose'
 import { admin } from '../../constants/tailwind/colors';
 
 export const Organisation = ({skip, setPage}) => {
+    const navigate= useNavigate()
     const dispatch= useDispatch()
     const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
     const { dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
@@ -247,7 +249,7 @@ export const Organisation = ({skip, setPage}) => {
         </Form>
         {/* {!notShowButton && */}
             <ConexioArea skip={skip}>
-                {skip && <TextSkip> Ou ignore esta etapa por enquanto. </TextSkip>}
+                {skip && <TextSkip onClick={() => navigate('/')}> Ou ignore esta etapa por enquanto. </TextSkip>}
                 <Button aria-disabled={loadingCreateCompany ? true : false} onClick={handleSubmit}> 
                     {loadingCreateCompany ? "Carregando..." : "Continuar "} 
                     &#8674;

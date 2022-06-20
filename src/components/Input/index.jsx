@@ -30,6 +30,9 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
         
       case "tel":
         return "(99) 9999-9999"
+      
+      case "ano":
+        return "9999"
     
       default:
         break;

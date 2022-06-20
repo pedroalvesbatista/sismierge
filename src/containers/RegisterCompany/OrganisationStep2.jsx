@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { authService } from '../../services'
@@ -14,6 +15,7 @@ import { AddInventariacao } from '../../components/Modal/Company'
 
 export const OrganisationStep2 = ({skip, setPage}) => {
     const dispatch= useDispatch()
+    const navigate= useNavigate()
     const { loadingCreateCompany, sucessCreateCompany, companies, company, newCompany } = useSelector(state => state.company)
     const { displayModal } = useSelector(state => state.others)
 
@@ -141,7 +143,7 @@ export const OrganisationStep2 = ({skip, setPage}) => {
             </AreaInput>
         </Form>
         <ConexioArea skip={skip}>
-            {skip && <TextSkip> Ou ignore esta etapa por enquanto. </TextSkip>}
+            {skip && <TextSkip onClick={() => navigate('/')}> Ou ignore esta etapa por enquanto. </TextSkip>}
             <Button aria-disabled={loading ? true : false} onClick={handleSubmit}> 
                 {loading ? "Carregando..." : "Continuar "} 
                 &#8674;
