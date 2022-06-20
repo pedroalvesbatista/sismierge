@@ -86,10 +86,10 @@ function authenticate (userData, admin){
           })
 
           if (res.data.role.type === "authenticated") {
-            localStorage.setItem(`@sismiegee/auth/admin`, JSON.stringify(response.data))
+            localStorage.setItem(`@sismiegee/auth/admin`, JSON.stringify({ jwt: response.data.jwt,  user: res.data}))
             window.location.replace(`/admin`)
           } else {
-            localStorage.setItem(`@sismiegee/auth`, JSON.stringify(response.data))
+            localStorage.setItem(`@sismiegee/auth`, JSON.stringify({ jwt: response.data.jwt,  user: res.data}))
             window.location.replace(`/`)
           }
         })

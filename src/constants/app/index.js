@@ -12,9 +12,9 @@ export const menu = [
     {id: 1, text:'Resumo', slug: '/resumo', component: "resumo" },
     {id: 2, text:'Dashboard ', slug: '/dashboard', component: "dashboard"},
     {id: 3, text:'Histórico', slug: '/historico', component: "historico"},
-    {id: 4, text:'Usuários e Perfis', slug: '/users-profile', component: "usersProfile"},
-    {id: 5, text:'Manual do usuário', slug: '/manual-usuario', component: "manualUsuario"},
-    {id: 6, text:'Sugestões', slug: '/sugestoes', component: "sugestoes"},
+    // {id: 4, text:'Usuários e Perfis', slug: '/users-profile', component: "usersProfile"},
+    // {id: 5, text:'Manual do usuário', slug: '/manual-usuario', component: "manualUsuario"},
+    // {id: 6, text:'Sugestões', slug: '/sugestoes', component: "sugestoes"},
     {id: 7, text:'Configuraçôes', slug: '/configuracao', component: "configuracao"},
 ]
 

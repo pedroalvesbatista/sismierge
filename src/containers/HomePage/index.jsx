@@ -31,8 +31,7 @@ export const HomePage = () => {
   const [tabActive, setTabActive] = useState('Visão geral')
   const [ selectedScope, setSelectedScope] = useState("")
   const [idxCard, setIdxCard] = useState("");
-
- const scopeOption = ["Escopo 1", "Escopo 2", "Escopo 3"];
+  
  const tabs= ["Visão geral", "Usuarios"]
 
   const handleInventariacao = (e) => {
@@ -60,8 +59,10 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(companyActions.getCompanies())
+    // console.log(storageUser);
   }, [])
   
+
 
   return (
     <Area>
