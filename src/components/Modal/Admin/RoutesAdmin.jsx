@@ -11,8 +11,11 @@ function RoutesAdmin({ type, openModal}) {
   return (
     <>
       {displayModal === modalType[0].toLowerCase()  && <AddCompany />}
+      
       {displayModal === modalType[1].toLowerCase()  && <AddColaboradores />}
+
       {displayModal === modalType[2].toLowerCase()  && <EditUser />}
+
       {displayModal === modalType[3].toLowerCase()  && 
         <div style={{height: 600, overflowY: "auto"}}>
           <AddInventariacao />
