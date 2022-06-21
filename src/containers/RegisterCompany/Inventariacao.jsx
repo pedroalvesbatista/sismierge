@@ -15,7 +15,7 @@ import MoreItems from '../../components/Modal/Company/MoreItems'
 import { admin } from '../../constants/tailwind/colors'
 import { Text } from './styles'
 
-export const Inventariacao = ({skip, setPage}) => {
+export const Inventariacao = ({skip, setPage, height}) => {
     const dispatch = useDispatch()
     const navigate= useNavigate()
     const [list, setList] = useState([1])
@@ -23,6 +23,12 @@ export const Inventariacao = ({skip, setPage}) => {
     const [produtos, setProdutos] = useState([{
         name: null,
         unidade: null,
+        index: 0
+    }])
+    const [metaReducao, setMetaReducao] = useState([{
+        type: null,
+        intensidade: null,
+        absoluta: null,
         index: 0
     }])
   const [loading, setLoading] = useState(false)
@@ -60,7 +66,8 @@ export const Inventariacao = ({skip, setPage}) => {
   const optionsTypes= ["Matriz", "Filial"]
   const optionsIgee= ["Qualificações de fornecedores", "ABNT NBR 14.064", "Faz parte da política"]
 
-  const ref = useRef(null)
+  const refProduct = useRef(null)
+  const refEscopo = useRef(null)
 
   const handleSubmit= (e) => {
     e.preventDefault()
@@ -76,36 +83,51 @@ export const Inventariacao = ({skip, setPage}) => {
     // setPage("welcome")
     
   }
-
-    const handleMoreTable= () => {
-        setList([...list, list.length + 1])
-    }
-    const handleProdutos= (item) => {
-        const { type, index, event } = item
-        // let newProduct = {...data, producao_total_ano: "yes"}
+    const handleTable= (item) => {
+        const { func, index, event, type } = item
         const pdct = []
-        const array = ref?.current?.children
-        for (let index = 0; index < array.length; index++) {
-            const key= array[index].children[0].children[1].children[0].value
-            const value= array[index].children[1].children[1].children[0].value
-            pdct.push({produto: key, unidade: value})
-            // newProduct = {produto: key, unidade: value}
-        }
-        const filterData = pdct?.filter(i => i?.produto.length > 0 && i.unidade.length > 0)
-        setData({...data, producao_total_ano:  filterData})
+        const metaReduc = []
+        const productArray = refProduct?.current?.children
+        const metaReducaoArray = refEscopo?.current?.children
+        
+        if (type === "escopo") {
 
-        if (type === "more") {
-            setProdutos([...produtos, {name: null, unidade: null, index}])
+            for (let index = 0; index < metaReducaoArray.length; index++) {
+                const typeEscopo= metaReducaoArray[index].children[0]?.children[1].value
+                const absoluta = metaReducaoArray[index].children[1]?.children[1].children[0].value
+                const intensidade = metaReducaoArray[index].children[2]?.children[1].children[0].value
+                
+                metaReduc.push({type: typeEscopo, absoluta, intensidade})
+            }
+            const filterData = metaReduc?.filter(i => i?.typeEscopo?.length > 0)
+            setData({...data, meta_reducao:  filterData})
+            
         } else {
-            setProdutos(produtos.splice(0, produtos.length - 1))
+
+            for (let index = 0; index < productArray.length; index++) {
+                const key= productArray[index].children[0]?.children[1].children[0].value
+                const value= productArray[index].children[1]?.children[1].value
+                pdct.push({produto: key, unidade: value})
+            }
+            const filterData = pdct?.filter(i => i?.produto?.length > 0 && i?.unidade?.length > 0)
+            setData({...data, producao_total_ano:  filterData})
+        }
+
+
+        if (func === "more") {
+            if (type === "escopo") {
+                setMetaReducao([...metaReducao, {type: null, absoluta: null, intensidade: null, index}])
+            } else {
+                setProdutos([...produtos, {name: null, unidade: null, index}])
+            }
+        } else {
+            if (type === "escopo") {
+                setMetaReducao(metaReducao.splice(0, metaReducao.length - 1))
+            } else {
+                setProdutos(produtos.splice(0, produtos.length - 1)) 
+            }
         }
     }
-
-    const handlLessTable= () => {
-        setList(list.splice(0, list.length - 1))
-    }
-    
-//   console.log(metaEscopo);
 
   return (
     <Fragment>
@@ -117,7 +139,7 @@ export const Inventariacao = ({skip, setPage}) => {
         ): (
             <Fragment>
                 
-                <Form onSubmit={handleSubmit}>
+                <Form height={height} onSubmit={handleSubmit}>
                     <AreaInput>
                         <Input 
                             label={"Ano inventariado"}
@@ -150,7 +172,7 @@ export const Inventariacao = ({skip, setPage}) => {
                         />
                         <SelectArea 
                             title={"Limites Organizacionais"} 
-                            item={["Matriz C Controlada", "U Unidade"]} 
+                            item={["Matriz", "Controlada", "Unidade"]} 
                             placeholder="Escolhe aqui..."
                             width= "100%"
                             spaceLeft
@@ -161,7 +183,7 @@ export const Inventariacao = ({skip, setPage}) => {
                     <AreaInput>
                         <SelectArea 
                             title={"Qual abordagem de consolidação foi utilizado no inventario?"} 
-                            item={["Abordagem  de Controle operacional", "Abordagem de xxx"]} 
+                            item={["Abordagem  de Controle operacional"]} 
                             placeholder="Escolhe aqui..."
                             width= "50%"
                             // spaceLeft
@@ -172,7 +194,7 @@ export const Inventariacao = ({skip, setPage}) => {
                             label={"Numero de funcionário no ano inventariado"}
                             placeholder="ex: 10"
                             spanceLeft={true}
-                            type="numeric"
+                            type="number"
                             value={data.funcionario}
                             onChange={e => setData({...data, funcionario: e.target.value})}
                         />
@@ -180,12 +202,17 @@ export const Inventariacao = ({skip, setPage}) => {
                     <AreaInput NoFlex={true}>
                         <Title>Produção total do ano inventariado (em unidades, kg, m, m2, m3..) por tipo de produto</Title>
                         <ContainerAreaInput style={{display: "flex"}}>
-                            <WrapperAreaInput ref={ref}>
+                            <WrapperAreaInput ref={refProduct}>
+                                <AreaInput>
+                                    {/* <Label>Produto</Label>
+                                    <Label spanceLeft ={"130px"} >Unidade</Label> */}
+                                </AreaInput>
                                 {produtos.map((item, index) => (
                                     <ContentAreaInput key={index}>
                                         <Input
-                                            // label={"Numero de funcionário no ano inventariado"}
-                                            placeholder="Produto"
+                                            label={"Produto"}
+                                            // spanceTop={"0px"}
+                                            placeholder="Ex: Carro"
                                             type="text"
                                             // value={produtos[index].name}
                                             onChange={e => {
@@ -195,25 +222,22 @@ export const Inventariacao = ({skip, setPage}) => {
                                                 setIndexProduct(index)
                                             }}
                                         />
-                                        <Input 
-                                            // label={"Numero de funcionário no ano inventariado"}
-                                            placeholder="Unidade"
-                                            spanceLeft={true}
-                                            type="numeric"
-                                            // value={produtos[index].unidade}
-                                            onChange={e => {
-                                                let newProd= {...produtos[index]}
-                                                newProd.unidade = e.target.value
-                                                // setProdutos([newProd ])
-                                                setIndexProduct(index)
-                                            }}
+                                        <SelectArea 
+                                            // spanceTop={"0px"}
+                                            title={"Undade"} 
+                                            item={["Unidades", "Kg", "Km", "m", "m²", "m³"]} 
+                                            placeholder="Escolhe aqui..."
+                                            width= "47%"
+                                            spaceLeft
+                                            // value={data.limite_organizacionais}
+                                            onChange={e => setIndexProduct(index)}
                                         />
                                     </ContentAreaInput>
                                 ))}
                             </WrapperAreaInput>
                             <MoreItems 
-                                onClickLess={(e) => handleProdutos({type: "less", index: produtos.length, event: e})} 
-                                onClickMore={(e) => handleProdutos({type: "more", index: produtos.length, event: e})}  
+                                onClickLess={(e) => handleTable({func: "less", index: produtos.length, event: e})} 
+                                onClickMore={(e) => handleTable({func: "more", index: produtos.length, event: e})}  
                                 item={produtos} 
                             />
                         </ContainerAreaInput>
@@ -230,41 +254,37 @@ export const Inventariacao = ({skip, setPage}) => {
                         />
                         {metaEscopo &&
                             <ContainerAreaInput style={{display: "flex"}}>
-                                <WrapperAreaInput>
-                                    {list.map(item => (
-                                        <ContentAreaInput key={item}>
+                                <WrapperAreaInput ref={refEscopo}>
+                                    {metaReducao.map((item, index) => (
+                                        <ContentAreaInput key={index}>
                                             <SelectArea 
-                                                // title={"Sua empresa já tem alguma meta de redução para o escopo"} 
+                                                title={"Escopo"} 
                                                 item={escopos} 
                                                 placeholder="escolhe escopo..."
                                                 width= "50%"
-                                                value={data.company}
-                                                onChange={e => setData({...data, company: e.target.value})}
                                             />
                                             <Input 
-                                                // label={"Numero de funcionário no ano inventariado"}
-                                                placeholder="Por intensidade"
-                                                spanceLeft={true}
-                                                type="numeric"
-                                                // width={"100%"}
-                                                fontSize={12}
-                                                value={data.company}
-                                                onChange={e => setData({...data, company: e.target.value})}
-                                            />
-                                            <Input 
-                                                // label={"Numero de funcionário no ano inventariado"}
-                                                placeholder="Por absoluta"
+                                                label={"Intensidade"}
+                                                placeholder="digite aqui..."
                                                 spanceLeft={true}
                                                 type="numeric"
                                                 fontSize={12}
-                                                value={data.company}
-                                                onChange={e => setData({...data, company: e.target.value})}
-                                                // width={"100%"}
+                                            />
+                                            <Input 
+                                                label={"Absoluta"}
+                                                placeholder="digite aqui..."
+                                                spanceLeft={true}
+                                                type="numeric"
+                                                fontSize={12}
                                             />
                                         </ContentAreaInput>
                                     ))}
                                 </WrapperAreaInput>
-                                <MoreItems onClickLess={handlLessTable} onClickMore={handleMoreTable}  item={list} />
+                                <MoreItems 
+                                    onClickLess={(e) => handleTable({func: "less", index: metaReducao.length, event: e, type: "escopo"})} 
+                                    onClickMore={(e) => handleTable({func: "more", index: metaReducao.length, event: e, type: "escopo"})}  
+                                    item={metaReducao} 
+                                />
                             </ContainerAreaInput>
                         }
                     </AreaInput>
@@ -387,9 +407,9 @@ export const Inventariacao = ({skip, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 680px;
     margin-top: 10px;
-    /* max-height: 600px; */
+    max-height: ${({height}) => height && "550px"};
     /* justify-content: space-between; */
     /* height: 200px; */
     overflow-y: auto;
@@ -421,6 +441,7 @@ const ContainerAreaInput = styled.div`
     align-items: flex-end;
     width: 100%;
     justify-content: flex-start;
+    border-bottom: 1px solid ${admin.dark}79;
     /* height: 200px; */
 `
 const ConexioArea = styled.div`
@@ -438,6 +459,17 @@ const TextSkip = styled.span`
     &:hover{
         text-decoration: underline;
     }
+`
+const Label = styled.label`
+    font-size: 14px;
+    font-weight: 600;
+    color: ${admin.dark}89;
+    margin: 8px 0px;
+    margin-top: ${({spanceTop}) => spanceTop ? spanceTop : '-0px'};
+    flex: 1;
+    margin-left: ${({spanceLeft}) => spanceLeft ? spanceLeft : '10px'};
+    margin-right: ${({spanceRight}) => spanceRight ? '20px' : 'none'};
+    width: ${({width}) => width ?? "none"};
 `
 
 const InputFile = styled.input`

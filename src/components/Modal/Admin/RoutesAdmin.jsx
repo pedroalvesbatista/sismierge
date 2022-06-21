@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { AddCompany, EditUser, AddColaboradores } from '.'
+import { Inventariacao } from '../../../containers/RegisterCompany/Inventariacao'
+import { Organisation } from '../../../containers/RegisterCompany/Organisation'
 import { LoadingAnimation } from '../../lottie'
-import { AddInventariacao } from '../Company'
 
 function RoutesAdmin({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)
@@ -16,11 +17,7 @@ function RoutesAdmin({ type, openModal}) {
 
       {displayModal === modalType[2].toLowerCase()  && <EditUser />}
 
-      {displayModal === modalType[3].toLowerCase()  && 
-        <div style={{height: 600, overflowY: "auto"}}>
-          <AddInventariacao />
-        </div>
-      }
+      {displayModal === modalType[3].toLowerCase()  && <Inventariacao height={true.toString()} /> }
     </>
   )
 }

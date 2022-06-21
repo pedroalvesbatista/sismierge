@@ -3,8 +3,8 @@ import HttpBackend from "./../config/http"
 const httpBackend= HttpBackend()
 
 const tokenJwt= window.location.pathname.split('/')[2]
-const storageUser= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
-const storageAdmin= JSON.parse(localStorage.getItem("@sismiegee/auth"))
+const storageAdmin= JSON.parse(localStorage.getItem("@sismiegee/auth/admin"))
+const storageUser= JSON.parse(localStorage.getItem("@sismiegee/auth"))
 const storageToken= storageUser?.length > 0 ? storageUser?.jwt : storageAdmin?.length > 0 ? storageAdmin?.jwt : tokenJwt  
 // const token= 
 // console.log("tokenJwt");
