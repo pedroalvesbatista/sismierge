@@ -21,7 +21,7 @@ export const initialData = {
     organizacao_comp_emissoes: null,
     reducoes_emissoes: null,
     organizacao_proj_red_emissoes: null,
-    users_permissions_users: [storage.user.id],
+    users_permissions_users: [storage?.user?.id],
     company: null,
     ano: null
 }
