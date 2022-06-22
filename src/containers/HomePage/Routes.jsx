@@ -13,10 +13,10 @@ function Routes({tab, openModal}) {
             <Tab1 openModal={e => openModal(e)} />
         }
         {tab === tabs[1] &&
-            <Tab5 openModal={e => openModal(e)} />
+            <Tab6 openModal={e => openModal(e)} />
         }
         {tab === tabs[2] &&
-            <Tab6 openModal={e => openModal(e)} />
+            <Tab5 openModal={e => openModal(e)} />
         }
     </div>
   )
