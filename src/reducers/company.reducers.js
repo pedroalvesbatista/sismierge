@@ -4,13 +4,22 @@ const initialState = {
     loading: false,
     loadingCreateCompany: false,
     loadingUpdateCompany: false,
-    sucess: false,
+    sucessCompany: false,
     sucessCreateCompany: false,
     sucessUpdateCompany: false,
     error: false,
-    companies: [],
+    companies: null,
     company: [],
     newCompany: [],
+
+    loadingInventory: false,
+    sucessInventory: false,
+    errorInventory: false,
+    inventories: [],
+    loadingCreateInventory: false,
+    sucessCreateInventory: false,
+    errorCreateInventory: false,
+    newInventory: []
 }
 
 export const companyReducer = (state = initialState, action) => {
@@ -19,6 +28,7 @@ export const companyReducer = (state = initialState, action) => {
     case companyConstants.LOAD_COMPANY_REQUEST:
       return {
         ...state,
+        sucessCompany: false,
         loading: true,
       }
       
@@ -27,6 +37,7 @@ export const companyReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        sucessCompany: true,
         companies: action.payload,
       }
 
@@ -81,7 +92,73 @@ export const companyReducer = (state = initialState, action) => {
         loadingUpdateCompany: false,
         error: action.payload
       }
+
+    case companyConstants.CLEAR_COMPANY:
+      return {
+        ...state,
+        loading: false,
+        loadingCreateCompany: false,
+        loadingUpdateCompany: false,
+        sucessCompany: false,
+        sucessCreateCompany: false,
+        sucessUpdateCompany: false,
+        error: false,
+      }
+
     
+    case companyConstants.LOAD_INVENTORY_REQUEST:
+      return {
+        ...state,
+        loadingInventory: true,
+        sucessInventory: false,
+        errorInventory: false,
+      }
+      
+
+    case companyConstants.LOAD_INVENTORY_SUCCESS:
+      return {
+        ...state,
+        loadingInventory: false,
+        sucessInventory: true,
+        inventories: action.payload,
+      }
+
+    case companyConstants.LOAD_INVENTORY_FAIL:
+      return {
+        ...state,
+        loadingInventory: false,
+        errorInventory: true,
+      }
+    
+    case companyConstants.CREATE_INVENTORY_REQUEST:
+      return {
+        ...state,
+        loadingCreateInventory: true,
+      }
+      
+
+    case companyConstants.CREATE_INVENTORY_SUCCESS:
+      return {
+        ...state,
+        loadingCreateInventory: false,
+        sucessCreateInventory: true,
+        newInventory: action.payload,
+      }
+
+    case companyConstants.CREATE_INVENTORY_FAIL:
+      return {
+        ...state,
+        loadingCreateInventory: false,
+        errorCreateInventory: true
+      }
+
+    case companyConstants.CLEAR_INVENTORY:
+      return {
+        ...state,
+        loadingCreateInventory: false,
+        errorCreateInventory: false,
+        sucessCreateInventory: false
+      }
 
     default: 
       return state;

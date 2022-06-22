@@ -73,7 +73,7 @@ export function EditUser({ openModal }) {
     }, [data.TypePermission])
     
     
-    
+    // console.log(roles);
     
   return (
     loading ? (
@@ -146,9 +146,9 @@ export function EditUser({ openModal }) {
                         onChange={e => setData({...data, TypePermission: e.target.value})} 
                         value={data.TypePermission} 
                         title={"Tipos de permissão"} 
-                        type={"collections"}
-                        item={roles.slice(1)} 
-                        width= "100%"
+                        // type={"collections"}
+                        item={roles.map(i => [i.name])} 
+                        width= "49%"
                         placeholder={"Escolhe tipos de permissão..."}
                     />
                     <MsgCargo> {msgCargo} </MsgCargo>

@@ -6,7 +6,12 @@ export const companyActions = {
     getCompanies,
     createCompany,
     getUserCompany,
-    updateCompany
+    updateCompany,
+
+    loadInventories,
+    // updateInventory,
+    createInventory,
+    // deleteInventory
 }
 
 const storageCompany= {
@@ -110,6 +115,65 @@ function updateCompany (userData, id){
     dispatch({ 
       type: companyConstants.UPDATE_COMPANY_FAIL,
     })
+    console.log(error.response);
+  })
+  }
+}
+
+function loadInventories (id_company){
+  const storage= JSON.parse(localStorage.getItem("@sismiegee/auth")).user
+
+    return dispatch => {
+      dispatch({ 
+      type: companyConstants.LOAD_INVENTORY_REQUEST
+    })
+
+    companyService.loadInventories(id_company)
+    .then(response => {
+      // const filterById = response?.data?.data?.filter((item) => {
+      //   return item?.attributes?.company?.data?.includes(storage?.id);
+      // })
+      const newData = []
+      response.data.data.map(i => {
+        newData.push({
+          id: i.id,
+          ...i.attributes
+        })
+      })
+      dispatch({ 
+        type: companyConstants.LOAD_INVENTORY_SUCCESS,
+        payload: newData
+      })
+    })
+    .catch(error => {
+      dispatch({ 
+        type: companyConstants.LOAD_INVENTORY_FAIL,
+      })
+      console.log(error);
+    })
+    }
+}
+
+function createInventory (userData){
+
+  return dispatch => {
+    dispatch({ 
+    type: companyConstants.CREATE_INVENTORY_REQUEST
+  })
+
+  companyService.createInventory(userData)
+  .then(response => {
+      dispatch({ 
+        type: companyConstants.CREATE_INVENTORY_SUCCESS,
+        payload: {id: response.data.data.id, ...response.data.data.id}
+      })
+      toast.success("Criado com sucesso")
+  })
+  .catch(error => {
+    dispatch({ 
+      type: companyConstants.CREATE_INVENTORY_FAIL,
+    })
+    toast.error("Algo deu errado!")
     console.log(error.response);
   })
   }

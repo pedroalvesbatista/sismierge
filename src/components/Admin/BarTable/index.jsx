@@ -7,8 +7,10 @@ import { ButtonAdd } from '../../Buttons'
 import Toogle from '../../Input/Toogle'
 import { authActions, othersActions } from '../../../actions'
 import { useDispatch } from 'react-redux'
+import InventoryTable from './InventoryTable'
+import EscopoTable from './EscopoTable'
 
-function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa", onClick}) {
+function BarTable({addButtonTop=true, item, header, loading, tab, title, onClick, type}) {
     const dispatch = useDispatch()
     const [toogle, setToogle] = useState(false)
 
@@ -29,54 +31,69 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title="empresa
             </ButtonArea>
         )}
         <Container>
-            <Content>
-                <table>
-                    <thead>
-                        <tr>
-                            <TableArea>
-                                {header && header?.map((i, key) => (
-                                    <Item title={true.toString()} key={key}>{i.toUpperCase()}</Item>
-                                ))}
-                            </TableArea>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {loading ?
-                                <NotCOntentArea>
-                                    <div>Carregando...</div>
-                                </NotCOntentArea>
-                            : (
-                                item?.length > 0 ? 
-                                    item.slice(0, 10).map((i, key) => (
-                                        <TableArea key={key}>
-                                            <Item onClick={() => handleEdit(i)}>  { i?.name } </Item>
-                                            <Item onClick={() => handleEdit(i)}>  { i?.email } </Item>
-                                            <Item onClick={() => handleEdit(i)}>  { i?.role?.name } </Item>
-                                            <Item> 
-                                                <BsPencilSquare onClick={() => handleEdit(i)} size={14} color={admin.verde} />
-                                                <BsTrash 
-                                                    size={14} 
-                                                    color={"red"} 
-                                                    onClick={() => handleDelete(i.id)}
-                                                />
-                                            </Item>
-                                            {/* <Item> 
-                                                <Toogle onClick={() => setToogle(!toogle)} active={toogle} />     
-                                            </Item> */}
-                                        </TableArea>
-                                )) : 
+            {type === "escopo" ? (
+                <EscopoTable />
+            ) : (
+                <Content>
+                    <table>
+                        <thead>
+                            <tr>
+                                <TableArea>
+                                    {header && header?.map((i, key) => (
+                                        <Item title={true.toString()} key={key}>{i.toUpperCase()}</Item>
+                                    ))}
+                                </TableArea>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {loading ?
                                     <NotCOntentArea>
-                                        <IconDoc />
-                                        <Text>Nenhum {title} encontrado</Text>
-                                        <ButtonAdd title={title} onClick={onClick}/>
+                                        <div>Carregando...</div>
                                     </NotCOntentArea>
-                                )
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </Content>
+                                : (
+                                    item?.length > 0 ? 
+                                        item.slice(0, 10).map((i, key) => (
+                                            title === "Inventariação" ? (
+                                                <InventoryTable key={key} item={i} />
+                                            ) : (
+                                                <TableArea key={key}>
+                                                    <Item onClick={() => handleEdit(i)}>
+                                                        { i?.name.length > 20 ?  `${i?.name.slice(0, 20)}...` : i?.name }
+                                                    </Item>
+                                                    <Item onClick={() => handleEdit(i)}>  
+                                                        { i?.email.length > 23 ?  `${i?.email.slice(0, 23)}...` : i?.email } 
+                                                    </Item>
+                                                    <Item onClick={() => handleEdit(i)}>  { i?.role?.name } </Item>
+                                                    <Item> 
+                                                        <BsPencilSquare onClick={() => handleEdit(i)} size={14} color={admin.verde} />
+                                                        <BsTrash 
+                                                            size={14} 
+                                                            color={"red"} 
+                                                            onClick={() => handleDelete(i.id)}
+                                                        />
+                                                    </Item>
+                                                    <Item> 
+                                                        {/* <Toogle onClick={() => setToogle(!toogle)} active={toogle} />      */}
+                                                    </Item>
+                                                </TableArea>
+                                            )
+                                            
+                                    )) : 
+                                        <NotCOntentArea>
+                                            <IconDoc />
+                                            <Text>Nenhum {title} encontrado</Text>
+                                            <ButtonAdd title={title} onClick={onClick}/>
+                                        </NotCOntentArea>
+                                    )
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </Content>
+            )
+            
+            }
             
         </Container>
     </Area>

@@ -29,9 +29,9 @@ function Tab4({ openModal }) {
     dispatch(othersActions.handleOpenModal("Adicionar colaboradores"))
   }
 
-  useEffect(() => {
-    getColaboradors()
-  }, [])
+  // useEffect(() => {
+  //   getColaboradors()
+  // }, [])
 
   return (
     <BarTable 

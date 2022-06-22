@@ -23,7 +23,7 @@ import SoloAgriculturaIndustrias from "./Subs/SoloAgriculturaIndustrias";
 import EmissosFugitivas from "./Subs/EmissosFugitivas";
 import ResiduosSolidos from "./Subs/ResiduosSolidos";
 import Efluentes from "./Subs/Efluentes";
-import { sheetActions } from "../../actions";
+import { othersActions, sheetActions } from "../../actions";
 import { initialItemData } from "./selectionData";
 
 const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
@@ -35,7 +35,10 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const [showSubEsco1, setShowSubEsco1] = useState("");
   const [nextEsco1Button, setnextEsco1Button] = useState(false);
   const [curentIdxEsco1, setCurentIdxEsco1] = useState();
-  const handleClose = () => setOpenStartInvet(false);
+  const handleClose = () => {
+    setOpenStartInvet(false)
+    dispatch(othersActions.closeModal())
+  };
   const [dataItemCE, setDataItemCE] = useState(initialItemData);
 
   const handleEsco1 = (name, id) => {
@@ -77,6 +80,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const handleChangeEsco1 = () => {
     setnextEsco1Button(!nextEsco1Button);
     setOpenStartInvet(!openStartInvet);
+    dispatch(othersActions.closeModal())
     setCurentIdxEsco1("");
     dispatch(sheetActions.setSubEscopo({
       range: "Combustão estacionária!A11:D11",

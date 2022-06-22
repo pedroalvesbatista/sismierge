@@ -155,6 +155,7 @@ function SelectArea({ value, type, onChange, item, title, modal=true, width, pla
 
 const Area = styled.div`
     width: ${({width}) => width ?? "none"};
+    flex: ${({width}) => width ? "none" : 1};
     margin-top: ${({spanceTop}) => spanceTop ? spanceTop : "10px"};
     display: flex;
     flex-direction: column;

@@ -45,7 +45,17 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
         {!notView &&
           <InputArea disabled={disabled} height={type === "textArea" ? 100 : 40} isFile={type == "file" || type === "textArea" ? true : false }>
             {type === "textArea" ? (
-                <TextArea placeholder={placeholder} cols={50} rows={10}  />) 
+                <TextArea 
+                  placeholder={placeholder} 
+                  cols={50} 
+                  rows={10}
+                  onChange={onChange}
+                  disabled={disabled}
+                  required={required}
+                  value={value}
+                  id={id}
+                  size={fontSize}
+                />) 
               : (
                 <Fragment>
                   <InputEntry 

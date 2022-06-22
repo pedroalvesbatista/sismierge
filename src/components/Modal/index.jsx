@@ -21,7 +21,7 @@ function Modal({ loading }) {
   const dispatch = useDispatch()
   const { isOpenModal, displayModal } = useSelector(state => state.others)
   const { loadingDeleteUser } = useSelector(state => state.auth)
-  const title= firstLetterCase(displayModal)
+  const title= typeof(displayModal) === "number" ? displayModal : firstLetterCase(displayModal)
 
   const handleCloseModal = (e) => {
     e.stopPropagation()

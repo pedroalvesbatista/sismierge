@@ -44,8 +44,9 @@ function Tab1({ openModal }) {
       title='matriz' 
       item={users} 
       loading={false} 
-      header={titles} 
+      // header={titles} 
       addButtonTop={false}
+      type="escopo"
     />
   )
 }

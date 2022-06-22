@@ -30,7 +30,7 @@ export function AddColaboradores({ openModal }) {
         id: "storage.company.user.length + 1",
         first: true,
         cargo: null,
-        company:  storage.company,
+        company:  storage?.company,
         cpf: null,
         telefone: null
     })
@@ -199,7 +199,7 @@ export function AddColaboradores({ openModal }) {
                         label={"Cargo do responsável"}
                         placeholder={`Gerente`}
                         type="text"
-                        width={"100%"}
+                        // width={"100%"}
                         spanceRight={true}
                         onChange={(e) => setDataCompany({...dataCompany, cargo: e.target.value})}
                         value={dataCompany.cargo}
@@ -208,7 +208,7 @@ export function AddColaboradores({ openModal }) {
                         onChange={e => setData({...data, typeUnidade: e.target.value})} 
                         value={data.typeUnidade} 
                         title={"Quais unidades permitidas"} item={optionUnidade} 
-                        width= "50%"
+                        // width= "50%"
                         placeholder="Escolhe unidade..."
                     />
                 </AreaInput>
@@ -217,7 +217,7 @@ export function AddColaboradores({ openModal }) {
                         onChange={e => setDataCompany({...dataCompany, type_user: e.target.value})} 
                         // value={data.TypePermission} 
                         title={"Tipos de permissão"} item={optionCargo} 
-                        width= "100%"
+                        width= "49%"
                         placeholder={"Escolhe tipos de permissão..."}
                     />
                     <MsgCargo> {msgCargo} </MsgCargo>

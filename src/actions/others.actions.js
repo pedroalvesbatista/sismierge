@@ -7,10 +7,11 @@ export const othersActions = {
     closeModal,
     changeDisplayModal,
     setDataModal,
-    loadCep
+    loadCep,
+    openModalInventory,
 }
 
-function handleOpenModal (display){
+function handleOpenModal (display, inventory){
     return dispatch => {
         dispatch({ 
             type: others.SET_MODAL,
@@ -19,10 +20,11 @@ function handleOpenModal (display){
 
         dispatch({ 
             type: others.CHANGE_CONTENT_MODAL,
-            payload: display?.toLowerCase()
+            payload: inventory ? display : display?.toLowerCase() 
         })
     }
 }
+
 
 function changeDisplayModal (display){
     return dispatch => {
@@ -39,6 +41,11 @@ function closeModal (){
             type: others.SET_CLOSE_MODAL,
             payload: false
         })
+
+        dispatch({ 
+            type: others.CHANGE_CONTENT_MODAL,
+            payload: ""
+        })
     }
 }
 
@@ -50,6 +57,38 @@ function setDataModal (data){
         })
     }
 }
+
+function openModalInventory (display){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_MODAL_INVENTORY,
+            payload: true
+        })
+
+        dispatch({ 
+            type: others.CHANGE_CONTENT_MODAL,
+            payload: display
+        })
+    }
+}
+
+// function changeDisplayModalInventory (display){
+//     return dispatch => {
+//         dispatch({ 
+//             type: others.CHANGE_CONTENT_MODAL,
+//             payload: display?.toLowerCase()
+//         })
+//     }
+// }
+
+// function closeModal (){
+//     return dispatch => {
+//         dispatch({ 
+//             type: others.SET_CLOSE_MODAL,
+//             payload: false
+//         })
+//     }
+// }
 
 function loadCep (cep){
 

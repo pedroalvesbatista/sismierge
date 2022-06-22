@@ -12,6 +12,7 @@ import Escopo2 from "../../components/Escopo2";
 import Routes from "./Routes";
 import { authActions, othersActions, companyActions } from "../../actions";
 import TabsAdmin from "../../components/Tabs";
+import { companyConstants } from "../../constants/redux";
 
 
 export const HomePage = () => {
@@ -21,8 +22,9 @@ export const HomePage = () => {
   const storageTab= localStorage.getItem("@sismiegee/admin/tabActive")
   const storageUser = JSON.parse(localStorage.getItem("@sismiegee/auth"));
 
-  const { roles, sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
-  const { companies } = useSelector(state => state.company)
+  const { sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
+  const { companies, sucessCompany } = useSelector(state => state.company) 
+  const { displayModal } = useSelector(state => state.others)
 
   const [loading, setLoading] = useState(true);
   const [mouseOnCard, setMouseOnCard] = useState(false);
@@ -36,8 +38,7 @@ export const HomePage = () => {
 
   const handleInventariacao = (e) => {
     e.stopPropagation();
-    selectedScope === 0 && setOpenStartInvetEsco1(true);
-    selectedScope === 1 && setOpenStartInvetEsco2(true);
+    
   };
 
   const handleTabActive = e => {
@@ -50,17 +51,18 @@ export const HomePage = () => {
     if (storageTab) {
       setTabActive(storageTab)
     }
-
     sucessEditUser && dispatch(othersActions.closeModal())
     sucessDeleteUser && dispatch(othersActions.closeModal())
 
     dispatch(authActions.loadRoles())
-  }, [storageTab, roles, sucess])
+  }, [storageTab, sucess])
 
   useEffect(() => {
-    dispatch(companyActions.getCompanies())
-    // console.log(storageUser);
-  }, [])
+    displayModal === 0 && setOpenStartInvetEsco1(true);
+    displayModal === 1 && setOpenStartInvetEsco2(true);
+  }, [displayModal])
+  
+  
   
 
 
@@ -70,70 +72,6 @@ export const HomePage = () => {
         "Carregando..."
       ) : (
         <>
-          <div className="d-flex justify-content-around justify-content-center mt-5 mb-5">
-            {!companies.escopos && "Não existe nenhum escopo selecionado"}
-            {companies.escopos?.length > 0 && companies.escopos?.map((item, index) => {
-              return (
-                <div>
-                  <Card
-                    className="d-flex  justify-content-center align-items-center"
-                    style={{
-                      width: 200,
-                      backgroundColor: "#9c348c",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <CardContent
-                      onMouseEnter={() => {
-                        setMouseOnCard(true);
-                        setIdxCard(index);
-                        setSelectedScope(index);
-                      }}
-                    >
-                      <h1 className="text-light fs-3">{item.type}</h1>
-                    </CardContent>
-                  </Card>
-                  {idxCard == index && mouseOnCard && (
-                    <div
-                      className="d-flex flex-column justify-content-between align-items-center mt-3"
-                      onMouseLeave={() => setMouseOnCard(false)}
-                    >
-                      <Button
-                        className="mt-1 mb-1"
-                        variant="contained"
-                        size="small"
-                        color="success"
-                      >
-                        Baixar todas as NF
-                      </Button>
-                      <Button
-                        onClick={handleInventariacao}
-                        className="mt-1 mb-1"
-                        variant="contained"
-                        size="small"
-                        color="success"
-                      >
-                        Iniciar Cálculo Inventariação
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* <hr />
-          {companies.escopos?.length > 0 &&
-            <div className="d-flex justify-content-around mt-3">
-              <Button variant="outlined" size="small" color="success">
-                Dados Rastreáveis
-              </Button>
-              <Button variant="outlined" size="small" color="success">
-                Fatores de Emissão
-              </Button>
-            </div>
-          } */}
-
           <Escopo1
             openStartInvet={openStartInvetEsco1}
             setOpenStartInvet={setOpenStartInvetEsco1}
