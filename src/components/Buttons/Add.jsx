@@ -6,8 +6,9 @@ import { admin } from '../../constants/tailwind/colors'
 export function ButtonAdd({ onClick, title, posTitle="Adicionar" }) {
   return (
     <Button onClick={onClick}>
-        <IconPlus />
-        {`${posTitle} ${title}`}
+      { posTitle && <IconPlus />}
+        
+      { posTitle ? `${posTitle} ${title}` : title}
     </Button>
   )
 }

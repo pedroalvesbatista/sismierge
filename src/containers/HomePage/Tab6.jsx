@@ -6,6 +6,7 @@ import { BsPlusCircleDotted } from 'react-icons/bs'
 import { colaboradorService } from '../../services'
 import { useDispatch, useSelector } from 'react-redux'
 import { companyActions, othersActions } from '../../actions'
+import { companyConstants } from '../../constants/redux'
 
 function Tab6({ openModal }) {
   const dispatch = useDispatch()
@@ -17,9 +18,13 @@ function Tab6({ openModal }) {
   }
 
   useEffect(() => {
-    sucessCompany && dispatch(companyActions.loadInventories(companies?.id))
-    console.log(inventories);
+    // console.log(inventories.length > 0 ? "Yes" : "nop");
   }, [companies])
+  
+  useEffect(() => {
+    dispatch(companyActions.loadInventories(companies?.id))
+  }, [])
+  
 
   return (
     <BarTable 

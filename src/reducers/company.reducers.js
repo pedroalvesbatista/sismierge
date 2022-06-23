@@ -128,6 +128,7 @@ export const companyReducer = (state = initialState, action) => {
         ...state,
         loadingInventory: false,
         errorInventory: true,
+        sucessInventory: false
       }
     
     case companyConstants.CREATE_INVENTORY_REQUEST:
@@ -157,7 +158,8 @@ export const companyReducer = (state = initialState, action) => {
         ...state,
         loadingCreateInventory: false,
         errorCreateInventory: false,
-        sucessCreateInventory: false
+        sucessCreateInventory: false,
+        sucessInventory: false
       }
 
     default: 

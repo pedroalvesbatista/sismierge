@@ -211,6 +211,12 @@ export const tipoTransporteEsco1 = [
   "Trasnporte Aereo",
 ];
 
+export const tabelasTipoTransposrte = [
+  "Cálculo de emissões por tipo e ano de fabricação da frota de veículos no ano de",
+  "Cálculo de emissões por tipo de combustível no ano de ",
+  "Cálculo de emissões por distância percorrida no ano de",
+];
+
 export const tipoEmissaoFugitivas = [
   {
     abrev: "Emissões Eq.Refr. e Ar RAC e Extintores",

@@ -28,17 +28,10 @@ const CombustaoEstacionaria = ({
   setItemSubEscopo,
 }) => {
   const dispatch = useDispatch();
-  const {
-    loadingSubEscopo,
-    sucessSubEscopo,
-    dataSubEscopo,
-    sucessCreateSubEscopo,
-  } = useSelector((state) => state.sheet);
-  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(
-    (state) => state.company
-  );
-const [ showHowToFill, setShowHowToFill]=useState(false);
-const [section1, setSection1] = useState(false);
+  const { loadingSubEscopo, sucessSubEscopo, dataSubEscopo, sucessCreateSubEscopo, } = useSelector((state) => state.sheet);
+  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector( (state) => state.company);
+  const [ showHowToFill, setShowHowToFill]=useState(false);
+  const [section1, setSection1] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -69,15 +62,10 @@ const [section1, setSection1] = useState(false);
         })
       );
     }
-    // if (sucessCreateCompany) {
-    //   dispatch(sheetActions.setSubEscopo({
-    //     range: "Combustão estacionária!A11:D11",
-    //     values:['', '', '', '']
-    //   }))
-    // }
   }, [itemSubEscopo]);
 
-  // console.log(companies);
+  // console.log(dataSubEscopo);
+  
   return (
     <Modal
       open={nextEsco1Button}
@@ -147,6 +135,53 @@ const [section1, setSection1] = useState(false);
         </div>
         <div className="mb-4">
           <div className="d-flex">
+
+            <div>
+              <h3>Fatores de Emissão-setor:</h3>
+              <FormControl sx={{ m: 1, minWidth: 200 }} required>
+                <InputLabel id="fator_emissao_setor">
+                  Escolhe aqui...
+                </InputLabel>
+                <Select
+                  labelId="fator_emissao_setor"
+                  id="fator_emissao_setor"
+                  value={itemSubEscopo.fator_emissao_setor}
+                  name={"fator_emissao_setor"}
+                  onChange={handleChange}
+                  autoWidth
+                  label="Escolhe aqui..."
+                >
+                  {companies.setor_atividade?.map((elem) => (
+                    <MenuItem value={elem}>{elem}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+
+            <div className="m-2">
+              <h3>Registro da Fonte</h3>
+              <TextField
+                id="regist-font"
+                label="Digite aqui..."
+                variant="outlined"
+                name={"registro_fonte"}
+                onChange={handleChange}
+                value={itemSubEscopo.registro_fonte}
+              />
+            </div>
+
+            <div className="m-2">
+              <h3>Descrição da Fonte</h3>
+              <TextField
+                id="desc-font"
+                label="Digite aqui..."
+                variant="outlined"
+                name={"desc_fonte"}
+                onChange={handleChange}
+                value={itemSubEscopo.desc_fonte}
+              />
+            </div>
+
             <div>
               <h3>Combustível Utilizado</h3>
               <FormControl sx={{ m: 1, minWidth: 200 }} required>
@@ -168,39 +203,6 @@ const [section1, setSection1] = useState(false);
                 </Select>
               </FormControl>
             </div>
-            <div>
-              <h3>Fatores de Emissão-setor:</h3>
-              <FormControl sx={{ m: 1, minWidth: 200 }} required>
-                <InputLabel id="fator_emissao_setor">
-                  Fatores de Emissão para o setor
-                </InputLabel>
-                <Select
-                  labelId="fator_emissao_setor"
-                  id="fator_emissao_setor"
-                  value={itemSubEscopo.fator_emissao_setor}
-                  name={"fator_emissao_setor"}
-                  onChange={handleChange}
-                  autoWidth
-                  label="Fatores de Emissão para o setor..."
-                >
-                  {companies.setor_atividade?.map((elem) => (
-                    <MenuItem value={elem}>{elem}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div className="m-2">
-              <h3>Registro da Fonte</h3>
-              <TextField
-                id="regist-font"
-                label=" Digite o registro da fonte..."
-                variant="outlined"
-                name={"registro_fonte"}
-                onChange={handleChange}
-                value={itemSubEscopo.registro_fonte}
-              />
-            </div>
 
             <div className="m-2">
               <h3>Quantidade Consumida</h3>
@@ -213,26 +215,17 @@ const [section1, setSection1] = useState(false);
                 value={itemSubEscopo.qtd_consumida}
               />
             </div>
-            <div className="m-2">
-              <h3>Descrição da Fonte</h3>
-              <TextField
-                id="desc-font"
-                label="Digite descrição da Fonte..."
-                variant="outlined"
-                name={"desc_fonte"}
-                onChange={handleChange}
-                value={itemSubEscopo.desc_fonte}
-              />
-            </div>
+
             <div className="m-2">
               <h3>Unidades de Medida</h3>
               <TextField
                 disabled
                 id="unidade"
                 label=""
-                defaultValue={
-                  dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
-                }
+                value={dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]}
+                // defaultValue={
+                //   dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
+                // }
                 variant="filled"
               />
             </div>

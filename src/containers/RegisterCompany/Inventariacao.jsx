@@ -34,6 +34,7 @@ export const Inventariacao = ({skip, height}) => {
 
   useEffect(() => {
     if (sucessCreateInventory) {
+        navigate('/')
         dispatch(othersActions.closeModal())
         dispatch({type: companyConstants.CLEAR_INVENTORY})
         setMetaEscopo(false)
@@ -237,7 +238,7 @@ export const Inventariacao = ({skip, height}) => {
                                         <ContentAreaInput key={index}>
                                             <SelectArea 
                                                 title={"Escopo"} 
-                                                item={companies.escopos.map(i => [i.type])} 
+                                                item={companies?.escopos?.map(i => [i.type])} 
                                                 placeholder="escolhe escopo..."
                                                 // width= "50%"
                                                 onChange={e => setValueMetaReducao(e.target.value)}

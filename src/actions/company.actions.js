@@ -109,12 +109,14 @@ function updateCompany (userData, id){
         type: companyConstants.UPDATE_COMPANY_SUCCESS,
         payload: response.data.data
       })
+      toast.success("Salvando com sucesso")
       // console.log(response.data.data.attributes);
   })
   .catch(error => {
     dispatch({ 
       type: companyConstants.UPDATE_COMPANY_FAIL,
     })
+    toast.error("Algo deu errado")
     console.log(error.response);
   })
   }

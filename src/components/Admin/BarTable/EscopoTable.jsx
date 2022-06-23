@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 import { SiDatabricks } from 'react-icons/si'
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { admin } from '../../../constants/tailwind/colors'
-import { authActions, othersActions } from '../../../actions'
+import { authActions, companyActions, othersActions } from '../../../actions'
 import { useDispatch, useSelector } from 'react-redux'
+import { companyConstants } from '../../../constants/redux';
 
 function EscopoTable({item}) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { companies, sucessCompany } = useSelector(state => state.company)
+    const { companies, sucessCompany, sucessCreateInventory, inventories, sucessInventory } = useSelector(state => state.company)
     const data = [
         {
           id: 0,
@@ -44,6 +45,7 @@ function EscopoTable({item}) {
         ],
     });
 
+    // console.log(sucessInventory);
     const [toogle, setToogle] = useState(false)
 
     const handleEdit = (item) => {
@@ -52,10 +54,19 @@ function EscopoTable({item}) {
     }
 
     const handleOpenInventory = (index) => {
+
         dispatch(othersActions.handleOpenModal(index, true))
     }
 
-    // console.log(item);
+    useEffect(() => {
+      sucessCreateInventory && dispatch(companyActions.loadInventories(companies?.id))
+      if (sucessInventory) {
+        setTimeout(() => {
+          dispatch({type: companyConstants.CLEAR_INVENTORY})
+        }, 500);
+      }
+    }, [sucessInventory, sucessCreateInventory])
+    
 
   return (
     <Area>
@@ -83,8 +94,17 @@ function EscopoTable({item}) {
                             <Title  left="10px">200,34</Title> 
                         </Title>
                     </AreaTitle>
-                    <BtnStart onClick={() => navigate("/resumo")} seeMore>Ver mais detalhes</BtnStart>
-                    <BtnStart onClick={() => handleOpenInventory(index)}>Iniciar cálculo</BtnStart>
+                    {inventories.length > 0 ? (
+                        <>
+                          <BtnStart onClick={() => navigate("/resumo")} seeMore>Ver mais detalhes</BtnStart>
+                          <BtnStart onClick={() => handleOpenInventory(index)}>Iniciar cálculo</BtnStart>
+                        </>
+                      ) : (
+                        <BtnStart size="12" seeMore onClick={() => dispatch(othersActions.handleOpenModal("Adicionar Inventariação"))}>
+                          Crie uma inventariação pra poder calcular
+                        </BtnStart>
+                      )
+                    }
                 </Card>
             ))}
         </CardArea>
@@ -97,7 +117,7 @@ const Area = styled.div`
     align-items: center;
     flex-direction: column;
     /* justify-content: space-between; */
-    padding: 20px 0px;
+    padding: 20px 30px;
 `
 const CardArea = styled.div`
     width: 100%;
@@ -161,7 +181,7 @@ const BtnStart = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: ${({size}) => size ?? "16"}px;
   margin-bottom: 10px;
   text-decoration: ${({seeMore}) => seeMore ? "underline" : "none"};
 

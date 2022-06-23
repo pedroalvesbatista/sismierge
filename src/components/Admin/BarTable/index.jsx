@@ -9,8 +9,9 @@ import { authActions, othersActions } from '../../../actions'
 import { useDispatch } from 'react-redux'
 import InventoryTable from './InventoryTable'
 import EscopoTable from './EscopoTable'
+import Routes from './Routes'
 
-function BarTable({addButtonTop=true, item, header, loading, tab, title, onClick, type}) {
+function BarTable({addButtonTop=true, item, header, loading, route, title, onClick, type}) {
     const dispatch = useDispatch()
     const [toogle, setToogle] = useState(false)
 
@@ -26,13 +27,19 @@ function BarTable({addButtonTop=true, item, header, loading, tab, title, onClick
   return (
     <Area>
         {addButtonTop && (
-            <ButtonArea>
-                <ButtonAdd title={title} onClick={onClick}/>
-            </ButtonArea>
+            type === "empresa" ? item && typeof item?.id !== "undefined" && (
+                <ButtonArea>
+                    <ButtonAdd posTitle={false} title={title} onClick={onClick}/>
+                </ButtonArea>
+            ) : (
+                <ButtonArea>
+                    <ButtonAdd title={title} onClick={onClick}/>
+                </ButtonArea>
+            )
         )}
-        <Container>
-            {type === "escopo" ? (
-                <EscopoTable />
+        <Container route={route}>
+            {route ? (
+                <Routes tab={type} />
             ) : (
                 <Content>
                     <table>
@@ -110,7 +117,7 @@ const Container = styled.div`
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.1);
-  padding: 0px 30px;
+  padding: ${({route}) => route ? "none" : "0px 30px"};
 `
 const Content = styled.div`
     /* padding: 20px 0px; */

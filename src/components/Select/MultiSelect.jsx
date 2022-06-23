@@ -4,18 +4,42 @@ import styled from 'styled-components'
 import { sheetActions } from '../../actions'
 import { admin, primary, second } from '../../constants/tailwind/colors'
 
-function MultiSelect({ value, type, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
+function MultiSelect({ editeData,value, type, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
     const dispatch = useDispatch()
+    const isEditData = editeData ? editeData[0] : [] 
+    const editDataOption =[]
+    const isEditSetor = editeData ? editeData[1] : [] 
     const [dataFinal, setDataFinal] = useState([])
     const [openSetor, setOpenSetor] = useState(false)
     const [exemplo, setexemplo] = useState([])
     const [data, setData] = useState([])
     const [selectedOption, setSelectedOption] = useState([])
-    const [selectedEscopo, setSelectedEscopo] = useState([])
-    const [selectSetor, setSelectSetor] = useState([])
+    const [selectedEscopo, setSelectedEscopo] = useState(isEditData)
+    const [selectSetor, setSelectSetor] = useState(isEditSetor)
     const [indexId, setIndexId] = useState()
     const [setorAtividade, setSetorAtividade] = useState(["Energia", "Manufatura ou Construção", "Comercial ou Institucional", "Agricultura, Florestal ou Pesca"])
 
+    const filterSet = new Set(isEditData)
+    // console.log(selectedOption);
+
+    useEffect(() => {
+        isEditData?.map(m => { 
+            return m.items.filter(i => editDataOption.push(i))
+        })
+      if (editeData && editeData[0]) {
+        setSelectedOption(editDataOption)
+      }
+    }, [editeData && editeData[0]])
+
+    useEffect(() => {
+        if (editeData && editeData[0]) {
+            editeData && editeData[0]?.map(m => { 
+                setData([item.filter(i => i.type === m.type)[0]])
+            })
+        }
+        
+    }, [editeData && editeData[0]])
+    
 
     function handleIsEscopoOption(id) {
         return selectedEscopo?.filter(i => i.id === id).length > 0  ? true : false
@@ -61,20 +85,33 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
         
     }
 
+    // useEffect(() => {
+    //     const arr = []
+    //     const filterEscopo = item.filter(i => {i.type.includes("Escopo 1")})
+    //     console.log(ex);
+    // }, [editeData, item])
+    
+
     const handleOnchageEscopo = (type) => {
         const newList= item.filter(i => i.type === type)
         handleSelectedEscopo(newList[0])
         setIndexId(newList[0].id)
 
+        // console.log(newList[0]);
+
         if (selectedOption) {
             setexemplo([...exemplo, ...dataFinal])
         }
 
-        if (data.filter(i => i.type === type).length > 0) {
-            let newEscopo = data.filter(i => i.type !== type)
+        if (data?.filter(i => i?.type === type).length > 0) {
+            let newEscopo = data?.filter(i => i?.type !== type)
+            let escopoTrash = data?.filter(i => i?.type === type)[0]
+            const newSelectedOption = selectedOption.filter(i => i.index !== escopoTrash.id)
 
             setData(newEscopo)
-            setSelectedOption([])
+            // console.log(newSelectedOption);
+
+            // setSelectedOption([newSelectedOption])
             // console.log(newEscopo);
         }else {
             setData([...data, ...newList])
@@ -82,27 +119,20 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
     }
 
     useEffect(() => {
-        const esc1 = selectedOption.filter(i => i.index === 1)
-        const esc2 = selectedOption.filter(i => i.index === 2)
-        const esc3 = selectedOption.filter(i => i.index === 3)
+        
+        const unique = [...new Map(selectedOption.map(item => [item.sheetId, item])).values()]
 
-        setDataFinal([
-            {
-                id: 1,
-                type: "Escopo 1",
-                items: esc1
-            },
-            {
-                id: 2,
-                type: "Escopo 2",
-                items: esc2
-            },
-            {
-                id: 3,
-                type: "Escopo 3",
-                items: esc3
-            }
-        ])
+        const arr = []
+
+        selectedEscopo.map(item => {
+            const filterData= unique.filter(i => i.index === item.id)
+            // console.log(filterData);
+            arr.push({
+                ...item,
+                items: filterData
+            })
+        })
+        setDataFinal(arr)
 
     }, [indexId, selectedOption])
     
@@ -122,11 +152,11 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
     <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
         <Label>{title}</Label>
         <Container modal= {modal}>
-            <AreaSelected column={data.length > 0 ? true : false}>
-                {item?.map((i, index) => (
+            <AreaSelected column={ data && data?.length > 0 ? true : false}>
+                {item && item?.map((i, index) => (
                     <>
                         <Text 
-                            marginBottom={data.filter(data => data.id === i.id).length > 0 ? "0" : "15"}
+                            marginBottom={data?.filter(data => data?.id === i?.id).length > 0 ? "0" : "15"}
                             size={14}
                             key={index}
                             selected={handleIsEscopoOption(i.id)}
@@ -135,7 +165,7 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
                             {i.type}
                         </Text>
                         
-                        {data.filter(data => data.id === i.id).length > 0 &&
+                        {data?.filter(data => data?.id === i?.id).length > 0 &&
                             <AreaSelected margin="0px 0px 20px 0px">
                                 {i.id === 1 && 
                                     data?.filter(i => i.id === 1)[0]?.items?.map(option => (
@@ -195,54 +225,7 @@ function MultiSelect({ value, type, onChange, item, title, modal=true, width, pl
                     </>
                 ))}
             </AreaSelected>
-            {/* <option style={{color: primary.cinza}} > {placeholder} </option>
-            {item?.map((i, index) => (
-                type === "collections" ? (
-                    <Option value={i.type}>
-                        {i.type}
-                    </Option>
-                ) : (
-                    <Option value={i}>
-                        {i}
-                    </Option>
-                )
-            ))} */}
         </Container>
-        {/* {isMultiple && data?.map((item, index) => (
-                <>
-                    {item.type}
-                    <AreaSelected>
-                        {item?.items?.map((option, key) => (
-                            <>
-                                    <Text
-                                        selected={handleIsSelectOption(option.sheetId)}
-                                        onClick={() => handleSelectedOption(option, item.id)}
-                                    >
-                                        {option.title}
-                                    </Text>
-                                    {key === 0 && openSetor && index === 0 &&
-                                        <SetorAtividadeArea>
-                                            Escolhe o setor de atividade:
-                                            <SetorAtividadeWrapper>
-                                                {setorAtividade.map(i => (
-                                                
-                                                    <Text
-                                                        onClick={() => handleSelectedSetor(i)}
-                                                        selected={handleIsSelectSetor(i)}
-                                                    >
-                                                        {i}
-                                                    </Text>
-                                                
-                                                ))}
-                                            </SetorAtividadeWrapper>
-                                        </SetorAtividadeArea>
-                                    }
-                            </>
-                        ))}
-                    </AreaSelected>
-                </>
-            ))
-        } */}
     </Area>
   )
 }

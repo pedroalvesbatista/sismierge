@@ -5,7 +5,7 @@ import BarTable from '../../components/Admin/BarTable'
 import { authService } from '../../services'
 import { othersActions } from '../../actions'
 
-function Tab1({ openModal }) {
+function TabMeusEscopos({ openModal }) {
     const dispatch = useDispatch()
     const titles= ["nome do usuário", "Email", "Função", "Confirmado", "Status"]
     const [users, setUsers] = useState([])
@@ -14,35 +14,18 @@ function Tab1({ openModal }) {
 
     const { isOpenModal } = useSelector(state => state.others)
 
-    const getUsers = () => {
-      setLoading(true)
-      authService.loadUsers()
-          .then(res => {
-              setLoading(false)
-              setUsers(res.data)
-          })
-          .catch(err => {
-              setLoading(false)
-              console.log(err.response.data.error);
-          })
-    }
-  
-    // useEffect(() => {
-    //   getUsers()
-    // }, [])
-
     const handelModal = () => {
-      dispatch(othersActions.handleOpenModal("Adicionar matriz"))
+      dispatch(othersActions.handleOpenModal("organisation"))
     }
 
     // console.log(users);
 
   return (
     <BarTable 
-      tab={1} 
+      route
       onClick={handelModal} 
-      title='matriz' 
-      item={users} 
+      title='escopo' 
+      // item={users} 
       loading={false} 
       // header={titles} 
       addButtonTop={false}
@@ -51,4 +34,4 @@ function Tab1({ openModal }) {
   )
 }
 
-export default Tab1
+export default TabMeusEscopos

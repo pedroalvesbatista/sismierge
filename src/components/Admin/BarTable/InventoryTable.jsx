@@ -21,7 +21,7 @@ function InventoryTable({item}) {
         dispatch(authActions.deleteUser(id))
     }
 
-    // console.log(item);
+    console.log("item");
 
   return (
     <TableArea>

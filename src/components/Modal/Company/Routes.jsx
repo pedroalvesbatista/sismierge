@@ -14,15 +14,16 @@ import { Inventariacao } from '../../../containers/RegisterCompany/Inventariacao
 import { Organisation } from '../../../containers/RegisterCompany/Organisation'
 import { OrganisationStep2 } from '../../../containers/RegisterCompany/OrganisationStep2'
 import { Unidade } from '../../../containers/RegisterCompany/Unidade'
+import { EditeOrganisation } from './EditeOrganisation'
 
 function Routes({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)
   const modalType= [
-    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação"
+    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação", "Editar minha organização"
   ]
     
   return (
-    <div >
+    < >
       {displayModal === modalType[0].toLowerCase()  && <AddMatriz openModal={openModal} />}
       {displayModal === modalType[1].toLowerCase()  && <AddUnidade openModal={openModal} />}
       {displayModal === modalType[2].toLowerCase()  && <AddColaboradores openModal={openModal} />}
@@ -35,7 +36,8 @@ function Routes({ type, openModal}) {
       {displayModal === modalType[9].toLowerCase() && <OrganisationStep2 openModal={openModal} />}
       {displayModal === modalType[10].toLowerCase() && <Unidade openModal={openModal} />}
       {displayModal === modalType[11].toLowerCase() && <Inventariacao openModal={openModal} />}
-    </div>
+      {displayModal === modalType[12].toLowerCase() && <EditeOrganisation openModal={openModal} />}
+    </>
   )
 }
 

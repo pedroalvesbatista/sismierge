@@ -29,7 +29,7 @@ import { initialItemData } from "./selectionData";
 const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const dispatch = useDispatch()
   // const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
-  const { sucessCreateCompany } = useSelector(state => state.company)
+  const { sucessCreateCompany, inventories } = useSelector(state => state.company)
   const [invetYear, setInvetYear] = useState("");
 
   const [showSubEsco1, setShowSubEsco1] = useState("");
@@ -101,7 +101,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   }, [sucessCreateCompany])
   
 
-  // console.log(dataSubEscopo);
+  console.log(inventories);
 
   return (
     <>
@@ -147,9 +147,9 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
                     autoWidth
                     label="Selecione o Ano"
                   >
-                    <MenuItem value={2015}>2015</MenuItem>
-                    <MenuItem value={2010}>2010</MenuItem>
-                    <MenuItem value={2020}>2020</MenuItem>
+                    {inventories.map((item, index) => (
+                      <MenuItem key={index} value={item.ano}>{item.ano}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </CardContent>
@@ -210,6 +210,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
           setCurentIdxEsco1={setCurentIdxEsco1}
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco1={handleChangeEsco1}
+          year={invetYear}
         />
       )}
 

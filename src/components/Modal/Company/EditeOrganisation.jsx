@@ -4,99 +4,108 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
 
-import { authService } from '../../services'
+import { authService } from '../../../services'
 import { 
   Text, 
   Button, 
 } from './styles'
-import Input from '../../components/Input'
-import SelectArea from '../../components/Select/MultiSelect'
-import MoreItems from '../../components/Modal/Company/MoreItems'
+import Input from '../../Input'
+import SelectArea from '../../Select/MultiSelect'
+import MoreItems from './MoreItems'
 import { useDispatch, useSelector } from 'react-redux'
-import InputTag from '../../components/Input/InputTag'
-import { companyActions, othersActions } from '../../actions'
-import InputChoose from '../../components/Input/InputChoose'
-import { admin } from '../../constants/tailwind/colors';
+import InputTag from '../../Input/InputTag'
+import { companyActions, othersActions } from '../../../actions'
+import InputChoose from '../../Input/InputChoose'
+import { admin } from '../../../constants/tailwind/colors';
+import { companyConstants } from '../../../constants/redux';
 
-export const Organisation = ({skip, setPage}) => {
+export const EditeOrganisation = ({skip, setPage}) => {
     const navigate= useNavigate()
     const dispatch= useDispatch()
-    const { loadingCreateCompany, sucessCreateCompany, companies, company } = useSelector(state => state.company)
+    const { loadingUpdateCompany, sucessUpdateCompany, companies, newCompany } = useSelector(state => state.company)
     const { dataEscopo, escopoSheetData } = useSelector(state => state.sheet)
     const { loadingCep, sucessCep, dataCep } = useSelector(state => state.others)
+
+    // console.log(companies.escopos);
 
     const dataLocal= JSON.parse(localStorage.getItem("@sismiegee/auth"))
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
-        email: "",
-        cnpj: "",
-        cpf: "",
-        nome_do_responsavel: "",
-        nome_fantasia: "",
-        telefone: "",
-        razao_social: "",
+        email: companies?.email,
+        cnpj: companies?.cnpj,
+        nome_do_responsavel: companies?.nome_do_responsavel,
+        nome_fantasia: companies?.nome_fantasia,
+        telefone: companies?.telefone,
+        razao_social: companies?.razao_social,
         endereco: {
-            cep: "",
-            numero: "",
-            complemento: "",
+            cep: companies?.endereco?.cep,
+            numero: companies?.endereco?.numero,
+            complemento: companies?.endereco?.complemento,
             logradouro: dataCep?.street,
             bairro: dataCep?.neighborhood,
             cidade: dataCep?.city,
             estado: dataCep?.state
         },
-        setor_economico: [],
-        subsetor: [],
-        setor_atividade: dataEscopo[1],
-        escopos: dataEscopo[0],
-        users: JSON.stringify([dataLocal?.user.id])
+        setor_economico: companies?.economico,
+        subsetor: companies?.subsetor,
+        setor_atividade: null,
+        escopos: [],
+        // users: companies?.users
     })
-    const [haveUnidade, setHaveUnidade] = useState("")
 
+    // console.log(dataEscopo[0]);
   const handleSubmit= (e) => {
     e.preventDefault()
-    const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
+    const { email, razao_social, escopos, cnpj, nome_do_responsavel, subsetor, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
+
     // console.log(subsetor);
-    dispatch(companyActions.createCompany({
+    const newData = {
         email,
         razao_social,
         escopos,
-        users,
-        id_user_create: dataLocal?.user?.id?.toString(),
-        cnpj: data.cnpj.length > 0 ? data.cnpj.split(/[,.-/-\s]/).join("") : null,
+        cnpj: data?.cnpj?.length > 0 ? data?.cnpj?.split(/[,.-/-\s]/).join("") : null,
         nome_do_responsavel,
         nome_fantasia,
         endereco,
         setor_atividade: dataEscopo[1],
         setor_economico,
-        subsetor,
-    }))
+        // subsetor,
+    }
+    dispatch(companyActions.updateCompany(newData, companies?.id))
+    // console.log(newEscopo);
+
   }
+
+//   console.log(data?.setor_economico)
 
   useEffect(() => {
     let cep = data.endereco.cep.split("-")[0]+data.endereco.cep.split("-")[1]
     cep = cep.split('_')[0]
-    
-    // if (sucessCreateCompany) {
-    //     setPage("welcome")
+
+    // if (!companies.endereco.cep) {
+        if (cep.length == 8) {
+            dispatch(othersActions.loadCep(cep))
+        }
     // }
-    if (cep.length == 8) {
-        dispatch(othersActions.loadCep(cep))
-    }
-  }, [sucessCreateCompany, data.endereco.cep])
+  }, [ data.endereco.cep])
 
   useEffect(() => {
-    setData({...data, escopos: dataEscopo[0]?.filter(i => i.items.length > 0), setor_atividade: dataEscopo[1]})
-  }, [dataEscopo])
+    if (sucessUpdateCompany) {
+        dispatch(othersActions.closeModal())
+        dispatch({type: companyConstants.CLEAR_COMPANY})
+    }
+    setData({
+        ...data, 
+        escopos: JSON.stringify(dataEscopo[0]?.filter(i => i.items.length > 0)), 
+        setor_atividade: JSON.stringify(dataEscopo[1])
+    })
+  }, [dataEscopo, sucessUpdateCompany])
   
 
 //   console.log(escopoSheetData);
 
   return (
     <>
-        <Text>Fale nos sobre sua organização</Text>
-        <Text size={14} color={true} fontSize={400}>
-          Essa etapa é muito importante!
-        </Text>
         <Form onSubmit={handleSubmit}>
             <AreaInput>
                 <Input 
@@ -198,11 +207,13 @@ export const Organisation = ({skip, setPage}) => {
             <AreaInput>
                 <InputTag 
                     label={"Setor econômico"}
+                    dataEdit={companies.setor_economico}
                     items={e => setData({...data, setor_economico: e})}
                     placeholder="digite aqui"
                 />
                 <InputTag 
                     label={"Subsetor"}
+                    dataEdit={companies.subsetor}
                     // placeholder="11986522567"
                     spanceLeft={true}
                     items={e => setData({...data, subsetor: e})}
@@ -212,11 +223,11 @@ export const Organisation = ({skip, setPage}) => {
                 <SelectArea 
                     type = "collections"
                     title={"Escolha os Escopos"} 
-                    item={escopoSheetData} 
+                    item={escopoSheetData && escopoSheetData} 
                     // width= "48%"
                     placeholder="Escolhe escopo..."
                     isMultiple={true}
-                    // spaceLeft={"10px"}
+                    editeData={[companies.escopos, companies.setor_atividade]}
                 />
             </AreaInput>
             <AreaInput>
@@ -250,8 +261,8 @@ export const Organisation = ({skip, setPage}) => {
         {/* {!notShowButton && */}
             <ConexioArea skip={skip}>
                 {skip && <TextSkip onClick={() => navigate('/')}> Ou ignore esta etapa por enquanto. </TextSkip>}
-                <Button aria-disabled={loadingCreateCompany ? true : false} onClick={handleSubmit}> 
-                    {loadingCreateCompany ? "Carregando..." : "Continuar "} 
+                <Button aria-disabled={loadingUpdateCompany ? true : false} onClick={handleSubmit}> 
+                    {loadingUpdateCompany ? "Carregando..." : "Continuar "} 
                     &#8674;
                 </Button>
             </ConexioArea>
@@ -263,7 +274,8 @@ export const Organisation = ({skip, setPage}) => {
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 630px;
+    width: 650px;
+    height: 600px;
     margin-top: 10px;
     overflow-y: auto;
     overflow-x: hidden;

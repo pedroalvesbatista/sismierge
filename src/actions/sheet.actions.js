@@ -17,10 +17,19 @@ function loadEscopos (){
         })
         sheetService.loadEscopos()
         .then(res => {
-            dispatch({
-                type: sheetConstants.LOAD_SHEET_SUCCESS,
-                payload: res.data
-            })
+            if (res?.data?.response?.data?.error?.code === 429) {
+                dispatch({
+                    type: sheetConstants.LOAD_SHEET_FAIL,
+                    payload: res.data?.response.data.error.message
+                })
+                toast.error(res.data?.response.data.error.message)
+                console.log(res.data?.response.data);
+            } else {
+                dispatch({
+                    type: sheetConstants.LOAD_SHEET_SUCCESS,
+                    payload: res.data
+                })   
+            }
         })
         .catch(err => {
             dispatch({

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { sheetActions } from '../../actions'
+import { companyActions, sheetActions } from '../../actions'
 import Routes from './Routes'
 import {
     Area,
@@ -17,7 +17,7 @@ import {
 
 export function StartUp() {
     const dispatch = useDispatch()
-    const { sucessCreateCompany, sucessUpdateCompany } = useSelector(state => state.company)
+    const { sucessCreateCompany, sucessUpdateCompany, companies } = useSelector(state => state.company)
     const [page, setPage] = useState("organisation")
     const [activeStep, setActiveStep] = useState([0])
     const [prevStep, setPrevStep] = useState([])
@@ -37,7 +37,7 @@ export function StartUp() {
     }
 
     useEffect(() => {
-        dispatch(sheetActions.loadEscopos())
+        dispatch(companyActions.getCompanies())
       if (sucessCreateCompany) {
         setActiveStep([...activeStep, 1])
         setPrevStep([...prevStep, "Organização"])
@@ -51,6 +51,11 @@ export function StartUp() {
       }
 
     }, [sucessCreateCompany, sucessUpdateCompany])
+
+    useEffect(() => {
+        dispatch(sheetActions.loadEscopos())
+    }, [])
+    
 
   return (
     <Area>

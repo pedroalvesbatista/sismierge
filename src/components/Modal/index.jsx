@@ -32,7 +32,7 @@ function Modal({ loading }) {
     loadingDeleteUser ? (
       <LoadingAnimation size={150}/>
     )  : (
-      isOpenModal &&
+      typeof(displayModal) !== "number" && isOpenModal &&
         <Area onClick={handleCloseModal}>
           <Card onClick={e => e.stopPropagation()}>
             <Header>

@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { Button, CardContent, Card, Modal } from "@mui/material";
 import ModalInterno from "../../components/Modal"
-
-
 import { Area } from "./styles";
 import Escopo1 from "../../components/Escopo1";
 import Escopo2 from "../../components/Escopo2";
 import Routes from "./Routes";
-import { authActions, othersActions, companyActions } from "../../actions";
+import { authActions, othersActions, companyActions, sheetActions } from "../../actions";
 import TabsAdmin from "../../components/Tabs";
 import { companyConstants } from "../../constants/redux";
 
@@ -23,18 +20,15 @@ export const HomePage = () => {
   const storageUser = JSON.parse(localStorage.getItem("@sismiegee/auth"));
 
   const { sucessEditUser, sucessDeleteUser, sucess } = useSelector(state => state.auth)
-  const { companies, sucessCompany } = useSelector(state => state.company) 
+  const { companies, sucessUpdateCompany, sucessCompany, sucessCreateInventory } = useSelector(state => state.company) 
   const { displayModal } = useSelector(state => state.others)
 
   const [loading, setLoading] = useState(true);
-  const [mouseOnCard, setMouseOnCard] = useState(false);
   const [openStartInvetEsco1, setOpenStartInvetEsco1] = useState(false);
   const [openStartInvetEsco2, setOpenStartInvetEsco2] = useState(false);
-  const [tabActive, setTabActive] = useState('Visão geral')
-  const [ selectedScope, setSelectedScope] = useState("")
-  const [idxCard, setIdxCard] = useState("");
+  const [tabActive, setTabActive] = useState('Minha empresa')
   
- const tabs= ["Visão geral", "Inventariação", "Usuarios"]
+ const tabs= ["Minha empresa", "Inventariação", "Meus escopos", "Usuarios"]
 
   const handleInventariacao = (e) => {
     e.stopPropagation();
@@ -55,12 +49,19 @@ export const HomePage = () => {
     sucessDeleteUser && dispatch(othersActions.closeModal())
 
     dispatch(authActions.loadRoles())
-  }, [storageTab, sucess])
+  }, [storageTab, sucess, sucessCreateInventory, sucessUpdateCompany])
+
+  useEffect(() => {
+    dispatch(sheetActions.loadEscopos())
+  }, [])
+  
 
   useEffect(() => {
     displayModal === 0 && setOpenStartInvetEsco1(true);
     displayModal === 1 && setOpenStartInvetEsco2(true);
   }, [displayModal])
+
+  // console.log(companies);
   
   
   

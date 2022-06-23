@@ -5,7 +5,7 @@ import animationData from '../assets/loading.json'
 import styled from 'styled-components'
 import { admin, primary } from '../../../constants/tailwind/colors'
 
-export function LoadingAnimation({ height, width, speed=1, size=50 }) {
+export function LoadingAnimation({ height, width, speed=1, size=50, viewport=true }) {
 
     const defaultOptions = {
         // container: document.querySelector("#register_company"),
@@ -19,7 +19,17 @@ export function LoadingAnimation({ height, width, speed=1, size=50 }) {
     
 
   return (
-    <Area>
+    viewport ? (
+      <Area>
+        <Lottie 
+          options={defaultOptions}
+          height={height ?? size}
+          width={width ?? size}
+          speed={speed}
+          isClickToPauseDisabled={true}
+        />
+      </Area>
+    ) : (
       <Lottie 
         options={defaultOptions}
         height={height ?? size}
@@ -27,7 +37,7 @@ export function LoadingAnimation({ height, width, speed=1, size=50 }) {
         speed={speed}
         isClickToPauseDisabled={true}
       />
-    </Area>
+    )
   )
 }
 

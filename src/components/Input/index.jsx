@@ -70,7 +70,7 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
                     id={id}
                     size={fontSize}
                   />
-                  {loading && <LoadingAnimation />}
+                  {loading && <LoadingAnimation viewport={false} />}
                   {type === "file" && 
                     <File htmlFor='file'>
                       <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>

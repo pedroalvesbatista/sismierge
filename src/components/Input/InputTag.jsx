@@ -3,14 +3,21 @@ import styled from 'styled-components'
 import { IoMdClose } from 'react-icons/io'
 import { admin, second } from '../../constants/tailwind/colors'
 
-function InputTag({ label, items, spanceLeft, spanceRight, placeholder }) {
-    const [data, setData] = useState([])
+function InputTag({ label, items, dataEdit, spanceLeft, spanceRight, placeholder }) {
+    const isDataEdit = dataEdit ? dataEdit : []
+    const [data, setData] = useState(isDataEdit)
     const [value, setValue] = useState("")
+    const [focusInput, setFocusInput] = useState(false)
 
     const handleOnchange = (e) => {
         setValue(e.target.value)
         // console.log(e.onkeyup);
     }
+
+    // const handleOnfocus = (e) => {
+    //     console.log(e);
+    //     // console.log(e.onkeyup);
+    // }
 
     const handleDelete = (item) => {
         setData(data.filter(i => i !== item))
@@ -36,7 +43,7 @@ function InputTag({ label, items, spanceLeft, spanceRight, placeholder }) {
   return (
     <Area spanceLeft={spanceLeft} spanceRight={spanceRight}>
         <Label> {label} (tecla enter para add)</Label>
-        <AreaInput>
+        <AreaInput >
             {data?.map((item, index) => (
                 <AreaSelected onClick={() => handleDelete(item)} key={index}>
                     <Text>{item}
@@ -48,6 +55,7 @@ function InputTag({ label, items, spanceLeft, spanceRight, placeholder }) {
                 value={value}
                 onKeyDown={handleKey}
                 onChange={handleOnchange}
+                autoFocus="true"
             />
         </AreaInput>
     </Area>
@@ -70,6 +78,7 @@ const AreaInput= styled.div`
     border: 2px solid ${admin.cinza};
     border-radius: 5px;
     height: 100%;
+    display: flex;
     
     padding: 8px 6px;
     display: flex;
@@ -137,8 +146,9 @@ const Label= styled.span`
 
 const InputEntry = styled.input`
     border-radius: 5px;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
+    /* flex: 1; */
     outline: none;
     font-size: ${({size}) => size ?? "14"}px;;
     border: none;
