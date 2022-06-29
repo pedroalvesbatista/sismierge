@@ -14,7 +14,7 @@ export const Area = styled.div`
     /* background-color: #00000069; */
     box-shadow: 0px 0px 27px -5px rgba(0,0,0,0.23);
     transition: all ease 1.s;
-    height: ${({overflow}) => overflow ? "400px" : "none"};
+    height: ${({overflow}) => overflow ? "500px" : "none"};
     overflow-y: ${({overflow}) => overflow ? "auto" : "none"};
     padding: 10px;
 `
@@ -66,7 +66,7 @@ export const CardArea = styled.div`
     width: 100%;
     /* height: 100%; */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 20px 10px;
     border: 2px solid #1976d279;
@@ -97,6 +97,15 @@ export const InputEntreArea = styled.div`
     flex-wrap: wrap;
 `
 export const InputResultatArea = styled.div`
+    flex: ${({flex}) => flex ?? 1};
+    /* height: 100%; */
+    /* background-color: yellow; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: ${({justify}) => justify ?? "flex-strat"};
+    align-items: ${({align}) => align ?? "center"};
+`
+export const InputResultatEntry = styled.div`
     flex: ${({flex}) => flex ?? 1};
     height: 100%;
     /* background-color: yellow; */

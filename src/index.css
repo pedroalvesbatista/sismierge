@@ -7,3 +7,10 @@
 body {
     background-color: #d9dbde5b;
 }
+
+.resultatEntries {
+    width: 80px;
+    height: 30px;
+    /* margin: 20px; */
+    background-color: #ccc;
+}

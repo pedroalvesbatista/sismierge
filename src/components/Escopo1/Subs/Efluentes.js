@@ -14,6 +14,7 @@ import React,{useState} from "react";import {
 
 import { style } from "../../../utils/util";
 import { subEffluentTypeItem, optionBiogasDestination } from "../selectionData";
+import DashboardEscopo from "../../DashboardEscopo";
 
 
 const Efluentes = ({nextEsco1Button, handleChangeEsco1 }) => {
@@ -55,6 +56,17 @@ const Efluentes = ({nextEsco1Button, handleChangeEsco1 }) => {
               }}
             />
           </div>
+
+          <div>
+            {/* <h3 style={{ color: "#953fc6" }} className="fs-3 font-weight-bold text-uppercase">
+              Emissões totais por combustão móvel
+            </h3> */}
+            <DashboardEscopo 
+              numBio={"1278,89"}
+              numEqui={"4567,67"}
+            />
+          </div>
+
           <div>
             <Button
               variant="contained"

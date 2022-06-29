@@ -10,6 +10,7 @@ import {
 
 import { style } from "../../../utils/util";
 import SubModalEsc1 from "./SubModalEsc1";
+import DashboardEscopo from "../../DashboardEscopo";
 
 const ResiduosSolidos =({nextEsco1Button, handleChangeEsco1})=>{
   const [shippingYear, setShippingYear] = useState(false);
@@ -58,6 +59,16 @@ const ResiduosSolidos =({nextEsco1Button, handleChangeEsco1})=>{
                     height: 8,
                     backgroundColor: "#2cb29e",
                   }}
+                />
+              </div>
+
+              <div>
+                {/* <h3 style={{ color: "#953fc6" }} className="fs-3 font-weight-bold text-uppercase">
+                  Emissões totais por combustão móvel
+                </h3> */}
+                <DashboardEscopo 
+                  numBio={"1278,89"}
+                  numEqui={"4567,67"}
                 />
               </div>
 

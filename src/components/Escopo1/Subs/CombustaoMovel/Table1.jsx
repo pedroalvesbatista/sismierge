@@ -1,5 +1,6 @@
-import { FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from '@mui/material'
+import { FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField, Typography, Card } from '@mui/material'
 import React, { useState } from 'react'
+import { combustaoMovel } from '../../../../mocks/subescopo'
 import { fuelUsedEsco1Item } from '../../selectionData'
 import { CardArea, InputEntreArea, InputResultatArea, SpaceArea } from '../styles'
 
@@ -58,7 +59,7 @@ export function Table1({dataProps}) {
 
   return (
     <CardArea mb="20px">
-      <InputEntreArea>
+      <InputEntreArea flex={2}>
         {arrayLabel.map((item, index) => (
           <>
             <div key={index} className="m-2">
@@ -121,6 +122,48 @@ export function Table1({dataProps}) {
         }
         
       </InputEntreArea>
+
+      <SpaceArea />
+
+      <InputResultatArea>
+        {combustaoMovel.map((item, index) => (
+          <>
+            {/* <h3 className="mb-3">
+              {item.title}
+            </h3> */}
+            {item.item.map(sub => (
+              <div className="m-2">
+                <span>{sub.key}</span>
+                <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
+                  
+                </Card>
+              </div>
+            ))}
+          </>
+
+        ))}
+        {detailsConsumption === "Mensal" && (
+            arrayMonth.map(i => (
+              <div key={i} className="m-2">
+                <h4 style={{marginBottom: 10}}> {i} </h4>
+                <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
+                  
+                </Card>
+              </div>
+            ))
+          ) 
+        }
+
+        {detailsConsumption === "Anual" &&
+          <div className="m-2">
+            <h4 style={{marginBottom: 10}}>Consumo anual</h4>
+            <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
+                  
+                </Card>
+          </div>
+        }
+      
+      </InputResultatArea>
       
     </CardArea>
   )

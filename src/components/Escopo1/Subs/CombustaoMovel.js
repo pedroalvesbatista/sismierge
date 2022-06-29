@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sheetActions } from "../../../actions";
 import { admin } from "../../../constants/tailwind/colors";
 import Routes from "./CombustaoMovel/Routes";
+import DashboardEscopo from "../../DashboardEscopo";
 
 const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, setCurentIdxEsco1, year }) => {
   const dispatch = useDispatch();
@@ -81,6 +82,16 @@ const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, 
           </div>
 
           <div>
+            {/* <h3 style={{ color: "#953fc6" }} className="fs-3 font-weight-bold text-uppercase">
+              Emissões totais por combustão móvel
+            </h3> */}
+            <DashboardEscopo 
+              numBio={"1278,89"}
+              numEqui={"4567,67"}
+            />
+          </div>
+
+          <div>
             <Button className="m-1" variant="outlined" size="large" onClick={() => setShowHowToFill(!showHowToFill)}>
               Como Preencher ?
             </Button>
@@ -128,19 +139,7 @@ const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, 
             })}
           </div>
 
-          <Area>
-
-            <HeaderSelect notHover={true} width="60%" bgColor={admin.roxo} weight={600}> 
-              Emissões totais em CO2 equivalente (toneladas métricas)
-              <span>25383,46</span>
-            </HeaderSelect>
-
-            <HeaderSelect notHover={true} width="60%" bgColor={admin.verde} weight={600} mb="30px"> 
-              Emissões totais em CO2 biogênico (toneladas métricas) 
-              <span>25383,46</span>
-            </HeaderSelect>
-
-            <Area width="100%" overflow={true}>
+          <Area overflow={true}>
               {tabelasTipoTransposrte.map((item, index) => (
                 <>
                   <HeaderSelect mb={index !== currentIndexCard && "20px"} onClick={() => handleOpenCard(index)} key={index}>
@@ -154,8 +153,6 @@ const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, 
                 </>
               ))}
             </Area>
-
-          </Area>
         </div>
       </Box>
     </Modal>

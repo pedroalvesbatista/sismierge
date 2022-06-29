@@ -20,6 +20,7 @@ import {
 } from "../selectionData";
 import { companyActions, sheetActions } from "../../../actions";
 import ShowInfo from "./ShowInfo";
+import DashboardEscopo from "../../DashboardEscopo";
 
 const CombustaoEstacionaria = ({
   nextEsco1Button,
@@ -86,6 +87,15 @@ const CombustaoEstacionaria = ({
                 height: 8,
                 backgroundColor: "#2cb29e",
               }}
+            />
+          </div>
+          <div>
+            {/* <h3 style={{ color: "#953fc6" }} className="fs-3 font-weight-bold text-uppercase">
+              Emissões totais por combustão móvel
+            </h3> */}
+            <DashboardEscopo 
+              numBio={"1278,89"}
+              numEqui={"4567,67"}
             />
           </div>
           <div>

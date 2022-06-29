@@ -11,6 +11,7 @@ import {
 import { style } from "../../../utils/util";
 import { tipoEmissaoFugitivas } from "../selectionData";
 import SubModalEmissosFugitivas from "./SubModalEmissosFugitivas";
+import DashboardEscopo from "../../DashboardEscopo";
 
 const EmissosFugitivas = ({
   curentIdxEsco1,
@@ -48,6 +49,17 @@ const EmissosFugitivas = ({
               }}
             />
           </div>
+
+          <div>
+            {/* <h3 style={{ color: "#953fc6" }} className="fs-3 font-weight-bold text-uppercase">
+              Emissões totais por combustão móvel
+            </h3> */}
+            <DashboardEscopo 
+              numBio={"1278,89"}
+              numEqui={"4567,67"}
+            />
+          </div>
+
           <div className="d-flex align-items-start">
             <Button
               variant="contained"
