@@ -1,13 +1,30 @@
-import React from 'react'
-import { SearchArea, IconSearch, Input } from './styles'
+import React, { useState } from 'react'
+import { Area, Container, Text, IconHelp, IconArrow } from './styles'
 
-function SearchInput() {
+function Tooltip({ textHelp }) {
+  const [isHover, setIsHover] = useState(false)
+
+  const handleHover = event => {
+    const { type } = event
+    
+    if (type === "mouseleave") {
+      setIsHover(false)
+    }else {
+      setIsHover(true)
+    }
+  }
+  
   return (
-    <SearchArea>
-        <IconSearch />
-        <Input type='search' placeholder='Pesquisar...' />
-    </SearchArea>
+    <Area>
+      <IconHelp onMouseEnter={handleHover} onMouseLeave={handleHover} />
+      {isHover &&
+        <Text onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          {/* <IconArrow /> */}
+          {textHelp}
+        </Text>
+      }
+    </Area>
   )
 }
 
-export default SearchInput
+export default Tooltip

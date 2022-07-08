@@ -139,6 +139,11 @@ export const OrganisationStep2 = ({skip, setPage}) => {
                     spanceLeft={true}
                     type="file"
                     id={"file"}
+                    value={data.organograma}
+                    onChange={e => setData({...data, organograma: e.target.value})}
+                    help="Documento que ateste que você faz parte do quadro de funcionários da organização
+                    inventariante; Contrato de prestação de serviço que mencione sua responsabilidade na
+                    elaboração do IGEE; Procuração"
                 />
             </AreaInput>
         </Form>

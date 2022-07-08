@@ -130,14 +130,22 @@ export const Inventariacao = ({skip, height}) => {
                     </AreaInput>
 
                     <AreaInput>
+                    <Input 
+                            label={"Responsável pela elaboração do inventário"}
+                            placeholder="digite aqui..."
+                            // value={data.funcionario}
+                            // onChange={e => setData({...data, funcionario: e.target.value})}
+                        />
                         <Input 
-                            label={"Informações institucionais"}
-                            placeholder={`digite aqui...`}
-                            type="textArea"
-                            value={data.informacoes_nstiucionais}
-                            onChange={e => setData({...data, informacoes_nstiucionais: e.target.value})}
+                            label={"E-mail do responsável"}
+                            placeholder="digite aqui..."
+                            spanceLeft={true}
+                            type="email"
+                            // value={data.funcionario}
+                            // onChange={e => setData({...data, funcionario: e.target.value})}
                         />
                     </AreaInput>
+
                     <AreaInput>
                         <SelectArea 
                             title={"O inventário será verificado por terceira parte"} 

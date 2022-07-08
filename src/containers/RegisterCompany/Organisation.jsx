@@ -247,6 +247,9 @@ export const Organisation = ({skip, setPage}) => {
                     id={"logo"}
                     value={data.logo}
                     onChange={e => setData({...data, logo: e.target.value})}
+                    help="Anexe aqui o arquivo do logo da organização. Esse arquivo será
+                    usado em todos os campos do Registro Público de Emissões. Os
+                    formatos aceitos são: jpg, jpege e png."
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
@@ -255,6 +258,9 @@ export const Organisation = ({skip, setPage}) => {
                     id={"comprovante"}
                     value={data.comprovante}
                     onChange={e => setData({...data, comprovante: e.target.value})}
+                    help="Documento que ateste que você faz parte do quadro de funcionários da organização
+                    inventariante; Contrato de prestação de serviço que mencione sua responsabilidade na
+                    elaboração do IGEE; Procuração"
                 />
             </AreaInput>
             {/* <AreaInput>

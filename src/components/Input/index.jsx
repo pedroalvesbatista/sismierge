@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import InputMask from "react-input-mask";
 import { LoadingAnimation } from '../lottie';
+import Tooltip from '../Tooltip';
 import {
     Area,
     InputArea,
@@ -16,7 +17,7 @@ import {
     TextArea
 } from './styles'
 
-function Input({ disabled, width, loading, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView, fontSize, mask }) {
+function Input({ disabled, help, width, loading, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView, fontSize, mask }) {
 
   // const [clicInput, setClicInput] = useState(false)
 
@@ -41,7 +42,10 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
   
   return (
     <Area spanceTop={spanceTop} width={width} spanceLeft={spanceLeft} spanceRight={spanceRight}>
+      <div style={{display: "flex", width: "100%", alignItems: "center", position: "relative"}}>
         <Text> {label} </Text>
+        {help && <Tooltip textHelp={help} />}
+      </div>
         {!notView &&
           <InputArea disabled={disabled} height={type === "textArea" ? 100 : 40} isFile={type == "file" || type === "textArea" ? true : false }>
             {type === "textArea" ? (

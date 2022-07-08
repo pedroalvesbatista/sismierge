@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { companyActions, sheetActions } from '../../actions'
+import { admin } from '../../constants/tailwind/colors'
 import Routes from './Routes'
 import {
     Area,
@@ -18,7 +19,7 @@ import {
 export function StartUp() {
     const dispatch = useDispatch()
     const { sucessCreateCompany, sucessUpdateCompany, companies } = useSelector(state => state.company)
-    const [page, setPage] = useState("organisation")
+    const [page, setPage] = useState("inventariacao")
     const [activeStep, setActiveStep] = useState([0])
     const [prevStep, setPrevStep] = useState([])
 
@@ -55,10 +56,26 @@ export function StartUp() {
     useEffect(() => {
         dispatch(sheetActions.loadEscopos())
     }, [])
+
+    const handleBack = () => {
+        if (page === "organisationStep2") {
+            setPage("organisation")
+        } else {
+            setPage("organisationStep2")
+        }
+    }
     
 
   return (
     <Area>
+    {page !== "organisation" &&
+        <div 
+            style={{padding: "10px 30px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: admin.verde, color: "#fff", cursor: "pointer", height: 40, borderRadius: 20}}
+            onClick={handleBack}
+        >
+            Voltar
+        </div>
+    }
         <StepArea>
             {step.map((item, index) => (
                 <ContainerStep key={item}>
