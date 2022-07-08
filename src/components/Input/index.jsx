@@ -29,7 +29,7 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
         return "99999-999"
         
       case "tel":
-        return "(99) 9999-9999"
+        return "(99) 99999-9999"
       
       case "ano":
         return "9999"
@@ -72,7 +72,7 @@ function Input({ disabled, width, loading, onChange, type, placeholder, required
                   />
                   {loading && <LoadingAnimation viewport={false} />}
                   {type === "file" && 
-                    <File htmlFor='file'>
+                    <File htmlFor={id}>
                       <Left>{value ? value.length > 24 ? value.slice(0, 24)+"..." : value : "Buscar arquivo"}</Left>
                       <Rigth>UPLOAD</Rigth>
                     </File>

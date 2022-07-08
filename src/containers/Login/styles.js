@@ -35,7 +35,7 @@ export const TitleArea = styled.div`
 `
 export const TextArea = styled.div`
     font-size: ${({size}) => size ?? '12'}px !important;
-    line-height: 1.5rem/* 16px */ !important;
+    line-height: ${({line}) => line && '1.5rem'} /* 16px */ !important;
     cursor: pointer;
     color: ${({color}) => color ?? primary.verde};
 
@@ -122,6 +122,7 @@ export const Button = styled.button`
     color: #fff;
     font-size: 14px;
     border-radius: 20px;
+    margin-bottom: 10px;
 
     &:hover {
         background-color: ${second.verde};

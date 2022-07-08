@@ -19,12 +19,7 @@ function sendConvite(userData) {
         'name': userData.nome,
         'email': userData.email,
         'for': userData.email,
-        'message':  `
-                        Segue o link para terminar o cadastro <br/>
-                       <strong> 
-                        https://sismierge.vercel.app/register/${userData.id_convite}
-                       </strong>
-                    `
+        'url':  `https://sismierge.vercel.app/register/${userData.id_convite}`
     }
     const sendData= {...data, template_params: template}
     return smtp.post(`send`, sendData)

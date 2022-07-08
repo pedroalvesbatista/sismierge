@@ -10,13 +10,15 @@ import {
   Button, 
 } from './styles'
 import Input from '../../components/Input'
-import SelectArea from '../../components/Select/MultiSelect'
+import dataSetores from '../../mocks/setores.json'
+import MultiSelect from '../../components/Select/MultiSelect'
 import MoreItems from '../../components/Modal/Company/MoreItems'
 import { useDispatch, useSelector } from 'react-redux'
 import InputTag from '../../components/Input/InputTag'
 import { companyActions, othersActions } from '../../actions'
 import InputChoose from '../../components/Input/InputChoose'
 import { admin } from '../../constants/tailwind/colors';
+import SelectArea from '../../components/Select';
 
 export const Organisation = ({skip, setPage}) => {
     const navigate= useNavigate()
@@ -48,7 +50,9 @@ export const Organisation = ({skip, setPage}) => {
         subsetor: [],
         setor_atividade: dataEscopo[1],
         escopos: dataEscopo[0],
-        users: JSON.stringify([dataLocal?.user.id])
+        users: JSON.stringify([dataLocal?.user.id]),
+        logo: "",
+        comprovante: ""
     })
     const [haveUnidade, setHaveUnidade] = useState("")
 
@@ -93,7 +97,7 @@ export const Organisation = ({skip, setPage}) => {
 
   return (
     <>
-        <Text>Fale nos sobre sua organização</Text>
+        <Text>Criar organização:</Text>
         <Text size={14} color={true} fontSize={400}>
           Essa etapa é muito importante!
         </Text>
@@ -128,6 +132,17 @@ export const Organisation = ({skip, setPage}) => {
                     spanceLeft={true}
                     value={data.email}
                     onChange= {e => setData({...data, email: e.target.value})}
+                />
+            </AreaInput>
+            <AreaInput>
+                <Input 
+                    label={"Telefone do responsável"}
+                    placeholder="Ex: (11)98763-2346"
+                    // type="number"
+                    value={data.telefone}
+                    onChange= {e => setData({...data, telefone: e.target.value})}
+                    mask="tel"
+                    width={"48%"}
                 />
             </AreaInput>
             <AreaInput>
@@ -196,20 +211,26 @@ export const Organisation = ({skip, setPage}) => {
                 </>
             }
             <AreaInput>
-                <InputTag 
-                    label={"Setor econômico"}
-                    items={e => setData({...data, setor_economico: e})}
-                    placeholder="digite aqui"
+                <SelectArea 
+                    onChange={e => setData({...data, setor_economico: e.target.value})} 
+                    // value={data.TypePermission} 
+                    title={"Setor econômico"} 
+                    item={dataSetores[0]} 
+                    // width= "49%"
+                    placeholder={"Escolhe aqui..."}
                 />
-                <InputTag 
-                    label={"Subsetor"}
-                    // placeholder="11986522567"
-                    spanceLeft={true}
-                    items={e => setData({...data, subsetor: e})}
+                <SelectArea 
+                    onChange={e => setData({...data, setor_economico: e.target.value})} 
+                    // value={data.TypePermission} 
+                    title={"Subsetor"} 
+                    item={dataSetores[1]} 
+                    // width= "49%"
+                    placeholder={"Escolhe aqui..."}
+                    spaceLeft
                 />
             </AreaInput>
             <AreaInput NoFlex={true}>
-                <SelectArea 
+                <MultiSelect 
                     type = "collections"
                     title={"Escolha os Escopos"} 
                     item={escopoSheetData} 
@@ -223,16 +244,16 @@ export const Organisation = ({skip, setPage}) => {
                 <Input 
                     label={"Logo da empresa"}
                     type="file"
-                    id={"file"}
-                    // value={data.file}
-                    // onChange={e => setData({...data, logo: e.target.value})}
+                    id={"logo"}
+                    value={data.logo}
+                    onChange={e => setData({...data, logo: e.target.value})}
                 />
                 <Input 
                     label={"Comprovante de vinculaçâo"}
                     spanceLeft={true}
                     type="file"
-                    id={"file"}
-                    value={data.file}
+                    id={"comprovante"}
+                    value={data.comprovante}
                     onChange={e => setData({...data, comprovante: e.target.value})}
                 />
             </AreaInput>

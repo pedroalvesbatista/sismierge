@@ -23,7 +23,7 @@ import {
   TextArea } from '../Login/styles'
   import { Text } from './styles'
 
-export const Inicio = ({ setPage }) => {
+export const  Inicio = ({ setPage }) => {
   const navigate= useNavigate()
   const dispatch = useDispatch()
   const { loadingEditUser, sucessEditUser, myData } = useSelector(state => state.auth)
@@ -86,8 +86,8 @@ export const Inicio = ({ setPage }) => {
       <Rigth>
         <TitleArea>Bem-vindo(a)!</TitleArea>
         <Text left="left" size={14} color={true} fontSize={400}>
-          Vamos terminar seu cadastro. <br/>
-          Complenta todos os campos para poder continuar!
+          Vamos terminar seu cadastro! <br/>
+          Preencha os campos abaixo e em seguida clique em ‘continuar’.
         </Text>
         <Form onSubmit={handleSubmit}>
           <InputArea>
@@ -156,12 +156,15 @@ export const Inicio = ({ setPage }) => {
               }
             </Container>
           </InputArea>
+          <Text left="left" size={12} color={true} fontSize={400}>
+            Ao continuar o seu cadastro, você concorda com o nosso <a href='/doc/termo_de_uso.pdf' download style={{fontWeight: 'bold', textDecoration: "underline"}}>Termo de uso</a>
+          </Text>
           <ConexioArea flexEnd={true}>
             <Button 
               onClick={handleSubmit}
               aria-disabled={loadingEditUser ? true.toString() : false.toString()}
             > 
-              {loading ? "carregando..." : "Conectar"} 
+              {loading ? "carregando..." : "Continuar"} 
             </Button>
           </ConexioArea>
         </Form>
