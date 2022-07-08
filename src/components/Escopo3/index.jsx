@@ -12,16 +12,9 @@ import {
   CardContent,
   Card,
 } from "@mui/material";
-
-import { subItemEscopo2 } from "./selectionData";
 import { style } from "../../utils/util";
-import ComprasEnergiaTermica from "./Subs/ComprasEnergiaTermica";
-import EletricaLocalizacao from "./Subs/EletricaLocalizacao";
-import PerdasTdLocalizacao from "./Subs/PerdasTdLocalizacao";
-import EletricidadeEscCompra from "./Subs/EletricidadeEscCompra";
-import PerdasTdEscCompras from "./Subs/PerdasTdEscCompras";
 
-const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
+const Escopo3 = ({ openStartInvet, setOpenStartInvet }) => {
   let initDataSubEsco2 = {
     eletricidade_localizacao: false,
     perdas_td_localizacao: false,
@@ -70,11 +63,11 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
     }
   };
 
-  const handleChangeEsco2 = () => {
-    setnextEsco1Button(!nextEsco1Button);
-    setOpenStartInvet(!openStartInvet);
-    setCurentIdxEsco2("");
-  };
+  //   const handleChangeEsco2 = () => {
+  //     setnextEsco1Button(!nextEsco1Button);
+  //     setOpenStartInvet(!openStartInvet);
+  //     setCurentIdxEsco2("");
+  //   };
 
   // console.log(showSubEsco2);
   return (
@@ -87,14 +80,14 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
         <Box sx={style}>
           <div className="d-flex  justify-content-between mb-4">
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Segundo Escopo
+              Terceiro Escopo
             </Typography>
 
             <Button onClick={handleClose}>
               <CloseIcon />
             </Button>
           </div>
-          <div className=" mt-4 mb-5 d-flex align-content-center flex-wrap ">
+          {/* <div className=" mt-4 mb-5 d-flex align-content-center flex-wrap ">
             {subItemEscopo2?.map((elem, idx) => {
               return (
                 <Card
@@ -117,13 +110,14 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
                 </Card>
               );
             })}
-          </div>
-          <Button variant="contained" size="large" onClick={handleChangeEsco2}>
+          </div> */}
+          {/* <Button variant="contained" size="large" onClick={handleChangeEsco2}>
             Próximo
-          </Button>
+          </Button> */}
+          <h1>Teste</h1>
         </Box>
       </Modal>
-      {showSubEsco2.compras_energia_termica && (
+      {/* {showSubEsco2.compras_energia_termica && (
         <ComprasEnergiaTermica
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco2={handleChangeEsco2}
@@ -156,9 +150,9 @@ const Escopo2 = ({ openStartInvet, setOpenStartInvet }) => {
           nextEsco1Button={nextEsco1Button}
           handleChangeEsco2={handleChangeEsco2}
         />
-      )}
+      )} */}
     </>
   );
 };
 
-export default Escopo2;
+export default Escopo3;
