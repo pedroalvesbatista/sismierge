@@ -442,16 +442,6 @@ export const Inventariacao = ({skip, height}) => {
 
                     <AreaInput>
                         <Input 
-                            label={"Compensação de emissões"}
-                            placeholder={`digite aqui...`}
-                            type="textArea"
-                            value={data.compensacao_emissoes}
-                            onChange={e => setData({...data, compensacao_emissoes: e.target.value})}
-                        />
-                    </AreaInput>
-
-                    <AreaInput>
-                        <Input 
                             label={"A organização possui projetos de compensação de emissões?"}
                             placeholder="digite aqui..."
                             type="textArea"
@@ -462,21 +452,65 @@ export const Inventariacao = ({skip, height}) => {
 
                     <AreaInput>
                         <Input 
-                            label={"Reduções de emissões"}
-                            placeholder={`digite aqui...`}
-                            type="textArea"
-                            value={data.reducoes_emissoes}
-                            onChange={e => setData({...data, reducoes_emissoes: e.target.value})}
-                        />
-                    </AreaInput>
-
-                    <AreaInput>
-                        <Input 
                             label={"A organização possui projetos de redução de emissões?"}
                             placeholder="digite aqui..."
                             type="textArea"
                             value={data.organizacao_proj_red_emissoes}
                             onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Métodose/ou ferramentas intersetoriais"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Métodose/ou ferramentas para setores específicos"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
+                            label={"Fatores de emissão"}
+                            placeholder="digite aqui..."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
                         />
                     </AreaInput>
                 </Form>
