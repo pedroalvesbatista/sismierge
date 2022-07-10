@@ -403,7 +403,7 @@ export const Inventariacao = ({skip, height}) => {
                     <AreaInput>
                         <Input 
                             label={"Descrição sobre ações internas para melhoria da qualidade do inventário de GEE. "}
-                            placeholder={`digite aqui...`}
+                            placeholder={`Por exemplo, sistematização da coleta de dados, contratação de verificação externa, etc.`}
                             type="textArea"
                             value={data.descricao_acoes_internas}
                             onChange={e => setData({...data, descricao_acoes_internas: e.target.value})}
@@ -479,7 +479,7 @@ export const Inventariacao = ({skip, height}) => {
                     </AreaInput>
                     <AreaInput>
                         <Input 
-                            label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
+                            label={"Emissões fora do Brasil"}
                             placeholder="digite aqui..."
                             type="textArea"
                             // value={data.organizacao_proj_red_emissoes}
@@ -488,7 +488,7 @@ export const Inventariacao = ({skip, height}) => {
                     </AreaInput>
                     <AreaInput>
                         <Input 
-                            label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
+                            label={"Emissões por unidade"}
                             placeholder="digite aqui..."
                             type="textArea"
                             // value={data.organizacao_proj_red_emissoes}

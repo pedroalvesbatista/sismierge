@@ -19,8 +19,9 @@ export function AddUser({ openModal }) {
         email: '',
         type_user: ""
     })
+    const [msgCargo, setMsgCargo] = useState(``)
     const { username, password } = randPassUser(data.email, data.name)
-    const optionCargo= ["diretor", "auditor", "analista"]
+    const optionCargo= ["Assistente", "Verificador", "Master", "Coordenador geral"]
 
     const onSubmit= e => {
         e.preventDefault()
@@ -63,6 +64,24 @@ export function AddUser({ openModal }) {
             
         }
     }, [sucessSendConvite, sucessEditUser])
+
+    useEffect(() => {
+        if (data.type_user === "Assistente") {
+            setMsgCargo(`Pessoa que vai editar os dados do inventário`)
+        }
+        else if (data.type_user === "Verificador") {
+            setMsgCargo(` Não pode editar os dados do inventário, somente fazer a leitura dos dados cadastrados.`)
+        }
+        else if (data.type_user === "Master") {
+            setMsgCargo(`Sinergia Engenharia (somente)`)
+        }
+        else if (data.type_user === "Coordenador geral") {
+            setMsgCargo(`É a pessoa que responde pelo inventário. Tem amplo acesso ao sistema.`)
+        }
+        else {
+            setMsgCargo("")
+        }
+      }, [data.type_user])
     
     
     
@@ -86,13 +105,16 @@ export function AddUser({ openModal }) {
                 value={data.email}
             />
         </Form>
-        <SelectArea 
-            onChange={e => setData({...data, type_user: e.target.value})} 
-            // value={data.TypePermission} 
-            title={"Tipos de permissão"} item={optionCargo} 
-            // width= "100%"
-            placeholder={"Escolhe tipos de permissão..."}
-        />
+        <AreaInput>
+            <SelectArea 
+                onChange={e => setData({...data, type_user: e.target.value})} 
+                // value={data.TypePermission} 
+                title={"Tipos de permissão"} item={optionCargo} 
+                width= "49%"
+                placeholder={"Escolhe tipos de permissão..."}
+            />
+            <MsgCargo> {msgCargo} </MsgCargo>
+        </AreaInput>
         <AreaButton>
             <Button isDisable={loading} disabled={loading} onClick={onSubmit}> 
                 {loading ?  "Adicionando..." : loadingSendConvite ? "Enviando o link..." : "Adicionar usuario"} 
@@ -111,6 +133,23 @@ const Form = styled.form`
 const AreaButton = styled.div`
     display: flex;
     justify-content: flex-end;
+`
+const AreaInput = styled.form`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* height: 200px; */
+`
+const MsgCargo = styled.span`
+    margin-left: 20px;
+    font-size: 10px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    /* padding: 15px; */
+    color: ${admin.dark}90;
 `
 const Button = styled.button`
     cursor: pointer;
