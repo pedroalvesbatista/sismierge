@@ -461,6 +461,15 @@ export const Inventariacao = ({skip, height}) => {
                     </AreaInput>
                     <AreaInput>
                         <Input 
+                            label={"Informações sobre a performance da organização, em comparação com benchmarks internos"}
+                            placeholder="(ex: outras unidades) ou externos (ex: organizações do mesmo setor)."
+                            type="textArea"
+                            // value={data.organizacao_proj_red_emissoes}
+                            // onChange={e => setData({...data, organizacao_proj_red_emissoes: e.target.value})}   
+                        />
+                    </AreaInput>
+                    <AreaInput>
+                        <Input 
                             label={"Outros gases de efeito estufa não contemplados pelo Protocolo de Quioto"}
                             placeholder="digite aqui..."
                             type="textArea"
