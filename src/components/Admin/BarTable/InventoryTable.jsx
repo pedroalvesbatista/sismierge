@@ -43,6 +43,7 @@ function InventoryTable({item}) {
                 onClick={() => handleDelete(item.id)}
             />
             <BtnStart> Iniciar </BtnStart>
+            <BtnStart bg> Baixar  </BtnStart>
         </Item>
         {/* <Item> 
             <Toogle onClick={() => setToogle(!toogle)} active={toogle} />     
@@ -53,7 +54,7 @@ function InventoryTable({item}) {
 
 const BtnStart = styled.button`
   padding: 2px 10px;
-  background-color: ${admin.verde};
+  background-color: ${({bg}) => bg ? admin.roxo : admin.verde};
   border-radius: 5px;
   color: #fff;
   cursor: pointer;

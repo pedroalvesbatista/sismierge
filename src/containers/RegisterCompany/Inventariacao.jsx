@@ -21,11 +21,16 @@ export const Inventariacao = ({skip, height}) => {
     const [produtos, setProdutos] = useState(initialProduct)
     const [metaReducao, setMetaReducao] = useState(initialMetaReducao)
     const [loading, setLoading] = useState(false)
-    const [data, setData] = useState({...initialData, company: companies.id})
+    const [data, setData] = useState({...initialData, company: companies?.id})
     const [metaEscopo, setMetaEscopo] = useState(false)
+    const [verificationTerceiros, setVerificationTerceiros] = useState({status: false, data: [1]})
 
     const refProduct = useRef(null)
     const refEscopo = useRef(null)
+
+    const listVerifempresa= [
+        "Advanced Waste Management Systems,Inc","ABNT-Associação Brasileira de Normas Técnicas","ABS", "ABS QE(ABS Quality Evaluations,Inc)", "ACR", "AENOR"
+    ]
 
     const handleSubmit= (e) => {
         e.preventDefault()
@@ -49,10 +54,18 @@ export const Inventariacao = ({skip, height}) => {
         const { func, index, type } = item
 
         if (func === "more") {
-            if (type === "escopo") {
-                setMetaReducao([...metaReducao, {type: null, absoluta: null, intensidade: null, index}])
-            } else {
-                setProdutos([...produtos, {name: null, unidade: null, quantidade: null, index}])
+            switch (type) {
+                case "escopo":
+                    setMetaReducao([...metaReducao, {type: null, absoluta: null, intensidade: null, index}])
+                
+                case "produto":
+                    setProdutos([...produtos, {name: null, unidade: null, quantidade: null, index}])
+                
+                case "verification":
+                    setVerificationTerceiros({...verificationTerceiros, data: [...verificationTerceiros.data, [index + 1]]})
+            
+                default:
+                    return false;
             }
         } else {
             if (type === "escopo") {
@@ -60,6 +73,19 @@ export const Inventariacao = ({skip, height}) => {
             } else {
                 setProdutos(produtos.splice(0, produtos.length - 1)) 
             }
+        }
+        switch (type) {
+            case "escopo":
+                setMetaReducao(metaReducao.splice(0, metaReducao.length - 1))
+            
+            case "produto":
+                setProdutos(produtos.splice(0, produtos.length - 1))
+            
+            case "verification":
+                setVerificationTerceiros({...verificationTerceiros, data: verificationTerceiros.data.splice(0, verificationTerceiros.data.length - 1)})
+        
+            default:
+                return false;
         }
     }
 
@@ -121,16 +147,6 @@ export const Inventariacao = ({skip, height}) => {
 
                     <AreaInput>
                         <Input 
-                            label={"Motivo pelo qual decidiu elaborar o IGEE"}
-                            placeholder="Digite aqui"
-                            type="textArea"
-                            value={data.motivo}
-                            onChange={e => setData({...data, motivo: e.target.value})}
-                        />
-                    </AreaInput>
-
-                    <AreaInput>
-                    <Input 
                             label={"Responsável pela elaboração do inventário"}
                             placeholder="digite aqui..."
                             // value={data.funcionario}
@@ -147,13 +163,23 @@ export const Inventariacao = ({skip, height}) => {
                     </AreaInput>
 
                     <AreaInput>
+                        <Input 
+                            label={"Motivo pelo qual decidiu elaborar o IGEE"}
+                            placeholder="Digite aqui"
+                            type="textArea"
+                            value={data.motivo}
+                            onChange={e => setData({...data, motivo: e.target.value})}
+                        />
+                    </AreaInput>
+
+                    <AreaInput>
                         <SelectArea 
                             title={"O inventário será verificado por terceira parte"} 
                             item={["Sim", "Não"]} 
                             // width= "100%"
                             placeholder="Escolhe aqui..."
-                            value={data.verificacao_terceiros === true ? "Sim" : "Não"}
-                            onChange={e => setData({...data, verificacao_terceiros: e.target.value === "Sim" ? true : false})}
+                            value={verificationTerceiros.status === true ? "Sim" : "Não"}
+                            onChange={e => setVerificationTerceiros({...verificationTerceiros, status: e.target.value === "Sim" ? true : false})}
 
                         />
                         <SelectArea 
@@ -166,6 +192,56 @@ export const Inventariacao = ({skip, height}) => {
                             onChange={e => setData({...data, limite_organizacionais: e.target.value})}
                         />
                     </AreaInput>
+
+                    {verificationTerceiros.status &&
+                            <ContainerAreaInput style={{display: "flex"}}>
+                                <WrapperAreaInput ref={refEscopo}>
+                                    {verificationTerceiros?.data?.map((item, index) => (
+                                        <ContentAreaInput key={index}>
+                                            <SelectArea 
+                                                title={"Organismo verificadom"} 
+                                                item={listVerifempresa} 
+                                                placeholder="escolhe aqui..."
+                                                mbLabel={20}
+                                                // width= "50%"
+                                                // onChange={e => setValueMetaReducao(e.target.value)}
+                                            />
+                                            <Input 
+                                                label={"Responsável pela verificação"}
+                                                placeholder="digite aqui..."
+                                                spanceLeft={true}
+                                                // type="numeric"
+                                                // fontSize={12}
+                                                // onChange={e => setValueMetaReducao(e.target.value)}
+                                                help="A meta absoluta limita explicitamente uma ação a
+                                                algum número ou resultado. Por exemplo: limitar a
+                                                emissão de GEE a uma certa quantidade. Essa
+                                                meta é importante para definir um limite total de
+                                                emissões por uma organização. "
+                                            />
+                                            <SelectArea 
+                                                title={"Nivel de confiança da verificação²"}
+                                                placeholder="escolhe aqui..."
+                                                spaceLeft
+                                                item={["Razoável", "Limitado"]}
+                                                help="Nível de confiança razoável: Grau mais alto de confiança.
+                                                Nível de confiança limitado: Grau de confiança inferior em relação ao nível razoável. Menor
+                                                ênfase no teste detalhado de dados e informações de GEE oferecidos para apoiar a declaração
+                                                de GEE. Ambos permitirão que os inventários sejam qualificados como verificados."
+                                                limiteTooltip
+                                                // onChange={e => setValueMetaReducao(e.target.value)}
+                                            />
+                                        </ContentAreaInput>
+                                    ))}
+                                </WrapperAreaInput>
+                                <MoreItems 
+                                    onClickLess={(e) => handleTable({func: "less", index: verificationTerceiros.data.length, event: e, type: "verification"})} 
+                                    onClickMore={(e) => handleTable({func: "more", index: verificationTerceiros.data.length, event: e, type: "verification"})}  
+                                    item={verificationTerceiros.data} 
+                                />
+                            </ContainerAreaInput>
+                        }
+
                     <AreaInput>
                         <SelectArea 
                             title={"Qual abordagem de consolidação foi utilizado no inventario?"} 
@@ -174,6 +250,11 @@ export const Inventariacao = ({skip, height}) => {
                             width= "50%"
                             value={data.abordagem_consolidacao}
                             onChange={e => setData({...data, abordagem_consolidacao: e.target.value})}
+                            help="Os limites organizacionais
+                            abrangem obrigatoriamente o controle operacional e opcionalmente a participação societária. O
+                            controle operacional contabiliza 100% das emissões das operações controladas pela instituição, sem
+                            incluir operações em que haja apenas sua participação."
+
                         />
                         <Input 
                             label={"Numero de funcionário no ano inventariado"}
@@ -185,7 +266,7 @@ export const Inventariacao = ({skip, height}) => {
                         />
                     </AreaInput>
                     <AreaInput NoFlex={true}>
-                        <Title>Produção total do ano inventariado (em unidades, kg, m, m2, m3..) por tipo de produto</Title>
+                        <Title>Produção total do ano inventariado (em unidades, kg, m, m², m³, etc.) por tipo de produto</Title>
                         <ContainerAreaInput style={{display: "flex"}}>
                             <WrapperAreaInput ref={refProduct}>
                                 <AreaInput>
@@ -259,6 +340,11 @@ export const Inventariacao = ({skip, height}) => {
                                                 type="numeric"
                                                 fontSize={12}
                                                 onChange={e => setValueMetaReducao(e.target.value)}
+                                                help="A meta absoluta limita explicitamente uma ação a
+                                                algum número ou resultado. Por exemplo: limitar a
+                                                emissão de GEE a uma certa quantidade. Essa
+                                                meta é importante para definir um limite total de
+                                                emissões por uma organização. "
                                             />
                                             <Input 
                                                 label={"Absoluta"}
@@ -267,6 +353,10 @@ export const Inventariacao = ({skip, height}) => {
                                                 type="numeric"
                                                 fontSize={12}
                                                 onChange={e => setValueMetaReducao(e.target.value)}
+                                                help="A meta por intensidade expressa um valor de um
+                                                indicador por alguma unidade. Por exemplo:
+                                                emissões de GEE por unidade de produto
+                                                produzido. "
                                             />
                                         </ContentAreaInput>
                                     ))}
@@ -278,16 +368,6 @@ export const Inventariacao = ({skip, height}) => {
                                 />
                             </ContainerAreaInput>
                         }
-                    </AreaInput>
-                    
-                    <AreaInput>
-                        <Input 
-                            label={"Descrição de indicadores de emissão de GEE para as atividades da organização."}
-                            placeholder={`Por exemplo, tCO2e/produtos fabricados.`}
-                            type="textArea"
-                            value={data.desc_indicadores_emissao_gee}
-                            onChange={e => setData({...data, desc_indicadores_emissao_gee: e.target.value})}
-                        />
                     </AreaInput>
                         
                     <AreaInput>

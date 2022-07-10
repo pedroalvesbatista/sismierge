@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Area, Container, Text, IconHelp, IconArrow } from './styles'
 
-function Tooltip({ textHelp }) {
+function Tooltip({ textHelp, limite }) {
   const [isHover, setIsHover] = useState(false)
 
   const handleHover = event => {
@@ -18,7 +18,7 @@ function Tooltip({ textHelp }) {
     <Area>
       <IconHelp onMouseEnter={handleHover} onMouseLeave={handleHover} />
       {isHover &&
-        <Text onMouseEnter={handleHover} onMouseLeave={handleHover}>
+        <Text limite={limite} onMouseEnter={handleHover} onMouseLeave={handleHover}>
           {/* <IconArrow /> */}
           {textHelp}
         </Text>

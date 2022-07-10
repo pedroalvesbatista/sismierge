@@ -18,7 +18,7 @@ export const Text = styled.span`
     font-size: 10px;
     padding: 5px;
     top: -100%;
-    left: 100%;
+    left: ${({limite}) => limite ? "-200px" : "100%"};
     width: 200px;
     cursor: help;
 `

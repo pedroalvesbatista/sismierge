@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { sheetActions } from '../../actions'
 import { admin, primary, second } from '../../constants/tailwind/colors'
+import Tooltip from '../Tooltip'
 
-function SelectArea({ value, type, onChange, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
+function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
     const dispatch = useDispatch()
     const [dataFinal, setDataFinal] = useState([])
     const [openSetor, setOpenSetor] = useState(false)
@@ -93,7 +94,10 @@ function SelectArea({ value, type, onChange, item, title, modal=true, width, pla
 
   return (
     <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
-        <Label>{title}</Label>
+        <div style={{display: "flex", width: "100%", alignItems: "center", position: "relative"}}>
+            <Label mb={mbLabel} >{title}</Label>
+            {help && <Tooltip limite={limiteTooltip} textHelp={help} />}
+        </div>
         <Container
             value={type !== "collections" && value} 
             onChange={type === "collections" ? handleOnchageEscopo : onChange}
@@ -161,11 +165,13 @@ const Area = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-left: ${({spaceLeft}) => spaceLeft ? "20px" : "0px"};
+    position: relative;
 `
 const Label = styled.label`
     font-size: 14px;
     font-weight: 600;
     color: ${admin.dark};
+    margin-bottom: ${({mb}) => mb ?? "0"}px;
 `
 
 export const Container = styled.select`
