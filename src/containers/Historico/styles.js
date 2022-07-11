@@ -7,13 +7,15 @@ export const Area = styled.div`
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    /* background-color: aliceblue; */
+    background-color: #fff;
+    border-radius: 5px;
 `
 export const HeaderArea = styled.div`
     width: 100%;
     /* height: 40px; */
     background-color: ${({header}) => header ? admin.cinza : "transparent"};
-    border-radius: ${({header}) => header ? "5px" : "none"};
+    border-top-left-radius: ${({header}) => header ? "5px" : "none"};
+    border-top-right-radius: ${({header}) => header ? "5px" : "none"};
     padding: ${({header, padding}) => header ? "10px" : padding ?? "5px"};
     display: flex;
     flex-direction: ${({header}) => header ? "row" : "column"};
