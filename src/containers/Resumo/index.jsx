@@ -1,54 +1,65 @@
-import React, {  useState } from 'react'
-import { escopo, inicial } from '../../constants/app/'
-import { Container, Ul, Li } from "../Admin/../../components/Tabs/styles";
+import React, { Fragment, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+
+import { 
+  Area, Container, Header, HeaderArea, HeaderTitle, Wrapper
+} from './styles'
+
+import { othersActions, sheetActions } from '../../actions'
+import SelectArea from '../../components/Select'
+import { ButtonAdd } from '../../components/Buttons/Add'
+import { admin } from '../../constants/tailwind/colors'
+import TableResumo from './TableResumo'
+import { LoadingAnimation } from '../../components/lottie'
+
 
 export const Resumo = () => {
-  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+  const { loadingResumo, sucessResumo, dataResumo } = useSelector(state => state.sheet)
+  const subHeader= [" ", "Escopo 1", "Escopo 2 (abordagem por 'localização')", "Escopo 2 (abordagem por 'escolha de compra')", "Escopo 3"]
+
+  useEffect(() => {
+    dispatch(sheetActions.loadResumo())
+  }, [])
+  
+  // console.log(dataResumo);
 
   return (
-    < div className="d-flex flex-column justify-content-center align-items-center w-100">
-      {!loading ? 'Carregando...'
-      : <>
-          <Container>
-           <Ul>
-              <Li active={true}>Escopo 1</Li>
-            </Ul>
-            <ul className='d-flex flex-column m-3 justify-content-center align-items-center'>
-          <li>Combustão móvel - 01 veículo Ford ano 2014, abastecido com gasolina</li>
-          <li>Dados de entrada: Planilha interna da empresa com a Km mensal rodada pelo veículo</li>
-          <li>Quem, até quando e status (concluido, em andamento, não inicado)</li>
-        </ul>
-       </Container>
-       <Container> 
-          <Ul>
-              <Li active={true}>Escopo 2</Li>
-            </Ul>
-            <ul className='d-flex flex-column m-3 justify-content-center align-items-center'>
-          <li>Abordagem baseada na localização</li>
-          <li>Preenchimento mensal de energia elétrica</li>
-          <li>Dado de entrada: Contas mensais de energia elétrica</li>
-          <li>Quem, até quando e status (concluido, em andamento, não inicado)</li>
-        </ul>
-       </Container>
-       <Container>
-           <Ul>
-              <Li active={true}>Escopo 3</Li>
-            </Ul>
-            <ul className='d-flex flex-column m-3 justify-content-center align-items-center'>
-          <li>Resíduos Sólidos</li>
-          <li>Dados de entrada: Notas Fiscais</li>
-          <li>Quem, até quando e status (concluido, em andamento, não inicado)</li>
-          <li>Clique aqui para começar a relatar! (volta para o painel)</li>
-          <li>Clique aqui para enviar este resumo por e-mail ou whatsapp</li>
-          <li>Clique aqui para imprimir o seu resumo</li>
-        </ul>
-       </Container>
-           
-          
-      </>  
-    }
-     </ div>
+    loadingResumo ? (
+      <LoadingAnimation />
+    ) : (
+      <Area>
+        <Header header>
+          <SelectArea 
+            title={"Escolha o ano do inventário"}
+            item={["2021", "2020"]}
+            width={"15%"}
+          />
+          <ButtonAdd 
+            mt={30}
+            ml={10}
+            padding="8px 30px"
+            title={"Baixar o resumo"}
+            posTitle={false}
+          />
+        </Header>
+        
+        {dataResumo?.emisions?.map((item, index) => (
+          <Wrapper>
+            <Header flex header>
+              <HeaderTitle mt={10} align="flex-start" size={18} flex="none"> {item.title} </HeaderTitle>
+            </Header>
+            <Header width={50} header flex>
+              <TableResumo 
+                titleHeader={item.title}
+                items={item.tables}
+              />
+            </Header>
+          </Wrapper>
+        ))}
+        
+      </Area>
+    )
   )
 }
-
-

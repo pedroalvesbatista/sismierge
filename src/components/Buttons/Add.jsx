@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { BsPlusCircleDotted } from 'react-icons/bs'
 import { admin } from '../../constants/tailwind/colors'
 
-export function ButtonAdd({ onClick, title, posTitle="Adicionar" }) {
+export function ButtonAdd({ onClick, title, posTitle="Adicionar", padding, mt, ml }) {
   return (
-    <Button onClick={onClick}>
+    <Button ml={ml} mt={mt} padding={padding} onClick={onClick}>
       { posTitle && <IconPlus />}
         
       { posTitle ? `${posTitle} ${title}` : title}
@@ -19,11 +19,12 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: ${({padding}) => padding ?? "10px"};
   box-shadow: 0px 0px 5px 1px #15151533;
   color: white;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: ${({mt}) => mt ?? "20"}px;
+  margin-left: ${({ml}) => ml ?? "0"}px;
 
   &:hover {
     opacity: 0.8;

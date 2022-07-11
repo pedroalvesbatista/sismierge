@@ -6,12 +6,16 @@ const initialState = {
     loadingCreateSubEscopo: false,
     sucessCreateSubEscopo: false,
     errorCreateSubEscopo: false,
+    loadingResumo: false,
+    sucessResumo: false,
+    errorResumo: false,
     loadingSubEscopo: false,
     sucessSubEscopo: false,
     errorEscopos: false,
     errorSubEscopo: false,
     escopoSheetData: [],
     dataEscopo: [],
+    dataResumo: [],
     dataSubEscopo: []
 }
 
@@ -66,6 +70,31 @@ export const escoposReducer = (state = initialState, action) => {
         loadingSubEscopo: false,
         sucessSubEscopo: false,
         errorSubEscopo: action.payload
+      }
+
+    case sheetConstants.LOAD_RESUMO_REQUEST:
+      return {
+        ...state,
+        loadingResumo: true,
+        sucessResumo: false,
+        errorResumo: false
+      }
+      
+
+    case sheetConstants.LOAD_RESUMO_SUCCESS:
+      return {
+        ...state,
+        loadingResumo: false,
+        sucessResumo: true,
+        dataResumo: action.payload,
+      }
+
+    case sheetConstants.LOAD_RESUMO_FAIL:
+      return {
+        ...state,
+        loadingResumo: false,
+        sucessResumo: false,
+        errorResumo: action.payload
       }
     
     case sheetConstants.SET_SUBESCOPO_REQUEST:

@@ -103,7 +103,7 @@ function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item,
             onChange={type === "collections" ? handleOnchageEscopo : onChange}
             modal= {modal}
         >
-            <option style={{color: primary.cinza}} > {placeholder} </option>
+            {placeholder && <option style={{color: primary.cinza}} > {placeholder} </option>}
             {item?.map((i, index) => (
                 type === "collections" ? (
                     <Option value={i.type}>
@@ -164,7 +164,7 @@ const Area = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: ${({spaceLeft}) => spaceLeft ? "20px" : "0px"};
+    margin-left: ${({spaceLeft}) => spaceLeft ? spaceLeft : "0px"};
     position: relative;
 `
 const Label = styled.label`
