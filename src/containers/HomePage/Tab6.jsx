@@ -16,10 +16,6 @@ function Tab6({ openModal }) {
   const handelModal = () => {
     dispatch(othersActions.handleOpenModal("Adicionar Inventariação"))
   }
-
-  useEffect(() => {
-    // console.log(inventories.length > 0 ? "Yes" : "nop");
-  }, [companies])
   
   useEffect(() => {
     dispatch(companyActions.loadInventories(companies?.id))

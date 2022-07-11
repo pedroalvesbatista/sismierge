@@ -13,12 +13,13 @@ import {
   Indicadores,
   Verificacao,
   RegisterCompany,
+  Historico
 
 } from "./containers";
 
 import {  Resumo} from "./containers/Resumo";
 import { Dashboard } from "./containers/Dashboard";
-import { Historico } from "./containers/Historico";
+// import { Historico } from "./containers";
 import { UsersProfile } from "./containers/UsersProfile";
 import { ManualUsuario } from "./containers/ManualUsuario";
 import { Sugestoes } from "./containers/Sugestoes";
