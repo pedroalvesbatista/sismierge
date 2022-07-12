@@ -19,7 +19,7 @@ import {
 export function StartUp() {
     const dispatch = useDispatch()
     const { sucessCreateCompany, sucessUpdateCompany, companies } = useSelector(state => state.company)
-    const [page, setPage] = useState("inventariacao")
+    const [page, setPage] = useState("organisation")
     const [activeStep, setActiveStep] = useState([0])
     const [prevStep, setPrevStep] = useState([])
 
