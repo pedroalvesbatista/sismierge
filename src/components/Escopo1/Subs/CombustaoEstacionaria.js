@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Select,
@@ -26,7 +26,383 @@ import { ptBR } from "@mui/material/locale";
 import { style } from "../../../utils/util";
 import { fuelUsedEsco1Item, fatoresEmissaoSetor } from "../selectionData";
 import { companyActions, sheetActions } from "../../../actions";
+import { initialItemData } from "../selectionData";
 import ShowInfo from "./ShowInfo";
+
+const DefaultTableRows = ({
+  idx,
+  dataSubEscopo,
+  itemSubEscopo,
+  setItemSubEscopo,
+}) => {
+  const [itemSubEscopo, setItemSubEscopo] = useState();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
+  };
+  return (
+    <TableRow hover tabIndex={-1} key={idx}>
+      <TableCell>
+        <TextField
+          sx={{ minWidth: 200 }}
+          id="regist-font"
+          label="Digite aqui..."
+          variant="outlined"
+          name={"registro_fonte"}
+          onChange={handleChange}
+          value={itemSubEscopo.registro_fonte}
+        />
+      </TableCell>
+      <TableCell>
+        <TextField
+          sx={{ minWidth: 200 }}
+          id="desc-font"
+          label="Digite aqui..."
+          variant="outlined"
+          name={"desc_fonte"}
+          onChange={handleChange}
+          value={itemSubEscopo?.desc_fonte}
+        />
+      </TableCell>
+      <TableCell>
+        <FormControl sx={{ minWidth: 200 }} required>
+          <InputLabel id="fuelUsedEsco1">Combustível Utilizado</InputLabel>
+          <Select
+            labelId="fuelUsedEsco1"
+            id="fuelUsedEsco1"
+            value={itemSubEscopo?.combustivel_utilizado}
+            name={"combustivel_utilizado"}
+            onChange={handleChange}
+            autoWidth
+            label="Selecionar Combustível..."
+          >
+            {fuelUsedEsco1Item?.map((elem) => (
+              <MenuItem value={elem}>{elem}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </TableCell>
+      <TableCell>
+        <TextField
+          sx={{ minWidth: 200 }}
+          id="quant-consu"
+          label="Digite a Quantidade..."
+          variant="outlined"
+          name={"qtd_consumida"}
+          onChange={handleChange}
+          value={itemSubEscopo?.qtd_consumida}
+        />
+      </TableCell>
+      <TableCell>
+        <TextField
+          sx={{ minWidth: 200 }}
+          disabled
+          id="unidade"
+          label=""
+          value={dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]}
+          // defaultValue={
+          //   dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
+          // }
+          variant="filled"
+        />
+      </TableCell>
+      <TableCell sx={{ minWidth: 350 }}>
+        <div className="d-flex justify-content-around">
+          <div>
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][7]}
+            </Card>
+          </div>
+          <div>
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][8]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 350 }}>
+        <div className=" d-flex justify-content-around">
+          <div>
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][5]}
+            </Card>
+          </div>
+          <div>
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][6]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 400 }}>
+        <div className="d-flex justify-content-around">
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][9]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][10]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][11]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 400 }}>
+        <div className="d-flex justify-content-around">
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][12]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][13]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][14]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 400 }}>
+        <div className="d-flex justify-content-around">
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][18]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 400 }}>
+        <div className="d-flex justify-content-around">
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 200 }}>
+        <Card
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
+            width: 130,
+            height: 50,
+            margin: 20,
+            backgroundColor: "#ccc",
+          }}
+        >
+          {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21]}
+        </Card>
+      </TableCell>
+      <TableCell sx={{ minWidth: 200 }}>
+        <Card
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
+            width: 130,
+            height: 50,
+            margin: 20,
+            backgroundColor: "#ccc",
+          }}
+        >
+          {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]}
+        </Card>
+      </TableCell>
+    </TableRow>
+  );
+};
 
 const CombustaoEstacionaria = ({
   nextEsco1Button,
@@ -44,6 +420,7 @@ const CombustaoEstacionaria = ({
   const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(
     (state) => state.company
   );
+
   const [showHowToFill, setShowHowToFill] = useState(false);
   const [section1, setSection1] = useState(false);
 
@@ -61,7 +438,7 @@ const CombustaoEstacionaria = ({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
+    // setItemSubEscopo({ ...itemSubEscopo, [name]: value });
   };
 
   useEffect(() => {
@@ -151,428 +528,18 @@ const CombustaoEstacionaria = ({
     },
   ];
 
-  const defaultTableRows = [
-    <div>
-      {/* <h3>Registro da Fonte</h3> */}
-      <TextField
-        sx={{ minWidth: 200 }}
-        id="regist-font"
-        label="Digite aqui..."
-        variant="outlined"
-        name={"registro_fonte"}
-        onChange={handleChange && handleChange}
-        // value={itemSubEscopo?.registro_fonte}
-      />
-    </div>,
-    <div>
-      {/* <h3>Descrição da Fonte</h3> */}
-      <TextField
-        sx={{ minWidth: 200 }}
-        id="desc-font"
-        label="Digite aqui..."
-        variant="outlined"
-        name={"desc_fonte"}
-        onChange={handleChange && handleChange}
-        value={itemSubEscopo?.desc_fonte}
-      />
-    </div>,
-    <div>
-      {/* <h3>Combustível Utilizado</h3> */}
-      <FormControl sx={{ minWidth: 200 }} required>
-        <InputLabel id="fuelUsedEsco1">Combustível Utilizado</InputLabel>
-        <Select
-          labelId="fuelUsedEsco1"
-          id="fuelUsedEsco1"
-          value={itemSubEscopo?.combustivel_utilizado}
-          name={"combustivel_utilizado"}
-          onChange={handleChange && handleChange}
-          autoWidth
-          label="Selecionar Combustível..."
-        >
-          {fuelUsedEsco1Item?.map((elem) => (
-            <MenuItem value={elem}>{elem}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>,
-    <div>
-      {/* <h3>Quantidade Consumida</h3> */}
-      <TextField
-        sx={{ minWidth: 200 }}
-        id="quant-consu"
-        label="Digite a Quantidade..."
-        variant="outlined"
-        name={"qtd_consumida"}
-        onChange={handleChange && handleChange}
-        value={itemSubEscopo?.qtd_consumida}
-      />
-    </div>,
-    <div>
-      {/* <h3>Unidades de Medida</h3> */}
-      <TextField
-        sx={{ minWidth: 200 }}
-        disabled
-        id="unidade"
-        label=""
-        value={dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]}
-        // defaultValue={
-        //   dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
-        // }
-        variant="filled"
-      />
-    </div>,
-    <div style={{ minWidth: 350 }}>
-      {/* <h3 className="mb-3">O combustível utilizado é formado por:</h3> */}
-      <div className="d-flex justify-content-around">
-        <div>
-          {/* <h4>Combustível Fóssil</h4> */}
+  const [rows, setRows] = useState([1]);
 
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][7]}
-          </Card>
-        </div>
-        <div>
-          {/* <h4>Blocombustível</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][8]}
-          </Card>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 350 }}>
-      {/* <h3 className="mb-3">
-          Quantidade de Combustível consumida(por unidade)
-        </h3> */}
-      <div className=" d-flex justify-content-around">
-        <div>
-          {/* <h4>Combustível Fóssil</h4> */}
-
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][5]}
-          </Card>
-        </div>
-        <div>
-          {/* <h4>Blocombustível</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][6]}
-          </Card>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 400 }}>
-      <div>
-        {/* <h3 className="mb-3">Fatores de emissão - Combustível fóssil</h3> */}
-        <div className="d-flex justify-content-around">
-          <div className="m-2">
-            {/* <h4>CO2(kg/un)</h4> */}
-
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][9]}
-            </Card>
-          </div>
-          <div className="m-2">
-            {/* <h4>CH4(kg/un)</h4> */}
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][10]}
-            </Card>
-          </div>
-          <div className="m-2">
-            {/* <h4>N2O(kg/un)</h4> */}
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][11]}
-            </Card>
-          </div>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 400 }}>
-      {/* <h3 className="mb-3">Fatores de emissão - Biocombustível</h3> */}
-      <div className="d-flex justify-content-around">
-        <div className="m-2">
-          {/* <h4>CO2(kg/un)</h4> */}
-
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][12]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>CH4(kg/un)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][13]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>N2O(kg/un)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][14]}
-          </Card>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 400 }}>
-      {/* <h3 className="mb-3">Combustíveis Fósseis</h3> */}
-      <div className="d-flex justify-content-around">
-        <div className="m-2">
-          {/* <h4>Emissões CO2(t)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][18]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>Emissões CH4(t)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>Emissões N2O(t)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20]}
-          </Card>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 400 }}>
-      {/* <h3 className="mb-3">Biocombustíveis</h3> */}
-      <div className="d-flex justify-content-around">
-        <div className="m-2">
-          {/* <h4>Emissões CO2(t)</h4> */}
-
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>Emissões CH4(t)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16]}
-          </Card>
-        </div>
-        <div className="m-2">
-          {/* <h4>Emissões N2O(t)</h4> */}
-          <Card
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              width: 130,
-              height: 50,
-              margin: 20,
-              backgroundColor: "#ccc",
-            }}
-          >
-            {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17]}
-          </Card>
-        </div>
-      </div>
-    </div>,
-    <div style={{ minWidth: 200 }}>
-      {/* <h6>Emissões Fóssel Totais TCO2e</h6> */}
-      <Card
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          width: 130,
-          height: 50,
-          margin: 20,
-          backgroundColor: "#ccc",
-        }}
-      >
-        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21]}
-      </Card>
-    </div>,
-    <div style={{ minWidth: 200 }}>
-      {/* <h6>Emissões Biogênicas TCO2e</h6> */}
-      <Card
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          width: 130,
-          height: 50,
-          margin: 20,
-          backgroundColor: "#ccc",
-        }}
-      >
-        {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]}
-      </Card>
-    </div>,
-  ];
-
-  const [rows, setRows] = useState([defaultTableRows]);
-
-  useEffect(() => {
-    console.log(rows);
-  }, [rows]);
-
-  // const rows = [
-  //   defaultTableRows,
-  //   defaultTableRows,
-  //   defaultTableRows,
-  //   defaultTableRows,
-  //   defaultTableRows,
-  //   defaultTableRows,
-  // ];
+  const addNewsRows = () => {
+    setItemSubEscopo({
+      ...initialItemData,
+      fator_emissao_setor: itemSubEscopo.fator_emissao_setor,
+    });
+    setRows([...rows, rows + 1]);
+  };
 
   const theme = useTheme();
   const themeWithLocale = createTheme(theme, ptBR);
-
-  const addNewsRows = () => {
-    console.log(rows);
-    setRows([...rows.map((elem) => elem), defaultTableRows]);
-    // rows.push(defaultTableRows);
-  };
 
   return (
     <Modal
@@ -714,18 +681,15 @@ const CombustaoEstacionaria = ({
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
                         )
-                        .map((row, index) => {
+                        .map((row, idx) => {
                           return (
-                            <TableRow
-                              hover
-                              // role="checkbox"
-                              // tabIndex={-1}
-                              key={index}
-                            >
-                              {row.map((elem, idx) => {
-                                return <TableCell key={idx}>{elem}</TableCell>;
-                              })}
-                            </TableRow>
+                            <DefaultTableRows
+                              idx={idx}
+                              itemSubEscopo={itemSubEscopo}
+                              setItemSubEscopo={setItemSubEscopo}
+                              // handleChange={handleChange}
+                              dataSubEscopo={dataSubEscopo}
+                            />
                           );
                         })}
                     </TableBody>
@@ -1207,7 +1171,7 @@ const CombustaoEstacionaria = ({
               ].items.filter((i) => i.sheetId === 1093763195)[0];
               filterTypeSubEscopo = {
                 ...filterTypeSubEscopo,
-                items: dataSubEscopo,
+                // items: dataSubEscopo,
               };
 
               let newDataEscopo = { ...companies };
