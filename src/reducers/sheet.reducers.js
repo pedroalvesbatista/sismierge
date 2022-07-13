@@ -92,6 +92,14 @@ export const escoposReducer = (state = initialState, action) => {
         sucessCreateSubEscopo: false,
         errorCreateSubEscopo: true
       }
+
+    case sheetConstants.CLEAR_SUBESCOPO:
+      return {
+        ...state,
+        loadingCreateSubEscopo: false,
+        sucessCreateSubEscopo: false,
+        errorCreateSubEscopo: false
+      }
   
 
     case sheetConstants.SET_DATA_ESCOPO:

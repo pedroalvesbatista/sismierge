@@ -9,11 +9,24 @@ const initialState = {
   dataModal: null,
   loadingCep: false,
   sucessCep: false,
-  dataCep: null
+  dataCep: null, 
+  initialItemData: {
+    registro_fonte: "",
+    desc_fonte: "",
+    qtd_consumida: "",
+    combustivel_utilizado: "",
+    fator_emissao_setor: "",
+  }
 }
 
 export const othersReducer = (state = initialState, action) => {
   switch(action.type) {
+
+    case others.SET_INITIAL_STATE: 
+      return {
+        ...state,
+        initialItemData: action.payload
+      }
 
     case others.SET_HOMETITLE: 
       return {

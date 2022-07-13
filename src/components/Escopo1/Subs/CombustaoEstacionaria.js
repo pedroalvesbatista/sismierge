@@ -25,24 +25,27 @@ import { ptBR } from "@mui/material/locale";
 
 import { style } from "../../../utils/util";
 import { fuelUsedEsco1Item, fatoresEmissaoSetor } from "../selectionData";
-import { companyActions, sheetActions } from "../../../actions";
-import { initialItemData } from "../selectionData";
+import { companyActions, othersActions, sheetActions } from "../../../actions";
+// import { initialItemData } from "../selectionData";
 import ShowInfo from "./ShowInfo";
 
 const DefaultTableRows = ({
   idx,
-  // dataSubEscopo,
+  dataSubEscopo,
   // itemSubEscopo,
   // setItemSubEscopo,
   // handleChange,
 }) => {
-  const [itemSubEscopo, setItemSubEscopo] = useState(initialItemData);
-  const [dataSubEscopo, setDataSubEscopo] = useState();
+  const dispatch = useDispatch();
+  const { initialItemData } = useSelector(state => state.others)
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
+    dispatch(othersActions.handleInicialState({ ...initialItemData, [name]: value }));
   };
+
+  // console.log(itemSubEscopo);
 
   return (
     <TableRow hover tabIndex={-1} key={idx}>
@@ -54,7 +57,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"registro_fonte"}
           onChange={handleChange}
-          value={itemSubEscopo.registro_fonte}
+          value={initialItemData.registro_fonte}
         />
       </TableCell>
       <TableCell>
@@ -65,7 +68,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"desc_fonte"}
           onChange={handleChange}
-          value={itemSubEscopo?.desc_fonte}
+          value={initialItemData?.desc_fonte}
         />
       </TableCell>
       <TableCell>
@@ -74,7 +77,7 @@ const DefaultTableRows = ({
           <Select
             labelId="fuelUsedEsco1"
             id="fuelUsedEsco1"
-            value={itemSubEscopo?.combustivel_utilizado}
+            value={initialItemData?.combustivel_utilizado}
             name={"combustivel_utilizado"}
             onChange={handleChange}
             autoWidth
@@ -94,7 +97,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"qtd_consumida"}
           onChange={handleChange}
-          value={itemSubEscopo?.qtd_consumida}
+          value={initialItemData?.qtd_consumida}
         />
       </TableCell>
       <TableCell>
@@ -421,9 +424,21 @@ const CombustaoEstacionaria = ({
     dataSubEscopo,
     sucessCreateSubEscopo,
   } = useSelector((state) => state.sheet);
-  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector(
-    (state) => state.company
-  );
+
+  const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector( (state) => state.company );
+  const { initialItemData } = useSelector(state => state.others)
+
+  const [dataStorage, setDataStorage] = useState([
+    {
+      registro_fonte: "",
+      desc_fonte: "",
+      qtd_consumida: "",
+      combustivel_utilizado: "",
+      result: ["", "","", "", "","","","","","","","","","","","","","",""]
+    }
+  ]);
+
+  
 
   const [showHowToFill, setShowHowToFill] = useState(false);
   const [section1, setSection1] = useState(false);
@@ -445,18 +460,45 @@ const CombustaoEstacionaria = ({
     setItemSubEscopo({ ...itemSubEscopo, [name]: value });
   };
 
+  const isStorage = JSON.parse(localStorage.getItem("@sismierge/escopo1/combu_estac"))
+
   useEffect(() => {
+
+
+    if (!isStorage) {
+      localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify(dataStorage))
+    }
+
+    if (sucessCreateSubEscopo) {
+      if (dataSubEscopo && dataSubEscopo.length > 0) {
+        const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado, } = initialItemData;
+  
+        const newData= {
+          registro_fonte,
+          desc_fonte,
+          qtd_consumida,
+          combustivel_utilizado,
+          result: [ dataSubEscopo[10][4],  dataSubEscopo[10][7], dataSubEscopo[10][8], dataSubEscopo[10][5], dataSubEscopo[10][6], dataSubEscopo[10][9], dataSubEscopo[10][10], dataSubEscopo[10][11], dataSubEscopo[10][12], dataSubEscopo[10][13], dataSubEscopo[10][14], dataSubEscopo[10][18], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]
+  
+          ]
+        }
+  
+        localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify([...isStorage, newData]))
+      }
+    }
+    // console.log(sucessCreateSubEscopo);
     dispatch(sheetActions.loadSubEscopos(1093763195));
   }, [sucessCreateSubEscopo]);
 
   useEffect(() => {
-    if (itemSubEscopo.qtd_consumida.length > 1) {
+    if (initialItemData.qtd_consumida.length > 1) {
+      // console.log(initialItemData);
       const {
         registro_fonte,
         desc_fonte,
         qtd_consumida,
         combustivel_utilizado,
-      } = itemSubEscopo;
+      } = initialItemData;
       dispatch(
         sheetActions.setSubEscopo({
           range: "Combustão estacionária!A11:D11",
@@ -469,7 +511,7 @@ const CombustaoEstacionaria = ({
         })
       );
     }
-  }, [itemSubEscopo]);
+  }, [initialItemData]);
 
   const headCells = [
     {
@@ -532,18 +574,17 @@ const CombustaoEstacionaria = ({
     },
   ];
 
-  const [rows, setRows] = useState([1]);
+  // const [isStorage, setRows] = useState(isStorage && isStorage);
 
   const addNewsRows = () => {
-    setItemSubEscopo({
-      ...initialItemData,
-      fator_emissao_setor: itemSubEscopo.fator_emissao_setor,
-    });
-    setRows([...rows, rows + 1]);
+    // localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify([...isStorage, dataStorage]))
   };
 
   const theme = useTheme();
   const themeWithLocale = createTheme(theme, ptBR);
+
+  // console.log(isStorage);
+
 
   return (
     <Modal
@@ -680,19 +721,15 @@ const CombustaoEstacionaria = ({
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rows
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row, idx) => {
+                      {isStorage?.slice(1).map((row, idx) => {
                           return (
                             <DefaultTableRows
                               idx={idx}
                               // itemSubEscopo={itemSubEscopo}
                               // setItemSubEscopo={setItemSubEscopo}
                               // handleChange={handleChange}
-                              // dataSubEscopo={dataSubEscopo}
+                              items={isStorage?.result}
+                              dataSubEscopo={dataSubEscopo}
                             />
                           );
                         })}
@@ -702,7 +739,7 @@ const CombustaoEstacionaria = ({
                 <TablePagination
                   rowsPerPageOptions={[0]}
                   component="div"
-                  count={rows.length}
+                  // count={isStorage?.length === 1 ? isStorage?.length : isStorage?.slice(1)?.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onPageChange={handleChangePage}

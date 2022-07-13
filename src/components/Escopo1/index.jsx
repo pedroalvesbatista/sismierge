@@ -15,7 +15,6 @@ import {
   Card,
 } from "@mui/material";
 
-import { data } from "./selectionData";
 import { style } from "../../utils/util";
 import CombustaoEstacionaria from "./Subs/CombustaoEstacionaria";
 import CombustaoMovel from "./Subs/CombustaoMovel";
@@ -99,9 +98,6 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
       toast.success("Salvando com sucesso")
     }
   }, [sucessCreateCompany])
-  
-
-  console.log(inventories);
 
   return (
     <>

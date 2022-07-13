@@ -9,6 +9,16 @@ export const othersActions = {
     setDataModal,
     loadCep,
     openModalInventory,
+    handleInicialState,
+}
+
+function handleInicialState (data){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_INITIAL_STATE,
+            payload: data
+        })
+    }
 }
 
 function handleOpenModal (display, inventory){
