@@ -31,11 +31,19 @@ import ShowInfo from "./ShowInfo";
 
 const DefaultTableRows = ({
   idx,
-  dataSubEscopo,
-  itemSubEscopo,
-  setItemSubEscopo,
-  handleChange,
+  // dataSubEscopo,
+  // itemSubEscopo,
+  // setItemSubEscopo,
+  // handleChange,
 }) => {
+  const [itemSubEscopo, setItemSubEscopo] = useState(initialItemData);
+  const [dataSubEscopo, setDataSubEscopo] = useState();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
+  };
+
   return (
     <TableRow hover tabIndex={-1} key={idx}>
       <TableCell>
@@ -434,7 +442,7 @@ const CombustaoEstacionaria = ({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // setItemSubEscopo({ ...itemSubEscopo, [name]: value });
+    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
   };
 
   useEffect(() => {
@@ -681,10 +689,10 @@ const CombustaoEstacionaria = ({
                           return (
                             <DefaultTableRows
                               idx={idx}
-                              itemSubEscopo={itemSubEscopo}
-                              setItemSubEscopo={setItemSubEscopo}
-                              handleChange={handleChange}
-                              dataSubEscopo={dataSubEscopo}
+                              // itemSubEscopo={itemSubEscopo}
+                              // setItemSubEscopo={setItemSubEscopo}
+                              // handleChange={handleChange}
+                              // dataSubEscopo={dataSubEscopo}
                             />
                           );
                         })}
