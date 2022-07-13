@@ -33,6 +33,15 @@ export const Dashboard = () => {
     }
   ]
 
+  const handlePercentYear = (data) => {
+    const isCrease = data[0]?.valor > data[1]?.valor
+    if (isCrease) {
+      
+    } else {
+      
+    }
+  }
+
   return (
     <Area>
       <Container column>

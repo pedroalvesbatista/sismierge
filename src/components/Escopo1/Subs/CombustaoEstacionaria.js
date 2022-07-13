@@ -32,6 +32,8 @@ import ShowInfo from "./ShowInfo";
 const DefaultTableRows = ({
   idx,
   dataSubEscopo,
+  items,
+  indexTable
   // itemSubEscopo,
   // setItemSubEscopo,
   // handleChange,
@@ -41,8 +43,18 @@ const DefaultTableRows = ({
   
 
   const handleChange = (event) => {
+    indexTable(idx)
     const { name, value } = event.target;
-    dispatch(othersActions.handleInicialState({ ...initialItemData, [name]: value }));
+    let newList = initialItemData.map((item, index) => {
+      if (index === idx) {
+        return {...item, [name]: value}
+      }
+      return item
+    })
+    // newList = {...newList, [name]: value}
+
+    dispatch(othersActions.handleInicialState(newList));
+    // console.log(newList);
   };
 
   // console.log(itemSubEscopo);
@@ -57,7 +69,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"registro_fonte"}
           onChange={handleChange}
-          value={initialItemData.registro_fonte}
+          value={initialItemData[idx]?.registro_fonte}
         />
       </TableCell>
       <TableCell>
@@ -68,7 +80,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"desc_fonte"}
           onChange={handleChange}
-          value={initialItemData?.desc_fonte}
+          value={initialItemData[idx]?.desc_fonte}
         />
       </TableCell>
       <TableCell>
@@ -77,7 +89,7 @@ const DefaultTableRows = ({
           <Select
             labelId="fuelUsedEsco1"
             id="fuelUsedEsco1"
-            value={initialItemData?.combustivel_utilizado}
+            value={initialItemData[idx]?.combustivel_utilizado}
             name={"combustivel_utilizado"}
             onChange={handleChange}
             autoWidth
@@ -97,7 +109,7 @@ const DefaultTableRows = ({
           variant="outlined"
           name={"qtd_consumida"}
           onChange={handleChange}
-          value={initialItemData?.qtd_consumida}
+          value={initialItemData[idx]?.qtd_consumida}
         />
       </TableCell>
       <TableCell>
@@ -106,7 +118,7 @@ const DefaultTableRows = ({
           disabled
           id="unidade"
           label=""
-          value={dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]}
+          value={items && items[0]}
           // defaultValue={
           //   dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
           // }
@@ -127,7 +139,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][7]}
+              {items && items[1]}
             </Card>
           </div>
           <div>
@@ -142,7 +154,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][8]}
+              {items && items[2]}
             </Card>
           </div>
         </div>
@@ -161,7 +173,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][5]}
+              {items && items[3]}
             </Card>
           </div>
           <div>
@@ -176,7 +188,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][6]}
+              {items && items[4]}
             </Card>
           </div>
         </div>
@@ -195,7 +207,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][9]}
+              {items && items[5]}
             </Card>
           </div>
           <div className="m-2">
@@ -210,7 +222,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][10]}
+              {items && items[6]}
             </Card>
           </div>
           <div className="m-2">
@@ -225,56 +237,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][11]}
-            </Card>
-          </div>
-        </div>
-      </TableCell>
-      <TableCell sx={{ minWidth: 400 }}>
-        <div className="d-flex justify-content-around">
-          <div className="m-2">
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][12]}
-            </Card>
-          </div>
-          <div className="m-2">
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][13]}
-            </Card>
-          </div>
-          <div className="m-2">
-            <Card
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                width: 130,
-                height: 50,
-                margin: 20,
-                backgroundColor: "#ccc",
-              }}
-            >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][14]}
+              {items && items[7]}
             </Card>
           </div>
         </div>
@@ -293,7 +256,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][18]}
+              {items && items[8]}
             </Card>
           </div>
           <div className="m-2">
@@ -308,7 +271,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19]}
+              {items && items[9]}
             </Card>
           </div>
           <div className="m-2">
@@ -323,7 +286,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20]}
+              {items && items[10]}
             </Card>
           </div>
         </div>
@@ -342,7 +305,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15]}
+              {items && items[11]}
             </Card>
           </div>
           <div className="m-2">
@@ -357,7 +320,7 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16]}
+              {items && items[12]}
             </Card>
           </div>
           <div className="m-2">
@@ -372,7 +335,56 @@ const DefaultTableRows = ({
                 backgroundColor: "#ccc",
               }}
             >
-              {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17]}
+              {items && items[13]}
+            </Card>
+          </div>
+        </div>
+      </TableCell>
+      <TableCell sx={{ minWidth: 400 }}>
+        <div className="d-flex justify-content-around">
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {items && items[14]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {items && items[15]}
+            </Card>
+          </div>
+          <div className="m-2">
+            <Card
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                width: 130,
+                height: 50,
+                margin: 20,
+                backgroundColor: "#ccc",
+              }}
+            >
+              {items && items[16]}
             </Card>
           </div>
         </div>
@@ -389,7 +401,7 @@ const DefaultTableRows = ({
             backgroundColor: "#ccc",
           }}
         >
-          {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21]}
+          {items && items[17]}
         </Card>
       </TableCell>
       <TableCell sx={{ minWidth: 200 }}>
@@ -404,7 +416,7 @@ const DefaultTableRows = ({
             backgroundColor: "#ccc",
           }}
         >
-          {dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]}
+          {items && items[18]}
         </Card>
       </TableCell>
     </TableRow>
@@ -428,6 +440,9 @@ const CombustaoEstacionaria = ({
   const { companies, loadingCreateCompany, sucessCreateCompany } = useSelector( (state) => state.company );
   const { initialItemData } = useSelector(state => state.others)
 
+  const initialStorage = JSON.parse(localStorage.getItem("@sismierge/escopo1/combu_estac"))
+  const [isStorage, setIsStorage] = useState(initialStorage ? initialStorage : []);
+
   const [dataStorage, setDataStorage] = useState([
     {
       registro_fonte: "",
@@ -441,6 +456,7 @@ const CombustaoEstacionaria = ({
   
 
   const [showHowToFill, setShowHowToFill] = useState(false);
+  const [indexTableStorage, setIndexTableStorage] = useState(0);
   const [section1, setSection1] = useState(false);
 
   const [page, setPage] = useState(0);
@@ -460,45 +476,59 @@ const CombustaoEstacionaria = ({
     setItemSubEscopo({ ...itemSubEscopo, [name]: value });
   };
 
-  const isStorage = JSON.parse(localStorage.getItem("@sismierge/escopo1/combu_estac"))
-
   useEffect(() => {
 
 
     if (!isStorage) {
+      setIsStorage(dataStorage)
       localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify(dataStorage))
+      dispatch(othersActions.handleInicialState(dataStorage));
+      // console.log(initialItemData);
+    } else {
+      setIsStorage(JSON.parse(localStorage.getItem("@sismierge/escopo1/combu_estac")))
     }
 
     if (sucessCreateSubEscopo) {
-      if (dataSubEscopo && dataSubEscopo.length > 0) {
-        const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado, } = initialItemData;
+      console.log(initialItemData[indexTableStorage]?.qtd_consumida);
+      if (initialItemData[indexTableStorage]?.qtd_consumida?.length > 1) {
+        const { registro_fonte, desc_fonte, qtd_consumida, combustivel_utilizado, } = indexTableStorage && initialItemData[indexTableStorage];
   
         const newData= {
           registro_fonte,
           desc_fonte,
           qtd_consumida,
           combustivel_utilizado,
-          result: [ dataSubEscopo[10][4],  dataSubEscopo[10][7], dataSubEscopo[10][8], dataSubEscopo[10][5], dataSubEscopo[10][6], dataSubEscopo[10][9], dataSubEscopo[10][10], dataSubEscopo[10][11], dataSubEscopo[10][12], dataSubEscopo[10][13], dataSubEscopo[10][14], dataSubEscopo[10][18], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]
+          result: dataSubEscopo && dataSubEscopo[10] && [ dataSubEscopo[10][4],  dataSubEscopo[10][7], dataSubEscopo[10][8], dataSubEscopo[10][5], dataSubEscopo[10][6], dataSubEscopo[10][9], dataSubEscopo[10][10], dataSubEscopo[10][11], dataSubEscopo[10][12], dataSubEscopo[10][13], dataSubEscopo[10][14], dataSubEscopo[10][18], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][19], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][20], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][15], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][16], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][17], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][21], dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][22]
   
           ]
         }
-  
-        localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify([...isStorage, newData]))
+        let newItem = [...isStorage]
+        newItem[indexTableStorage] = newData
+
+        console.log(newItem);
+        
+        localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify(newItem))
       }
     }
     // console.log(sucessCreateSubEscopo);
-    dispatch(sheetActions.loadSubEscopos(1093763195));
-  }, [sucessCreateSubEscopo]);
+  }, [sucessCreateSubEscopo, isStorage]);
 
   useEffect(() => {
-    if (initialItemData.qtd_consumida.length > 1) {
+    dispatch(sheetActions.loadSubEscopos(1093763195));
+  }, [sucessCreateSubEscopo])
+  
+
+  // console.log(sucessCreateSubEscopo);
+
+  useEffect(() => {
+    if (initialItemData[indexTableStorage]?.qtd_consumida?.length > 1) {
       // console.log(initialItemData);
       const {
         registro_fonte,
         desc_fonte,
         qtd_consumida,
         combustivel_utilizado,
-      } = initialItemData;
+      } = initialItemData[indexTableStorage];
       dispatch(
         sheetActions.setSubEscopo({
           range: "Combustão estacionária!A11:D11",
@@ -511,7 +541,7 @@ const CombustaoEstacionaria = ({
         })
       );
     }
-  }, [initialItemData]);
+  }, [initialItemData[indexTableStorage]]);
 
   const headCells = [
     {
@@ -577,7 +607,8 @@ const CombustaoEstacionaria = ({
   // const [isStorage, setRows] = useState(isStorage && isStorage);
 
   const addNewsRows = () => {
-    // localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify([...isStorage, dataStorage]))
+    localStorage.setItem("@sismierge/escopo1/combu_estac", JSON.stringify([...isStorage, ...dataStorage]))
+    // console.log([...isStorage, ...dataStorage]);
   };
 
   const theme = useTheme();
@@ -721,14 +752,15 @@ const CombustaoEstacionaria = ({
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {isStorage?.slice(1).map((row, idx) => {
+                      {isStorage?.map((item, idx) => {
                           return (
                             <DefaultTableRows
                               idx={idx}
                               // itemSubEscopo={itemSubEscopo}
                               // setItemSubEscopo={setItemSubEscopo}
                               // handleChange={handleChange}
-                              items={isStorage?.result}
+                              indexTable={e => setIndexTableStorage(e)}
+                              items={item?.result}
                               dataSubEscopo={dataSubEscopo}
                             />
                           );
@@ -759,447 +791,7 @@ const CombustaoEstacionaria = ({
           </Box>
           {/* <ShowTable /> */}
         </div>
-        {/* oldVersion */}
-        {/* <div className="mb-4">
-          <div className="d-flex">
-            <div>
-              <h3>Fatores de Emissão-setor:</h3>
-              <FormControl sx={{ m: 1, minWidth: 200 }} required>
-                <InputLabel id="fator_emissao_setor">
-                  Escolhe aqui...
-                </InputLabel>
-                <Select
-                  labelId="fator_emissao_setor"
-                  id="fator_emissao_setor"
-                  value={itemSubEscopo.fator_emissao_setor}
-                  name={"fator_emissao_setor"}
-                  onChange={handleChange}
-                  autoWidth
-                  label="Escolhe aqui..."
-                >
-                  {companies.setor_atividade?.map((elem) => (
-                    <MenuItem value={elem}>{elem}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div className="m-2">
-              <h3>Registro da Fonte</h3>
-              <TextField
-                id="regist-font"
-                label="Digite aqui..."
-                variant="outlined"
-                name={"registro_fonte"}
-                onChange={handleChange}
-                value={itemSubEscopo.registro_fonte}
-              />
-            </div>
-
-            <div className="m-2">
-              <h3>Descrição da Fonte</h3>
-              <TextField
-                id="desc-font"
-                label="Digite aqui..."
-                variant="outlined"
-                name={"desc_fonte"}
-                onChange={handleChange}
-                value={itemSubEscopo.desc_fonte}
-              />
-            </div>
-
-            <div>
-              <h3>Combustível Utilizado</h3>
-              <FormControl sx={{ m: 1, minWidth: 200 }} required>
-                <InputLabel id="fuelUsedEsco1">
-                  Combustível Utilizado
-                </InputLabel>
-                <Select
-                  labelId="fuelUsedEsco1"
-                  id="fuelUsedEsco1"
-                  value={itemSubEscopo.combustivel_utilizado}
-                  name={"combustivel_utilizado"}
-                  onChange={handleChange}
-                  autoWidth
-                  label="Selecionar Combustível..."
-                >
-                  {fuelUsedEsco1Item?.map((elem) => (
-                    <MenuItem value={elem}>{elem}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
-
-            <div className="m-2">
-              <h3>Quantidade Consumida</h3>
-              <TextField
-                id="quant-consu"
-                label="Digite a Quantidade..."
-                variant="outlined"
-                name={"qtd_consumida"}
-                onChange={handleChange}
-                value={itemSubEscopo.qtd_consumida}
-              />
-            </div>
-
-            <div className="m-2">
-              <h3>Unidades de Medida</h3>
-              <TextField
-                disabled
-                id="unidade"
-                label=""
-                value={
-                  dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
-                }
-                // defaultValue={
-                //   dataSubEscopo && dataSubEscopo[10] && dataSubEscopo[10][4]
-                // }
-                variant="filled"
-              />
-            </div>
-          </div>
-          <div className="mt-5 mb-5 d-flex flex-column align-items-start">
-            <h3
-              style={{ color: "#953fc6" }}
-              className="fs-3 font-weight-bold text-uppercase "
-            >
-              Emissões Totais por Combustão Estacionária
-            </h3>
-          </div>
-
-          <div className="d-flex justify-content-between">
-            <div className="d-flex flex-column align-items-start">
-              <div className="d-flex justify-content-between">
-                <div className="m-2">
-                  <h3 className="mb-3">
-                    O combustível utilizado é formado por:
-                  </h3>
-                  <div className="d-flex justify-content-around">
-                    <div>
-                      <h4>Combustível Fóssil</h4>
-
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][7]}
-                      </Card>
-                    </div>
-                    <div>
-                      <h4>Blocombustível</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][8]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-                <div className="m-2">
-                  <h3 className="mb-3">
-                    Quantidade de Combustível consumida(por unidade)
-                  </h3>
-                  <div className=" d-flex justify-content-around">
-                    <div>
-                      <h4>Combustível Fóssil</h4>
-
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][5]}
-                      </Card>
-                    </div>
-                    <div>
-                      <h4>Blocombustível</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][6]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3 className="mb-3">
-                    Fatores de emissão - Combustível fóssil
-                  </h3>
-                  <div className="d-flex justify-content-around">
-                    <div className="m-2">
-                      <h4>CO2(kg/un)</h4>
-
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][9]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>CH4(kg/un)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][10]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>N2O(kg/un)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][11]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <div className="d-flex justify-content-around">
-                  <div className="m-2">
-                    <h6>Emissões Fóssel Totais TCO2e</h6>
-                    <Card
-                      style={{
-                        width: 80,
-                        height: 30,
-                        margin: 20,
-                        backgroundColor: "#ccc",
-                      }}
-                    >
-                      {dataSubEscopo &&
-                        dataSubEscopo[10] &&
-                        dataSubEscopo[10][21]}
-                    </Card>
-                  </div>
-                  <div className="m-2">
-                    <h6>Emissões Biogênicas TCO2e</h6>
-                    <Card
-                      style={{
-                        width: 80,
-                        height: 30,
-                        margin: 20,
-                        backgroundColor: "#ccc",
-                      }}
-                    >
-                      {dataSubEscopo &&
-                        dataSubEscopo[10] &&
-                        dataSubEscopo[10][22]}
-                    </Card>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="d-flex flex-column align-items-start">
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3 className="mb-3">Fatores de emissão - Biocombustível</h3>
-                  <div className="d-flex justify-content-around">
-                    <div className="m-2">
-                      <h4>CO2(kg/un)</h4>
-
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][12]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>CH4(kg/un)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][13]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>N2O(kg/un)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][14]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3 className="mb-3">Biocombustíveis</h3>
-                  <div className="d-flex justify-content-around">
-                    <div className="m-2">
-                      <h4>Emissões CO2(t)</h4>
-
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][15]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>Emissões CH4(t)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][16]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>Emissões N2O(t)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][17]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h3 className="mb-3">Combustíveis Fósseis</h3>
-                  <div className="d-flex justify-content-around">
-                    <div className="m-2">
-                      <h4>Emissões CO2(t)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][18]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>Emissões CH4(t)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][19]}
-                      </Card>
-                    </div>
-                    <div className="m-2">
-                      <h4>Emissões N2O(t)</h4>
-                      <Card
-                        style={{
-                          width: 80,
-                          height: 30,
-                          margin: 20,
-                          backgroundColor: "#ccc",
-                        }}
-                      >
-                        {dataSubEscopo &&
-                          dataSubEscopo[10] &&
-                          dataSubEscopo[10][20]}
-                      </Card>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* end */}
+        
         <div>
           <Button
             onClick={() => {

@@ -6,7 +6,8 @@ export const sheetActions = {
     loadEscopos,
     setDataEscopo,
     loadSubEscopos,
-    setSubEscopo
+    setSubEscopo, 
+    cleanSubEscopo
 }
 
 function loadEscopos (){
@@ -98,6 +99,16 @@ function setSubEscopo (data){
                 payload: err
             })
             console.log(err);
+        })
+    }
+    
+}
+
+function cleanSubEscopo (){
+
+    return dispatch => {
+        dispatch({
+            type: sheetConstants.CLEAR_SUBESCOPO,
         })
     }
     

@@ -10,6 +10,7 @@ export const othersActions = {
     loadCep,
     openModalInventory,
     handleInicialState,
+    cleanInicialState
 }
 
 function handleInicialState (data){
@@ -17,6 +18,21 @@ function handleInicialState (data){
         dispatch({ 
             type: others.SET_INITIAL_STATE,
             payload: data
+        })
+    }
+}
+
+function cleanInicialState (){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_INITIAL_STATE,
+            payload: [{
+                registro_fonte: "",
+                desc_fonte: "",
+                qtd_consumida: "",
+                combustivel_utilizado: "",
+                fator_emissao_setor: "",
+            }]
         })
     }
 }

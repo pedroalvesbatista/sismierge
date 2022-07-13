@@ -1,5 +1,8 @@
 import { others } from "../constants/redux"
 
+
+const localStorage = JSON.parse(window.localStorage.getItem("@sismierge/escopo1/combu_estac"))
+
 const initialState = {
   titlePage: 'Visão geral',
   optionSelect: '',
@@ -10,19 +13,19 @@ const initialState = {
   loadingCep: false,
   sucessCep: false,
   dataCep: null, 
-  initialItemData: {
-    registro_fonte: "",
-    desc_fonte: "",
-    qtd_consumida: "",
-    combustivel_utilizado: "",
-    fator_emissao_setor: "",
-  }
+  initialItemData: localStorage ? localStorage : []
 }
 
 export const othersReducer = (state = initialState, action) => {
   switch(action.type) {
 
     case others.SET_INITIAL_STATE: 
+      return {
+        ...state,
+        initialItemData: action.payload
+      }
+
+      case others.CLEAN_INITIAL_STATE: 
       return {
         ...state,
         initialItemData: action.payload

@@ -29,6 +29,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   const dispatch = useDispatch()
   // const { loadingSubEscopo, sucessCreateSubEscopo, dataSubEscopo } = useSelector(state => state.sheet)
   const { sucessCreateCompany, inventories } = useSelector(state => state.company)
+  const { sucessCreateSubEscopo } = useSelector((state) => state.sheet);
   const [invetYear, setInvetYear] = useState("");
 
   const [showSubEsco1, setShowSubEsco1] = useState("");
@@ -89,6 +90,12 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
   };
 
   useEffect(() => {
+
+    if (sucessCreateSubEscopo) {
+      dispatch(sheetActions.cleanSubEscopo())
+      // dispatch(othersActions.cleanInicialState())
+    }
+
     if (sucessCreateCompany) {
       dispatch(sheetActions.setSubEscopo({
         range: "Combustão estacionária!A11:D11",
@@ -97,7 +104,7 @@ const Escopo1 = ({ openStartInvet, setOpenStartInvet, data }) => {
       handleChangeEsco1()
       toast.success("Salvando com sucesso")
     }
-  }, [sucessCreateCompany])
+  }, [sucessCreateCompany, sucessCreateSubEscopo])
 
   return (
     <>
