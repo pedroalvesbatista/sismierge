@@ -45,7 +45,7 @@ export const Inventariacao = ({skip, height}) => {
         setMetaEscopo(false)
         setProdutos(initialProduct)
         setMetaReducao(initialMetaReducao)
-        setData({...initialData, company: companies.id})
+        setData({...initialData, company: companies?.id})
     }
   }, [sucessCreateInventory])
   
