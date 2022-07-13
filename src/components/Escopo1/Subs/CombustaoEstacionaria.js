@@ -34,12 +34,8 @@ const DefaultTableRows = ({
   dataSubEscopo,
   itemSubEscopo,
   setItemSubEscopo,
+  handleChange,
 }) => {
-  const [itemSubEscopo, setItemSubEscopo] = useState();
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setItemSubEscopo({ ...itemSubEscopo, [name]: value });
-  };
   return (
     <TableRow hover tabIndex={-1} key={idx}>
       <TableCell>
@@ -687,7 +683,7 @@ const CombustaoEstacionaria = ({
                               idx={idx}
                               itemSubEscopo={itemSubEscopo}
                               setItemSubEscopo={setItemSubEscopo}
-                              // handleChange={handleChange}
+                              handleChange={handleChange}
                               dataSubEscopo={dataSubEscopo}
                             />
                           );
