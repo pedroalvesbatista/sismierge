@@ -99,7 +99,7 @@ function SelectArea({ value, type, onChange, item, title, modal=true, width, pla
             onChange={type === "collections" ? handleOnchageEscopo : onChange}
             modal= {modal}
         >
-            <option style={{color: primary.cinza}} > {placeholder} </option>
+            {placeholder && <option style={{color: primary.cinza}} > {placeholder} </option>}
             {item?.map((i, index) => (
                 type === "collections" ? (
                     <Option value={i.type}>
