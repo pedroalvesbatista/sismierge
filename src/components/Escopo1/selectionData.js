@@ -254,22 +254,4 @@ export const initialItemData = {
   qtd_consumida: "",
   combustivel_utilizado: "",
   fator_emissao_setor: "",
-  // combustivel_utilizado_formado: {
-  //   combustivel_fossil: "",
-  //   biocombustivel: ""
-  // },
-  // qtd_combustivel_consumida_unidade: {
-  //   combustivel_fossil: "",
-  //   biocombustivel: ""
-  // },
-  // fator_emissao_comb_fossil: {
-  //   co2: "",
-  //   ch4: "",
-  //   n2o: ""
-  // },
-  // fator_emissao_comb_biocombustivel: {
-  //   co2: "",
-  //   ch4: "",
-  //   n2o: ""
-  // }
 };

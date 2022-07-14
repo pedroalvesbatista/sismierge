@@ -416,12 +416,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: absolute !important;
 }
 
-.m-1 {
-  margin: 0.25rem !important;
-}
-
 .m-2 {
   margin: 0.5rem !important;
+}
+
+.m-1 {
+  margin: 0.25rem !important;
 }
 
 .m-3 {
@@ -438,6 +438,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-3 {
   margin-top: 0.75rem !important;
+}
+
+.mt-4 {
+  margin-top: 1rem !important;
 }
 
 .mb-4 {
@@ -506,6 +510,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-2 {
   padding-bottom: 0.5rem !important;
+}
+
+.pt-1 {
+  padding-top: 0.25rem !important;
 }
 
 .pl-5 {

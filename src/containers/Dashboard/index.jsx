@@ -4,6 +4,8 @@ import BarChart from "./BarChart";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import  {Select, MenuItem, SelectChangeEvent, InputLabel, FormControl } from '@mui/material';
+import SelectArea from "../../components/Select";
+import { Area, Card, Container } from "./styles";
 
 const UserData = [
   {
@@ -139,51 +141,58 @@ const [age, setAge] = React.useState('');
   setAge(event.target.value);
   };
 
+  const indicadoresData= ["Área total construída da empresa", "Número de funcionários da empresa", "Produção total do ano inventariado", "Consumo de energia e suas quantidades por equipamentos", "Meta de redução para o escopo 1", "Meta de redução para o escopo 2", "Meta de redução para o escopo 3"]
+
   return (
     <div className="d-flex flex-column justify-content-center align-items-center w-100">
       {!loading ? (
         "Carregando..."
       ) : (
-        <>
-          <h1 className="text-center fs-1">Dashbord - Ambiente!</h1>
+        <Area>
+          <Container >
+            <SelectArea 
+              title={"Escolha na lista quais indicadores você deseja"}
+              item={indicadoresData}
+              width="28%"
 
-          {/* <h3 className="text-center p-3">Indicadores</h3> */}
-          <div className="d-flex justify-content-around flex-wrap">
-            <div style={{ width: 530 }}  className="m-4">
-              <FormControl style={{ width: 130 }}>
-               <InputLabel id="demo-simple-select-label">Indicador</InputLabel>
-          <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-           <MenuItem value={10}>Área total construída da empresa</MenuItem>
-          <MenuItem value={20}>Número de funcionários da empresa no ano inventariado</MenuItem>
-          <MenuItem value={31}>Escolha o ano do inventário (abrir lista contendo ano(s) que foi inventariado)</MenuItem>
-          <MenuItem value={32}>Produção total do ano inventariado</MenuItem>
-          <MenuItem value={33}>Consumo de energia e suas quantidades por equipamentos </MenuItem>
-          <MenuItem value={34}>Meta de redução para o escopo 1 </MenuItem>
-          <MenuItem value={35}>Meta de redução para o escopo 2 </MenuItem>
-          <MenuItem value={36}>Meta de redução para o escopo 3 </MenuItem>
-        </Select>
-        </FormControl>
-              <BarChart chartData={totalEmpreData} />
-            </div>
-            <div style={{ width: 330 }} className="m-4">
-              <PieChart chartData={totalEmpreData} />
-            </div>
-            <div style={{ width: 530 }}  className="m-4">
-              <BarChart chartData={consumo} />
-            </div>
-  
-            <div style={{ width: 530 }} className="m-4">
-              <LineChart chartData={funcionariosData} />
-            </div>
-  
-          </div>
-        </>
+            />
+            <SelectArea 
+              title={"Ano inventariado"}
+              item={["2019", "2020", "2021", "2022"]}
+              width="10%"
+              spaceLeft={"20px"}
+            />
+          </Container>
+          <Container align="flex-start"  wrap>
+            <Container width="50%" column align="none" wrap>
+              <Card >
+                <LineChart chartData={totalEmpreData} />
+              </Card>
+              <Container align="none" wrap>
+                <Card width="48%">
+                  <BarChart chartData={consumo} />
+                </Card>
+                <Card width="48%">
+                  <BarChart chartData={consumo} />
+                </Card>
+              </Container>
+            </Container>
+
+            <Container  width="50%" column align="none" wrap>
+              <Card >
+                <BarChart chartData={consumo} />
+              </Card>
+              <Container align="none" wrap>
+                <Card width="48%">
+                  <PieChart chartData={funcionariosData} />
+                </Card>
+                <Card width="48%">
+                  <PieChart chartData={totalEmpreData} />
+                </Card>
+              </Container>
+            </Container>
+          </Container>
+        </Area>
       )}
     </div>
   );
