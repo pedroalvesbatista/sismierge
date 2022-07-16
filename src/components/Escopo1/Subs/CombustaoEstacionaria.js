@@ -461,7 +461,7 @@ const CombustaoEstacionaria = ({
   const [section1, setSection1] = useState(false);
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(6);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -762,7 +762,10 @@ const CombustaoEstacionaria = ({
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {isStorage?.map((item, idx) => {
+                      {isStorage?.slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        ).map((item, idx) => {
                           return (
                             <DefaultTableRows
                               idx={idx}
@@ -781,7 +784,7 @@ const CombustaoEstacionaria = ({
                 <TablePagination
                   rowsPerPageOptions={[0]}
                   component="div"
-                  // count={isStorage?.length === 1 ? isStorage?.length : isStorage?.slice(1)?.length}
+                  count={isStorage?.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onPageChange={handleChangePage}

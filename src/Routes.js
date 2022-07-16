@@ -13,8 +13,8 @@ import {
   Indicadores,
   Verificacao,
   RegisterCompany,
-  Historico
-
+  Historico,
+  Start
 } from "./containers";
 
 import {  Resumo} from "./containers/Resumo";
@@ -194,10 +194,10 @@ export function RoutesPage() {
           }
         />
         <Route
-          path="/igee"
+          path="/start/:id"
           element={
             <AdminLayout>
-              <Igee />
+              <Start />
             </AdminLayout>
           }
         />

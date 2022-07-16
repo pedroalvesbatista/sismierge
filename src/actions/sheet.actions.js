@@ -7,7 +7,8 @@ export const sheetActions = {
     setDataEscopo,
     loadSubEscopos,
     setSubEscopo, 
-    cleanSubEscopo
+    cleanSubEscopo,
+    loadResumo
 }
 
 function loadEscopos (){
