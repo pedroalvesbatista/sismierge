@@ -20,7 +20,7 @@ import {
     AreaItem,
     Close
 } from './styles'
-import { primary } from '../../constants/tailwind/colors';
+import { admin, primary } from '../../constants/tailwind/colors';
 import Avatar from '../Avatar';
 
 function Menu({ titleHome, closeMenu }) {
@@ -73,7 +73,10 @@ function Menu({ titleHome, closeMenu }) {
                         color: active === key ? primary.verde : primary.dark+99,
                         style: {transition: "all .2s ease-out"}
                     })}
-                    {!close && <Text active={active === key ? true : false}> {item.text} </Text>}
+                    {!close && <Text active={active === key ? true : false}> 
+                        {item.text}  
+                        {key === 2 && <Text color="#fff" bg={admin.verde} size="12px" ml radius> Beta </Text>}
+                    </Text>}
                 </AreaItem>
             ))}
             <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", }}>
