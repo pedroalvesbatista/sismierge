@@ -461,7 +461,7 @@ const CombustaoEstacionaria = ({
   const [section1, setSection1] = useState(false);
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(6);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

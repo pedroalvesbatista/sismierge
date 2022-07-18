@@ -1,0 +1,309 @@
+[
+    {
+        "combustoEstacionria": "Ano do inventário: 2021"
+    },
+    {
+        "combustoEstacionria": "Combustão estacionária"
+    },
+    {
+        "combustoEstacionria": "Passo 1.    Indique a finalidade das atividades da organização inventariante1"
+    },
+    {
+        "undefined": "Manufatura ou Construção"
+    },
+    {
+        "combustoEstacionria": "Passo 2.    Indique a quantidade total de combustível consumido para cada unidade, local, ou ponto (de acordo com o tipo de combustível) na Tabela 1."
+    },
+    {
+        "combustoEstacionria": "Tabela 1.  Fontes estacionárias de combustão"
+    },
+    {
+        "combustoEstacionria": "Registro da fonte",
+        "undefined": "Emissões biogênicas\nt CO2"
+    },
+    {
+        "undefined": "Emissões\nN2O (t)"
+    },
+    {
+        "undefined": "N2O (kg/un)"
+    },
+    {
+        "undefined": 0
+    },
+    {
+        "combustoEstacionria": "Total",
+        "undefined": 0
+    },
+    {
+        "combustoEstacionria": "Tabela 2.  Fatores de emissão para combustão de fontes estacionárias"
+    },
+    {
+        "combustoEstacionria": "Nº ref.",
+        "undefined": "Fatores de Emissão do setor: "
+    },
+    {
+        "undefined": "N2O (kg/un)"
+    },
+    {
+        "combustoEstacionria": "Combustíveis fósseis"
+    },
+    {
+        "combustoEstacionria": 2,
+        "undefined": "-"
+    },
+    {
+        "combustoEstacionria": 3,
+        "undefined": 0.05369571
+    },
+    {
+        "combustoEstacionria": 4,
+        "undefined": 0.02520809478
+    },
+    {
+        "combustoEstacionria": 5,
+        "undefined": 0.046473480000000005
+    },
+    {
+        "combustoEstacionria": 6,
+        "undefined": 0.040318884
+    },
+    {
+        "combustoEstacionria": 7,
+        "undefined": 0.01852659
+    },
+    {
+        "combustoEstacionria": 8,
+        "undefined": 0.019468620000000002
+    },
+    {
+        "combustoEstacionria": 9,
+        "undefined": 0.021980699999999995
+    },
+    {
+        "combustoEstacionria": 10,
+        "undefined": 0.0251208
+    },
+    {
+        "combustoEstacionria": 11,
+        "undefined": 0.02669085
+    },
+    {
+        "combustoEstacionria": 12,
+        "undefined": 0.027946889999999995
+    },
+    {
+        "combustoEstacionria": 13,
+        "undefined": 0.030772979999999995
+    },
+    {
+        "combustoEstacionria": 14,
+        "undefined": 0.035169120000000005
+    },
+    {
+        "combustoEstacionria": 15,
+        "undefined": 0.03579714
+    },
+    {
+        "combustoEstacionria": 16,
+        "undefined": 0.01789857
+    },
+    {
+        "combustoEstacionria": 17,
+        "undefined": 0.04333338
+    },
+    {
+        "combustoEstacionria": 18,
+        "undefined": 0.021919405248
+    },
+    {
+        "combustoEstacionria": 19,
+        "undefined": 0.00464
+    },
+    {
+        "combustoEstacionria": 20,
+        "undefined": 0.0038700000000000006
+    },
+    {
+        "combustoEstacionria": 21,
+        "undefined": 0.00495
+    },
+    {
+        "combustoEstacionria": 22,
+        "undefined": 0.004647348
+    },
+    {
+        "combustoEstacionria": 23,
+        "undefined": 0.0000036843840000000007
+    },
+    {
+        "combustoEstacionria": 24,
+        "undefined": 0.0000041574924
+    },
+    {
+        "combustoEstacionria": 25,
+        "undefined": 0.000019385218944
+    },
+    {
+        "combustoEstacionria": 26,
+        "undefined": 0.000019331962848
+    },
+    {
+        "combustoEstacionria": 27,
+        "undefined": 0.02652
+    },
+    {
+        "combustoEstacionria": 28,
+        "undefined": 0.0000222444684
+    },
+    {
+        "combustoEstacionria": 29,
+        "undefined": 0.018745794100799996
+    },
+    {
+        "combustoEstacionria": 30,
+        "undefined": 0.000024090847199999995
+    },
+    {
+        "combustoEstacionria": 31,
+        "undefined": 0.02286
+    },
+    {
+        "combustoEstacionria": 32,
+        "undefined": 0.000021312486719999996
+    },
+    {
+        "combustoEstacionria": 33,
+        "undefined": 0.1608
+    },
+    {
+        "combustoEstacionria": 34,
+        "undefined": 0.025623216
+    },
+    {
+        "combustoEstacionria": 35,
+        "undefined": 0.02412
+    },
+    {
+        "combustoEstacionria": 36,
+        "undefined": 0.023983330175999996
+    },
+    {
+        "combustoEstacionria": 37,
+        "undefined": 0.026125632
+    },
+    {
+        "combustoEstacionria": 38,
+        "undefined": 0.026125632
+    },
+    {
+        "combustoEstacionria": 39,
+        "undefined": 4
+    },
+    {
+        "combustoEstacionria": 40,
+        "undefined": 0.04
+    },
+    {
+        "combustoEstacionria": 41,
+        "undefined": 0.000019638311004
+    },
+    {
+        "combustoEstacionria": 42,
+        "undefined": 0.01464
+    },
+    {
+        "combustoEstacionria": 43,
+        "undefined": 0.013350000000000002
+    },
+    {
+        "combustoEstacionria": "Biocombustíveis"
+    },
+    {
+        "combustoEstacionria": 49,
+        "undefined": 0.000013412623140000001
+    },
+    {
+        "combustoEstacionria": 50,
+        "undefined": 0.000012803318136000002
+    },
+    {
+        "combustoEstacionria": 51,
+        "undefined": 0.035671536
+    },
+    {
+        "combustoEstacionria": 52,
+        "undefined": 0.0000198956736
+    },
+    {
+        "combustoEstacionria": 53,
+        "undefined": 0.00504
+    },
+    {
+        "combustoEstacionria": 54,
+        "undefined": 0.0015574895999999998
+    },
+    {
+        "combustoEstacionria": 55,
+        "undefined": 0.108186912
+    },
+    {
+        "combustoEstacionria": 56,
+        "undefined": 0.07234790399999999
+    },
+    {
+        "combustoEstacionria": 57,
+        "undefined": 0.07234790399999999
+    },
+    {
+        "combustoEstacionria": 58,
+        "undefined": 0.023948496
+    },
+    {
+        "combustoEstacionria": 59,
+        "undefined": 0.004647348
+    },
+    {
+        "combustoEstacionria": 60,
+        "undefined": 0.0464
+    },
+    {
+        "combustoEstacionria": 61,
+        "undefined": 0.0464
+    },
+    {
+        "combustoEstacionria": "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo"
+    },
+    {
+        "combustoEstacionria": "Tabela 3. Relato de emissões estacionárias calculadas em outras ferramentas."
+    },
+    {
+        "combustoEstacionria": "Registro da fonte",
+        "undefined": "Emissões fósseis totais \n(t CO2e)"
+    },
+    {
+        "combustoEstacionria": "Caldeira unidade 2",
+        "undefined": 527.25
+    },
+    {
+        "combustoEstacionria": "Criei registro um novo",
+        "undefined": "#VALUE!"
+    },
+    {
+        "combustoEstacionria": "Total",
+        "undefined": 14000
+    },
+    {
+        "combustoEstacionria": "Emissões totais por combustão estacionária direta"
+    },
+    {
+        "combustoEstacionria": "Tabela 4. Emissões totais por combustão estacionária"
+    },
+    {
+        "combustoEstacionria": "Emissões totais em CO2 equivalente (toneladas métricas)",
+        "undefined": 14000
+    },
+    {
+        "combustoEstacionria": "Emissões totais em CO2 biogênico (toneladas métricas)",
+        "undefined": 0
+    }
+]

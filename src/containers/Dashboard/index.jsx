@@ -5,7 +5,7 @@ import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import  {Select, MenuItem, SelectChangeEvent, InputLabel, FormControl } from '@mui/material';
 import SelectArea from "../../components/Select";
-import { Area, Card, Container } from "./styles";
+import { Area, CardArea, Container } from "./styles";
 
 const UserData = [
   {
@@ -165,30 +165,30 @@ const [age, setAge] = React.useState('');
           </Container>
           <Container align="flex-start"  wrap>
             <Container width="50%" column align="none" wrap>
-              <Card >
+              <CardArea >
                 <LineChart chartData={totalEmpreData} />
-              </Card>
+              </CardArea>
               <Container align="none" wrap>
-                <Card width="48%">
+                <CardArea width="48%">
                   <BarChart chartData={consumo} />
-                </Card>
-                <Card width="48%">
+                </CardArea>
+                <CardArea width="48%">
                   <BarChart chartData={consumo} />
-                </Card>
+                </CardArea>
               </Container>
             </Container>
 
             <Container  width="50%" column align="none" wrap>
-              <Card >
+              <CardArea >
                 <BarChart chartData={consumo} />
-              </Card>
+              </CardArea>
               <Container align="none" wrap>
-                <Card width="48%">
+                <CardArea width="48%">
                   <PieChart chartData={funcionariosData} />
-                </Card>
-                <Card width="48%">
+                </CardArea>
+                <CardArea width="48%">
                   <PieChart chartData={totalEmpreData} />
-                </Card>
+                </CardArea>
               </Container>
             </Container>
           </Container>

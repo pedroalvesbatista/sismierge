@@ -3,39 +3,46 @@ import styled from 'styled-components'
 import { primary } from '../../constants/tailwind/colors'
 import Menu from '../Menu'
 import Header from '../Header'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { contabilizarActions, othersActions } from '../../actions'
-import { escopo } from '../../constants/app'
+import { escopo, menu } from '../../constants/app'
+import { useParams } from 'react-router-dom'
 
 export function AdminLayout({ children }) {
     const dispatch = useDispatch()
-    const [title, setTitle] = useState('')
-    const [closeMenu, setCloseMenu] = useState(false)
+    const { isCloseMenu } = useSelector(state => state.others)
+    // const [closeMenu, setCloseMenu] = useState(false)
 
-    // const handleActive= (key, title) => {
-    //     // setActive(key)
-    //     dispatch({
-    //         type: others.SET_HOMETITLE,
-    //         payload: title
-    //     })
-    // }
+    const { id } = useParams()
 
-    const storage1= JSON.parse(localStorage.getItem("@sismiegee/dash:co2"))
-    const storage2= JSON.parse(localStorage.getItem("@sismiegee/dash:co2t"))
-    const [co2, setCo2] = useState(storage1)
-    const [co2t, setCo2t] = useState(storage2)
+    const pathname= window.location.pathname
 
     useEffect(() => {
-        setCo2(storage1)
-        setCo2t(storage2)
-    }, [storage1, storage2, co2, co2t])
+        const filterData = menu.filter(i => i.slug === pathname)[0]
+        dispatch(othersActions.changePageTitle(filterData?.text))
+
+        switch (id) {
+            case "1":
+              return dispatch(othersActions.changePageTitle("Escopo "+ id))
+      
+            case "2":
+              return dispatch(othersActions.changePageTitle("Escopo "+ id))
+      
+            case "3":
+              return dispatch(othersActions.changePageTitle("Escopo "+ id))
+          
+            default:
+              return dispatch(othersActions.changePageTitle("Sismierge"))
+          }
+        // console.log(pathname);
+    }, [pathname])
     
     
     return (
         <Area>
-            <Menu closeMenu={e => setCloseMenu(e)} titleHome={e => setTitle(e)} />
-            <Wrapper closeMenu={closeMenu}>
-                <Header co2={co2} co2t={co2t} title={title} />
+            <Menu/>
+            <Wrapper closeMenu={isCloseMenu}>
+                <Header />
                 <Container>
                     {children}
                     <Aside />

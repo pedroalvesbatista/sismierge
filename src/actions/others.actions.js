@@ -5,12 +5,14 @@ import { othersService } from "../services";
 export const othersActions = {
     handleOpenModal,
     closeModal,
+    handleCloseMenu,
     changeDisplayModal,
     setDataModal,
     loadCep,
     openModalInventory,
     handleInicialState,
-    cleanInicialState
+    cleanInicialState,
+    changePageTitle
 }
 
 function handleInicialState (data){
@@ -18,6 +20,15 @@ function handleInicialState (data){
         dispatch({ 
             type: others.SET_INITIAL_STATE,
             payload: data
+        })
+    }
+}
+
+function handleCloseMenu (status){
+    return dispatch => {
+        dispatch({ 
+            type: others.CLOSE_MENU,
+            payload: status
         })
     }
 }
@@ -57,6 +68,15 @@ function changeDisplayModal (display){
         dispatch({ 
             type: others.CHANGE_CONTENT_MODAL,
             payload: display?.toLowerCase()
+        })
+    }
+}
+
+function changePageTitle (title){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_TITLE_PAGE,
+            payload: title
         })
     }
 }

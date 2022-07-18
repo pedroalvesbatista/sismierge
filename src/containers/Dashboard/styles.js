@@ -38,7 +38,7 @@ export const Container = styled.div`
     /* padding: 0px 20px; */
     margin-bottom: 0px;
 `
-export const Card = styled.div`
+export const CardArea = styled.div`
     display: flex;
     flex-wrap: ${({wrap}) => wrap ? "wrap" : "nowrap"};
     justify-content: ${({justify}) => justify ? justify : "none"};

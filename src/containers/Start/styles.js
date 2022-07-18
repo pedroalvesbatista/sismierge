@@ -6,6 +6,8 @@ export const Area = styled.div`
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    width: 100%;
+    height: calc(100vh - 26vh);
     /* background-color: aliceblue; */
     /* padding: 50px; */
 `

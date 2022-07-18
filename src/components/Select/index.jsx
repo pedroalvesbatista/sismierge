@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { sheetActions } from '../../actions'
 import { admin, primary, second } from '../../constants/tailwind/colors'
+import { LoadingAnimation } from '../lottie'
 import Tooltip from '../Tooltip'
 
 function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
@@ -90,8 +91,6 @@ function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item,
     
     
 
-    // console.log(selectSetor);
-
   return (
     <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
         <div style={{display: "flex", width: "100%", alignItems: "center", position: "relative"}}>
@@ -104,17 +103,19 @@ function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item,
             modal= {modal}
         >
             {placeholder && <option style={{color: primary.cinza}} > {placeholder} </option>}
-            {item?.map((i, index) => (
-                type === "collections" ? (
-                    <Option value={i.type}>
-                        {i.type}
-                    </Option>
-                ) : (
-                    <Option value={i}>
-                        {i}
-                    </Option>
-                )
-            ))}
+            {typeof item !== "undefined" ? item.map((i, index) => (
+                    type === "collections" ? (
+                        <Option value={i.type}>
+                            {i.type}
+                        </Option>
+                    ) : (
+                        <Option value={i}>
+                            {i}
+                        </Option>
+                    )
+                )) : <Option> Carregando... </Option>
+            }
+            {/* {typeof item === "undefined" && <LoadingAnimation viewport={false} size={50} />} */}
         </Container>
         {isMultiple && data?.map((item, index) => (
                 <>

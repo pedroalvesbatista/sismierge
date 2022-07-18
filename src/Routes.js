@@ -76,14 +76,14 @@ export function RoutesPage() {
           </PublicLayout>
         }
       />
-      <Route
+      {/* <Route
         path="*"
         element={
           <PublicLayout>
             <NotFound />
           </PublicLayout>
         }
-      />
+      /> */}
 
       {/* Route Register company */}
 
@@ -193,9 +193,13 @@ export function RoutesPage() {
             </AdminLayout>
           }
         />
-        <Route
-          path="/start/:id"
-          element={
+        <Route path="/start/:id" element={
+            <AdminLayout>
+              <Start />
+            </AdminLayout>
+          }
+        />
+        <Route path="/start/:id/:slug" element={
             <AdminLayout>
               <Start />
             </AdminLayout>

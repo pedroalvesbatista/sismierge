@@ -255,3 +255,85 @@ export const initialItemData = {
   combustivel_utilizado: "",
   fator_emissao_setor: "",
 };
+
+
+export const headCellsCombuEsta = [
+  {
+    id: "registrodafonte",
+    items: {label: "Registro da Fonte", data: [" "]},
+    type: "entry",
+    header: false
+  },
+  {
+    id: "descricaoFonte",
+    items: {label: "Descrição da Fonte", data: [" "]},
+    type: "entry",
+    header: false
+  },
+  {
+    id: "combustivelUtilizado",
+    items: {label: "Combustível Utilizado", data: [" "]},
+    type: "entry",
+    header: false
+  },
+  {
+    id: "quantidadeConsumida",
+    items: {label: "Quantidade Consumida", data: [" "]} ,
+    type: "entry",
+    header: false
+  },
+  {
+    id: "unidademedida",
+    items: {label: "Unidades de Medida", data: [" "]},
+    type: "result",
+    header: false
+  },
+  {
+    id: "combustivelformado",
+    header: "O combustível utilizado é formado por:",
+    type: "result",
+    items: [{ label: "Combustível Fóssil", type: "result", data: [""] }, { label: "Blocombustível", type: "result", data: [""] }],
+  },
+  {
+    id: "combustivelconsumido",
+    header: "Quantidade de Combustível consumida(por unidade)",
+    type: "result",
+    items: [{ label: "Combustível Fóssil", type: "result", data: [""] }, { label: "Blocombustível", type: "result", data: [""] }],
+  },
+  {
+    id: "fatoresEmissaofossil",
+    header: "Fatores de emissão - combustível fóssil",
+    type: "result",
+    items: [{ label: "CO2(kg/un)", type: "result", data: [""] }, { label: "CH4(kg/un)", type: "result", data: [""] }, { label: "N2O(kg/un)", type: "result", data: [""] }],
+  },
+  {
+    id: "fatoresEmissaoBiocombustivel",
+    header: "Fatores de emissão - Biocombustível",
+    type: "result",
+    items: [{ label: "CO2(kg/un)", type: "result", data: [""] }, { label: "CH4(kg/un)", type: "result", data: [""] }, { label: "N2O(kg/un)", type: "result", data: [""] }],
+  },
+  { 
+    id: "combustiveisFosseis",
+    header: "Combustíveis Fósseis",
+    type: "result",
+    items: [{ label: "Emissões CO2(t)", type: "result", data: [""] }, { label: "Emissões CH4(t)", type: "result", data: [""] }, { label: "Emissões N2O(t)", type: "result", data: [""] }],
+  },
+  {
+    id: "biocombustiveis",
+    header: "Biocombustíveis",
+    type: "result",
+    items: [{ label: "Emissões CO2(t)", type: "result", data: [""] }, { label: "Emissões CH4(t)", type: "result", data: [""] }, { label: "Emissões N2O(t)", type: "result", data: [""] }],
+  },
+  {
+    id: "eftt-tco2e",
+    items:  {label: "Emissões Fóssel Totais TCO2e", data: [" "]},
+    type: "result",
+    header: false
+  },
+  {
+    id: "eb-tco2e",
+    items: {label: "Emissões Biogênicas TCO2e", data: [" "]},
+    type: "result",
+    header: false
+  },
+];

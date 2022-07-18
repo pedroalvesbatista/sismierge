@@ -162,7 +162,7 @@ const Item = styled.span`
     flex: 1;
     /* background-color: red; */
 `
-const IconDoc = styled(SiDatabricks)`
+export const IconDoc = styled(SiDatabricks)`
   color: ${admin.verde};
   font-size: 70px;
 `
