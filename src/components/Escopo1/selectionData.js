@@ -260,31 +260,31 @@ export const initialItemData = {
 export const headCellsCombuEsta = [
   {
     id: "registrodafonte",
-    items: {label: "Registro da Fonte", data: [" "]},
+    items: [{label: "Registro da Fonte", data: [" "]}],
     type: "entry",
     header: false
   },
   {
     id: "descricaoFonte",
-    items: {label: "Descrição da Fonte", data: [" "]},
+    items: [{label: "Descrição da Fonte", data: [" "]}],
     type: "entry",
     header: false
   },
   {
     id: "combustivelUtilizado",
-    items: {label: "Combustível Utilizado", data: [" "]},
+    items: [{label: "Combustível Utilizado", data: [" "]}],
     type: "entry",
     header: false
   },
   {
     id: "quantidadeConsumida",
-    items: {label: "Quantidade Consumida", data: [" "]} ,
+    items: [{label: "Quantidade Consumida", data: [" "]}] ,
     type: "entry",
     header: false
   },
   {
     id: "unidademedida",
-    items: {label: "Unidades de Medida", data: [" "]},
+    items: [{label: "Unidades de Medida", data: [" "]}],
     type: "result",
     header: false
   },
@@ -326,13 +326,13 @@ export const headCellsCombuEsta = [
   },
   {
     id: "eftt-tco2e",
-    items:  {label: "Emissões Fóssel Totais TCO2e", data: [" "]},
+    items:  [{label: "Emissões Fóssel Totais TCO2e", data: [" "]}],
     type: "result",
     header: false
   },
   {
     id: "eb-tco2e",
-    items: {label: "Emissões Biogênicas TCO2e", data: [" "]},
+    items: [{label: "Emissões Biogênicas TCO2e", data: [" "]}],
     type: "result",
     header: false
   },

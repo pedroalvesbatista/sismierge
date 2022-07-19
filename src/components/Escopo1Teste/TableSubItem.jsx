@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
-import { Area, ContentArea, HeaderArea, InputArea } from './styles'
+import { InputArea, TableArea, TbodyArea, TdArea, TextAreaTable, ThArea, TheadeArea, TrArea, WrapperArea } from './styles'
 
 import { othersActions } from '../../actions'
 import SelectArea from '../../components/Select'
@@ -14,82 +14,61 @@ const TableSubItem = ({ titleHeader, subHeader, items, titleFilter, itemFilter, 
   const dispatch = useDispatch()
 //   const subHeader= [" ", "Escopo 1", "Escopo 2 (abordagem por 'localização')", "Escopo 2 (abordagem por 'escolha de compra')", "Escopo 3"]
   
-{console.log(items[0]?.header)}
+{console.log(items)}
 
   return (
-    <Area width="90.7vw" scroll align="flex-start">
-        <ContentArea padding="5px" radius nowrap align="center" justify="flex-start" bg={admin.cinza} >
-            {items?.map((item, index) => (
-                <HeaderArea width="300px" bg="none" height="50px" key={index} >
-                    {item.header}
-                </HeaderArea>
-            )) }
-        </ContentArea>
-       <ContentArea padding="5px" radius nowrap align="center" justify="flex-start">
-        {items?.map((item, index) => (
-            
-            // item?.items?.map(i => (
-                
-                typeof item.items.label  ? (
-                    <HeaderArea width="300px" bg="none" height="50px" key={index} >
-                        {item.items.label}
-                       
-                    </HeaderArea>
-                ) : item.items.label?.map((i, key) => (
-                    <HeaderArea key={key} width="300px" bg="none" height="50px" >
-                        {i.label}
-                        {console.log(item.items)}
-                    </HeaderArea>
-                ))
-            // ))
-        ))}
-       </ContentArea>
-
-       <ContentArea padding="5px" radius nowrap align="center" justify="flex-start">
-        {items?.map((item, index) => (
-                
-                item.items.data?.map((i, key) => (
-                        <InputArea key={key} width="300px" bg="none" height="50px" />
-                    ))
-                // ))
-            ))}
-       </ContentArea>
-        {/* {items?.map((item, index) => (
-        <HeaderArea key={index}> 
-            {item?.header &&
-                <HeaderArea align="center" header>
-                    <HeaderTitle size="16"> {item?.header} </HeaderTitle>
-                    {filter && <SelectArea 
-                        title={"Filtrar pelo " + item?.header }
-                        item={ itemFilter&& []}
-                        width={"15%"}
-                        spaceLeft="50%"
-                    />}
-                </HeaderArea>
-            }
-
-            <HeaderArea padding="0px" bg="transparent">
-                {Object.keys(item?.items)?.map((entry, index) => (
-                        <HeaderArea padding="10px 1px" color="#fff" br bg={admin.dark} key={index} >
-                            <HeaderTitle weight={400} size="11"  color="#fff"> {entry.label} </HeaderTitle>
-                        </HeaderArea>
-                    ))
-                } 
-            </HeaderArea>
-            
-            <HeaderArea padding="0px" bg="transparent">
-                {Object.keys(item?.items)?.map((item, index) => (
-                    <HeaderArea padding="0px" color={admin.cinza} br bg={"transparent"} key={index}>
-                        {item?.data?.map((res, indexRes) => (
-                            <HeaderTitle size={12} border key={indexRes}  weight={400} > {res} </HeaderTitle>
-                        ))}
-                    </HeaderArea>
-                    
-                ))}
-            </HeaderArea>
-        </HeaderArea>
-        ))} */}
-    </Area>
+    <WrapperArea>
+        <TableArea>
+            <TheadeArea>
+                <TrArea bg="transparent">
+                    {items.map((item, index) => (
+                        <ThArea 
+                            key={index}
+                            bg={item?.header ? admin.roxo : "transparent"}
+                            color={item?.header && "#fff"}
+                            rowSpan={null} 
+                            colSpan={item?.header ? item.items.length : null}
+                        >
+                            {item?.header && item?.header}
+                        </ThArea>
+                    ))}
+                    {/* <ThArea rowSpan={null} colSpan={2}>name</ThArea>
+                    <ThArea rowSpan={1} colSpan={null}>teste</ThArea> */}
+                </TrArea>
+                <TrArea >
+                    {items.map((i) => i.items.map((item, index) => (
+                        <ThArea 
+                            key={index}
+                        >
+                            <TextAreaTable color='#fff' > {item.label} </TextAreaTable>
+                        </ThArea>
+                    )))}
+                </TrArea>
+            </TheadeArea>
+            <TbodyArea>
+                <TrArea bg="transparent">
+                    {items.map((i) => i.items.map((data) => data.data.map((item, index) => (
+                        <TdArea 
+                            key={index}
+                            bg={i.type !== "entry" && admin.cinza}
+                            padding="10px"
+                        >
+                            {i.type === "entry" ? (
+                                    <InputArea placeholder='Digite aqui...' />
+                                ) : (
+                                    <TextAreaTable > {item} </TextAreaTable>
+                                )
+                            }
+                        </TdArea>
+                    ))))}
+                    {/* <TdArea>Flory muenge </TdArea>
+                    <TdArea>Patrick Ntambwe</TdArea>
+                    <TdArea>29 ans</TdArea>
+                    <TdArea>Congo</TdArea> */}
+                </TrArea>
+            </TbodyArea>
+        </TableArea>
+    </WrapperArea>
     
   )
 }

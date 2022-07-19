@@ -15,11 +15,122 @@ export const Area = styled.div`
     /* background-color: red; */
     /* padding: 50px; */
 `
+
+export const WrapperArea = styled.div`
+    height: 400px;
+    /* background-color: red; */
+    width: 100%;
+    overflow-x: auto;
+`
+
+export const TableArea = styled.table`
+    /* width: ${({width}) => width ? width : "600px"};
+    height: ${({height}) => height ? height : "100px"}; */
+    text-align: center;
+    /* overflow-y: hidden; */
+    /* background-color: ${({bg}) => bg ?? "yellow"}; */
+    /* display: flex;
+    justify-content: ${({justify}) => justify ? justify : "none"};
+    align-items: ${({align}) => align ? align : "center"};
+    flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"};
+    margin-bottom: 10px;
+    flex-direction: ${({column}) => column ? "column" : "row"};
+    
+    border-radius: ${({radius}) => radius ? "5px" : "none"};
+    padding: ${({padding}) => padding ? padding : "none"}; */
+`
+
+export const TheadeArea = styled.thead`
+    /* display: flex; */
+    /* justify-content: ${({justify}) => justify ? justify : "none"}; */
+    /* align-items: ${({align}) => align ? align : "center"}; */
+    /* width: ${({width}) => width ? width : "100%"}; */
+    /* height: ${({height}) => height ? height : "none"}; */
+    /* flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"}; */
+    /* margin-bottom: 10px; */
+    /* flex-direction: ${({column}) => column ? "column" : "row"}; */
+    background-color: ${({bg}) => bg ?? "none"};
+    
+    /* border-radius: ${({radius}) => radius ? "5px" : "none"}; */
+    /* padding: ${({padding}) => padding ? padding : "none"}; */
+`
+
+export const TrArea = styled.tr`
+    /* display: flex; */
+    /* justify-content: ${({justify}) => justify ? justify : "none"}; */
+    /* align-items: ${({align}) => align ? align : "center"}; */
+    /* width: ${({width}) => width ? width : "100%"}; */
+    /* height: ${({height}) => height ? height : "none"}; */
+    /* flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"}; */
+    /* margin-bottom: 10px; */
+    /* flex-direction: ${({column}) => column ? "column" : "row"}; */
+    background-color: ${({bg}) => bg ?? admin.verde};
+    /* color: ${({color}) => color ? "#fff" : "#000"}; */
+    /* flex: 1; */
+    /* border-radius: ${({radius}) => radius ? "5px" : "none"}; */
+    /* padding: ${({padding}) => padding ? padding : "10px"}; */
+`
+
+export const ThArea = styled.th`
+    /* display: flex; */
+    /* justify-content: ${({justify}) => justify ? justify : "none"}; */
+    /* align-items: ${({align}) => align ? align : "center"}; */
+    /* width: ${({width}) => width ? width : "10%"}; */
+    /* height: ${({height}) => height ? height : "none"}; */
+    /* flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"}; */
+    /* margin-bottom: 10px; */
+    /* flex-direction: ${({column}) => column ? "column" : "row"}; */
+    background-color: ${({bg}) => bg ?? "none"};
+    color: ${({color}) => color ?? "#000"};
+    border: 1px solid #fff;
+    /* border-radius: ${({radius}) => radius ? "5px" : "none"}; */
+    padding: ${({padding}) => padding ? padding : "10px 20px"};
+`
+
+export const TdArea = styled.td`
+     /* display: flex; */
+    justify-content: ${({justify}) => justify ? justify : "none"};
+    align-items: ${({align}) => align ? align : "center"};
+    /* width: ${({width}) => width ? width : "none"}; */
+    /* height: ${({height}) => height ? height : "none"}; */
+    /* flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"}; */
+    /* margin-bottom: 10px; */
+    flex-direction: ${({column}) => column ? "column" : "row"};
+    /* border-radius: ${({radius}) => radius ? "5px" : "none"}; */
+    /* */
+    background-color: ${({bg}) => bg ?? "none"};
+    border: 1px solid ${({bg}) => bg ? "#fff" : admin.cinza};
+    padding: ${({padding}) => padding ? padding : "none"};
+`
+
+export const TbodyArea = styled.tbody`
+    /* display: flex;
+    justify-content: ${({justify}) => justify ? justify : "none"};
+    align-items: ${({align}) => align ? align : "center"};
+    width: ${({width}) => width ? width : "none"};
+    height: ${({height}) => height ? height : "none"};
+    flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"};
+    margin-bottom: 10px;
+    flex-direction: ${({column}) => column ? "column" : "row"};
+    background-color: ${({bg}) => bg ?? "none"};
+    
+    border-radius: ${({radius}) => radius ? "5px" : "none"};
+    padding: ${({padding}) => padding ? padding : "none"}; */
+`
+
 export const TextArea = styled.span`
     font-size: ${({size}) => size ?? 20}px;
     color: ${({color}) => color ?? admin.dark};
     font-weight: ${({font}) => font ?? 400};
     text-align: ${({textAlign}) => textAlign ?? "center"};
+`
+export const TextAreaTable = styled.div`
+    font-size: ${({size}) => size ?? 16}px;
+    color: ${({color}) => color ?? admin.dark};
+    font-weight: ${({font}) => font ?? 400};
+    text-align: ${({textAlign}) => textAlign ?? "center"};
+    width: ${({width}) => width ? width : "200px"};
+    background-color: ${({bg}) => bg ?? "none"};
 `
 export const ContentArea = styled.div`
     display: flex;
@@ -31,6 +142,7 @@ export const ContentArea = styled.div`
     margin-bottom: 10px;
     flex-direction: ${({column}) => column ? "column" : "row"};
     background-color: ${({bg}) => bg ?? "none"};
+    /* overflow: hidden; */
     
     border-radius: ${({radius}) => radius ? "5px" : "none"};
     padding: ${({padding}) => padding ? padding : "none"};
@@ -52,16 +164,16 @@ export const InputArea = styled.input`
     display: flex;
     justify-content: ${({justify}) => justify ? justify : "none"};
     align-items: ${({align}) => align ? align : "center"};
-    width: ${({width}) => width ? width : "none"};
-    height: ${({height}) => height ? height : "none"};
+    width: ${({width}) => width ? width : "100%"};
+    /* height: ${({height}) => height ? height : "100px"}; */
     flex: none;
     /* height: ${({height}) => height ? height : "none"}; */
     /* flex-wrap: wrap; */
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     flex-direction: ${({column}) => column ? "column" : "row"};
-    background-color: ${({bg}) => bg ?? admin.cinza};
+    /* background-color: ${({bg}) => bg ?? admin.cinza}; */
     outline: none;
-    border: 1px solid ${admin.cinza};
+    /* border: 1px solid ${admin.cinza}; */
 `
 export const Card = styled.div`
     display: flex;

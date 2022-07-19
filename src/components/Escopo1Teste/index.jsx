@@ -73,7 +73,7 @@ function Escopo1Teste({ data, slug, id, escopos }) {
                                 <ButtonAdd title={"Entrada"} />
                             </ContentArea>
                         ) : (
-                            <ContentArea width="100%" justify="flex-start" column>
+                            <ContentArea align="flex-start" width="100%" justify="flex-start" column>
                                 {itemActive?.title === "Combustão estacionária" &&
                                     <SelectArea 
                                         title={"Setor de atividade"}
@@ -81,7 +81,7 @@ function Escopo1Teste({ data, slug, id, escopos }) {
                                         // width={"10%"}
                                     />
                                 }
-                                <ContentArea width="100%" >
+                                <ContentArea width="90.8vw" >
                                     <TableSubItem 
                                         titleHeader={"item.title"}
                                         items={headCellsCombuEsta}
