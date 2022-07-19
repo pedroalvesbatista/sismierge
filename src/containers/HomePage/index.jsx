@@ -64,6 +64,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(sheetActions.loadEscopos());
+    dispatch(companyActions.loadInventories(companies?.id))
   }, []);
 
   useEffect(() => {
