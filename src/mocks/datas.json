@@ -1,309 +1,952 @@
 [
-    {
-        "combustoEstacionria": "Ano do inventário: 2021"
-    },
-    {
-        "combustoEstacionria": "Combustão estacionária"
-    },
-    {
-        "combustoEstacionria": "Passo 1.    Indique a finalidade das atividades da organização inventariante1"
-    },
-    {
-        "undefined": "Manufatura ou Construção"
-    },
-    {
-        "combustoEstacionria": "Passo 2.    Indique a quantidade total de combustível consumido para cada unidade, local, ou ponto (de acordo com o tipo de combustível) na Tabela 1."
-    },
-    {
-        "combustoEstacionria": "Tabela 1.  Fontes estacionárias de combustão"
-    },
-    {
-        "combustoEstacionria": "Registro da fonte",
-        "undefined": "Emissões biogênicas\nt CO2"
-    },
-    {
-        "undefined": "Emissões\nN2O (t)"
-    },
-    {
-        "undefined": "N2O (kg/un)"
-    },
-    {
-        "undefined": 0
-    },
-    {
-        "combustoEstacionria": "Total",
-        "undefined": 0
-    },
-    {
-        "combustoEstacionria": "Tabela 2.  Fatores de emissão para combustão de fontes estacionárias"
-    },
-    {
-        "combustoEstacionria": "Nº ref.",
-        "undefined": "Fatores de Emissão do setor: "
-    },
-    {
-        "undefined": "N2O (kg/un)"
-    },
-    {
-        "combustoEstacionria": "Combustíveis fósseis"
-    },
-    {
-        "combustoEstacionria": 2,
-        "undefined": "-"
-    },
-    {
-        "combustoEstacionria": 3,
-        "undefined": 0.05369571
-    },
-    {
-        "combustoEstacionria": 4,
-        "undefined": 0.02520809478
-    },
-    {
-        "combustoEstacionria": 5,
-        "undefined": 0.046473480000000005
-    },
-    {
-        "combustoEstacionria": 6,
-        "undefined": 0.040318884
-    },
-    {
-        "combustoEstacionria": 7,
-        "undefined": 0.01852659
-    },
-    {
-        "combustoEstacionria": 8,
-        "undefined": 0.019468620000000002
-    },
-    {
-        "combustoEstacionria": 9,
-        "undefined": 0.021980699999999995
-    },
-    {
-        "combustoEstacionria": 10,
-        "undefined": 0.0251208
-    },
-    {
-        "combustoEstacionria": 11,
-        "undefined": 0.02669085
-    },
-    {
-        "combustoEstacionria": 12,
-        "undefined": 0.027946889999999995
-    },
-    {
-        "combustoEstacionria": 13,
-        "undefined": 0.030772979999999995
-    },
-    {
-        "combustoEstacionria": 14,
-        "undefined": 0.035169120000000005
-    },
-    {
-        "combustoEstacionria": 15,
-        "undefined": 0.03579714
-    },
-    {
-        "combustoEstacionria": 16,
-        "undefined": 0.01789857
-    },
-    {
-        "combustoEstacionria": 17,
-        "undefined": 0.04333338
-    },
-    {
-        "combustoEstacionria": 18,
-        "undefined": 0.021919405248
-    },
-    {
-        "combustoEstacionria": 19,
-        "undefined": 0.00464
-    },
-    {
-        "combustoEstacionria": 20,
-        "undefined": 0.0038700000000000006
-    },
-    {
-        "combustoEstacionria": 21,
-        "undefined": 0.00495
-    },
-    {
-        "combustoEstacionria": 22,
-        "undefined": 0.004647348
-    },
-    {
-        "combustoEstacionria": 23,
-        "undefined": 0.0000036843840000000007
-    },
-    {
-        "combustoEstacionria": 24,
-        "undefined": 0.0000041574924
-    },
-    {
-        "combustoEstacionria": 25,
-        "undefined": 0.000019385218944
-    },
-    {
-        "combustoEstacionria": 26,
-        "undefined": 0.000019331962848
-    },
-    {
-        "combustoEstacionria": 27,
-        "undefined": 0.02652
-    },
-    {
-        "combustoEstacionria": 28,
-        "undefined": 0.0000222444684
-    },
-    {
-        "combustoEstacionria": 29,
-        "undefined": 0.018745794100799996
-    },
-    {
-        "combustoEstacionria": 30,
-        "undefined": 0.000024090847199999995
-    },
-    {
-        "combustoEstacionria": 31,
-        "undefined": 0.02286
-    },
-    {
-        "combustoEstacionria": 32,
-        "undefined": 0.000021312486719999996
-    },
-    {
-        "combustoEstacionria": 33,
-        "undefined": 0.1608
-    },
-    {
-        "combustoEstacionria": 34,
-        "undefined": 0.025623216
-    },
-    {
-        "combustoEstacionria": 35,
-        "undefined": 0.02412
-    },
-    {
-        "combustoEstacionria": 36,
-        "undefined": 0.023983330175999996
-    },
-    {
-        "combustoEstacionria": 37,
-        "undefined": 0.026125632
-    },
-    {
-        "combustoEstacionria": 38,
-        "undefined": 0.026125632
-    },
-    {
-        "combustoEstacionria": 39,
-        "undefined": 4
-    },
-    {
-        "combustoEstacionria": 40,
-        "undefined": 0.04
-    },
-    {
-        "combustoEstacionria": 41,
-        "undefined": 0.000019638311004
-    },
-    {
-        "combustoEstacionria": 42,
-        "undefined": 0.01464
-    },
-    {
-        "combustoEstacionria": 43,
-        "undefined": 0.013350000000000002
-    },
-    {
-        "combustoEstacionria": "Biocombustíveis"
-    },
-    {
-        "combustoEstacionria": 49,
-        "undefined": 0.000013412623140000001
-    },
-    {
-        "combustoEstacionria": 50,
-        "undefined": 0.000012803318136000002
-    },
-    {
-        "combustoEstacionria": 51,
-        "undefined": 0.035671536
-    },
-    {
-        "combustoEstacionria": 52,
-        "undefined": 0.0000198956736
-    },
-    {
-        "combustoEstacionria": 53,
-        "undefined": 0.00504
-    },
-    {
-        "combustoEstacionria": 54,
-        "undefined": 0.0015574895999999998
-    },
-    {
-        "combustoEstacionria": 55,
-        "undefined": 0.108186912
-    },
-    {
-        "combustoEstacionria": 56,
-        "undefined": 0.07234790399999999
-    },
-    {
-        "combustoEstacionria": 57,
-        "undefined": 0.07234790399999999
-    },
-    {
-        "combustoEstacionria": 58,
-        "undefined": 0.023948496
-    },
-    {
-        "combustoEstacionria": 59,
-        "undefined": 0.004647348
-    },
-    {
-        "combustoEstacionria": 60,
-        "undefined": 0.0464
-    },
-    {
-        "combustoEstacionria": 61,
-        "undefined": 0.0464
-    },
-    {
-        "combustoEstacionria": "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo"
-    },
-    {
-        "combustoEstacionria": "Tabela 3. Relato de emissões estacionárias calculadas em outras ferramentas."
-    },
-    {
-        "combustoEstacionria": "Registro da fonte",
-        "undefined": "Emissões fósseis totais \n(t CO2e)"
-    },
-    {
-        "combustoEstacionria": "Caldeira unidade 2",
-        "undefined": 527.25
-    },
-    {
-        "combustoEstacionria": "Criei registro um novo",
-        "undefined": "#VALUE!"
-    },
-    {
-        "combustoEstacionria": "Total",
-        "undefined": 14000
-    },
-    {
-        "combustoEstacionria": "Emissões totais por combustão estacionária direta"
-    },
-    {
-        "combustoEstacionria": "Tabela 4. Emissões totais por combustão estacionária"
-    },
-    {
-        "combustoEstacionria": "Emissões totais em CO2 equivalente (toneladas métricas)",
-        "undefined": 14000
-    },
-    {
-        "combustoEstacionria": "Emissões totais em CO2 biogênico (toneladas métricas)",
-        "undefined": 0
-    }
+  {
+    "id": 1093763195,
+    "id_escopo": 1,
+    "range": "Combustão estacionária!A11:D11",
+    "type": "Combustão estacionária",
+    "setor": "",
+    "items": [
+      {
+        "title": false,
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Combustão estacionária!A11:D11",
+            "range_result": "Combustão estacionária!A11:W11",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 2, "label": "Descrição da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 3, "label": "Combustível Utilizado", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 4, "label": "Quantidade Consumida", "data": [" "]}] ,
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 5,
+                "items": [{"id": 5, "label": "Unidades de Medida", "data": [""]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "header": "O combustível utilizado é formado por:",
+                "type": "result",
+                "items": [{ "label": "Combustível Fóssil", "type": "result", "data": [""] }, { "label": "Blocombustível", "type": "result", "data": [""] }]
+              },
+              {
+                "id": 7,
+                "header": "Quantidade de Combustível consumida(por unidade)",
+                "type": "result",
+                "items": [{ "label": "Combustível Fóssil", "type": "result", "data": [""] }, { "label": "Blocombustível", "type": "result", "data": [""] }]
+              },
+              {
+                "id": 8,
+                "header": "Fatores de emissão - combustível fóssil",
+                "type": "result",
+                "items": [{ "label": "CO2(kg/un)", "type": "result", "data": [""] }, { "label": "CH4(kg/un)", "type": "result", "data": [""] }, { "label": "N2O(kg/un)", "type": "result", "data": [""] }]
+              },
+              {
+                "id": 9,
+                "header": "Fatores de emissão - Biocombustível",
+                "type": "result",
+                "items": [{ "label": "CO2(kg/un)", "type": "result", "data": [""] }, { "label": "CH4(kg/un)", "type": "result", "data": [""] }, { "label": "N2O(kg/un)", "type": "result", "data": [""] }]
+              },
+              { 
+                "id": 10,
+                "header": "Combustíveis Fósseis",
+                "type": "result",
+                "items": [{ "label": "Emissões CO2(t)", "type": "result", "data": [""] }, { "label": "Emissões CH4(t)", "type": "result", "data": [""] }, { "label": "Emissões N2O(t)", "type": "result", "data": [""] }]
+              },
+              {
+                "id": 11,
+                "header": "Biocombustíveis",
+                "type": "result",
+                "items": [{ "label": "Emissões CO2(t)", "type": "result", "data": [""] }, { "label": "Emissões CH4(t)", "type": "result", "data": [""] }, { "label": "Emissões N2O(t)", "type": "result", "data": [""] }]
+              },
+              {
+                "id": 12,
+                "items":  [{"label": "Emissões Fóssel Totais TCO2e", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 13,
+                "items": [{"label": "Emissões Biogênicas TCO2e", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5208192,
+    "id_escopo": 1,
+    "type": "Combustão móvel",
+    "title_select": "Tipo ",
+    "items": [
+      {
+        "title": "Transporte rodoviário",
+        "title_select": "Cálculo de emissões",
+        "tables": [
+          {
+            "title": "Cálculo de emissões por tipo e ano de fabricação da frota de veículos no ano",
+            "range": "Combustão móvel!A6:Q6",
+            "range_result": "Combustão móvel!A6:BC6",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Descrição da frota", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 17,
+                "items": [{"id": 1, "label": "Tipo da frota de veículos", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Ano da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "type": "entry",
+                "header": "Tipo de relato",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "Unidades", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "type": "result",
+                "header": "O combustível utilizado é formado por:",
+                "items": [
+                  {"id": 1, "label": "Combustível fóssil", "data": [" "]},
+                  {"id": 2, "label": "Biocombustível", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "type": "result",
+                "header": "Quantidade de combustível fóssil (litros ou m3)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 8,
+                "type": "result",
+                "header": "Quantidade de biocombustível (litros)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 9,
+                "type": "result",
+                "header": "Fator de Emissão do combustível fóssil",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 10,
+                "type": "result",
+                "header": "Fator de Emissão do biocombustível",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 11,
+                "type": "result",
+                "header": "Fator de Emissão do combustível commercial",
+                "items": [
+                  {"id": 1, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 2, "label": "kg N2O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 12,
+                "items": [{"id": 1, "label": "Emissões de CO2 fóssil (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 13,
+                "items": [{"id": 1, "label": "Emissões de ch4 (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 14,
+                "items": [{"id": 1, "label": "Emissões de N2o (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 15,
+                "items": [{"id": 1, "label": "Emissões totais (t co²e)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 16,
+                "items": [{"id": 1, "label": "Emissões de co² biogênico (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Transporte ferroviário",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Combustão móvel!A25:Q25",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da frota de trens", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Descrição da frota ou percurso", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Tipo de combustível", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "type": "entry",
+                "header": "Tipo de relato",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "Unidades", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "type": "result",
+                "header": "O combustível utilizado é formado por:",
+                "items": [
+                  {"id": 1, "label": "Combustível fóssil", "data": [" "]},
+                  {"id": 2, "label": "Biocombustível", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "type": "result",
+                "header": "Quantidade de combustível fóssil (litros ou m³ ou Kg)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 8,
+                "type": "result",
+                "header": "Quantidade de biocombustível (litros)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 9,
+                "type": "result",
+                "header": "Fator de Emissão do combustível fóssil",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]},
+                  {"id": 2, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 3, "label": "kg N²O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 10,
+                "type": "result",
+                "header": "Fator de Emissão do biocombustível",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]},
+                  {"id": 2, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 3, "label": "kg N²O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 12,
+                "items": [{"id": 1, "label": "Emissões de CO2 fóssil (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 13,
+                "items": [{"id": 1, "label": "Emissões de ch4 (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 14,
+                "items": [{"id": 1, "label": "Emissões de N2o (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 15,
+                "items": [{"id": 1, "label": "Emissões totais (t co²e)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 12,
+                "items": [{"id": 1, "label": "Emissões de co² biogênico (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Transporte hidroviário",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Combustão móvel!A32:Q32",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da frota de trens", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Descrição da frota ou percurso", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Tipo de combustível", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "type": "entry",
+                "header": "Tipo de relato",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "Unidades", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "type": "result",
+                "header": "O combustível utilizado é formado por:",
+                "items": [
+                  {"id": 1, "label": "Combustível fóssil", "data": [" "]},
+                  {"id": 2, "label": "Biocombustível", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "type": "result",
+                "header": "Quantidade de combustível fóssil (litros ou m³ ou Kg)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 8,
+                "type": "result",
+                "header": "Quantidade de biocombustível (litros)",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 9,
+                "type": "result",
+                "header": "Fator de Emissão do combustível fóssil",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]},
+                  {"id": 2, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 3, "label": "kg N²O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 10,
+                "type": "result",
+                "header": "Fator de Emissão do biocombustível",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]},
+                  {"id": 2, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 3, "label": "kg N²O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 12,
+                "items": [{"id": 1, "label": "Emissões de CO2 fóssil (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 13,
+                "items": [{"id": 1, "label": "Emissões de ch4 (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 14,
+                "items": [{"id": 1, "label": "Emissões de N2o (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 15,
+                "items": [{"id": 1, "label": "Emissões totais (t co²e)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 12,
+                "items": [{"id": 1, "label": "Emissões de co² biogênico (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Transporte aéreo",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Combustão móvel!A39:D39",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Descrição da frota", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Tipo de combustível", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "Consumo anual", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "Unidades", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "type": "result",
+                "header": "O combustível utilizado é formado por:",
+                "items": [
+                  {"id": 1, "label": "Combustível fóssil", "data": [" "]},
+                  {"id": 2, "label": "Biocombustível", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "type": "result",
+                "header": "Fator de Emissão do combustível fóssil",
+                "items": [
+                  {"id": 1, "label": "kg CO² / litro", "data": [" "]},
+                  {"id": 2, "label": "kg CH4 / litro", "data": [" "]},
+                  {"id": 3, "label": "kg N²O / litro", "data": [" "]}
+                ]
+              },
+              {
+                "id": 8,
+                "items": [{"id": 1, "label": "Emissões de CO2 fóssil (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 9,
+                "items": [{"id": 1, "label": "Emissões de ch4 (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 10,
+                "items": [{"id": 1, "label": "Emissões de N2o (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 11,
+                "items": [{"id": 1, "label": "Emissões totais (t co²e)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 920072706,
+    "id_escopo": 1,
+    "type": "Emissões fugitivas",
+    "title_select": "Tipo ",
+    "items": [
+      {
+        "title": "Emissões de Equipamentos de Refrigeração e Ar Condicionado (RAC) e Extintores de Incêndio",
+        "title_select": "Emissões de GEE",
+        "tables": [
+          {
+            "title": "Emissões de GEE por equipamentos de RAC e extintores - balanço de materiais por estágio do ciclo de vida",
+            "range": "Emissões fugitivas!A7:H7",
+            "range_result": "Emissões fugitivas!A7:I7",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Gás ou composto", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "GWP", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 4,
+                "type": "entry",
+                "header": "Unidades Novasa",
+                "items": [
+                  {"id": 1, "label": "Carga (kg)", "data": [" "]},
+                  {"id": 2, "label": "Capacidade (kg)", "data": [" "]}
+                ]
+              },
+              {
+                "id": 5,
+                "type": "entry",
+                "header": "Unidades Existentes",
+                "items": [
+                  {"id": 1, "label": "Recarga (kg)", "data": [" "]}
+                ]
+              },
+              {
+                "id": 6,
+                "type": "entry",
+                "header": "Unidades Dispensadas",
+                "items": [
+                  {"id": 1, "label": "Capacidade (kg)", "data": [" "]},
+                  {"id": 2, "label": "Recuperada (kg)", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "E = Emissões de CO²e (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          },
+          {
+            "title": "Emissões de GEE por equipamentos de RAC e extintores de incêndio - balanço de massa",
+            "range": "Emissões fugitivas!A13:F13",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Gás ou composto", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "GWP", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "VE = Variação no Estoque (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "T = Quantidade Transferida (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 6,
+                "items": [{"id": 1, "label": "MC = Mudança de Capacidade (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "E = Emissões de CO²e (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          },
+          {
+            "title": "Emissões de GEE por equipamentos de RAC e extintores de incêndio - método de triagem de fontes",
+            "range": "Emissões fugitivas!A20:G20",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Tipo de Equipamento", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Gás ou composto", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "GWP", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 5,
+                "type": "entry",
+                "header": false,
+                "items": [
+                  {"id": 1, "label": "Carga das Unidades Novas (kg)", "data": [" "]}
+                ]
+              },
+              {
+                "id": 6,
+                "type": "entry",
+                "header": "Capacidade",
+                "items": [
+                  {"id": 1, "label": "Unidades em Operação (kg)", "data": [" "]},
+                  {"id": 2, "label": "Unidades Dispensadas (kg)", "data": [" "]}
+                ]
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "Emissões de CO²e (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Emissões por utilização de hexafluoreto de enxofre (SF6) e trifluoreto de nitrogênio (NF3)",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Emissões fugitivas!A37:E37",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Gás", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Estoque de gás no início do ano (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "Estoque de gás no final do ano (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "Quantidade de gás comprada no ano (kg)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 6,
+                "items": [{"id": 1, "label": "Emissões totais do gás (kg)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "GWP", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 8,
+                "items": [{"id": 1, "label": "Emissões em CO2e (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Emissões fugitivas!A42:D42",
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 1, "label": "Descrição da Fonte", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "items": [{"id": 1, "label": "Gás de Efeito Estufa", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "Emissões (kg GEE)", "data": [" "]}],
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 5,
+                "items": [{"id": 1, "label": "GWP", "data": [" "]}],
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 6,
+                "items": [{"id": 1, "label": "Emissões em CO2e (t)", "data": [" "]}],
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]

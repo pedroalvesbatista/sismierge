@@ -15,7 +15,7 @@ export const Area = styled.div`
     box-shadow: 0px 0px 27px -5px rgba(0,0,0,0.23);
     transition: all ease 1.s;
     height: ${({overflow}) => overflow ? "500px" : "none"};
-    overflow-y: ${({overflow}) => overflow ? "auto" : "none"};
+    overflow-x: ${({overflow}) => overflow ? "auto" : "none"};
     padding: 10px;
 `
 
@@ -64,14 +64,15 @@ export const ArrowIconUp = styled(IoIosArrowUp)`
 export const CardArea = styled.div`
     /* border-radius: 5px; */
     width: 100%;
-    /* height: 100%; */
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     justify-content: space-between;
     padding: 20px 10px;
     border: 2px solid #1976d279;
     border-top: none;
     margin-bottom: ${({mb}) => mb ?? "none"};
+    /* background-color: #1976d279; */
 `
 
 export const Text = styled.div`
@@ -89,12 +90,14 @@ export const File = styled.label`
     display: flex;
 `
 export const InputEntreArea = styled.div`
-/* background-color: red; */
+    /* background-color: red; */
+    width: 100%;
     flex: ${({flex}) => flex ?? 1};
+    overflow-x: auto;
     display: flex;
     justify-content: ${({justify}) => justify ?? "flex-strat"};
     align-items: ${({align}) => align ?? "center"};
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 `
 export const InputResultatArea = styled.div`
     flex: ${({flex}) => flex ?? 1};

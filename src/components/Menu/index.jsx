@@ -20,7 +20,7 @@ import {
     AreaItem,
     Close
 } from './styles'
-import { primary } from '../../constants/tailwind/colors';
+import { admin, primary } from '../../constants/tailwind/colors';
 import Avatar from '../Avatar';
 import { othersActions } from '../../actions';
 

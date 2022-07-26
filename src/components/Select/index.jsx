@@ -6,7 +6,7 @@ import { admin, primary, second } from '../../constants/tailwind/colors'
 import { LoadingAnimation } from '../lottie'
 import Tooltip from '../Tooltip'
 
-function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
+function SelectArea( { value, help, dataRow, spanceRight, dataTitle, type, name, onChange, limiteTooltip, mbLabel, item, title, modal=true, width, placeholder, spaceLeft, spanceTop, onClick, isMultiple }) {
     const dispatch = useDispatch()
     const [dataFinal, setDataFinal] = useState([])
     const [openSetor, setOpenSetor] = useState(false)
@@ -92,7 +92,7 @@ function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item,
     
 
   return (
-    <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} width={width}>
+    <Area onClick={onClick} spanceTop={spanceTop} spaceLeft={spaceLeft} spanceRight={spanceRight} width={width}>
         <div style={{display: "flex", width: "100%", alignItems: "center", position: "relative"}}>
             <Label mb={mbLabel} >{title}</Label>
             {help && <Tooltip limite={limiteTooltip} textHelp={help} />}
@@ -101,12 +101,15 @@ function SelectArea({ value, help, type, onChange, limiteTooltip, mbLabel, item,
             value={type !== "collections" && value} 
             onChange={type === "collections" ? handleOnchageEscopo : onChange}
             modal= {modal}
+            name={name}
+            data-row={dataRow}
+            data-title={dataTitle}
         >
             {placeholder && <option style={{color: primary.cinza}} > {placeholder} </option>}
-            {typeof item !== "undefined" ? item.map((i, index) => (
+            {typeof item !== "undefined" ? item?.map((i, index) => (
                     type === "collections" ? (
-                        <Option value={i.type}>
-                            {i.type}
+                        <Option value={i?.type}>
+                            {i?.type}
                         </Option>
                     ) : (
                         <Option value={i}>
@@ -166,6 +169,7 @@ const Area = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-left: ${({spaceLeft}) => spaceLeft ? spaceLeft : "0px"};
+    margin-right: ${({spanceRight}) => spanceRight ? spanceRight : "0px"};
     position: relative;
 `
 const Label = styled.label`

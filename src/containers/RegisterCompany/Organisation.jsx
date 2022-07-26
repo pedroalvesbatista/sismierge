@@ -56,6 +56,8 @@ export const Organisation = ({skip, setPage}) => {
     })
     const [haveUnidade, setHaveUnidade] = useState("")
 
+    // console.log(escopoSheetData);
+
   const handleSubmit= (e) => {
     e.preventDefault()
     const { email, razao_social, escopos, users, cnpj, nome_do_responsavel, subsetor, cpf, nome_fantasia, endereco, setor_economico, setor_atividade } =  data
@@ -226,7 +228,7 @@ export const Organisation = ({skip, setPage}) => {
                     item={dataSetores[1]} 
                     // width= "49%"
                     placeholder={"Escolhe aqui..."}
-                    spaceLeft
+                    spaceLeft="20px"
                 />
             </AreaInput>
             <AreaInput NoFlex={true}>

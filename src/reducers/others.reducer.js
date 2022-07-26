@@ -14,6 +14,7 @@ const initialState = {
   loadingCep: false,
   sucessCep: false,
   dataCep: null, 
+  dataModal: null,
   initialItemData: localStorage ? localStorage : []
 }
 
@@ -24,6 +25,12 @@ export const othersReducer = (state = initialState, action) => {
       return {
         ...state,
         initialItemData: action.payload
+      }
+
+    case others.SET_DATA_MODAL: 
+      return {
+        ...state,
+        dataModal: action.payload
       }
 
     case others.CLOSE_MENU: 

@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { companyActions, othersActions } from '../../actions'
+import { companyActions, othersActions, sheetActions } from '../../actions'
 import Escopo1 from '../../components/Escopo1'
+import ModalInterno from "../../components/Modal";
 import Escopo1Teste from '../../components/Escopo1Teste'
 import { LoadingAnimation } from '../../components/lottie'
+import dataSubItem from '../../mocks/datas.json'
 // import { inicial } from '../../constants/app'
 import { 
   Area, 
@@ -15,13 +17,26 @@ export const Start = () => {
   const dispatch = useDispatch()
   const { companies, sucessUpdateCompany, sucessCompany, sucessCreateInventory } = useSelector((state) => state.company);
   const { titlePage } = useSelector((state) => state.others);
+  const [dataTable, setDataTable] = useState(null)
+  const [isSend, setIsSend] = useState(false)
 
   const { id, slug } = useParams()
 
   useEffect(() => {
+    dispatch(sheetActions.loadSubEscopos(slug))
     dispatch(companyActions.getCompanies());
     // dispatch(othersActions.handleCloseMenu(true))
   }, [])
+
+  // useEffect(() => {
+  //   if (!localStorage.getItem("@sismierge/database")) {
+  //     localStorage.setItem("@sismierge/database", JSON.stringify(dataSubItem.filter(i => i.id == slug)[0].items))
+  //   }
+
+  // }, [slug, window.localStorage])
+
+  // console.log(range);
+  
 
   const dataEscopo= () => {
     switch (id) {
@@ -38,8 +53,8 @@ export const Start = () => {
         return [];
     }
   }
-  
 
+// console.log(dataEscopo());
 
   return (
     <Area >
@@ -47,9 +62,17 @@ export const Start = () => {
         (
           <LoadingAnimation viewport={false} />
         ) : (
-          <Escopo1Teste escopos={companies?.escopos} data={dataEscopo()} id={id} slug={slug} />
+          <Escopo1Teste 
+            sendData={item => setDataTable(item)} 
+            escopos={companies?.escopos} 
+            data={dataEscopo()} 
+            id={id} 
+            slug={slug} 
+            activeCalculate={status => setIsSend(status)}
+          />
         )
       }
+      <ModalInterno />
     </Area>
   )
 }

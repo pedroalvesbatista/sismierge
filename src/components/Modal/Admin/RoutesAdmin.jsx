@@ -17,6 +17,8 @@ function RoutesAdmin({ type, openModal}) {
 
       {displayModal === modalType[2].toLowerCase()  && <EditUser />}
 
+      {/* {displayModal === "Adicionar"  && <EditUser />} */}
+
       {displayModal === modalType[3].toLowerCase()  && <Inventariacao height={true.toString()} /> }
     </>
   )

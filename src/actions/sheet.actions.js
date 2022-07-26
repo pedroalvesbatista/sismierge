@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { sheetConstants } from "../constants/redux"
+import { handleSubItem } from "../functions";
 import { sheetService } from "./../services"
 
 export const sheetActions = {
@@ -8,7 +9,19 @@ export const sheetActions = {
     loadSubEscopos,
     setSubEscopo, 
     cleanSubEscopo,
-    loadResumo
+    loadResumo,
+    cleanSheet,
+    getResultSheet
+}
+
+function cleanSheet (){
+
+    return dispatch => {
+        dispatch({
+            type: sheetConstants.CLEAR_RESULT_SHEET,
+        })
+    }
+    
 }
 
 function loadEscopos (){
@@ -25,7 +38,7 @@ function loadEscopos (){
                     payload: res.data?.response.data.error.message
                 })
                 toast.error(res.data?.response.data.error.message)
-                console.log(res.data?.response.data);
+                // console.log(res.data?.response.data);
             } else {
                 dispatch({
                     type: sheetConstants.LOAD_SHEET_SUCCESS,
@@ -39,6 +52,39 @@ function loadEscopos (){
                 payload: err
             })
             console.log(err);
+        })
+    }
+    
+}
+
+function getResultSheet (range){
+
+    return dispatch => {
+        dispatch({
+            type: sheetConstants.LOAD_RESULT_SHEET_REQUEST,
+        })
+        sheetService.loadResultSheet(range)
+        .then(res => {
+            if (res.data?.errors) {
+                dispatch({
+                    type: sheetConstants.LOAD_RESULT_SHEET_FAIL,
+                    payload: res.data.errors
+                })
+                toast.error("Algo deu errado!")
+                console.log(res.data.errors);
+            }else {
+                dispatch({
+                    type: sheetConstants.LOAD_RESULT_SHEET_SUCCESS,
+                    payload: res.data
+                })
+            }
+            // console.log(res.data); 
+        })
+        .catch(err => {
+            dispatch({
+                type: sheetConstants.LOAD_RESULT_SHEET_FAIL,
+                payload: err
+            })
         })
     }
     
@@ -117,6 +163,8 @@ function loadSubEscopos (id){
                 type: sheetConstants.LOAD_SUBESCOPO_SUCCESS,
                 payload: res.data
             })
+            
+            // console.log(handleSubItem({id, data: res.data}));
             // console.log(res.data);
         })
         .catch(err => {
@@ -147,13 +195,14 @@ function setSubEscopo (data){
         dispatch({
             type: sheetConstants.SET_SUBESCOPO_REQUEST,
         })
+        // console.log(data);
         sheetService.setSubEscopo(data)
         .then(res => {
             dispatch({
                 type: sheetConstants.SET_SUBESCOPO_SUCCESS,
                 payload: res.data
             })
-            // console.log(res.data);   
+            console.log(res.data);   
         })
         .catch(err => {
             dispatch({

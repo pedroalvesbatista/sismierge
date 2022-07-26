@@ -6,6 +6,7 @@ import Header from '../Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { contabilizarActions, othersActions } from '../../actions'
 import { escopo, menu } from '../../constants/app'
+import ModalInterno from "../../components/Modal";
 import { useParams } from 'react-router-dom'
 
 export function AdminLayout({ children }) {

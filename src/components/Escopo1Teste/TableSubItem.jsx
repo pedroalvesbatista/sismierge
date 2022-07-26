@@ -8,20 +8,54 @@ import { othersActions } from '../../actions'
 import SelectArea from '../../components/Select'
 import { ButtonAdd } from '../../components/Buttons/Add'
 import { admin } from '../../constants/tailwind/colors'
+import { itemSelect } from '../../mocks/escopos'
+import dataSelectItem from '../../mocks/dataSelectOptions.json'
+import { handleDataSelect } from '../../functions'
+import { useParams } from 'react-router-dom'
 
 
-const TableSubItem = ({ titleHeader, subHeader, items, titleFilter, itemFilter, filter }) => {
+const TableSubItem = ({ titleHeader, rowLength, subHeader, items, range, itemFilter, filter, lengthItem, onChangeSelect, valueSelect, value, onChange }) => {
   const dispatch = useDispatch()
-//   const subHeader= [" ", "Escopo 1", "Escopo 2 (abordagem por 'localização')", "Escopo 2 (abordagem por 'escolha de compra')", "Escopo 3"]
+  const [labelSelect, setLabelSelect] = useState("")
+  const [data, setData] = useState(null)
+  const arrayRow = [...Array(rowLength).keys()]
+
+  const { id, slug } = useParams()
+
+//   const itemSelect = handleDataSelect(labelSelect)
+    const handleInputType = (id) => {
+        const idTypeNumber = [4]
+        const filterData = idTypeNumber.filter(i => i == id).length > 0
+        if (filterData) {
+            return "number"
+        }
+    }
+
+    console.log(items)
+
   
-{console.log(items)}
+    const handleSelect = (item) => {
+        // setLabelSelect(item)
+        return itemSelect.filter(i => i == item).length > 0
+    }
+
+    // useEffect(() => {
+    //     const lenData = []
+    //     const filterData = data.map(i => {
+    //         i.items.map(d => {
+    //             lenData.join()
+    //         })
+    //     })
+    //     // console.log(data)
+    // }, [data])
+
 
   return (
     <WrapperArea>
         <TableArea>
             <TheadeArea>
                 <TrArea bg="transparent">
-                    {items.map((item, index) => (
+                    {items?.map(i => i?.tables?.map(table => table.items?.map((item, index) => (
                         <ThArea 
                             key={index}
                             bg={item?.header ? admin.roxo : "transparent"}
@@ -31,41 +65,56 @@ const TableSubItem = ({ titleHeader, subHeader, items, titleFilter, itemFilter, 
                         >
                             {item?.header && item?.header}
                         </ThArea>
-                    ))}
-                    {/* <ThArea rowSpan={null} colSpan={2}>name</ThArea>
-                    <ThArea rowSpan={1} colSpan={null}>teste</ThArea> */}
+                    ))))}
                 </TrArea>
                 <TrArea >
-                    {items.map((i) => i.items.map((item, index) => (
+                    {items?.map(i => i?.tables?.map(table => table.items?.map((sub) => sub?.items.map((item, index) => (
                         <ThArea 
                             key={index}
                         >
                             <TextAreaTable color='#fff' > {item.label} </TextAreaTable>
                         </ThArea>
-                    )))}
+                    )))))}
                 </TrArea>
             </TheadeArea>
             <TbodyArea>
-                <TrArea bg="transparent">
-                    {items.map((i) => i.items.map((data) => data.data.map((item, index) => (
-                        <TdArea 
-                            key={index}
-                            bg={i.type !== "entry" && admin.cinza}
-                            padding="10px"
-                        >
-                            {i.type === "entry" ? (
-                                    <InputArea placeholder='Digite aqui...' />
-                                ) : (
-                                    <TextAreaTable > {item} </TextAreaTable>
-                                )
-                            }
-                        </TdArea>
-                    ))))}
-                    {/* <TdArea>Flory muenge </TdArea>
-                    <TdArea>Patrick Ntambwe</TdArea>
-                    <TdArea>29 ans</TdArea>
-                    <TdArea>Congo</TdArea> */}
-                </TrArea>
+                {arrayRow?.map((i, indexRow) => (
+                    <TrArea bg="transparent" key={indexRow}>
+                        {items?.map((i) => i?.tables?.map(table => table.items.map(sub => sub?.items.map((data, index) => (
+                            <TdArea 
+                                key={index}
+                                // bg={sub.type !== "entry" && admin.cinza}
+                                padding="0px 5px"
+                            >
+                                <TextAreaTable > {data.data[indexRow]} </TextAreaTable>
+                                {/* {sub.type === "entry" ? (
+                                        handleSelect(data.label) ? (
+                                            <SelectArea 
+                                                spanceTop={"0px"}
+                                                item={handleDataSelect(dataSelectItem, data.label)}
+                                                onChange={onChangeSelect}
+                                                value={valueSelect}
+                                                dataRow={indexRow}
+                                                dataTitle={data.label}
+                                                placeholder="Escolhe aqui"
+                                            />
+                                        ) : <InputArea 
+                                                data-indextableSub={data?.id} 
+                                                data-row={indexRow} 
+                                                data-title={data.label} 
+                                                value={value} 
+                                                onChange={onChange} 
+                                                placeholder='Digite aqui...' 
+                                                type={handleInputType(sub.id)}
+                                            />
+                                    ) : (
+                                        
+                                    )
+                                } */}
+                            </TdArea>
+                        )))))}
+                    </TrArea>
+                ))}
             </TbodyArea>
         </TableArea>
     </WrapperArea>

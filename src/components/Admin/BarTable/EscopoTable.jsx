@@ -66,6 +66,11 @@ function EscopoTable({item}) {
         }, 500);
       }
     }, [sucessInventory, sucessCreateInventory])
+
+    useEffect(() => {
+      dispatch(companyActions.loadInventories(companies?.id))
+    }, [])
+    
     
 
   return (

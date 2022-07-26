@@ -38,6 +38,7 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 50px;
   flex: 1;
 `
 const Text = styled.span`

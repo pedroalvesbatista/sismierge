@@ -6,8 +6,8 @@ export const Area = styled.div`
     margin: 8px 0px;
     margin-top: ${({spanceTop}) => spanceTop ? spanceTop : '8px'};
     flex: ${({width}) => width ? "none" : 1};
-    margin-left: ${({spanceLeft}) => spanceLeft ? '20px' : 'none'};
-    margin-right: ${({spanceRight}) => spanceRight ? '20px' : 'none'};
+    margin-left: ${({spanceLeft}) => spanceLeft ? spanceLeft ?? '20px' : 'none'};
+    margin-right: ${({spanceRight}) => spanceRight ? spanceRight ?? '20px' : 'none'};
     width: ${({width}) => width ?? "none"};
     transition: all ease 1.s;
 `

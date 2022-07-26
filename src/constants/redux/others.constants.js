@@ -3,6 +3,8 @@ export const others = {
     SET_OPTION : "SET_OPTION",
     SET_MODAL : "SET_MODAL",
 
+    SET_DATA_MODAL : "SET_DATA_MODAL",
+
     CLOSE_MENU : "CLOSE_MENU",
     
     SET_INITIAL_STATE : "SET_INITIAL_STATE",

@@ -86,8 +86,8 @@ const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, 
               Emissões totais por combustão móvel
             </h3> */}
             <DashboardEscopo 
-              numBio={"1278,89"}
-              numEqui={"4567,67"}
+              numBio={" "}
+              numEqui={" "}
             />
           </div>
 
@@ -143,7 +143,7 @@ const CombustaoMovel = ({ nextEsco1Button, handleChangeEsco1, curentIdxEsco1=0, 
               {tabelasTipoTransposrte.map((item, index) => (
                 <>
                   <HeaderSelect mb={index !== currentIndexCard && "20px"} onClick={() => handleOpenCard(index)} key={index}>
-                      {item} {year}
+                    {item} {year}
                     {index !== currentIndexCard 
                       ? <ArrowIcon onClick={() => handleOpenCard(index)} /> 
                       : <ArrowIconUp onClick={() => handleOpenCard(index)} />

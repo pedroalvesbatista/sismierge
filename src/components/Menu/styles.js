@@ -86,12 +86,16 @@ export const Text = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${({active}) => active ? primary.verde : primary.dark};
+    color: ${({active, color}) => active ? primary.verde : color ? color : primary.dark};
     font-weight: ${({active}) => active ? '400' : '300'};
-    font-size: ${({active}) => active ? "1.2em" : "1em"}; 
+    font-size: ${({active, size}) => active ? "1.2em" : size ? size : "1em"}; 
     margin: ${({active}) => active ? '10px 0px' : '10px 0px'};  
     padding: 0px 10px;
     transition: all .2s linear;
+    background-color: ${({bg}) => bg ?? "none"};
+    padding: ${({padding}) => padding ? padding : "none"};
+    border-radius: ${({radius}) => radius ? "5px" : "none"};
+    margin-left: ${({ml}) => ml ? "10px" : "none"};
 `
 export const BarActive = styled.div`
     height: 4px;

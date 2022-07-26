@@ -126,15 +126,17 @@ function MultiSelect({ editeData,value, type, onChange, item, title, modal=true,
 
         selectedEscopo.map(item => {
             const filterData= unique.filter(i => i.index === item.id)
-            // console.log(filterData);
             arr.push({
                 ...item,
                 items: filterData
             })
         })
+        console.log(arr);
         setDataFinal(arr)
 
     }, [indexId, selectedOption])
+
+    // console.log(dataFinal);
     
 
     

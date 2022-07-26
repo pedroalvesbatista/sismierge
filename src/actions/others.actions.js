@@ -12,13 +12,23 @@ export const othersActions = {
     openModalInventory,
     handleInicialState,
     cleanInicialState,
-    changePageTitle
+    changePageTitle,
+    handleSetDataModal
 }
 
 function handleInicialState (data){
     return dispatch => {
         dispatch({ 
             type: others.SET_INITIAL_STATE,
+            payload: data
+        })
+    }
+}
+
+function handleSetDataModal (data){
+    return dispatch => {
+        dispatch({ 
+            type: others.SET_DATA_MODAL,
             payload: data
         })
     }

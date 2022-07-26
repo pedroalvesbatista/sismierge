@@ -4,37 +4,190 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CardArea } from '../../containers/Dashboard/styles'
 import { ButtonAdd } from '../Buttons'
-import { fatoresEmissaoSetor, headCellsCombuEsta } from '../Escopo1/selectionData'
+import { fatoresEmissaoSetor, headCellsCombuEsta, tabelasTipoTransposrte, tipoEmissoeEsco1, tipoTransporteEsco1 } from '../Escopo1/selectionData'
 import SelectArea from '../Select'
 import { Area, IconDoc, Card, ContentArea, TextArea } from './styles'
 import TableSubItem from './TableSubItem'
+import { handleDataSelect } from '../../functions'
+import dataSubItem from '../../mocks/datas.json'
+import { useDispatch } from 'react-redux'
+import { othersActions } from '../../actions'
+import { toast } from 'react-toastify'
 
-function Escopo1Teste({ data, slug, id, escopos }) {
+function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
     const [itemActive, setItemActive] = useState(null)
+    const dataLocalStorage = JSON.parse(localStorage.getItem(`@sismierge/${id}/${slug}`))
+    const dispatch = useDispatch()
+    const [indexTable, setIndexTable] = useState(0)
+    const [range, setRange] = useState(null)
+    const [rowLength, setRowLength] = useState([1])
+    const [dataTable, setDataTable] = useState(null)
+    const [typeTable, setTypeTable] = useState(null)
+    const [typeSubTable, setTypeSubTable] = useState(null)
+    const [sendData, setSendData] = useState([])
+
     const [escopoActive, setEscopoActive] = useState(`Escopo ${id}`)
     const navigate = useNavigate()
 
+    const seeMoreOption= ["5208192", "920072706"]
+    const verificationSheetId = seeMoreOption.filter(i => i === slug).length > 0
+
+    const handleDataSelectOptions = () => {
+        switch (slug) {
+            case "5208192":
+                return tipoTransporteEsco1
+
+            case "920072706":
+                return tipoEmissoeEsco1
+        
+            default:
+                break;
+        }
+    }
+
     const handleOnchageEscopo = (event) => {
         const { value } = event.target
-        console.log(value);
         setEscopoActive(`${value}`)
         navigate(`/start/${value.split(" ")[1]}`)
     }
 
-    const handleOnchageSubItem = (e) => {
-        const { value } = e.target
+    const handleOnchageSubItem = (event) => {
+        const { value } = event.target
         const filterData = data?.filter(i => i.title == value)[0]
         // console.log(value);
         setItemActive(filterData)
         navigate(`/start/${id}/${filterData.sheetId}`)
     }
 
-    useEffect(() => {
-        const dataSubItem = data?.filter(i => i.sheetId == slug)[0]
-        setItemActive(dataSubItem)
-    }, [slug, data, itemActive])
+    const handleOnchange = (e) => {
+        const { value, dataset } = e.target
+        const { row, title } = dataset
+        setIndexTable(parseInt(row))
+        const newList = dataTable?.map(data => {
+            // data.items.map(item => {
+            //     if (item.label === title) {
+            //         item.data[row] = value
+            //     }
+            // })
+            data?.tables?.map(t => t.items?.map(sub => sub?.items.map(d => {
+                // d.data = [...d.data, ""]
+                if (d.label === title) {
+                    d.data[row] = value
+                }
+            })))
+            return data
+        })
 
-    // console.log(data);
+        // setDataTable(newList);
+        // console.log(newList);
+    }
+
+    const handleVerificMoreOptions = () => {
+        if (verificationSheetId) {
+            if (typeTable) {
+                const newList = dataTable.filter(i => i.title === typeTable)
+                return newList
+            }
+        }else {
+            return dataTable
+        }
+    }
+
+    const handleAddRow = () => {
+
+        let newList = []
+        let newData = []
+
+        if (verificationSheetId) {
+            if (typeTable) {
+                dataTable?.map(i => i.tables.map(t => {
+                    // const data = t.items.filter(i => i.type === "entry")
+                    // console.log(i.title);    
+                    if (i.title == typeTable) {
+                        setRange({range_entry: t.range, range_result: t?.range_result});
+                        newData = t
+                        t.items.map(d => d.items.map(item => {
+                            if (d.type === "entry") {
+                                newList= [...newList, {key: item.label, value: ""}]
+                            }
+                        }))
+                    }
+
+                }))  
+                dispatch(othersActions.handleSetDataModal({data: newList, range, sendData: handleVerificMoreOptions()}))
+                dispatch(othersActions.handleOpenModal("Adicionar"))
+
+            }else{
+                toast.error("Escolhe um tipo de tabela primeiro")
+            }
+        } 
+        else {
+            dataTable?.map(i => i.tables.map(t => {
+                // const data = t.items.filter(i => i.type === "entry")
+                t.items.map(d => d.items.map(item => {
+                    // setRange(t.range);
+                    newData= t 
+                    if (d.type === "entry") {
+                        newList= [...newList, {key: item.label, value: ""}]
+                    }
+                }))
+            }))
+            dispatch(othersActions.handleSetDataModal({data: newList, range, sendData: handleVerificMoreOptions()}))
+            dispatch(othersActions.handleOpenModal("Adicionar"))
+        }
+        
+    }
+
+    
+
+    // console.log(handleVerificMoreOptions());
+
+    
+
+    useEffect(() => {
+        const dataSubItemFilter = data?.filter(i => i.sheetId == slug)[0]
+        setItemActive(dataSubItemFilter)
+
+        if (itemActive) {
+            const newData = handleDataSelect(dataSubItem, itemActive?.title)
+            setDataTable(newData)
+
+            if (dataTable) {
+                let lenData
+                dataTable?.map(i => {
+                    i?.tables?.map(t => t?.items?.map(sub => sub?.items?.map((d) => d?.data?.map((item, index) => {
+                        return lenData = index + 1
+                    }))))
+                })
+
+                setRowLength(lenData);
+                // handleVerificMoreOptions()
+
+                dataTable?.map(i => i?.tables?.map(t => {    
+                    if (verificationSheetId) {
+                        if (typeTable) {
+                            if (i?.title == typeTable) {
+                                setRange({range_entry: t.range, range_result: t?.range_result});
+                            }
+                        }
+                    } else {
+                        setRange({range_entry: t.range, range_result: t?.range_result});
+                    }
+
+                }))
+            }
+        }
+
+    }, [slug, data, itemActive, dataTable, typeTable])
+
+    useEffect(() => {
+        if (dataTable) {
+            setSendData(dataTable)
+        }
+    }, [dataTable])
+
+    // console.log(dataTable);
+    
 
   return (
     <Area>
@@ -55,7 +208,7 @@ function Escopo1Teste({ data, slug, id, escopos }) {
             <SelectArea 
                 title={"Sub item"}
                 item={data?.map( i => i?.title)}
-                placeholder="Escolhe aqui..."
+                placeholder={data && "Escolhe aqui..."}
                 width={"20%"}
                 spaceLeft="20px"
                 onChange={handleOnchageSubItem}
@@ -74,18 +227,55 @@ function Escopo1Teste({ data, slug, id, escopos }) {
                             </ContentArea>
                         ) : (
                             <ContentArea align="flex-start" width="100%" justify="flex-start" column>
-                                {itemActive?.title === "Combustão estacionária" &&
-                                    <SelectArea 
-                                        title={"Setor de atividade"}
-                                        item={data ? fatoresEmissaoSetor : ["Carregando..."]}
-                                        // width={"10%"}
-                                    />
-                                }
-                                <ContentArea width="90.8vw" >
-                                    <TableSubItem 
-                                        titleHeader={"item.title"}
-                                        items={headCellsCombuEsta}
-                                    />
+                                <ContentArea width="100%">
+                                    {slug === "1093763195" && itemActive?.title === "Combustão estacionária" &&
+                                        <SelectArea 
+                                            title={"Setor de atividade"}
+                                            item={data ? fatoresEmissaoSetor : ["Carregando..."]}
+                                            width={"15%"}
+                                        />
+                                    }
+                                    {verificationSheetId &&
+                                        <SelectArea 
+                                            title={"Tipo de tabela"}
+                                            item={data ? handleDataSelectOptions() : ["Carregando..."]}
+                                            placeholder={data && "Escolhe aqui..."}
+                                            onChange={event => setTypeTable(event.target.value)}
+                                            value={typeTable}
+                                            width={"15%"}
+                                        />
+                                    }
+                                    {/* {typeTable &&
+                                        <SelectArea 
+                                            title={"Cálculo de emissões"}
+                                            item={data ? tabelasTipoTransposrte : ["Carregando..."]}
+                                            placeholder={data && "Escolhe aqui..."}
+                                            onChange={event => setTypeSubTable(event.target.value)}
+                                            width={"25%"}
+                                            spaceLeft="20px"
+                                        />
+                                    } */}
+                                    {<ButtonAdd onClick={handleAddRow} ml={20} mt={30} title={"mais linha"} />}
+                                </ContentArea>
+
+                                <ContentArea width="90.8vw" height="50.8vh" >
+                                    {dataLocalStorage ? (
+                                            <TableSubItem 
+                                                titleHeader={typeTable}
+                                                items={data && dataLocalStorage}
+                                                rowLength={rowLength}
+                                                onChange={handleOnchange}
+                                                onChangeSelect={handleOnchange}
+                                            />
+                                        ) 
+                                        : (
+                                            <ContentArea column justify="center" align="center" width="100%" height="100%">
+                                                <IconDoc />
+                                                <TextArea>Ainda não existe nenhuma entrada</TextArea>
+                                                <ButtonAdd onClick={handleAddRow} title={"entrada"} />
+                                            </ContentArea>
+                                        )
+                                    }
                                 </ContentArea>
                             </ContentArea>
                         )

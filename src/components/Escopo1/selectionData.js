@@ -193,6 +193,25 @@ export const fuelUsedEsco1Item = [
   "Acetileno",
 ];
 
+export const tipoVeiculo = [
+  "Automóvel a gasolina",
+  "Automóvel flex a gasolina",
+  "Motocicleta a gasolina",
+  "Motocicleta flex a gasolina",
+  "Veículo comercial leve a gasolina",
+  "Veículo comercial leve flex a gasolina",
+  "Veículo comercial leve a diesel",
+  "Micro-ônibus a diesel",
+  "Ônibus rodoviário a diesel",
+  "Ônibus urbano a diesel",
+  "Caminhão semileve a diesel",
+  "Caminhão leve a diesel",
+  "Caminhão médio a diesel",
+  "Caminhão semipesado a diesel",
+  "Caminhão pesado a diesel",
+  "Automóvel a GNV",
+]
+
 export const subEffluentTypeItem = [
   "Digestor Anaerobico",
   "Lodo Ativado",
@@ -205,16 +224,59 @@ export const subEffluentTypeItem = [
 ];
 
 export const tipoTransporteEsco1 = [
-  "Transporte Rodoviario",
-  "Transporte Ferroviário",
-  "Transporte Hidroviário",
-  "Trasnporte Aereo",
+  "Transporte rodoviário",
+  "Transporte ferroviário",
+  "Transporte hidroviário",
+  "Transporte aéreo"
 ];
 
+export const tipoEmissoeEsco1 = [
+  "Emissões de Equipamentos de Refrigeração e Ar Condicionado (RAC) e Extintores de Incêndio",
+  "Emissões por utilização de hexafluoreto de enxofre (SF6) e trifluoreto de nitrogênio (NF3)",
+  "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo"
+];
+
+export const gas = [
+  "Dióxido de carbono (CO2)",
+  "Metano (CH4)",
+  "Óxido nitroso (N2O)",
+  "HFC-23",
+  "HFC-32",
+  "HFC-41",
+  "HFC-125",
+  "HFC-134",
+  "HFC-134a",
+  "HFC-143",
+  "HFC-143a",
+  "HFC-152",
+  "HFC-152a",
+  "HFC-161",
+  "HFC-227ea",
+  "HFC-236cb",
+  "HFC-236ea",
+  "HFC-236fa",
+  "HFC-245ca",
+  "HFC-245fa",
+  "HFC-365mfc",
+  "HFC-43-10mee",
+  "Hexafluoreto de enxofre (SF6)",
+  "Trifluoreto de nitrogênio (NF3)",
+  "PFC-14",
+  "PFC-116",
+  "PFC-218",
+  "PFC-318",
+  "PFC-3-1-10",
+  "PFC-4-1-12",
+  "PFC-5-1-14",
+  "PFC-9-1-18",
+  "Trifluorometil pentafluoreto de enxofre",
+  "Perfluorociclopropano"
+]
+
 export const tabelasTipoTransposrte = [
-  "Cálculo de emissões por tipo e ano de fabricação da frota de veículos no ano de",
-  "Cálculo de emissões por tipo de combustível no ano de ",
-  "Cálculo de emissões por distância percorrida no ano de",
+  "Cálculo de emissões por tipo e ano de fabricação da frota de veículos no ano",
+  "Cálculo de emissões por tipo de combustível no ano",
+  "Cálculo de emissões por distância percorrida no ano",
 ];
 
 export const tipoEmissaoFugitivas = [

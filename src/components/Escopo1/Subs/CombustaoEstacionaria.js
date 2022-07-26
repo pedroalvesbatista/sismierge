@@ -42,6 +42,7 @@ const DefaultTableRows = ({
   const dispatch = useDispatch();
   const { initialItemData } = useSelector(state => state.others)
   
+  // console.log(items);
 
   const handleChange = (event) => {
     indexTable(idx)
@@ -765,7 +766,7 @@ const CombustaoEstacionaria = ({
                       {isStorage?.slice(
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
-                        ).map((item, idx) => {
+                        )?.map((item, idx) => {
                           return (
                             <DefaultTableRows
                               idx={idx}

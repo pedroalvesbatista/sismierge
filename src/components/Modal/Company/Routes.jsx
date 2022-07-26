@@ -7,7 +7,8 @@ import {
   AddFilial,
   AddInventariacao,
   ChooseEscopo,
-  AddUser
+  AddUser,
+  AddItemEscopo
 } from '.'
 import { Inicio } from '../../../containers/RegisterCompany/Inicio'
 import { Inventariacao } from '../../../containers/RegisterCompany/Inventariacao'
@@ -19,8 +20,10 @@ import { EditeOrganisation } from './EditeOrganisation'
 function Routes({ type, openModal}) {
   const { displayModal } = useSelector(state => state.others)
   const modalType= [
-    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação", "Editar minha organização"
+    "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação", "Editar minha organização", "Adicionar"
   ]
+
+  console.log(displayModal);
     
   return (
     < >
@@ -37,6 +40,7 @@ function Routes({ type, openModal}) {
       {displayModal === modalType[10].toLowerCase() && <Unidade openModal={openModal} />}
       {displayModal === modalType[11].toLowerCase() && <Inventariacao openModal={openModal} />}
       {displayModal === modalType[12].toLowerCase() && <EditeOrganisation openModal={openModal} />}
+      {displayModal === "Adicionar".toLowerCase() && <AddItemEscopo openModal={openModal} />}
     </>
   )
 }

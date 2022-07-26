@@ -1,3 +1,6 @@
+import { comb_esta, comb_movel } from "../mocks/datas"
+import dataSelect from "../mocks/dataSelectOptions.json"
+
 export function firstLetterCase(name) {
     const firstletter= name && name[0]?.toUpperCase()
     const otherletter= name && name?.slice(1)?.toLowerCase() 
@@ -21,4 +24,42 @@ export const randPassUser = (email, name) => {
     const password= randdConvite(email+name+num)
 
     return {username, password}
+}
+
+export const handleDataSelect = (data, title) => {
+    const result= data?.filter(i => i?.type?.toLowerCase() == title?.toLowerCase())[0]
+    // console.log(title);
+    return result?.items
+}
+
+export const handleSubItem = (item) => {
+    
+    const { id, data } = item
+    // console.log("id: ", id);
+    switch (id) {
+        case 1093763195:
+          return comb_esta(data)
+    
+        case 5208192:
+          return comb_movel(data)
+      
+        default:
+          return false;
+    }
+}
+
+export const handleSubItemSelectData = (item) => {
+    
+    const { title, data } = item
+    // console.log("id: ", id);
+    switch (title) {
+        case "Transporte rodoviário":
+          return comb_esta(data)
+    
+        case 5208192:
+          return comb_movel(data)
+      
+        default:
+          return false;
+    }
 }

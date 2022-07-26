@@ -17,10 +17,17 @@ export const Area = styled.div`
 `
 
 export const WrapperArea = styled.div`
-    height: 400px;
+    height: 420px;
     /* background-color: red; */
     width: 100%;
+    /* padding: 0px 0px 20px 0px; */
     overflow-x: auto;
+`
+export const ContainerTable = styled.div`
+    /* height: 400px; */
+    /* width: 10vw; */
+    display: flex;
+    flex-direction: column;
 `
 
 export const TableArea = styled.table`
@@ -92,7 +99,7 @@ export const TdArea = styled.td`
     justify-content: ${({justify}) => justify ? justify : "none"};
     align-items: ${({align}) => align ? align : "center"};
     /* width: ${({width}) => width ? width : "none"}; */
-    /* height: ${({height}) => height ? height : "none"}; */
+    height: ${({height}) => height ? height : "50px"};
     /* flex-wrap: ${({nowrap}) => nowrap ? "nowrap" : "wrap"}; */
     /* margin-bottom: 10px; */
     flex-direction: ${({column}) => column ? "column" : "row"};

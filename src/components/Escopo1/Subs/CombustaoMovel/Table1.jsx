@@ -62,14 +62,14 @@ export function Table1({dataProps}) {
       <InputEntreArea flex={2}>
         {arrayLabel.map((item, index) => (
           <>
-            <div key={index} className="m-2">
+            <div key={index} style={{minWidth: 200}} className="m-2">
               <h3 style={{marginBottom: 10}}>{item}</h3>
               {index === 2 
                 ? (
                   <RouteTable key={index} index={indexTable} item={item} />
                 ) : (
                   <TextField
-                    id="regist-fronta"
+                    id={index}
                     label=" Digite aqui..."
                     variant="outlined"
                     type={index === 3 && "number"}
@@ -81,22 +81,10 @@ export function Table1({dataProps}) {
             
           </>
         ))}
-        <FormControl style={{width: "100%", alignItems: "flex-start"}} className="m-2">
-          <FormLabel id="formLabelEscDetaCon"> Escolha um tipo de relato de consumo de combustível</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="formLabelEscDetaCon"
-            name="row-radio-buttons-group"
-            value={detailsConsumption}
-            onChange={handleDetailsConsumption}
-          >
-            <FormControlLabel value="Anual" control={<Radio />} label="Anual" />
-            <FormControlLabel value="Mensal" control={<Radio />} label=" Mensal" />
-          </RadioGroup>
-        </FormControl>
+        
         {detailsConsumption === "Mensal" && (
             arrayMonth.map(i => (
-              <div key={i} className="m-2">
+              <div style={{minWidth: 100}} key={i} className="m-2">
                 <h3 style={{marginBottom: 10}}> {i} </h3>
                 <TextField
                   size="small"
@@ -109,7 +97,7 @@ export function Table1({dataProps}) {
           ) 
         }
         {detailsConsumption === "Anual" &&
-          <div className="m-2">
+          <div style={{minWidth: 200}} className="m-2">
             <h3 style={{marginBottom: 10}}>Consumo anual</h3>
             <TextField
               size="small"
@@ -119,50 +107,25 @@ export function Table1({dataProps}) {
               type={"number"}
             />
           </div>
-        }
-        
+        } 
       </InputEntreArea>
 
       <SpaceArea />
 
       <InputResultatArea>
-        {combustaoMovel.map((item, index) => (
-          <>
-            {/* <h3 className="mb-3">
-              {item.title}
-            </h3> */}
-            {item.item.map(sub => (
-              <div className="m-2">
-                <span>{sub.key}</span>
-                <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
-                  
-                </Card>
-              </div>
-            ))}
-          </>
-
-        ))}
-        {detailsConsumption === "Mensal" && (
-            arrayMonth.map(i => (
-              <div key={i} className="m-2">
-                <h4 style={{marginBottom: 10}}> {i} </h4>
-                <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
-                  
-                </Card>
-              </div>
-            ))
-          ) 
-        }
-
-        {detailsConsumption === "Anual" &&
-          <div className="m-2">
-            <h4 style={{marginBottom: 10}}>Consumo anual</h4>
-            <Card style={{backgroundColor: "#ccc"}} className='resultatEntries' >
-                  
-                </Card>
-          </div>
-        }
-      
+        <FormControl style={{minWidth: 200, alignItems: "flex-start"}} className="m-2">
+          <FormLabel id="formLabelEscDetaCon"> Escolha um tipo de relato de consumo de combustível</FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="formLabelEscDetaCon"
+            name="row-radio-buttons-group"
+            value={detailsConsumption}
+            onChange={handleDetailsConsumption}
+          >
+            <FormControlLabel value="Anual" control={<Radio />} label="Anual" />
+            <FormControlLabel value="Mensal" control={<Radio />} label=" Mensal" />
+          </RadioGroup>
+        </FormControl>
       </InputResultatArea>
       
     </CardArea>

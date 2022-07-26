@@ -1,0 +1,28 @@
+[
+  {
+    "type": "combustível utilizado",
+    "items": [
+      "Coque de Carvão Mineral",
+      "Carvão Vegetal",
+      "Carvão Vapor sem Espeficicação",
+      "Carvão Vapor 6000 kcal/kg",
+      "Carvão Vapor 5900 kcal/kg",
+      "Carvão Vapor 5200 kcal/kg",
+      "Carvão Vapor 4700 kcal/kg",
+      "Carvão Vapor 4500 kcal/kg",
+      "Carvão Vapor 4200 kcal/kg",
+      "Carvão Vapor 3700 kcal/kg",
+      "Carvão Vapor 3300 kcal/kg",
+      "Carvão Vapor 3100 kcal/kg",
+      "Carvão Metalúrgico Nacional",
+      "Carvão Metalúrgico Importado",
+      "Caldo de cana",
+      "Biogás",
+      "Biodiesel (B100)",
+      "Bagaço de cana",
+      "Asfaltos",
+      "Alcatrão",
+      "Acetileno"
+    ]
+  }    
+]
