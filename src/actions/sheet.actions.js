@@ -72,6 +72,7 @@ function getResultSheet (range){
                 })
                 toast.error("Algo deu errado!")
                 console.log(res.data.errors);
+                console.log(res.data);
             }else {
                 dispatch({
                     type: sheetConstants.LOAD_RESULT_SHEET_SUCCESS,

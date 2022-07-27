@@ -53,9 +53,8 @@ function EscopoTable({item}) {
         // dispatch(othersActions.setDataModal(item))
     }
 
-    const handleOpenInventory = (index) => {
-
-        dispatch(othersActions.handleOpenModal(index, true))
+    const handleOpenInventory = (id) => {
+      navigate(`/start/${id}`)
     }
 
     useEffect(() => {
@@ -102,7 +101,7 @@ function EscopoTable({item}) {
                     {inventories.length > 0 ? (
                         <>
                           <BtnStart onClick={() => navigate("/resumo")} seeMore>Ver mais detalhes</BtnStart>
-                          <BtnStart onClick={() => handleOpenInventory(index)}>Iniciar cálculo</BtnStart>
+                          <BtnStart onClick={() => handleOpenInventory(item.id)}>Iniciar cálculo</BtnStart>
                         </>
                       ) : (
                         <BtnStart size="12" seeMore onClick={() => dispatch(othersActions.handleOpenModal("Adicionar Inventariação"))}>

@@ -40,6 +40,12 @@ export function AddItemEscopo({ openModal }) {
 
             case "Gás de Efeito Estufa":
                 return gas
+            
+            case "Gás ou composto":
+                return gas
+
+            case "Gás":
+                return ["Hexafluoreto de enxofre (SF6)", "Trifluoreto de nitrogênio (NF3)"]
         
             default:
                 return false;
@@ -102,7 +108,7 @@ export function AddItemEscopo({ openModal }) {
             let newList
 
             while (render <= resultSheetData?.values[0]?.length) {
-                sendData[0].tables[0].items.map((i, index) => {
+                sendData[0]?.tables[0]?.items?.map((i, index) => {
                     i.items.map(item => {
                         render++
                         if (dataLocalStorage === null) {
@@ -122,13 +128,13 @@ export function AddItemEscopo({ openModal }) {
     }, [resultSheetData, errorResultSheet])
     
 
-    console.log(resultSheetData);
+    console.log(dataModal.range);
     
     
     
   return (
     <Area>
-        <Form height={dataModal.range === "Emissões fugitivas!A20:G20" && "80vh"} onSubmit={onSubmit}>
+        <Form height={dataModal?.range?.range_entry === "Emissões fugitivas!A20:G20" && "80vh"} onSubmit={onSubmit}>
             {data.map((item, index) => (
                 handleComponente(item.key) ? (
                     <SelectArea 

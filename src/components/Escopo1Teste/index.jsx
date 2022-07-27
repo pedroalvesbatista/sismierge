@@ -245,7 +245,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                                             width={"15%"}
                                         />
                                     }
-                                    {/* {typeTable &&
+                                    {typeTable &&
                                         <SelectArea 
                                             title={"Cálculo de emissões"}
                                             item={data ? tabelasTipoTransposrte : ["Carregando..."]}
@@ -254,7 +254,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                                             width={"25%"}
                                             spaceLeft="20px"
                                         />
-                                    } */}
+                                    }
                                     {<ButtonAdd onClick={handleAddRow} ml={20} mt={30} title={"mais linha"} />}
                                 </ContentArea>
 

@@ -739,6 +739,7 @@
           {
             "title": "Emissões de GEE por equipamentos de RAC e extintores de incêndio - balanço de massa",
             "range": "Emissões fugitivas!A13:F13",
+            "range_result": "Emissões fugitivas!A13:F13",
             "items": [
               {
                 "id": 1,
@@ -787,6 +788,7 @@
           {
             "title": "Emissões de GEE por equipamentos de RAC e extintores de incêndio - método de triagem de fontes",
             "range": "Emissões fugitivas!A20:G20",
+            "range_result": "Emissões fugitivas!A20:G20",
             "items": [
               {
                 "id": 1,
@@ -846,6 +848,7 @@
           {
             "title": false,
             "range": "Emissões fugitivas!A37:E37",
+            "range_result": "Emissões fugitivas!A37:E37",
             "items": [
               {
                 "id": 1,
@@ -906,6 +909,7 @@
           {
             "title": false,
             "range": "Emissões fugitivas!A42:D42",
+            "range_result": "Emissões fugitivas!A42:D42",
             "items": [
               {
                 "id": 1,
