@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CardArea } from '../../containers/Dashboard/styles'
 import { ButtonAdd } from '../Buttons'
-import { fatoresEmissaoSetor, headCellsCombuEsta, tabelasTipoTransposrte, tipoEmissoeEsco1, tipoTransporteEsco1 } from '../Escopo1/selectionData'
+import { fatoresEmissaoSetor, headCellsCombuEsta, tabelasTipoTransposrte, tipoEmissoeEsco1, tipoEmissoeIndireta, tipoTransporteEsco1 } from '../Escopo1/selectionData'
 import SelectArea from '../Select'
 import { Area, IconDoc, Card, ContentArea, TextArea } from './styles'
 import TableSubItem from './TableSubItem'
@@ -29,8 +29,10 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
     const [escopoActive, setEscopoActive] = useState(`Escopo ${id}`)
     const navigate = useNavigate()
 
-    const seeMoreOption= ["5208192", "920072706"]
+    const seeMoreOption= ["5208192", "920072706", "1965757995"]
     const verificationSheetId = seeMoreOption.filter(i => i === slug).length > 0
+
+    const verificationSelect = dataSubItem && dataSubItem?.filter(i => i.id == slug)[0]?.items.filter(i => i.title_select && i?.title_select?.length > 0)[0]
 
     const handleDataSelectOptions = () => {
         switch (slug) {
@@ -39,6 +41,9 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
 
             case "920072706":
                 return tipoEmissoeEsco1
+            
+            case "1965757995":
+                return tipoEmissoeIndireta
         
             default:
                 break;
@@ -100,7 +105,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
 
         if (verificationSheetId) {
             if (typeTable) {
-                dataTable?.map(i => i.tables.map(t => {
+                dataTable?.map(i => i?.tables?.map(t => {
                     // const data = t.items.filter(i => i.type === "entry")
                     // console.log(i.title);    
                     if (i.title == typeTable) {
@@ -108,9 +113,10 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                         newData = t
                         t.items.map(d => d.items.map(item => {
                             if (d.type === "entry") {
-                                newList= [...newList, {key: item.label, value: ""}]
+                                newList= [...newList, {key: item.label, value: "-"}]
                             }
                         }))
+                        // console.log(newList);
                     }
 
                 }))  
@@ -123,12 +129,13 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
         } 
         else {
             dataTable?.map(i => i.tables.map(t => {
+                
                 // const data = t.items.filter(i => i.type === "entry")
                 t.items.map(d => d.items.map(item => {
                     // setRange(t.range);
                     newData= t 
                     if (d.type === "entry") {
-                        newList= [...newList, {key: item.label, value: ""}]
+                        newList= [...newList, {key: item.label, value: "-"}]
                     }
                 }))
             }))
@@ -140,17 +147,20 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
 
     
 
-    // console.log(handleVerificMoreOptions());
+    // console.log(itemActive);
 
     
 
     useEffect(() => {
         const dataSubItemFilter = data?.filter(i => i.sheetId == slug)[0]
         setItemActive(dataSubItemFilter)
+        // console.log(typeTable);
 
         if (itemActive) {
             const newData = handleDataSelect(dataSubItem, itemActive?.title)
             setDataTable(newData)
+
+            // console.log(data);
 
             if (dataTable) {
                 let lenData
@@ -186,7 +196,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
         }
     }, [dataTable])
 
-    // console.log(dataTable);
+    // console.log(verificationSelect);
     
 
   return (
@@ -238,17 +248,21 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                                     {verificationSheetId &&
                                         <SelectArea 
                                             title={"Tipo de tabela"}
-                                            item={data ? handleDataSelectOptions() : ["Carregando..."]}
-                                            placeholder={data && "Escolhe aqui..."}
+                                            item={data ? 
+                                                dataSubItem?.filter(i => i.id == slug)[0]?.title_select 
+                                                && dataSubItem?.filter(i => i.id == slug)[0]?.items?.map(i => i.title)
+                                                : ["Carregando..."]
+                                            }
+                                            placeholder={"Escolhe aqui..."}
                                             onChange={event => setTypeTable(event.target.value)}
                                             value={typeTable}
                                             width={"15%"}
                                         />
                                     }
-                                    {typeTable &&
+                                    {verificationSelect &&
                                         <SelectArea 
-                                            title={"Cálculo de emissões"}
-                                            item={data ? tabelasTipoTransposrte : ["Carregando..."]}
+                                            title={verificationSelect?.title_select}
+                                            item={data ? verificationSelect?.tables.map(i => i.title) : ["Carregando..."]}
                                             placeholder={data && "Escolhe aqui..."}
                                             onChange={event => setTypeSubTable(event.target.value)}
                                             width={"25%"}

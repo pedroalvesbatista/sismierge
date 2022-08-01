@@ -31,12 +31,32 @@ const TableSubItem = ({ titleHeader, rowLength, subHeader, items, range, itemFil
         }
     }
 
-    console.log(items)
+    // console.log(items)
 
   
-    const handleSelect = (item) => {
-        // setLabelSelect(item)
-        return itemSelect.filter(i => i == item).length > 0
+    const handleSelect = (dataItem) => {
+        console.log(dataItem);
+        let newList = []
+        dataItem?.data?.map(i => i.tables.map(t => {
+                
+            t?.items?.map(d => d.items.map(item => {
+                if (d.type === "entry") {
+                    newList= [...newList, {key: item.label, value: item.data[dataItem?.index]}]
+                }
+            }))
+        }))
+
+        // console.log(newList);
+        
+        dispatch(othersActions.handleSetDataModal({
+            data: newList, 
+            range:{
+                range_entry: dataItem.data[0].tables[0].range,
+                range_result: dataItem.data[0].tables[0].range_result
+            }, 
+            sendData: items
+        }))
+        dispatch(othersActions.handleOpenModal("Editar"))
     }
 
     // useEffect(() => {
@@ -83,6 +103,7 @@ const TableSubItem = ({ titleHeader, rowLength, subHeader, items, range, itemFil
                         {items?.map((i) => i?.tables?.map(table => table.items.map(sub => sub?.items.map((data, index) => (
                             <TdArea 
                                 key={index}
+                                onClick={() => handleSelect({index: indexRow, data: items})}
                                 // bg={sub.type !== "entry" && admin.cinza}
                                 padding="0px 5px"
                             >

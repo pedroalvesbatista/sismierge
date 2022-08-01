@@ -705,7 +705,7 @@
               {
                 "id": 4,
                 "type": "entry",
-                "header": "Unidades Novasa",
+                "header": "Unidades Novas",
                 "items": [
                   {"id": 1, "label": "Carga (kg)", "data": [" "]},
                   {"id": 2, "label": "Capacidade (kg)", "data": [" "]}
@@ -952,5 +952,234 @@
         ]
       }
     ]
-  }
+  },
+  {
+    "id": 1965757995,
+    "id_escopo": 2,
+    "type": "Energia Elétrica (localização)",
+    "title_select": "Tipo ",
+    "items": [
+      {
+        "title": "Sistema Interligado Nacional (SIN)",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Energia Elétrica (localização)!A8:O8",
+            "range_result": "Energia Elétrica (localização)!A8:AE8", 
+            "items": [
+              {
+                  "id": 1,
+                  "items": [{"id": 1, "label": "Registro da fonte", "data": [" "]}], 
+                  "type": "entry",
+                  "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 2, "label": "Descrição da fonte", "data": [" "]}], 
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "header": "Tipo de relato",
+                "type": "entry",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "Eletricidade total comprada (MWh)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 5,
+                "header": "Emissões totais de CO2 (t)",
+                "type": "result",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 6,
+                "items": [{"id": 1, "label": "Emissões de CH4 (t)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "Emissões de N2O(t)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sistema Isolado do Amazonas",
+        "title_select": false,
+        "tables": [
+          {
+            "title": false,
+            "range": "Energia Elétrica (localização)!A15:O15",
+            "range_result": "Energia Elétrica (localização)!A15:AF15", 
+            "items": [
+              {
+                "id": 1,
+                "items": [{"id": 1, "label": "Registro da fonte", "data": [" "]}], 
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 2,
+                "items": [{"id": 2, "label": "Descrição da fonte", "data": [" "]}], 
+                "type": "entry",
+                "header": false
+              },
+              {
+                "id": 3,
+                "header": "Tipo de relato",
+                "type": "entry",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 4,
+                "items": [{"id": 1, "label": "Eletricidade total comprada (MWh)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 5,
+                "header": "Emissões totais de CO2 (t)",
+                "type": "result",
+                "items": [
+                  {"id": 1, "label": "Consumo anual", "data": [" "]},
+                  {"id": 2, "label": "Jan", "data": [" "]},
+                  {"id": 3, "label": "Fev", "data": [" "]},
+                  {"id": 4, "label": "Mar", "data": [" "]},
+                  {"id": 5, "label": "Abr", "data": [" "]},
+                  {"id": 6, "label": "Mai", "data": [" "]},
+                  {"id": 7, "label": "Jun", "data": [" "]},
+                  {"id": 8, "label": "Jul", "data": [" "]},
+                  {"id": 9, "label": "Ago", "data": [" "]},
+                  {"id": 10, "label": "Set", "data": [" "]},
+                  {"id": 11, "label": "Out", "data": [" "]},
+                  {"id": 12, "label": "Nov", "data": [" "]},
+                  {"id": 13, "label": "Dez", "data": [" "]}
+                ]
+              },
+              {
+                "id": 6,
+                "items": [{"id": 1, "label": "Emissões totais de CO2 (t)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 7,
+                "items": [{"id": 1, "label": "Emissões de CH4 (t)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              },
+              {
+                "id": 8,
+                "items": [{"id": 1, "label": "Emissões de N2O(t)", "data": [" "]}], 
+                "type": "result",
+                "header": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },        
+  {
+    "id": 1154339268,
+    "id_escopo": 3,
+    "type": "Resíduos Sólidos da Operação",
+    "items": [
+      {
+        "title": false,
+        "title_select": false,
+        "tables": [
+          {
+          }
+        ]
+      }
+    ]
+  }, 
+  {
+    "id": 1360711224,
+    "id_escopo": 3,
+    "range": "Viagens a Negócios!A11:D11",
+    "type": "Viagens a Negócios",
+    "setor": "",
+    "items": [
+      {
+        "title": false,
+        "title_select": false,
+        "tables": [
+          {
+          }
+        ]
+      }
+    ]
+  },        
+  {
+    "id": 1947078584,
+    "id_escopo": 3,
+    "range": "Deslocamento Casa-Trabalho!A11:D11",
+    "type": "Deslocamento Casa-Trabalho",
+    "setor": "",
+    "items": [
+      {
+        "title": false,
+        "title_select": false,
+        "tables": [
+          {
+          }
+        ]
+      }
+    ]
+  }                           
 ]

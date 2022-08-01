@@ -17,7 +17,7 @@ import {
     TextArea
 } from './styles'
 
-function Input({ disabled, help, width, loading, limiteTooltip, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView, fontSize, mask }) {
+function Input({ disabled, onFocus, help, width, loading, limiteTooltip, onChange, type, placeholder, required, value, label, spanceLeft, spanceRight, spanceTop, id, name, qtd, notView, fontSize, mask }) {
 
   // const [clicInput, setClicInput] = useState(false)
 
@@ -73,6 +73,7 @@ function Input({ disabled, help, width, loading, limiteTooltip, onChange, type, 
                     isFile={type == "file" ? true : false }
                     id={id}
                     size={fontSize}
+                    onFocus={onFocus}
                   />
                   {loading && <LoadingAnimation viewport={false} />}
                   {type === "file" && 

@@ -18,6 +18,7 @@ export function AddItemEscopo({ openModal }) {
     
     const [data, setData] = useState(dataModal.data)
     const [step, setStep] = useState(1)
+    const [indexFocus, setIndexFocus] = useState([])
     const [loading, setLoading] = useState(false)
     const { id, slug } = useParams()
 
@@ -59,6 +60,15 @@ export function AddItemEscopo({ openModal }) {
         }
     }
 
+    const handleFormatValue = (title, value) => {
+        const titles = ["Consumo anual", "Quantidade Consumida", ...arrayMonth, "Emissões (kg GEE)" ]
+        if (titles.filter(i => i === title).length > 0) {
+            return value.trim().split(",")[0]
+        }else{
+            return value
+        }
+    }
+
     const handleOnchange = (index, value) => {
         let newList = data?.map(item => {
             data[index].value = value
@@ -69,6 +79,23 @@ export function AddItemEscopo({ openModal }) {
         setData(newList)
     }
 
+    const handleOnFocus = (index) => {
+        setIndexFocus([...indexFocus, index])
+        const filterIndexFocus = indexFocus.filter(i => i === index).length > 0
+
+        // if (filterIndexFocus) {
+            let newList = data?.map(item => {
+                data[index].value = ""
+    
+                return item
+            })
+    
+            setData(newList)   
+        // }
+    }
+
+    // console.log(data);
+
     const onSubmit= e => {
         e.preventDefault()
         setLoading(true)
@@ -76,6 +103,7 @@ export function AddItemEscopo({ openModal }) {
         dispatch(sheetActions.setSubEscopo({ range: dataModal.range.range_entry, values }))
         // console.log(newList);
     }
+    
 
     useEffect(() => {
 
@@ -109,14 +137,14 @@ export function AddItemEscopo({ openModal }) {
 
             while (render <= resultSheetData?.values[0]?.length) {
                 sendData[0]?.tables[0]?.items?.map((i, index) => {
-                    i.items.map(item => {
+                    i?.items?.map(item => {
                         render++
-                        if (dataLocalStorage === null) {
-                            item.data = [resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]]
+                        if (data?.index) {
+                            // item.data = [...item.data, resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]]
                         } 
-                        // else {
-                        //     item.data = [...item.data, resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]]
-                        // }
+                        else {
+                            item.data = [resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]] 
+                        }
                     })
                 })
                 newList = sendData
@@ -128,7 +156,7 @@ export function AddItemEscopo({ openModal }) {
     }, [resultSheetData, errorResultSheet])
     
 
-    console.log(dataModal.range);
+    // console.log(dataModal);
     
     
     
@@ -157,9 +185,10 @@ export function AddItemEscopo({ openModal }) {
                         spanceLeft={index % 2 == 1 && "10px"}
                         // spanceLeft="10px"
                         spanceRight="20px"
-                        type={handleTypeInput(item.key)}
+                        onFocus={() => handleOnFocus(index)}
+                        // type={handleTypeInput(item.key)}
                         onChange={e => handleOnchange(index, e.target.value)}
-                        value={item.value}
+                        value={handleFormatValue(item.key, item.value)}
                         disabled={!loading.toString()}
                     />
                 )

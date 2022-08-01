@@ -236,6 +236,12 @@ export const tipoEmissoeEsco1 = [
   "Relato de emissões de GEE estimadas a partir de outras ferramentas de cálculo"
 ];
 
+export const tipoEmissoeIndireta = [
+  "Sistema Interligado Nacional (SIN)",
+  "Sistema Isolado do Amazonas",
+  "Outros sistemas isolados"
+];
+
 export const gas = [
   "Dióxido de carbono (CO2)",
   "Metano (CH4)",

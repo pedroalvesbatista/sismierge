@@ -76,6 +76,10 @@ export const TrArea = styled.tr`
     /* flex: 1; */
     /* border-radius: ${({radius}) => radius ? "5px" : "none"}; */
     /* padding: ${({padding}) => padding ? padding : "10px"}; */
+
+    &:hover{
+        opacity: ${({bg}) => bg && 0.6};
+    }
 `
 
 export const ThArea = styled.th`
@@ -96,6 +100,7 @@ export const ThArea = styled.th`
 
 export const TdArea = styled.td`
      /* display: flex; */
+    cursor: pointer;
     justify-content: ${({justify}) => justify ? justify : "none"};
     align-items: ${({align}) => align ? align : "center"};
     /* width: ${({width}) => width ? width : "none"}; */
@@ -108,6 +113,7 @@ export const TdArea = styled.td`
     background-color: ${({bg}) => bg ?? "none"};
     border: 1px solid ${({bg}) => bg ? "#fff" : admin.cinza};
     padding: ${({padding}) => padding ? padding : "none"};
+
 `
 
 export const TbodyArea = styled.tbody`

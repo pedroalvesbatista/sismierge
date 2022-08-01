@@ -23,7 +23,8 @@ function Routes({ type, openModal}) {
     "Adicionar matriz", "Adicionar unidades", "Adicionar colaboradores", "Adicionar filial", "Formulário de Inventariação", "Escolha os Escopos", "Adicionar usuarios", "inicio", "organisation", "organisationStep2", "unidade", "Inventariação", "Editar minha organização", "Adicionar"
   ]
 
-  console.log(displayModal);
+  const modalTable=["Adicionar", "Editar"]
+  const verificationTable = modalTable.filter(i => i.toLowerCase() === displayModal).length > 0
     
   return (
     < >
@@ -40,7 +41,7 @@ function Routes({ type, openModal}) {
       {displayModal === modalType[10].toLowerCase() && <Unidade openModal={openModal} />}
       {displayModal === modalType[11].toLowerCase() && <Inventariacao openModal={openModal} />}
       {displayModal === modalType[12].toLowerCase() && <EditeOrganisation openModal={openModal} />}
-      {displayModal === "Adicionar".toLowerCase() && <AddItemEscopo openModal={openModal} />}
+      {verificationTable && <AddItemEscopo openModal={openModal} />}
     </>
   )
 }
