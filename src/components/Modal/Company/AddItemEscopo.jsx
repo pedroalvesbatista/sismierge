@@ -18,14 +18,17 @@ export function AddItemEscopo({ openModal }) {
     
     const [data, setData] = useState(dataModal.data)
     const [step, setStep] = useState(1)
+    const [typeSelect, setTypeSelect] = useState({status: false, value: "", index: ""})
     const [indexFocus, setIndexFocus] = useState([])
     const [loading, setLoading] = useState(false)
     const { id, slug } = useParams()
 
+    const seeMoreOption= ["5208192", "1965757995"]
+
     const dataLocalStorage = localStorage.getItem(`@sismierge/${id}/${slug}`)
 
     const arrayMonth =[
-        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez", "Consumo anual", 
+        "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez", 
     ]
 
     const handleComponente = (title) => {
@@ -53,10 +56,11 @@ export function AddItemEscopo({ openModal }) {
         }
     }
 
-    const handleTypeInput = (title) => {
-        const titles = ["Consumo anual", "Quantidade Consumida", ...arrayMonth, "Emissões (kg GEE)" ]
+    const handleTypeTitle = (title) => {
+        const titles = ["Consumo anual", "Quantidade Consumida", ...arrayMonth ]
         if (titles.filter(i => i === title).length > 0) {
-            return "number"
+            
+            return true
         }
     }
 
@@ -94,7 +98,7 @@ export function AddItemEscopo({ openModal }) {
         // }
     }
 
-    // console.log(data);
+    // console.log(dataModal);
 
     const onSubmit= e => {
         e.preventDefault()
@@ -110,6 +114,29 @@ export function AddItemEscopo({ openModal }) {
         if (sucessCreateSubEscopo) {
             dispatch(sheetActions.getResultSheet(dataModal.range.range_result))
         }
+
+        if (seeMoreOption.filter(i => i === slug).length > 0) {
+            setTypeSelect({...typeSelect, status: true, index: 3})
+            // switch (sendData[0].title) {
+            //     case "Transporte rodoviário":
+            //         setTypeSelect({...typeSelect, status: true, index: 3})
+            //         setData(data.slice(0, 3))
+            //         console.log("Aqui");
+
+            //     case "Transporte ferroviário":
+            //         setTypeSelect({...typeSelect, status: true, index: 2})
+            //         setData(data.slice(0, 2))
+
+            //     case "Sistema Interligado Nacional (SIN)":
+            //         setTypeSelect({...typeSelect, status: true, index: 1})
+            //         setData(data.slice(0, 1))
+            
+            //     default:
+            //         return data;
+            // }
+        }
+
+        console.log(step);
         
             
         if (step === 2) {
@@ -177,22 +204,82 @@ export function AddItemEscopo({ openModal }) {
                         // spanceLeft="10px"
                     />
                 ) : (
-                    <Input
-                        label={item.key} 
-                        placeholder={'digite aqui...'}
-                        required={true.toString()}
-                        width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
-                        spanceLeft={index % 2 == 1 && "10px"}
-                        // spanceLeft="10px"
-                        spanceRight="20px"
-                        onFocus={() => handleOnFocus(index)}
-                        // type={handleTypeInput(item.key)}
-                        onChange={e => handleOnchange(index, e.target.value)}
-                        value={handleFormatValue(item.key, item.value)}
-                        disabled={!loading.toString()}
-                    />
+                    handleTypeTitle(item.key) ? (
+                        <>
+                            {item.key === "Consumo anual" &&
+                                typeSelect.status &&
+                                    <SelectArea 
+                                        onChange={e => setTypeSelect({...typeSelect, value: e.target.value})}
+                                        value={typeSelect.value} 
+                                        title={"Tipo de relato"} 
+                                        item={["Mensal", "Anual"]} 
+                                        width= {"45%"}
+                                        placeholder={"Escolhe um tipo de ralato aqui..."}
+                                        // spanceLeft={index % 2 == 1 && "5px"}
+                                        spanceRight="50%"
+                                        // spanceLeft="10px"
+                                    />
+                                
+                            }
+                            {typeSelect.value === "Anual" && item.key === "Consumo anual" &&
+                                <>
+                                    <br/>
+                                    <Input
+                                        label={item.key} 
+                                        placeholder={'digite aqui...'}
+                                        required={true.toString()}
+                                        width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
+                                        spanceLeft={index % 2 == 1 && "10px"}
+                                        // spanceLeft="10px"
+                                        spanceRight="20px"
+                                        onFocus={() => handleOnFocus(index)}
+                                        // type={handleTypeInput(item.key)}
+                                        onChange={e => handleOnchange(index, e.target.value)}
+                                        value={handleFormatValue(item.key, item.value)}
+                                        disabled={!loading.toString()}
+                                    />
+                                </>
+                            } 
+                            {typeSelect.value === "Mensal" && arrayMonth.filter(i => i === item.key).length > 0 &&
+                                <>
+                                    <br/>
+                                    <Input
+                                        label={item.key} 
+                                        placeholder={'digite aqui...'}
+                                        required={true.toString()}
+                                        width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
+                                        spanceLeft={index % 2 == 1 && "10px"}
+                                        // spanceLeft="10px"
+                                        spanceRight="20px"
+                                        onFocus={() => handleOnFocus(index)}
+                                        // type={handleTypeInput(item.key)}
+                                        onChange={e => handleOnchange(index, e.target.value)}
+                                        value={handleFormatValue(item.key, item.value)}
+                                        disabled={!loading.toString()}
+                                    />
+                                </>
+                            }  
+                        </>
+                    ) : (
+                        <Input
+                            label={item.key} 
+                            placeholder={'digite aqui...'}
+                            required={true.toString()}
+                            width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
+                            spanceLeft={index % 2 == 1 && "10px"}
+                            // spanceLeft="10px"
+                            spanceRight="20px"
+                            onFocus={() => handleOnFocus(index)}
+                            // type={handleTypeInput(item.key)}
+                            onChange={e => handleOnchange(index, e.target.value)}
+                            value={handleFormatValue(item.key, item.value)}
+                            disabled={!loading.toString()}
+                        />
+                    )
+                    
                 )
             ))}
+            
         </Form>
         <AreaButton>
             <Button 
