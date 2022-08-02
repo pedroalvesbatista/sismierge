@@ -10,14 +10,15 @@ import { Area, IconDoc, Card, ContentArea, TextArea } from './styles'
 import TableSubItem from './TableSubItem'
 import { handleDataSelect } from '../../functions'
 import dataSubItem from '../../mocks/datas.json'
-import { useDispatch } from 'react-redux'
-import { othersActions } from '../../actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { othersActions, sheetActions } from '../../actions'
 import { toast } from 'react-toastify'
 
 function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
     const [itemActive, setItemActive] = useState(null)
     const dataLocalStorage = JSON.parse(localStorage.getItem(`@sismierge/${id}/${slug}`))
     const dispatch = useDispatch()
+    const { sucessResultSheet, sucessCreateSubEscopo } = useSelector((state) => state.sheet);
     const [indexTable, setIndexTable] = useState(0)
     const [range, setRange] = useState(null)
     const [rowLength, setRowLength] = useState([1])
@@ -98,10 +99,10 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
         }
     }
 
-    const handleAddRow = () => {
+    const handleAddRow = (add) => {
 
         let newList = []
-        let newData = []
+        let index
 
         if (verificationSheetId) {
             if (typeTable) {
@@ -110,10 +111,9 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                     // console.log(i.title);    
                     if (i.title == typeTable) {
                         setRange({range_entry: t.range, range_result: t?.range_result});
-                        newData = t
                         t.items.map(d => d.items.map(item => {
                             if (d.type === "entry") {
-                                newList= [...newList, {key: item.label, value: "-"}]
+                                newList= [...newList, {key: item.label, value: "-", index: item.data.length}]
                             }
                         }))
                         // console.log(newList);
@@ -132,10 +132,8 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                 
                 // const data = t.items.filter(i => i.type === "entry")
                 t.items.map(d => d.items.map(item => {
-                    // setRange(t.range);
-                    newData= t 
                     if (d.type === "entry") {
-                        newList= [...newList, {key: item.label, value: "-"}]
+                        newList= [...newList, {key: item.label, value: "-", index: item.data.length}]
                     }
                 }))
             }))
@@ -188,7 +186,11 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
             }
         }
 
-    }, [slug, data, itemActive, dataTable, typeTable])
+        if (sucessCreateSubEscopo) {
+            dispatch(sheetActions.cleanSheet())
+        }
+
+    }, [slug, data, itemActive, dataTable, typeTable, sucessCreateSubEscopo])
 
     useEffect(() => {
         if (dataTable) {
@@ -196,7 +198,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
         }
     }, [dataTable])
 
-    // console.log(verificationSelect);
+    // console.log(sucessResultSheet);
     
 
   return (
@@ -269,7 +271,7 @@ function Escopo1Teste({ data, slug, id, escopos, activeCalculate }) {
                                             spaceLeft="20px"
                                         />
                                     }
-                                    {<ButtonAdd onClick={handleAddRow} ml={20} mt={30} title={"mais linha"} />}
+                                    {/* {<ButtonAdd onClick={() => handleAddRow("add")} ml={20} mt={30} title={"mais linha"} />} */}
                                 </ContentArea>
 
                                 <ContentArea width="90.8vw" height="50.8vh" >

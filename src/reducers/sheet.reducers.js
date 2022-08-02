@@ -123,6 +123,9 @@ export const escoposReducer = (state = initialState, action) => {
         loadingCreateSubEscopo: false,
         sucessCreateSubEscopo: false,
         errorResultSheet: false,
+        dataSubEscopo: [],
+        loadingSubEscopo: false,
+        sucessSubEscopo: false,
       }
 
     case sheetConstants.LOAD_RESUMO_REQUEST:

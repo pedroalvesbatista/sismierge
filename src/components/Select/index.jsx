@@ -104,6 +104,7 @@ function SelectArea( { value, help, dataRow, spanceRight, dataTitle, type, name,
             name={name}
             data-row={dataRow}
             data-title={dataTitle}
+            // defaultValue={value}
         >
             {placeholder && <option style={{color: primary.cinza}} > {placeholder} </option>}
             {typeof item !== "undefined" ? item?.map((i, index) => (

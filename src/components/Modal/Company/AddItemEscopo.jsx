@@ -57,7 +57,7 @@ export function AddItemEscopo({ openModal }) {
     }
 
     const handleTypeTitle = (title) => {
-        const titles = ["Consumo anual", "Quantidade Consumida", ...arrayMonth ]
+        const titles = ["Consumo anual", ...arrayMonth ]
         if (titles.filter(i => i === title).length > 0) {
             
             return true
@@ -113,43 +113,30 @@ export function AddItemEscopo({ openModal }) {
 
         if (sucessCreateSubEscopo) {
             dispatch(sheetActions.getResultSheet(dataModal.range.range_result))
+            // console.log("Aqui");
         }
 
         if (seeMoreOption.filter(i => i === slug).length > 0) {
             setTypeSelect({...typeSelect, status: true, index: 3})
-            // switch (sendData[0].title) {
-            //     case "Transporte rodoviário":
-            //         setTypeSelect({...typeSelect, status: true, index: 3})
-            //         setData(data.slice(0, 3))
-            //         console.log("Aqui");
-
-            //     case "Transporte ferroviário":
-            //         setTypeSelect({...typeSelect, status: true, index: 2})
-            //         setData(data.slice(0, 2))
-
-            //     case "Sistema Interligado Nacional (SIN)":
-            //         setTypeSelect({...typeSelect, status: true, index: 1})
-            //         setData(data.slice(0, 1))
-            
-            //     default:
-            //         return data;
-            // }
         }
 
-        console.log(step);
+        // console.log(step);
         
             
         if (step === 2) {
-            const values = data.map(i => "")
+            const values = data.map(i => "-")
             dispatch(sheetActions.setSubEscopo({ range: dataModal.range.range_entry, values }))
-            dispatch(sheetActions.cleanSheet())
-            if (sucessCreateSubEscopo) {
+            // console.log(sucessCreateSubEscopo);
+            // if (sucessCreateSubEscopo) {
                 setLoading(false)
                 setStep(1)
+                dispatch(sheetActions.cleanSheet())
                 dispatch(othersActions.closeModal())
-            }
+            // }
         }
     }, [sucessCreateSubEscopo, step, slug])
+
+    console.log(data?.index);
 
     useEffect(() => {
         if (errorResultSheet) {
@@ -166,12 +153,12 @@ export function AddItemEscopo({ openModal }) {
                 sendData[0]?.tables[0]?.items?.map((i, index) => {
                     i?.items?.map(item => {
                         render++
-                        if (data?.index) {
-                            // item.data = [...item.data, resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]]
-                        } 
-                        else {
+                        // if (data[0]?.index > 0) {
+                        //     // item.data = [...item.data, resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]]
+                        // } 
+                        // else {
                             item.data = [resultSheetData?.values[0][render - (resultSheetData?.values[0].length + 1)]] 
-                        }
+                        // }
                     })
                 })
                 newList = sendData
@@ -180,12 +167,9 @@ export function AddItemEscopo({ openModal }) {
 
             localStorage.setItem(`@sismierge/${id}/${slug}`, JSON.stringify(newList))
         }
-    }, [resultSheetData, errorResultSheet])
+    }, [resultSheetData, sucessResultSheet, errorResultSheet])
     
-
-    // console.log(dataModal);
-    
-    
+    // console.log(data);
     
   return (
     <Area>
@@ -261,20 +245,23 @@ export function AddItemEscopo({ openModal }) {
                             }  
                         </>
                     ) : (
-                        <Input
-                            label={item.key} 
-                            placeholder={'digite aqui...'}
-                            required={true.toString()}
-                            width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
-                            spanceLeft={index % 2 == 1 && "10px"}
-                            // spanceLeft="10px"
-                            spanceRight="20px"
-                            onFocus={() => handleOnFocus(index)}
-                            // type={handleTypeInput(item.key)}
-                            onChange={e => handleOnchange(index, e.target.value)}
-                            value={handleFormatValue(item.key, item.value)}
-                            disabled={!loading.toString()}
-                        />
+                        <>
+                            
+                            <Input
+                                label={item.key} 
+                                placeholder={'digite aqui...'}
+                                required={true.toString()}
+                                width= {arrayMonth.filter(i => i == item.key).length > 0 ? "20%" : "45%"}
+                                spanceLeft={index % 2 == 1 && "10px"}
+                                // spanceLeft="10px"
+                                spanceRight="20px"
+                                onFocus={() => handleOnFocus(index)}
+                                // type={handleTypeInput(item.key)}
+                                onChange={e => handleOnchange(index, e.target.value)}
+                                value={handleFormatValue(item.key, item.value)}
+                                disabled={!loading.toString()}
+                            />
+                        </>
                     )
                     
                 )

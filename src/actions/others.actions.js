@@ -94,7 +94,7 @@ function changePageTitle (title){
 function closeModal (){
     return dispatch => {
         dispatch({ 
-            type: others.SET_CLOSE_MODAL,
+            type: others.SET_MODAL,
             payload: false
         })
 

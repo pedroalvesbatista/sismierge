@@ -78,7 +78,7 @@ export const TrArea = styled.tr`
     /* padding: ${({padding}) => padding ? padding : "10px"}; */
 
     &:hover{
-        opacity: ${({bg}) => bg && 0.6};
+        opacity: ${({opacity}) => opacity && 0.8};
     }
 `
 
